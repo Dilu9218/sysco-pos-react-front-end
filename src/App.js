@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
+import { BrowserRouter as Router, Route/* , Redirect */ } from 'react-router-dom';
 import Header from './components/Header';
 import './App.css';
 import LogOut from './components/LogOut';
 import LogIn from './pages/login';
 import Register from './pages/register';
 import AboutUs from './pages/about';
+import OrderList from './components/OrderList';
 
 function LoginLogoutSection(p) {
   if (!p.logStatus) {
@@ -35,15 +38,41 @@ function RegisterSection(p) {
 
 class App extends Component {
 
-  state = {
-    logButton: 'Login',
-    isLoggedIn: false
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
+
+  constructor(props) {
+    super(props);
+    const { cookies } = props;
+    this.state = {
+      logButton: 'Login',
+      isLoggedIn: false,
+      usertoken: cookies.get('usertoken')
+    };
   }
 
-  markLogStatus = (status) => {
+  componentDidMount() {
+    if (this.state.usertoken) {
+      console.warn(this.state.usertoken);
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }
+
+  markLogStatus = (status, usertoken) => {
+    // Set logged in status
     this.setState({
       isLoggedIn: status
-    })
+    });
+    const { cookies } = this.props;
+    if (!status) {
+      // Remove token if user logs out
+      cookies.remove('usertoken');
+    } else {
+      cookies.set('usertoken', usertoken, { path: '/' });
+    }
   }
 
   render() {
@@ -57,6 +86,9 @@ class App extends Component {
                 <p>Main</p>
               </div>
             </React.Fragment>
+          )} />
+          <Route path="/orderlist" render={props => (
+            <OrderList usertoken={this.state.usertoken} />
           )} />
           <Route path="/add" render={props => (
             <React.Fragment>
@@ -77,4 +109,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withCookies(App);

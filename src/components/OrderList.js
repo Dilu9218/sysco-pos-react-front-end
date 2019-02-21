@@ -12,6 +12,10 @@ class LogIn extends Component {
         alertUser: false
     }
 
+    componentDidMount() {
+        
+    }
+
     // As the values are being changed in each text box, add them to the current state
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
