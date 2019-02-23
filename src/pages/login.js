@@ -32,6 +32,7 @@ class LogIn extends Component {
                         alertMessage: ''
                     });
                     this.props.markLogStatus(true, res.data.token);
+                    this.props.history.push('/my_orders');
                 }
             }).catch(err => {
                 if (err.response.status === 401) {

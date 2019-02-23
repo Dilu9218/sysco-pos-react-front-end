@@ -30,7 +30,7 @@ class CreateOrder extends Component {
             );
         }
         axios.all(axiosRequests).then(axios.spread(function (acct, perms) { }));
-        this.props.history.push('/my_orders');
+        setTimeout(() => { this.props.history.push('/my_orders') }, (50 * axiosRequests.length) );
     }
 
     cancelTheOrder = (id) => {
@@ -61,11 +61,8 @@ class CreateOrder extends Component {
                 </div>
                 <div className="card-body">
                     <div className="row">
-                        <div className="col-6" style={{ textAlign: 'left' }}>
-                            <p className="card-text" style={{ padding: '1% 0' }}><b>Total: </b>Rs. {0.00}</p>
-                        </div>
-                        <div className="col-6 d-flex justify-content-end">
-                            <button onClick={this.addItemToOrder} className="btn btn-primary" style={{ marginRight: '10px' }}>Add to Cart</button>
+                        <div className="col-12 d-flex justify-content-end">
+                            <button onClick={this.addItemToOrder} className="btn btn-success" style={{ marginRight: '10px' }}>Add to Cart</button>
                             <button onClick={this.cancelTheOrder.bind(this, this.props.currentOrderInContext)} className="btn btn-danger">Cancel</button>
                         </div>
                     </div>

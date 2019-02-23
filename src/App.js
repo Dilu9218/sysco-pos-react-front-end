@@ -26,6 +26,23 @@ function DecidedLandingPage(prop) {
   }
 }
 
+function GoToEditOrder(prop) {
+  if (prop.currentOrderInContext) {
+    return (
+      <EditOrder
+        usertoken={prop.usertoken}
+        viewingOrder={prop.viewingOrder}
+        fetchAllItemsList={prop.fetchAllItemsList}
+        currentOrderInContext={prop.currentOrderInContext}
+        allItemsList={prop.allItemsList} />
+    );
+  } else {
+    return (
+      <Redirect to='/my_orders' />
+    );
+  }
+}
+
 class App extends Component {
 
   static propTypes = {
@@ -63,6 +80,7 @@ class App extends Component {
       cookies.remove('usertoken');
     } else {
       cookies.set('usertoken', usertoken, { path: '/' });
+
     }
   }
 
@@ -73,9 +91,16 @@ class App extends Component {
   }
 
   editThisOrder = (id) => {
-    this.setState({
-      currentOrderInContext: id
-    });
+    axios.get(`http://localhost:8080/api/order/order/${id}`,
+      { headers: { 'x-access-token': this.state.usertoken } })
+      .then(order => {
+        this.setState({
+          currentOrderInContext: id,
+          viewingOrder: order.data
+        });
+      }).catch(err => {
+        console.log(err);
+      });
   }
 
   deleteThisOrder = (id) => {
@@ -137,6 +162,7 @@ class App extends Component {
           <Route path="/home" render={props => (
             <MainPage />
           )} />
+
           <Route exact path="/" render={props => (
             <DecidedLandingPage isLoggedIn={this.state.isLoggedIn} />
           )} />
@@ -151,6 +177,7 @@ class App extends Component {
               fetchOrderList={this.fetchOrderList}
               deleteThisOrder={this.deleteThisOrder} />
           )} />
+
           <Route path="/create_order" render={props => (
             <CreateOrder
               usertoken={this.state.usertoken}
@@ -161,8 +188,9 @@ class App extends Component {
           )} />
 
           <Route path="/edit_order" render={props => (
-            <EditOrder
+            <GoToEditOrder
               usertoken={this.state.usertoken}
+              viewingOrder={this.state.viewingOrder}
               fetchAllItemsList={this.fetchAllItemsList}
               currentOrderInContext={this.state.currentOrderInContext}
               allItemsList={this.state.allItemsList} />
@@ -170,20 +198,16 @@ class App extends Component {
 
           <Route path="/view_order" render={props => (
             <ViewOrder
+              deleteThisOrder={this.deleteThisOrder}
               orderID={this.state.currentOrderInContext}
               usertoken={this.state.usertoken}
               viewingOrder={this.state.viewingOrder} />
           )} />
 
-          <Route path="/logout" render={props => (<LogOut logUserInAndOut={this.logUserInAndOut} />)} />
+          <Route path="/logout" render={() => (<LogOut logUserInAndOut={this.logUserInAndOut} />)} />
+          <Route path="/login" render={() => (<LogIn markLogStatus={this.logUserInAndOut} />)} />
+          <Route path="/register" render={() => (<Register />)} />
 
-          <Route path="/login" render={props => (
-            <LogIn markLogStatus={this.logUserInAndOut} />
-          )} />
-
-          <Route path="/register" render={props => (
-            <Register />
-          )} />
         </div>
       </Router>
     );

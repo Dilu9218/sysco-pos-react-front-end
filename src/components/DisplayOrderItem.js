@@ -19,10 +19,9 @@ class DisplayOrderItem extends Component {
                             <h6 className="card-title d-flex justify-content-right">{productTitle}</h6>
                             <p className="card-subtitle text-muted d-flex justify-content-right">{description}</p>
                         </div>
-                    </div><div className="col-1 card">
-                        <div className="card-body d-flex align-items-center" style={{ padding: '5px 0px' }}>
-                            <input name={this.props.keyID} type="number" className="form-control" min="0" max={quantity} onKeyDown={() => true}
-                                onChange={this.onChange} />
+                    </div><div className="col-1 card" style={{ padding: '0px', textAlign: 'center' }}>
+                        <div className="card-body d-flex align-items-center">
+                            <b>{quantity}</b>&nbsp;Nos
                         </div>
                     </div>
                     <div className="col-2 card text-right">

@@ -13,6 +13,15 @@ class ViewOrder extends Component {
         itemTotal: 0
     }
 
+    cancelTheOrder = () => {
+        this.props.history.push('/my_orders');
+    }
+
+    checkOutTheOrder = (id) => {
+        this.props.deleteThisOrder(id);
+        this.props.history.push('/my_orders');
+    }
+
     componentDidMount() {
         axios.get(`http://localhost:8080/api/order/order/${this.props.orderID}`,
             { headers: { 'x-access-token': this.props.usertoken } })
@@ -39,12 +48,12 @@ class ViewOrder extends Component {
             return (
                 <div className="card" style={{ margin: '25px' }}>
                     <div className="card-body">
-                        <div className="card border-dark shadow" style={{ margin: '10px 0px' }}>
+                        <div className="card border-dark shadow" style={{ margin: '10px 0px 0px 0px' }}>
                             <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}>
                                 <div className="row" style={{ width: '100%', margin: '0px' }}>
-                                    <div className="col-10 d-flex justify-content-start">
+                                    <div className="col-8 d-flex justify-content-start">
                                         Order ID: {this.state._id}</div>
-                                    <div className="col-2 d-flex justify-content-end">
+                                    <div className="col-4 d-flex justify-content-end">
                                         <b>Rs. {this.state.itemTotal.toFixed(2)}</b>
                                     </div>
                                 </div>
@@ -56,6 +65,14 @@ class ViewOrder extends Component {
                                     />
                                 ))}
                             </ul>
+                        </div>
+                    </div>
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col-12 d-flex justify-content-end">
+                                <button onClick={this.checkOutTheOrder.bind(this, this.state._id)} className="btn btn-success" style={{ marginRight: '10px' }}>Pay</button>
+                                <button onClick={this.cancelTheOrder} className="btn btn-danger">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>

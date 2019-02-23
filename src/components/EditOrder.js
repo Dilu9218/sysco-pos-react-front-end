@@ -54,7 +54,7 @@ class EditOrder extends Component {
         return (
             <div className="card" style={{ margin: '25px' }}>
                 <div className="card-body">
-                    <h5 className="card-title" style={{ margin: '0.5em 1em' }}>Item List</h5>
+                    <h5 className="card-title" style={{ margin: '0.5em 1em' }}>Editing Order {this.props.currentOrderInContext}</h5>
                     {this.props.allItemsList.map((item) => (
                         <DisplayItem key={item._id} singleItem={item} keyID={item.productID} addThisItemToOrder={this.addThisItemToOrder} />
                     ))}
