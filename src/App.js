@@ -1,38 +1,28 @@
 import React, { Component } from 'react';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-import { BrowserRouter as Router, Route/* , Redirect */ } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Header from './components/Header';
 import './App.css';
 import LogOut from './components/LogOut';
 import LogIn from './pages/login';
 import Register from './pages/register';
-import AboutUs from './pages/about';
+import MainPage from './pages/mainpage';
 import OrderList from './components/OrderList';
+import axios from 'axios';
+import CreateOrder from './components/CreateOrder';
+import EditOrder from './components/EditOrder';
+import ViewOrder from './components/ViewOrder';
 
-function LoginLogoutSection(p) {
-  if (!p.logStatus) {
+function DecidedLandingPage(prop) {
+  if (prop.isLoggedIn) {
     return (
-      <Route path="/login" render={props => (
-        <LogIn markLogStatus={p.markLogStatus} />
-      )} />
+      <Redirect to='/my_orders' />
     );
   } else {
     return (
-      <Route path="/orderlistview" />
+      <Redirect to='/login' />
     );
-  }
-}
-
-function RegisterSection(p) {
-  if (!p.logStatus) {
-    return (
-      <Route path="/register" render={props => (
-        <Register />
-      )} />
-    );
-  } else {
-    return null
   }
 }
 
@@ -45,34 +35,97 @@ class App extends Component {
   constructor(props) {
     super(props);
     const { cookies } = props;
+
     this.state = {
-      logButton: 'Login',
+      orderList: [],
+      allItemsList: [],
+      currentOrderInContext: '',
+      viewingOrder: {},
       isLoggedIn: false,
       usertoken: cookies.get('usertoken')
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.state.usertoken) {
-      console.warn(this.state.usertoken);
       this.setState({
         isLoggedIn: true
       });
     }
   }
 
-  markLogStatus = (status, usertoken) => {
-    // Set logged in status
+  logUserInAndOut = (isLoggedIn, usertoken) => {
     this.setState({
-      isLoggedIn: status
+      isLoggedIn
     });
     const { cookies } = this.props;
-    if (!status) {
-      // Remove token if user logs out
+    if (!isLoggedIn) {
       cookies.remove('usertoken');
     } else {
       cookies.set('usertoken', usertoken, { path: '/' });
     }
+  }
+
+  viewThisOrder = (id) => {
+    this.setState({
+      currentOrderInContext: id
+    });
+  }
+
+  editThisOrder = (id) => {
+    this.setState({
+      currentOrderInContext: id
+    });
+  }
+
+  deleteThisOrder = (id) => {
+    axios.delete(`http://localhost:8080/api/order/order/${id}`,
+      { headers: { 'x-access-token': this.state.usertoken } })
+      .then(delOrder => {
+        this.setState({
+          orderList: [...this.state.orderList.filter(order => (order._id !== id))]
+        });
+      }).catch(err => {
+        console.log(err);
+      });
+  }
+
+  createNewOrderForThisUser = () => {
+    axios.post('http://localhost:8080/api/order/order/new', {},
+      { headers: { 'x-access-token': this.state.usertoken } })
+      .then(newOrder => {
+        this.setState({
+          orderList: [
+            newOrder.data,
+            ...this.state.orderList
+          ],
+          currentOrderInContext: newOrder.data._id
+        });
+        this.fetchAllItemsList();
+      })
+      .catch(err => console.log(err));
+  }
+
+  fetchOrderList = () => {
+    axios.get('http://localhost:8080/api/order/itemlist',
+      { headers: { 'x-access-token': this.state.usertoken } })
+      .then(res => {
+        this.setState({
+          orderList: res.data
+        });
+      })
+      .catch(err => console.error(err));
+  }
+
+  fetchAllItemsList = () => {
+    axios.get('http://localhost:8080/api/order/items',
+      { headers: { 'x-access-token': this.state.usertoken } })
+      .then(res => {
+        this.setState({
+          allItemsList: res.data
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -80,28 +133,56 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header logStatus={this.state.isLoggedIn} />
+
+          <Route path="/home" render={props => (
+            <MainPage />
+          )} />
           <Route exact path="/" render={props => (
-            <React.Fragment>
-              <div style={{ width: '80%', margin: 'auto', padding: '25px' }} className="todo-body">
-                <p>Main</p>
-              </div>
-            </React.Fragment>
+            <DecidedLandingPage isLoggedIn={this.state.isLoggedIn} />
           )} />
-          <Route path="/orderlist" render={props => (
-            <OrderList usertoken={this.state.usertoken} />
+
+          <Route path="/my_orders" render={props => (
+            <OrderList
+              currentOrderInContext={this.state.currentOrderInContext}
+              editThisOrder={this.editThisOrder}
+              viewThisOrder={this.viewThisOrder}
+              usertoken={this.state.usertoken}
+              orderList={this.state.orderList}
+              fetchOrderList={this.fetchOrderList}
+              deleteThisOrder={this.deleteThisOrder} />
           )} />
-          <Route path="/add" render={props => (
-            <React.Fragment>
-              <p>Add stuff</p>
-            </React.Fragment>
+          <Route path="/create_order" render={props => (
+            <CreateOrder
+              usertoken={this.state.usertoken}
+              deleteThisOrder={this.deleteThisOrder}
+              createNewOrderForThisUser={this.createNewOrderForThisUser}
+              currentOrderInContext={this.state.currentOrderInContext}
+              allItemsList={this.state.allItemsList} />
           )} />
-          <Route path="/logout" render={props => (
-            <LogOut markLogStatus={this.markLogStatus} />
+
+          <Route path="/edit_order" render={props => (
+            <EditOrder
+              usertoken={this.state.usertoken}
+              fetchAllItemsList={this.fetchAllItemsList}
+              currentOrderInContext={this.state.currentOrderInContext}
+              allItemsList={this.state.allItemsList} />
           )} />
-          <LoginLogoutSection logStatus={this.state.isLoggedIn} markLogStatus={this.markLogStatus} />
-          <RegisterSection logStatus={this.state.isLoggedIn} />
-          <Route path="/about" render={props => (
-            <AboutUs />
+
+          <Route path="/view_order" render={props => (
+            <ViewOrder
+              orderID={this.state.currentOrderInContext}
+              usertoken={this.state.usertoken}
+              viewingOrder={this.state.viewingOrder} />
+          )} />
+
+          <Route path="/logout" render={props => (<LogOut logUserInAndOut={this.logUserInAndOut} />)} />
+
+          <Route path="/login" render={props => (
+            <LogIn markLogStatus={this.logUserInAndOut} />
+          )} />
+
+          <Route path="/register" render={props => (
+            <Register />
           )} />
         </div>
       </Router>

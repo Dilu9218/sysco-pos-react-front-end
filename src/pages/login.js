@@ -79,7 +79,7 @@ class LogIn extends Component {
                                         <span className="input-group-text" id="basic-addon2" style={{ width: '125px' }}>Password</span>
                                     </div>
                                     <input name="password" type="password" className="form-control" placeholder="Password here"
-                                        aria-label="Password" aria-describedby="basic-addon2" required
+                                        aria-label="Password" aria-describedby="basic-addon2" autoComplete="true" required
                                         value={this.state.password} onChange={this.onChange} />
                                 </div>
                                 <button className="btn btn-primary text-uppercase my-3" style={{ width: '100%' }} type="submit">Sign in</button>

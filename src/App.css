@@ -31,3 +31,19 @@
     transform: rotate(360deg);
   }
 }
+
+.delete {
+  color: rgba(255, 0, 100, 0.75);
+}
+
+.delete:hover {
+  color: rgb(255, 0, 0);
+}
+
+.edit-order {
+  color: rgba(25, 100, 50, 0.75);
+}
+
+.edit-order:hover {
+  color: rgb(25, 100, 50);
+}
