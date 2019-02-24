@@ -19,10 +19,7 @@ function HeaderAccordingLogStatus(props) {
         return (
             <div className="collapse navbar-collapse">
                 <Link className="navbar-brand" style={{ paddingTop: '0px' }} to="/">Sysco PoS System</Link>
-                <div className="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <Link className="nav-item nav-link" to="/about_us">About Us</Link>
-                </div>
-                <div className="navbar-nav my-2 my-lg-0">
+                <div className="navbar-nav ml-auto">
                     <Link className="nav-item nav-link" to="/login">Login</Link>
                     <Link className="nav-item nav-link" to="/register">Register</Link>
                 </div>
