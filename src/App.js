@@ -94,9 +94,13 @@ class App extends Component {
     axios.get(`http://localhost:8080/api/order/order/${id}`,
       { headers: { 'x-access-token': this.state.usertoken } })
       .then(order => {
+        let orderItemQuantities = {};
+        for (var i in order.data.items) {
+          orderItemQuantities[order.data.items[i].productID] = order.data.items[i].quantity;
+        }
         this.setState({
           currentOrderInContext: id,
-          viewingOrder: order.data
+          viewingOrder: orderItemQuantities
         });
       }).catch(err => {
         console.log(err);

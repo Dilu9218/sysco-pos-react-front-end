@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
-/**
- * Container for the list of todos
- */
 class DisplayOrderItem extends Component {
-
-    onChange = (e) => {
-        //this.props.addThisItemToOrder(e.target.name, e.target.value);
-    }
 
     render() {
         let { productTitle, description, quantity, price } = this.props.singleItem;
@@ -25,7 +18,7 @@ class DisplayOrderItem extends Component {
                         </div>
                     </div>
                     <div className="col-2 card text-right">
-                        <p className="card-text" style={{ margin: '5px 0 0 0' }}>{quantity} x {price}</p>
+                        <p className="card-text" style={{ margin: '5px 0 0 0' }}>{this.props.itemDetailsInOrder} x {price}</p>
                         <p className="card-link" style={{ margin: '0px' }}><b>Rs. {(quantity * price).toFixed(2)}</b></p>
                     </div>
                 </div>

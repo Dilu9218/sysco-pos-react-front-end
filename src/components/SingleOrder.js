@@ -41,8 +41,8 @@ class SingleOrder extends Component {
                     ))}
                 </ul>
                 <div className="card-footer d-flex justify-content-end">
-                    <Link to="#" className="card-link edit-order" onClick={this.editThisOrder}>Edit</Link>
                     <Link to="#" className="card-link" onClick={this.viewThisOrder}>View</Link>
+                    <Link to="#" className="card-link edit-order" onClick={this.editThisOrder}>Edit</Link>
                     <Link to="#" className="card-link delete" onClick={this.props.deleteThisOrder}>Delete</Link>
                 </div>
             </div>

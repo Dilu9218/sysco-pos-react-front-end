@@ -19,7 +19,6 @@ class CreateOrder extends Component {
     addItemToOrder = () => {
         let axiosRequests = []
         for (var l in this.state.addedItems) {
-            console.log(`Item is ${l} with ${this.state.addedItems}`);
             axiosRequests.push(
                 axios.post(`http://localhost:8080/api/order/order/${this.props.currentOrderInContext}`,
                     {
@@ -30,7 +29,7 @@ class CreateOrder extends Component {
             );
         }
         axios.all(axiosRequests).then(axios.spread(function (acct, perms) { }));
-        setTimeout(() => { this.props.history.push('/my_orders') }, (50 * axiosRequests.length) );
+        setTimeout(() => { this.props.history.push('/my_orders') }, (50 * axiosRequests.length));
     }
 
     cancelTheOrder = (id) => {
@@ -59,7 +58,7 @@ class CreateOrder extends Component {
                         <DisplayItem key={item._id} singleItem={item} keyID={item.productID} addThisItemToOrder={this.addThisItemToOrder} />
                     ))}
                 </div>
-                <div className="card-body">
+                <div className="card-body" style={{ paddingTop: '0px' }}>
                     <div className="row">
                         <div className="col-12 d-flex justify-content-end">
                             <button onClick={this.addItemToOrder} className="btn btn-success" style={{ marginRight: '10px' }}>Add to Cart</button>

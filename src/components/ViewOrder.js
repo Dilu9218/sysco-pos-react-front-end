@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
 import axios from 'axios';
 import DisplayOrderItem from './DisplayOrderItem';
-/**
- * Container for the list of todos
- */
+
 class ViewOrder extends Component {
 
     state = {
@@ -67,10 +65,11 @@ class ViewOrder extends Component {
                             </ul>
                         </div>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body" style={{ paddingTop: '0px' }}>
                         <div className="row">
                             <div className="col-12 d-flex justify-content-end">
-                                <button onClick={this.checkOutTheOrder.bind(this, this.state._id)} className="btn btn-success" style={{ marginRight: '10px' }}>Pay</button>
+                                <button onClick={this.checkOutTheOrder.bind(this, this.state._id)}
+                                    className="btn btn-success" style={{ marginRight: '10px' }}>Checkout</button>
                                 <button onClick={this.cancelTheOrder} className="btn btn-danger">Cancel</button>
                             </div>
                         </div>

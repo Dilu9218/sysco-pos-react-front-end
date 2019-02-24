@@ -33,11 +33,11 @@
 }
 
 .delete {
-  color: rgba(255, 0, 100, 0.75);
+  color: rgba(150, 0, 50, 0.75);
 }
 
 .delete:hover {
-  color: rgb(255, 0, 0);
+  color: rgb(150, 0, 50);
 }
 
 .edit-order {
@@ -46,4 +46,8 @@
 
 .edit-order:hover {
   color: rgb(25, 100, 50);
+}
+
+.card {
+  border: 0px
 }
