@@ -1,77 +1,105 @@
+import './App.css';
 import React, { Component } from 'react';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import Header from './components/Header';
-import './App.css';
-import LogOut from './components/LogOut';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
+
+import { BASEURL, USERTOKEN, ORDER_ENDPOINT, ITEM_ENDPOINT, USER_ENDPOINT } from './constants';
+
 import LogIn from './pages/login';
 import Register from './pages/register';
 import MainPage from './pages/mainpage';
+
+import Header from './components/Header';
+import LogOut from './components/LogOut';
 import OrderList from './components/OrderList';
-import axios from 'axios';
 import CreateOrder from './components/CreateOrder';
-import EditOrder from './components/EditOrder';
 import ViewOrder from './components/ViewOrder';
 
-function DecidedLandingPage(prop) {
-  if (prop.isLoggedIn) {
-    return (
-      <Redirect to='/my_orders' />
-    );
-  } else {
-    return (
-      <Redirect to='/login' />
-    );
-  }
-}
-
-function GoToEditOrder(prop) {
-  if (prop.currentOrderInContext) {
-    return (
-      <EditOrder
-        usertoken={prop.usertoken}
-        viewingOrder={prop.viewingOrder}
-        fetchAllItemsList={prop.fetchAllItemsList}
-        currentOrderInContext={prop.currentOrderInContext}
-        allItemsList={prop.allItemsList} />
-    );
-  } else {
-    return (
-      <Redirect to='/my_orders' />
-    );
-  }
-}
+import { DecidedLandingPage, GoToEditOrder } from './components/ConditionalComponents';
 
 class App extends Component {
 
+  /****************************************************************************
+   * APP STATE == The complete variable states of app circulated among others *
+   * ======================================================================== *
+   * USERTOKEN      = Usertoken related to the logged in user                 *
+   * ISLOGGEDIN     = Log status of user                                      *
+   * ITEMLIST       = Every item in the database                              *
+   * ORDERLIST      = Every order user has placed                             *
+   * CURRENTORDER   = Order being created, viewed, edited, deleted            *
+   * CURRENTORDERID = ID of Order being created, viewed, edited, deleted      *
+   * ITEMQUANTITY   = ProductIDs & quantities of items in an order            *
+   ***************************************************************************/
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
 
+  /****************************************************************************
+   * Constructor: Initiates state of app
+   ***************************************************************************/
   constructor(props) {
     super(props);
-    const { cookies } = props;
-
+    // This will the app state for the whole project
     this.state = {
+      USERTOKEN: props.cookies.get(USERTOKEN),
+      ISLOGGEDIN: false,
+      ITEMLIST: [],
+      ORDERLIST: [],
+      CURRENTORDER: [],
+      CURRENTORDERID: '',
+      ITEMQUANTITY: {},
+      // TODO: Delete the underlying states and use the ones above
       orderList: [],
       allItemsList: [],
       currentOrderInContext: '',
       viewingOrder: {},
       isLoggedIn: false,
-      usertoken: cookies.get('usertoken')
+      usertoken: props.cookies.get('usertoken')
     };
   }
 
-  componentWillMount() {
+  /****************************************************************************
+   * Life Cycle Methods
+   ***************************************************************************/
+  componentDidMount() {
+    // Check if it's a logged user. If he is logged in, we can set ISLOGGEDIN
+    // as true and start fetching his order list immediate when the app starts
+    if (this.state.USERTOKEN) {
+      this.setState({
+        ISLOGGEDIN: true
+      });
+
+    }
+    /* 
     if (this.state.usertoken) {
       this.setState({
-        isLoggedIn: true
+        isLoggedIn: true,
+        ISLOGGEDIN: true
       });
-    }
+    } */
   }
 
-  logUserInAndOut = (isLoggedIn, usertoken) => {
+  componentDidCatch() {
+
+  }
+
+  /****************************************************************************
+   * Supporting functions to access API and update state
+   ***************************************************************************/
+  fetchOrderList = () => {
+    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/list`,
+      { headers: { 'x-access-token': this.state.usertoken } })
+      .then(res => {
+        this.setState({
+          orderList: res.data
+        });
+      })
+      .catch(err => console.error(err));
+  }
+
+  handleUserLogActivities = (isLoggedIn, usertoken) => {
     this.setState({
       isLoggedIn
     });
@@ -91,7 +119,7 @@ class App extends Component {
   }
 
   editThisOrder = (id) => {
-    axios.get(`http://localhost:8080/api/order/order/${id}`,
+    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/order/${id}`,
       { headers: { 'x-access-token': this.state.usertoken } })
       .then(order => {
         let orderItemQuantities = {};
@@ -108,7 +136,7 @@ class App extends Component {
   }
 
   deleteThisOrder = (id) => {
-    axios.delete(`http://localhost:8080/api/order/order/${id}`,
+    axios.delete(`${BASEURL}/${ORDER_ENDPOINT}/order/${id}`,
       { headers: { 'x-access-token': this.state.usertoken } })
       .then(delOrder => {
         this.setState({
@@ -120,7 +148,7 @@ class App extends Component {
   }
 
   createNewOrderForThisUser = () => {
-    axios.post('http://localhost:8080/api/order/order/new', {},
+    axios.post(`${BASEURL}/${ORDER_ENDPOINT}/order/new`, {},
       { headers: { 'x-access-token': this.state.usertoken } })
       .then(newOrder => {
         this.setState({
@@ -136,7 +164,7 @@ class App extends Component {
   }
 
   fetchOrderList = () => {
-    axios.get('http://localhost:8080/api/order/itemlist',
+    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/list`,
       { headers: { 'x-access-token': this.state.usertoken } })
       .then(res => {
         this.setState({
@@ -147,7 +175,7 @@ class App extends Component {
   }
 
   fetchAllItemsList = () => {
-    axios.get('http://localhost:8080/api/order/items',
+    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/items`,
       { headers: { 'x-access-token': this.state.usertoken } })
       .then(res => {
         this.setState({
@@ -208,8 +236,8 @@ class App extends Component {
               viewingOrder={this.state.viewingOrder} />
           )} />
 
-          <Route path="/logout" render={() => (<LogOut logUserInAndOut={this.logUserInAndOut} />)} />
-          <Route path="/login" render={() => (<LogIn markLogStatus={this.logUserInAndOut} />)} />
+          <Route path="/logout" render={() => (<LogOut logUserInAndOut={this.handleUserLogActivities} />)} />
+          <Route path="/login" render={() => (<LogIn markLogStatus={this.handleUserLogActivities} />)} />
           <Route path="/register" render={() => (<Register />)} />
 
         </div>

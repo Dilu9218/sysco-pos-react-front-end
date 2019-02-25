@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
 import axios from 'axios';
+
+import { BASEURL, ORDER_ENDPOINT } from '../constants';
 import DisplayOrderItem from './DisplayOrderItem';
 
 class ViewOrder extends Component {
@@ -21,7 +23,7 @@ class ViewOrder extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/api/order/order/${this.props.orderID}`,
+        axios.get(`${BASEURL}/${ORDER_ENDPOINT}/order/${this.props.orderID}`,
             { headers: { 'x-access-token': this.props.usertoken } })
             .then(res => {
                 this.setState({

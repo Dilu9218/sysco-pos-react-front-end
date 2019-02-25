@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom'
 import DisplayItem from './DisplayItem';
 import axios from 'axios';
 
+import { BASEURL, ORDER_ENDPOINT } from '../constants';
+
 class CreateOrder extends Component {
 
     constructor(props) {
@@ -20,7 +22,7 @@ class CreateOrder extends Component {
         let axiosRequests = []
         for (var l in this.state.addedItems) {
             axiosRequests.push(
-                axios.post(`http://localhost:8080/api/order/order/${this.props.currentOrderInContext}`,
+                axios.post(`${BASEURL}/${ORDER_ENDPOINT}/${this.props.currentOrderInContext}`,
                     {
                         productID: l,
                         quantity: this.state.addedItems[l]

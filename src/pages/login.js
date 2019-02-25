@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import axios from 'axios';
 
+import { BASEURL, USERTOKEN, ORDER_ENDPOINT, ITEM_ENDPOINT, USER_ENDPOINT } from '../constants';
+
 class LogIn extends Component {
 
     // Register component will have the following states to help with user registration
@@ -21,7 +23,7 @@ class LogIn extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.setState({ alertUser: false });
-        axios.post('http://localhost:8080/api/user/login', {
+        axios.post(`${BASEURL}/${USER_ENDPOINT}/login`, {
             username: this.state.username,
             password: this.state.password
         })
