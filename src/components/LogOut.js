@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 class LogOut extends Component {
 
     componentDidMount() {
-        this.props.logUserInAndOut(false);
+        this.props.LOG_USER_IN_AND_OUT(false);
         this.props.history.push('/login');
     }
 

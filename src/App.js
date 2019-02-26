@@ -5,9 +5,12 @@ import { withCookies, Cookies } from 'react-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 
-import { BASEURL, USERTOKEN, ORDER_ENDPOINT, ITEM_ENDPOINT, USER_ENDPOINT } from './constants';
+import {
+  ORDER_LIST_ENDPOINT,
+  BASEURL, USERTOKEN, ORDER_ENDPOINT, ITEM_ENDPOINT, USER_ENDPOINT
+} from './constants';
 
-import LogIn from './pages/login';
+import LogIn from './pages/LogIn';
 import Register from './pages/register';
 import MainPage from './pages/mainpage';
 
@@ -24,7 +27,7 @@ class App extends Component {
   /****************************************************************************
    * APP STATE == The complete variable states of app circulated among others *
    * ======================================================================== *
-   * USERTOKEN      = Usertoken related to the logged in user                 *
+   * PASSKEY        = Usertoken related to the logged in user                 *
    * ISLOGGEDIN     = Log status of user                                      *
    * ITEMLIST       = Every item in the database                              *
    * ORDERLIST      = Every order user has placed                             *
@@ -43,7 +46,7 @@ class App extends Component {
     super(props);
     // This will the app state for the whole project
     this.state = {
-      USERTOKEN: props.cookies.get(USERTOKEN),
+      PASSKEY: props.cookies.get(USERTOKEN),
       ISLOGGEDIN: false,
       ITEMLIST: [],
       ORDERLIST: [],
@@ -66,37 +69,48 @@ class App extends Component {
   componentDidMount() {
     // Check if it's a logged user. If he is logged in, we can set ISLOGGEDIN
     // as true and start fetching his order list immediate when the app starts
-    if (this.state.USERTOKEN) {
+    if (this.state.PASSKEY) {
       this.setState({
         ISLOGGEDIN: true
       });
-
+      this.GET_THE_ORDER_LIST_FOR_THIS_USER();
     }
-    /* 
-    if (this.state.usertoken) {
-      this.setState({
-        isLoggedIn: true,
-        ISLOGGEDIN: true
-      });
-    } */
+  }
+
+  getDerivedStateFromError() {
+    console.error('Error DS happened at App.js');
   }
 
   componentDidCatch() {
-
+    console.error('Error happened at App.js');
   }
 
   /****************************************************************************
    * Supporting functions to access API and update state
    ***************************************************************************/
-  fetchOrderList = () => {
-    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/list`,
-      { headers: { 'x-access-token': this.state.usertoken } })
+  GET_THE_ORDER_LIST_FOR_THIS_USER = () => {
+    axios.get(ORDER_LIST_ENDPOINT,
+      { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(res => {
+        console.log(res.data);
         this.setState({
-          orderList: res.data
+          ORDERLIST: res.data
         });
       })
       .catch(err => console.error(err));
+  }
+
+  // This method will be called when user tries to login or logout
+  LOG_USER_IN_AND_OUT = (ISLOGGEDIN, PASSKEY) => {
+    this.setState({
+      ISLOGGEDIN
+    });
+    // When user logs out, we have to remove the saved token
+    if (ISLOGGEDIN) {
+      this.props.cookies.set(USERTOKEN, PASSKEY, { path: '/' });
+    } else {
+      this.props.cookies.remove(USERTOKEN);
+    }
   }
 
   handleUserLogActivities = (isLoggedIn, usertoken) => {
@@ -120,7 +134,7 @@ class App extends Component {
 
   editThisOrder = (id) => {
     axios.get(`${BASEURL}/${ORDER_ENDPOINT}/order/${id}`,
-      { headers: { 'x-access-token': this.state.usertoken } })
+      { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(order => {
         let orderItemQuantities = {};
         for (var i in order.data.items) {
@@ -137,7 +151,7 @@ class App extends Component {
 
   deleteThisOrder = (id) => {
     axios.delete(`${BASEURL}/${ORDER_ENDPOINT}/order/${id}`,
-      { headers: { 'x-access-token': this.state.usertoken } })
+      { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(delOrder => {
         this.setState({
           orderList: [...this.state.orderList.filter(order => (order._id !== id))]
@@ -149,7 +163,7 @@ class App extends Component {
 
   createNewOrderForThisUser = () => {
     axios.post(`${BASEURL}/${ORDER_ENDPOINT}/order/new`, {},
-      { headers: { 'x-access-token': this.state.usertoken } })
+      { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(newOrder => {
         this.setState({
           orderList: [
@@ -165,7 +179,7 @@ class App extends Component {
 
   fetchOrderList = () => {
     axios.get(`${BASEURL}/${ORDER_ENDPOINT}/list`,
-      { headers: { 'x-access-token': this.state.usertoken } })
+      { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(res => {
         this.setState({
           orderList: res.data
@@ -176,7 +190,7 @@ class App extends Component {
 
   fetchAllItemsList = () => {
     axios.get(`${BASEURL}/${ORDER_ENDPOINT}/items`,
-      { headers: { 'x-access-token': this.state.usertoken } })
+      { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(res => {
         this.setState({
           allItemsList: res.data
@@ -189,7 +203,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header logStatus={this.state.isLoggedIn} />
+          <Header logStatus={this.state.ISLOGGEDIN} />
 
           <Route path="/home" render={props => (
             <MainPage />
@@ -204,8 +218,8 @@ class App extends Component {
               currentOrderInContext={this.state.currentOrderInContext}
               editThisOrder={this.editThisOrder}
               viewThisOrder={this.viewThisOrder}
-              usertoken={this.state.usertoken}
-              orderList={this.state.orderList}
+              usertoken={this.state.PASSKEY}
+              orderList={this.state.ORDERLIST}
               fetchOrderList={this.fetchOrderList}
               deleteThisOrder={this.deleteThisOrder} />
           )} />
@@ -236,9 +250,9 @@ class App extends Component {
               viewingOrder={this.state.viewingOrder} />
           )} />
 
-          <Route path="/logout" render={() => (<LogOut logUserInAndOut={this.handleUserLogActivities} />)} />
-          <Route path="/login" render={() => (<LogIn markLogStatus={this.handleUserLogActivities} />)} />
+          <Route path="/login" render={() => (<LogIn LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
           <Route path="/register" render={() => (<Register />)} />
+          <Route path="/logout" render={() => (<LogOut LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
 
         </div>
       </Router>
