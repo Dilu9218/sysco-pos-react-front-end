@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
-import ItemInOrder from './ItemInOrder';
+import ListItemInCreateOrder from './ListItemInCreateOrder';
 
 /**
  * @abstract Creates a new order
@@ -91,7 +91,7 @@ class CreateOrder extends Component {
                         <h5 className="card-title"
                             style={{ margin: '0.5em 1em' }}>Item List</h5>
                         {this.props.ITEMSLIST.map((item) => (
-                            <ItemInOrder
+                            <ListItemInCreateOrder
                                 key={item._id}
                                 singleItem={item}
                                 keyID={item.productID}

@@ -11,15 +11,17 @@ class SingleOrder extends Component {
      *************************************************************************/
     VIEW_THIS_ORDER = () => {
         this.props.SET_THIS_ORDER_AS_CURRENT();
+        this.props.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER();
         this.props.history.push('/view_order');
     }
 
     /**************************************************************************
-     * Sets the current order in context as this order and ...
+     * Sets the current order in context as this order and starts fetching the
+     * item list.
      *************************************************************************/
     EDIT_THIS_ORDER = () => {
         this.props.SET_THIS_ORDER_AS_CURRENT();
-        this.props.editThisOrder(this.props._id);
+        this.props.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER();
         this.props.history.push('/edit_order');
     }
 

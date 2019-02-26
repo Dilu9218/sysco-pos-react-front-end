@@ -12,7 +12,7 @@ import {
   NEW_ORDER_ENDPOINT,
   ADD_TO_ORDER_ENDPOINT,
   ORDER_CHECKOUT_ENDPOINT,
-  BASEURL, USERTOKEN, ORDER_ENDPOINT
+  USERTOKEN
 } from './constants';
 
 import LogIn from './components/LogIn';
@@ -25,8 +25,9 @@ import LogOut from './components/LogOut';
 import OrderList from './components/OrderList';
 import CreateOrder from './components/CreateOrder';
 import ViewOrder from './components/ViewOrder';
+import EditOrder from './components/EditOrder';
 
-import { DecidedLandingPage, GoToEditOrder } from './components/ConditionalComponents';
+import { DecidedLandingPage } from './components/ConditionalComponents';
 
 class App extends Component {
 
@@ -58,14 +59,7 @@ class App extends Component {
       ORDERLIST: [],
       CURRENTORDER: {},
       CURRENTORDERID: '',
-      ITEMQUANTITY: {},
-      // TODO: Delete the underlying states and use the ones above
-      orderList: [],
-      allItemsList: [],
-      currentOrderInContext: '',
-      viewingOrder: {},
-      isLoggedIn: false,
-      usertoken: props.cookies.get('usertoken')
+      ITEMQUANTITY: {}
     };
   }
 
@@ -166,7 +160,8 @@ class App extends Component {
       .then(checkedOut => {
         this.setState({
           ORDERLIST: [
-            ...this.state.ORDERLIST.filter(order => (order._id !== this.state.CURRENTORDERID))
+            ...this.state.ORDERLIST.filter(order => (
+              order._id !== this.state.CURRENTORDERID))
           ]
         });
       }).catch(err => {
@@ -192,6 +187,26 @@ class App extends Component {
   }
 
   /****************************************************************************
+   * Parent method taking care of updating the list of `items` provided by user
+   * to update in both orders collection and do necessary adjustments in items
+   * collection. This will trigger a series of axios requests to perform the
+   * said tasks. After waiting for a time out, user will be redirected to order
+   * list page.
+   ***************************************************************************/
+  UPDATE_ITEMS_IN_THIS_ORDER = (items) => {
+    //let axiosRequests = [];
+    console.log(items);
+    /* for (var item in items) {
+      axiosRequests.push(
+        axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+          { productID: item, quantity: items[item] },
+          { headers: { 'x-access-token': this.state.PASSKEY } })
+      );
+    }
+    axios.all(axiosRequests).then(axios.spread(function (acct, perms) { })); */
+  }
+
+  /****************************************************************************
    * Update state to have the given ID as the current order to use in different
    * situations. As an example, while viewing an order, this can be used inside
    * the component when mounting
@@ -203,41 +218,18 @@ class App extends Component {
   }
 
   /****************************************************************************
-   * Modifies the item count and quantity of each individual item and updates 
-   * the order accordingly
+   * Refresh the item list and add the selected order to CURRENTORDER
    ***************************************************************************/
-  EDIT_THIS_ORDER = (ID) => {
-    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/order/${ID}`,
-      { headers: { 'x-access-token': this.state.PASSKEY } })
-      .then(order => {
-        let orderItemQuantities = {};
-        for (var i in order.data.items) {
-          orderItemQuantities[order.data.items[i].productID] = order.data.items[i].quantity;
-        }
+  PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER = (ID) => {
+    this.GET_THE_COMPLETE_ITEMS_LIST();
+    let OrderList = this.state.ORDERLIST;
+    for (var order in OrderList) {
+      if (OrderList[order]._id === ID) {
         this.setState({
-          currentOrderInContext: ID,
-          viewingOrder: orderItemQuantities
+          CURRENTORDER: OrderList[order]
         });
-      }).catch(err => {
-        console.log(err);
-      });
-  }
-
-  editThisOrder = (id) => {
-    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/order/${id}`,
-      { headers: { 'x-access-token': this.state.PASSKEY } })
-      .then(order => {
-        let orderItemQuantities = {};
-        for (var i in order.data.items) {
-          orderItemQuantities[order.data.items[i].productID] = order.data.items[i].quantity;
-        }
-        this.setState({
-          currentOrderInContext: id,
-          viewingOrder: orderItemQuantities
-        });
-      }).catch(err => {
-        console.log(err);
-      });
+      }
+    }
   }
 
   render() {
@@ -280,7 +272,7 @@ class App extends Component {
               <OrderList
                 ISLOGGEDIN={this.state.ISLOGGEDIN}
                 ORDERLIST={this.state.ORDERLIST}
-                EDIT_THIS_ORDER={this.EDIT_THIS_ORDER}
+                PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER={this.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER}
                 GET_THE_ORDER_LIST_FOR_THIS_USER={this.GET_THE_ORDER_LIST_FOR_THIS_USER}
                 SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
                 DELETE_THIS_ORDER={this.DELETE_THIS_ORDER} />
@@ -290,20 +282,23 @@ class App extends Component {
           <Route path="/view_order" render={props => (
             <ErrorBoundary>
               <ViewOrder
-                PASSKEY={this.state.PASSKEY}
-                CURRENTORDERID={this.state.CURRENTORDERID}
+                ISLOGGEDIN={this.state.ISLOGGEDIN}
+                CURRENTORDER={this.state.CURRENTORDER}
                 DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
                 CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT} />
             </ErrorBoundary>
           )} />
 
           <Route path="/edit_order" render={props => (
-            <GoToEditOrder
-              PASSKEY={this.state.PASSKEY}
-              viewingOrder={this.state.viewingOrder}
-              fetchAllItemsList={this.GET_THE_COMPLETE_ITEMS_LIST}
-              CURRENTORDERID={this.state.CURRENTORDERID}
-              ITEMSLIST={this.state.ITEMSLIST} />
+            <ErrorBoundary>
+              <EditOrder
+                ISLOGGEDIN={this.state.ISLOGGEDIN}
+                CURRENTORDERID={this.state.CURRENTORDERID}
+                CURRENTORDER={this.state.CURRENTORDER}
+                ITEMSLIST={this.state.ITEMSLIST}
+                SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
+                UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER} />
+            </ErrorBoundary>
           )} />
 
         </div>

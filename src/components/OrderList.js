@@ -38,7 +38,7 @@ class OrderList extends Component {
                             <SingleOrder
                                 key={order._id}
                                 ORDER={order}
-                                EDIT_THIS_ORDER={this.props.EDIT_THIS_ORDER.bind(this, order._id)}
+                                PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER={this.props.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER.bind(this, order._id)}
                                 DELETE_THIS_ORDER={this.props.DELETE_THIS_ORDER.bind(this, order._id)}
                                 SET_THIS_ORDER_AS_CURRENT={this.props.SET_THIS_ORDER_AS_CURRENT.bind(this, order._id)}
                             />

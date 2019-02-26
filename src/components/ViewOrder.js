@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
-import axios from 'axios';
-
-import { ORDER_REQUEST_ENDPOINT } from '../constants';
+import { withRouter, Redirect } from 'react-router-dom'
 import ListItemInOrderDetailView from './ListItemInOrderDetailView';
 
 class ViewOrder extends Component {
 
-    state = {
-        _id: '',
-        items: [],
-        itemTotal: 0
+    constructor(props) {
+        super(props);
+        this.state = {
+            _id: '',
+            items: [],
+            itemTotal: 0
+        };
     }
 
     /**************************************************************************
@@ -30,21 +30,23 @@ class ViewOrder extends Component {
         this.props.history.push('/my_orders');
     }
 
-    // Once the view is called, fetch the order
+    // Once the view is called CURRENTORDER has the order details. Destruct it
+    // extract the necessary components and calculate totals
     componentDidMount() {
-        axios.get(ORDER_REQUEST_ENDPOINT + `/${this.props.CURRENTORDERID}`,
-            { headers: { 'x-access-token': this.props.PASSKEY } })
-            .then(order => {
-                let { _id, items } = order.data;
-                let itemTotal = 0;
-                for (var i = 0; i < items.length; i++) {
-                    itemTotal += items[i].quantity * items[i].price;
-                }
-                this.setState({ _id, items, itemTotal });
-            }).catch(err => { this.props.history.push('/my_orders'); });
+        let { _id, items } = this.props.CURRENTORDER;
+        let itemTotal = 0;
+        for (var i = 0; i < items.length; i++) {
+            itemTotal += items[i].quantity * items[i].price;
+        }
+        this.setState({ _id, items, itemTotal });
     }
 
     render() {
+        if (!this.props.ISLOGGEDIN) {
+            return (
+                <Redirect to="/login" />
+            )
+        }
         return (
             <div className="card" style={{ margin: '25px' }}>
                 <div className="card-body">

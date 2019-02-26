@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 /**
- * Container for the list of todos
+ * Contains a single item view of a single order in my_orders list
  */
-class SingleItem extends Component {
+class ListItemInSingleOrder extends Component {
 
     render() {
         let { productTitle, description, quantity, price } = this.props.singleItem;
@@ -26,4 +26,4 @@ class SingleItem extends Component {
     }
 }
 
-export default SingleItem;
+export default ListItemInSingleOrder;

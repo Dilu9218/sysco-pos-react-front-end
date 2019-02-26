@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-class DisplayOrderItem extends Component {
+/**
+ * Contains a single item view of a single order in it's detailed view
+ */
+class ListItemInOrderDetailView extends Component {
 
     render() {
         let { productTitle, description, quantity, price } = this.props.singleItem;
@@ -18,7 +21,7 @@ class DisplayOrderItem extends Component {
                         </div>
                     </div>
                     <div className="col-2 card text-right">
-                        <p className="card-text" style={{ margin: '5px 0 0 0' }}>{this.props.itemDetailsInOrder} x {price}</p>
+                        <p className="card-text" style={{ margin: '5px 0 0 0' }}>@ {price.toFixed(2)}</p>
                         <p className="card-link" style={{ margin: '0px' }}><b>Rs. {(quantity * price).toFixed(2)}</b></p>
                     </div>
                 </div>
@@ -27,4 +30,4 @@ class DisplayOrderItem extends Component {
     }
 }
 
-export default DisplayOrderItem;
+export default ListItemInOrderDetailView;

@@ -1,24 +1,5 @@
 import React, { Component } from 'react';
 
-function FillInItemCountInOrder(props) {
-    if (props.itemCount) {
-        return (<input
-            name={props.keyID}
-            type="number"
-            className="form-control"
-            placeholder={props.itemCount}
-            min="0" max={props.quantity} onKeyDown={() => true}
-            onChange={props.onChange} />);
-    } else {
-        return (<input
-            name={props.keyID}
-            type="number"
-            className="form-control"
-            min="0" max={props.quantity} onKeyDown={() => true}
-            onChange={props.onChange} />);
-    }
-}
-
 class DisplayItem extends Component {
 
     onChange = (e) => {
@@ -37,11 +18,9 @@ class DisplayItem extends Component {
                         </div>
                     </div><div className="col-1 card">
                         <div className="card-body d-flex align-items-center" style={{ padding: '5px 0px' }}>
-                            <FillInItemCountInOrder
-                                keyID={this.props.keyID}
-                                quantity={quantity}
-                                onChange={this.onChange}
-                                itemCount={this.props.itemDetailsInOrder} />
+                            <input
+                                name={this.props.keyID} type="number" className="form-control"
+                                min="0" max={quantity} onKeyDown={() => true} onChange={this.onChange} />
                         </div>
                     </div>
                     <div className="col-2 card text-right">
