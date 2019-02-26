@@ -5,8 +5,8 @@ import SingleOrder from './SingleOrder';
 /**
  * @abstract All orders linked to user
  * @description Displays a summarized view of all the orders linked to user
- * @param ORDERLIST List of orders fetched from collection
- * @param DELETE_THIS_ORDER Function to delete the specific order
+ * @param ORDERLIST
+ * @param DELETE_THIS_ORDER
  */
 class OrderList extends Component {
 
@@ -35,11 +35,12 @@ class OrderList extends Component {
                     <div className="card-body" style={{ padding: '1.25rem 1.25rem 1rem 1.25rem' }}>
                         <h5 className="card-title" style={{ margin: '0.5em 1em 0 0' }}>Order List</h5>
                         {this.props.ORDERLIST.map((order) => (
-                            <SingleOrder key={order._id}
-                                singleOrder={order}
-                                editThisOrder={this.props.editThisOrder.bind(this, order._id)}
+                            <SingleOrder
+                                key={order._id}
+                                ORDER={order}
+                                EDIT_THIS_ORDER={this.props.EDIT_THIS_ORDER.bind(this, order._id)}
                                 DELETE_THIS_ORDER={this.props.DELETE_THIS_ORDER.bind(this, order._id)}
-                                viewThisOrder={this.props.viewThisOrder.bind(this, order._id)}
+                                SET_THIS_ORDER_AS_CURRENT={this.props.SET_THIS_ORDER_AS_CURRENT.bind(this, order._id)}
                             />
                         ))}
                     </div>

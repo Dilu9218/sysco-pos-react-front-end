@@ -7,10 +7,11 @@ import axios from 'axios';
 
 import {
   ORDER_LIST_ENDPOINT,
-  ORDER_REQT_ENDPOINT,
+  ORDER_REQUEST_ENDPOINT,
   ITEMS_LIST_ENDPOINT,
   NEW_ORDER_ENDPOINT,
   ADD_TO_ORDER_ENDPOINT,
+  ORDER_CHECKOUT_ENDPOINT,
   BASEURL, USERTOKEN, ORDER_ENDPOINT
 } from './constants';
 
@@ -55,7 +56,7 @@ class App extends Component {
       ISLOGGEDIN: false,
       ITEMSLIST: [],
       ORDERLIST: [],
-      CURRENTORDER: [],
+      CURRENTORDER: {},
       CURRENTORDERID: '',
       ITEMQUANTITY: {},
       // TODO: Delete the underlying states and use the ones above
@@ -111,7 +112,7 @@ class App extends Component {
    * also gets rid of the order entry
    ***************************************************************************/
   DELETE_THIS_ORDER = (ID) => {
-    axios.delete(ORDER_REQT_ENDPOINT + `/${ID}`,
+    axios.delete(ORDER_REQUEST_ENDPOINT + `/${ID}`,
       { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(deletedOrder => {
         this.setState({
@@ -134,6 +135,10 @@ class App extends Component {
       .catch(err => { this.setState({ ITEMSLIST: [] }); });
   }
 
+  /****************************************************************************
+   * Deletes the order from collection and updates the state so that the view
+   * also gets rid of the order entry
+   ***************************************************************************/
   CREATE_NEW_ORDER_FOR_THIS_USER = () => {
     axios.post(NEW_ORDER_ENDPOINT, {},
       { headers: { 'x-access-token': this.state.PASSKEY } })
@@ -150,29 +155,72 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  /****************************************************************************
+   * Similar to deleting an order but doesn't change item counts in the global
+   * item collection as the order is purchased and the item count should not
+   * increase
+   ***************************************************************************/
   CHECK_THIS_ORDER_OUT = () => {
-
+    axios.delete(ORDER_CHECKOUT_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(checkedOut => {
+        this.setState({
+          ORDERLIST: [
+            ...this.state.ORDERLIST.filter(order => (order._id !== this.state.CURRENTORDERID))
+          ]
+        });
+      }).catch(err => {
+        console.log(err);
+      });
   }
 
+  /****************************************************************************
+   * Parent method adding a list of items to the current order in context. This
+   * is a multiple request method where axios perform multiple web requests to
+   * update each item in item collection
+   ***************************************************************************/
   ADD_ITEMS_TO_THIS_ORDER = (items) => {
-    let axiosRequests = []
+    let axiosRequests = [];
     for (var item in items) {
       axiosRequests.push(
         axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-          {
-            productID: item,
-            quantity: items[item]
-          },
+          { productID: item, quantity: items[item] },
           { headers: { 'x-access-token': this.state.PASSKEY } })
       );
     }
     axios.all(axiosRequests).then(axios.spread(function (acct, perms) { }));
   }
 
-  viewThisOrder = (id) => {
+  /****************************************************************************
+   * Update state to have the given ID as the current order to use in different
+   * situations. As an example, while viewing an order, this can be used inside
+   * the component when mounting
+   ***************************************************************************/
+  SET_THIS_ORDER_AS_CURRENT = (ID) => {
     this.setState({
-      currentOrderInContext: id
+      CURRENTORDERID: ID
     });
+  }
+
+  /****************************************************************************
+   * Modifies the item count and quantity of each individual item and updates 
+   * the order accordingly
+   ***************************************************************************/
+  EDIT_THIS_ORDER = (ID) => {
+    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/order/${ID}`,
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(order => {
+        let orderItemQuantities = {};
+        for (var i in order.data.items) {
+          orderItemQuantities[order.data.items[i].productID] = order.data.items[i].quantity;
+        }
+        this.setState({
+          currentOrderInContext: ID,
+          viewingOrder: orderItemQuantities
+        });
+      }).catch(err => {
+        console.log(err);
+      });
   }
 
   editThisOrder = (id) => {
@@ -192,105 +240,70 @@ class App extends Component {
       });
   }
 
-  deleteThisOrder = (id) => {
-    axios.delete(`${BASEURL}/${ORDER_ENDPOINT}/order/${id}`,
-      { headers: { 'x-access-token': this.state.PASSKEY } })
-      .then(delOrder => {
-        this.setState({
-          orderList: [...this.state.orderList.filter(order => (order._id !== id))]
-        });
-      }).catch(err => {
-        console.log(err);
-      });
-  }
-
-  createNewOrderForThisUser = () => {
-    axios.post(`${BASEURL}/${ORDER_ENDPOINT}/order/new`, {},
-      { headers: { 'x-access-token': this.state.PASSKEY } })
-      .then(newOrder => {
-        this.setState({
-          orderList: [
-            newOrder.data,
-            ...this.state.orderList
-          ],
-          currentOrderInContext: newOrder.data._id
-        });
-        this.fetchAllItemsList();
-      })
-      .catch(err => console.log(err));
-  }
-
-  fetchAllItemsList = () => {
-    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/items`,
-      { headers: { 'x-access-token': this.state.PASSKEY } })
-      .then(res => {
-        this.setState({
-          allItemsList: res.data
-        });
-      })
-      .catch(err => console.error(err));
-  }
-
   render() {
     return (
       <Router>
         <div className="App">
           <Header ISLOGGEDIN={this.state.ISLOGGEDIN} />
 
+          <Route path="/login" render={() => (
+            <LogIn
+              ISLOGGEDIN={this.state.ISLOGGEDIN}
+              LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
+          <Route path="/register" render={() => (
+            <Register ISLOGGEDIN={this.state.ISLOGGEDIN} />)} />
+          <Route path="/logout" render={() => (
+            <LogOut LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
+
           <Route path="/home" render={() => (<MainPage />)} />
 
-          <Route exact path="/" render={props => (
-            <DecidedLandingPage ISLOGGEDIN={this.state.ISLOGGEDIN} />
-          )} />
-
-          <Route path="/my_orders" render={props => (
+          <Route exact path="/" render={() => (
             <ErrorBoundary>
-              <OrderList
-                ISLOGGEDIN={this.state.ISLOGGEDIN}
-                currentOrderInContext={this.state.currentOrderInContext}
-                editThisOrder={this.editThisOrder}
-                viewThisOrder={this.viewThisOrder}
-                usertoken={this.state.PASSKEY}
-                GET_THE_ORDER_LIST_FOR_THIS_USER={this.GET_THE_ORDER_LIST_FOR_THIS_USER}
-                ORDERLIST={this.state.ORDERLIST}
-                DELETE_THIS_ORDER={this.DELETE_THIS_ORDER} />
-            </ ErrorBoundary>
+              <DecidedLandingPage ISLOGGEDIN={this.state.ISLOGGEDIN} />
+            </ErrorBoundary>
           )} />
 
-          <Route path="/create_order" render={props => (
+          <Route path="/create_order" render={() => (
             <ErrorBoundary>
               <CreateOrder
+                ISLOGGEDIN={this.state.ISLOGGEDIN}
                 CURRENTORDERID={this.state.CURRENTORDERID}
                 ITEMSLIST={this.state.ITEMSLIST}
-                ISLOGGEDIN={this.state.ISLOGGEDIN}
                 DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
                 CREATE_NEW_ORDER_FOR_THIS_USER={this.CREATE_NEW_ORDER_FOR_THIS_USER}
                 ADD_ITEMS_TO_THIS_ORDER={this.ADD_ITEMS_TO_THIS_ORDER} />
             </ErrorBoundary>
           )} />
 
+          <Route path="/my_orders" render={props => (
+            <ErrorBoundary>
+              <OrderList
+                ISLOGGEDIN={this.state.ISLOGGEDIN}
+                ORDERLIST={this.state.ORDERLIST}
+                EDIT_THIS_ORDER={this.EDIT_THIS_ORDER}
+                GET_THE_ORDER_LIST_FOR_THIS_USER={this.GET_THE_ORDER_LIST_FOR_THIS_USER}
+                SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
+                DELETE_THIS_ORDER={this.DELETE_THIS_ORDER} />
+            </ ErrorBoundary>
+          )} />
+
           <Route path="/edit_order" render={props => (
             <GoToEditOrder
               usertoken={this.state.usertoken}
               viewingOrder={this.state.viewingOrder}
-              fetchAllItemsList={this.fetchAllItemsList}
+              fetchAllItemsList={this.GET_THE_COMPLETE_ITEMS_LIST}
               currentOrderInContext={this.state.currentOrderInContext}
               allItemsList={this.state.allItemsList} />
           )} />
 
           <Route path="/view_order" render={props => (
             <ViewOrder
-              deleteThisOrder={this.DELETE_THIS_ORDER}
-              orderID={this.state.currentOrderInContext}
-              usertoken={this.state.usertoken}
-              viewingOrder={this.state.viewingOrder} />
+              PASSKEY={this.state.PASSKEY}
+              DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
+              CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT}
+              CURRENTORDERID={this.state.CURRENTORDERID}
+              CURRENTORDER={this.state.CURRENTORDER} />
           )} />
-
-          <Route path="/login" render={() => (<LogIn
-            ISLOGGEDIN={this.state.ISLOGGEDIN}
-            LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
-          <Route path="/register" render={() => (<Register ISLOGGEDIN={this.state.ISLOGGEDIN} />)} />
-          <Route path="/logout" render={() => (<LogOut LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
 
         </div>
       </Router>
