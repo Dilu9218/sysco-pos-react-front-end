@@ -8,12 +8,16 @@ import axios from 'axios';
 import {
   ORDER_LIST_ENDPOINT,
   ORDER_REQT_ENDPOINT,
+  ITEMS_LIST_ENDPOINT,
+  NEW_ORDER_ENDPOINT,
+  ADD_TO_ORDER_ENDPOINT,
   BASEURL, USERTOKEN, ORDER_ENDPOINT
 } from './constants';
 
 import LogIn from './pages/LogIn';
-import Register from './pages/register';
+import Register from './pages/Register';
 import MainPage from './pages/mainpage';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import Header from './components/Header';
 import LogOut from './components/LogOut';
@@ -30,7 +34,7 @@ class App extends Component {
    * ======================================================================== *
    * PASSKEY        = Usertoken related to the logged in user                 *
    * ISLOGGEDIN     = Log status of user                                      *
-   * ITEMLIST       = Every item in the database                              *
+   * ITEMSLIST      = Every item in the database                              *
    * ORDERLIST      = Every order user has placed                             *
    * CURRENTORDER   = Order being created, viewed, edited, deleted            *
    * CURRENTORDERID = ID of Order being created, viewed, edited, deleted      *
@@ -49,7 +53,7 @@ class App extends Component {
     this.state = {
       PASSKEY: props.cookies.get(USERTOKEN),
       ISLOGGEDIN: false,
-      ITEMLIST: [],
+      ITEMSLIST: [],
       ORDERLIST: [],
       CURRENTORDER: [],
       CURRENTORDERID: '',
@@ -68,18 +72,16 @@ class App extends Component {
    * Life Cycle Methods
    ***************************************************************************/
   componentDidMount() {
-    // Check if it's a logged user. If he is logged in, we can set ISLOGGEDIN
-    // as true and start fetching his order list immediate when the app starts
+    // Check if it's a logged user and set log status in state
     if (this.state.PASSKEY) {
       this.setState({
         ISLOGGEDIN: true
       });
-      this.GET_THE_ORDER_LIST_FOR_THIS_USER();
     }
   }
 
   /****************************************************************************
-   * Supporting functions to access API and update state
+   * Fetches all the orders related to the current user
    ***************************************************************************/
   GET_THE_ORDER_LIST_FOR_THIS_USER = () => {
     axios.get(ORDER_LIST_ENDPOINT,
@@ -88,11 +90,15 @@ class App extends Component {
       .catch(err => { this.setState({ ORDERLIST: [] }); });
   }
 
-  // This method will be called when user tries to login or logout
+  /****************************************************************************
+   * This method will be called when user tries to login or logout. When he
+   * logs in, save the token and delete as he logs out
+   ***************************************************************************/
   LOG_USER_IN_AND_OUT = (ISLOGGEDIN, PASSKEY) => {
-    this.setState({ ISLOGGEDIN });
-    // When user logs out, we have to remove the saved token
-    // Similarly when a user logs in, we have to save the token
+    this.setState({ 
+      ISLOGGEDIN,
+      PASSKEY
+     });
     if (ISLOGGEDIN) {
       this.props.cookies.set(USERTOKEN, PASSKEY, { path: '/' });
     } else {
@@ -100,16 +106,67 @@ class App extends Component {
     }
   }
 
+  /****************************************************************************
+   * Deletes the order from collection and updates the state so that the view
+   * also gets rid of the order entry
+   ***************************************************************************/
   DELETE_THIS_ORDER = (ID) => {
-    axios.delete(`${ORDER_REQT_ENDPOINT}/${ID}`,
+    axios.delete(ORDER_REQT_ENDPOINT + `/${ID}`,
       { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(deletedOrder => {
         this.setState({
-          orderList: [...this.state.orderList.filter(order => (order._id !== ID))]
+          ORDERLIST: [
+            ...this.state.ORDERLIST.filter(order => (order._id !== ID))
+          ]
         });
       }).catch(err => {
         console.log(err);
       });
+  }
+
+  /****************************************************************************
+   * Fetches all the items available in collection
+   ***************************************************************************/
+  GET_THE_COMPLETE_ITEMS_LIST = () => {
+    axios.get(ITEMS_LIST_ENDPOINT,
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(res => { this.setState({ ITEMSLIST: res.data }); })
+      .catch(err => { this.setState({ ITEMSLIST: [] }); });
+  }
+
+  CREATE_NEW_ORDER_FOR_THIS_USER = () => {
+    axios.post(NEW_ORDER_ENDPOINT, {},
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(newOrder => {
+        this.setState({
+          ORDERLIST: [
+            newOrder.data,
+            ...this.state.ORDERLIST
+          ],
+          CURRENTORDERID: newOrder.data._id
+        });
+        this.GET_THE_COMPLETE_ITEMS_LIST();
+      })
+      .catch(err => console.log(err));
+  }
+
+  CHECK_THIS_ORDER_OUT = () => {
+
+  }
+
+  ADD_ITEMS_TO_THIS_ORDER = (items) => {
+    let axiosRequests = []
+    for (var item in items) {
+      axiosRequests.push(
+        axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+          {
+            productID: item,
+            quantity: items[item]
+          },
+          { headers: { 'x-access-token': this.state.PASSKEY } })
+      );
+    }
+    axios.all(axiosRequests).then(axios.spread(function (acct, perms) { }));
   }
 
   viewThisOrder = (id) => {
@@ -163,17 +220,6 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  fetchOrderList = () => {
-    axios.get(`${BASEURL}/${ORDER_ENDPOINT}/list`,
-      { headers: { 'x-access-token': this.state.PASSKEY } })
-      .then(res => {
-        this.setState({
-          orderList: res.data
-        });
-      })
-      .catch(err => console.error(err));
-  }
-
   fetchAllItemsList = () => {
     axios.get(`${BASEURL}/${ORDER_ENDPOINT}/items`,
       { headers: { 'x-access-token': this.state.PASSKEY } })
@@ -186,9 +232,6 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.HASERRORS) {
-      return <h1>Site cannot be loaded ...</h1>;
-    }
     return (
       <Router>
         <div className="App">
@@ -203,23 +246,29 @@ class App extends Component {
           )} />
 
           <Route path="/my_orders" render={props => (
-            <OrderList
-              currentOrderInContext={this.state.currentOrderInContext}
-              editThisOrder={this.editThisOrder}
-              viewThisOrder={this.viewThisOrder}
-              usertoken={this.state.PASSKEY}
-              orderList={this.state.ORDERLIST}
-              fetchOrderList={this.fetchOrderList}
-              deleteThisOrder={this.DELETE_THIS_ORDER} />
+            <ErrorBoundary>
+              <OrderList
+                ISLOGGEDIN={this.state.ISLOGGEDIN}
+                currentOrderInContext={this.state.currentOrderInContext}
+                editThisOrder={this.editThisOrder}
+                viewThisOrder={this.viewThisOrder}
+                usertoken={this.state.PASSKEY}
+                GET_THE_ORDER_LIST_FOR_THIS_USER={this.GET_THE_ORDER_LIST_FOR_THIS_USER}
+                ORDERLIST={this.state.ORDERLIST}
+                DELETE_THIS_ORDER={this.DELETE_THIS_ORDER} />
+            </ ErrorBoundary>
           )} />
 
           <Route path="/create_order" render={props => (
-            <CreateOrder
-              usertoken={this.state.usertoken}
-              deleteThisOrder={this.DELETE_THIS_ORDER}
-              createNewOrderForThisUser={this.createNewOrderForThisUser}
-              currentOrderInContext={this.state.currentOrderInContext}
-              allItemsList={this.state.allItemsList} />
+            <ErrorBoundary>
+              <CreateOrder
+                CURRENTORDERID={this.state.CURRENTORDERID}
+                ITEMSLIST={this.state.ITEMSLIST}
+                ISLOGGEDIN={this.state.ISLOGGEDIN}
+                DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
+                CREATE_NEW_ORDER_FOR_THIS_USER={this.CREATE_NEW_ORDER_FOR_THIS_USER}
+                ADD_ITEMS_TO_THIS_ORDER={this.ADD_ITEMS_TO_THIS_ORDER} />
+            </ErrorBoundary>
           )} />
 
           <Route path="/edit_order" render={props => (
@@ -239,8 +288,10 @@ class App extends Component {
               viewingOrder={this.state.viewingOrder} />
           )} />
 
-          <Route path="/login" render={() => (<LogIn LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
-          <Route path="/register" render={() => (<Register />)} />
+          <Route path="/login" render={() => (<LogIn
+            ISLOGGEDIN={this.state.ISLOGGEDIN}
+            LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
+          <Route path="/register" render={() => (<Register ISLOGGEDIN={this.state.ISLOGGEDIN} />)} />
           <Route path="/logout" render={() => (<LogOut LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
 
         </div>

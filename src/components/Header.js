@@ -19,7 +19,7 @@ function ConditionalHeader(P) {
     } else {
         return (
             <div className="collapse navbar-collapse">
-                <Link className="navbar-brand" style={{ paddingTop: '0px' }} to="/">Sysco PoS System</Link>
+                <Link className="navbar-brand" style={{ paddingTop: '0px' }} to="/home">Sysco PoS System</Link>
                 <div className="navbar-nav ml-auto">
                     <Link className="nav-item nav-link" to="/login">Login</Link>
                     <Link className="nav-item nav-link" to="/register">Register</Link>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import DisplayItem from './DisplayItem';
+import DisplayItem from './ItemInOrder';
 //import axios from 'axios';
 
 class EditOrder extends Component {
