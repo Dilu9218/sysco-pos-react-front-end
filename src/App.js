@@ -14,8 +14,8 @@ import {
   BASEURL, USERTOKEN, ORDER_ENDPOINT
 } from './constants';
 
-import LogIn from './pages/LogIn';
-import Register from './pages/Register';
+import LogIn from './components/LogIn';
+import Register from './components/Register';
 import MainPage from './pages/mainpage';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -95,10 +95,10 @@ class App extends Component {
    * logs in, save the token and delete as he logs out
    ***************************************************************************/
   LOG_USER_IN_AND_OUT = (ISLOGGEDIN, PASSKEY) => {
-    this.setState({ 
+    this.setState({
       ISLOGGEDIN,
       PASSKEY
-     });
+    });
     if (ISLOGGEDIN) {
       this.props.cookies.set(USERTOKEN, PASSKEY, { path: '/' });
     } else {
@@ -237,12 +237,10 @@ class App extends Component {
         <div className="App">
           <Header ISLOGGEDIN={this.state.ISLOGGEDIN} />
 
-          <Route path="/home" render={props => (
-            <MainPage />
-          )} />
+          <Route path="/home" render={() => (<MainPage />)} />
 
           <Route exact path="/" render={props => (
-            <DecidedLandingPage isLoggedIn={this.state.isLoggedIn} />
+            <DecidedLandingPage ISLOGGEDIN={this.state.ISLOGGEDIN} />
           )} />
 
           <Route path="/my_orders" render={props => (
