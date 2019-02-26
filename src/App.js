@@ -287,22 +287,23 @@ class App extends Component {
             </ ErrorBoundary>
           )} />
 
-          <Route path="/edit_order" render={props => (
-            <GoToEditOrder
-              usertoken={this.state.usertoken}
-              viewingOrder={this.state.viewingOrder}
-              fetchAllItemsList={this.GET_THE_COMPLETE_ITEMS_LIST}
-              currentOrderInContext={this.state.currentOrderInContext}
-              allItemsList={this.state.allItemsList} />
+          <Route path="/view_order" render={props => (
+            <ErrorBoundary>
+              <ViewOrder
+                PASSKEY={this.state.PASSKEY}
+                CURRENTORDERID={this.state.CURRENTORDERID}
+                DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
+                CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT} />
+            </ErrorBoundary>
           )} />
 
-          <Route path="/view_order" render={props => (
-            <ViewOrder
+          <Route path="/edit_order" render={props => (
+            <GoToEditOrder
               PASSKEY={this.state.PASSKEY}
-              DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
-              CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT}
+              viewingOrder={this.state.viewingOrder}
+              fetchAllItemsList={this.GET_THE_COMPLETE_ITEMS_LIST}
               CURRENTORDERID={this.state.CURRENTORDERID}
-              CURRENTORDER={this.state.CURRENTORDER} />
+              ITEMSLIST={this.state.ITEMSLIST} />
           )} />
 
         </div>

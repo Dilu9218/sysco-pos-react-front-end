@@ -13,10 +13,14 @@ class ErrorBoundary extends React.Component {
         return { hasError: true };
     }
 
+    componentDidCatch(error) {
+        console.error(error);
+    }
+
     render() {
         if (this.state.hasError) {
             return <h1 className="d-flex justify-content-center"
-                style={{ height: '100%', margin: '30% 0 0 0' }}>
+                style={{ height: '100%', margin: '10% 0 0 0' }}>
                 <span className="badge badge-dark" style={{ padding: '50px' }}>
                     Cannot load the website ... <br /><br />Want to go back to
                     <br /><br /><Link to="/home">Home Page</Link>?</span>

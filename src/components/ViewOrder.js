@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import axios from 'axios';
 
 import { ORDER_REQUEST_ENDPOINT } from '../constants';
-import DisplayOrderItem from './DisplayOrderItem';
+import ListItemInOrderDetailView from './ListItemInOrderDetailView';
 
 class ViewOrder extends Component {
 
@@ -60,9 +60,9 @@ class ViewOrder extends Component {
                         </div>
                         <ul className="list-group list-group-flush">
                             {this.state.items.map((item) => (
-                                <DisplayOrderItem key={item._id}
-                                    singleItem={item}
-                                />
+                                <ListItemInOrderDetailView
+                                    key={item._id}
+                                    singleItem={item} />
                             ))}
                         </ul>
                     </div>
