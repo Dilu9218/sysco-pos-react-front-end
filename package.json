@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "history": "^4.7.2",
     "react": "^16.8.2",
     "react-cookie": "^3.0.8",

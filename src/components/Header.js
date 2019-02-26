@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function HeaderAccordingLogStatus(props) {
-    if (props.isLoggedIn) {
+function ConditionalHeader(P) {
+    if (P.ISLOGGEDIN) {
         return (
             <div className="collapse navbar-collapse">
                 <Link className="navbar-brand" style={{ paddingTop: '0px' }} to="/home">Sysco PoS System</Link>
@@ -28,17 +29,25 @@ function HeaderAccordingLogStatus(props) {
     }
 }
 
+/**
+ * @abstract Navigation bar at the top of page
+ * @description This will change state depending on the user log state
+ * @param ISLOGGEDIN Logged status from global app state
+ */
 class Header extends Component {
-
     render() {
         return (
             <header>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <HeaderAccordingLogStatus isLoggedIn={this.props.logStatus} />
+                    <ConditionalHeader ISLOGGEDIN={this.props.ISLOGGEDIN} />
                 </nav>
             </header>
         );
     }
 }
+
+Header.propTypes = {
+    ISLOGGEDIN: PropTypes.bool,
+};
 
 export default Header;
