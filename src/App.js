@@ -230,8 +230,8 @@ class App extends Component {
       ); */
     }
 
-/*     axios.all([...axiosUpdateRequests, ...axiosAddRequests])
-      .then(axios.spread(function (acct, perms) { })); */
+    /*     axios.all([...axiosUpdateRequests, ...axiosAddRequests])
+          .then(axios.spread(function (acct, perms) { })); */
   }
 
   /****************************************************************************
@@ -258,6 +258,10 @@ class App extends Component {
         });
       }
     }
+  }
+
+  ADD_THIS_ITEM = (ID, VAL) => {
+    console.log(`${ID} and ${VAL}`);
   }
 
   render() {
@@ -328,7 +332,6 @@ class App extends Component {
                 UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER} />
             </ErrorBoundary>
           )} />
-
         </div>
       </Router>
     );

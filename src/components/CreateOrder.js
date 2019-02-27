@@ -36,6 +36,7 @@ class CreateOrder extends Component {
      * @param VALUE quantity of the item added
      *************************************************************************/
     ADD_THIS_ITEM = (ID, VALUE) => {
+        console.log(`${ID} and ${VALUE}`);
         try {
             delete this.state.ADDEDITEMS.id;
         } catch (e) { }
@@ -96,8 +97,8 @@ class CreateOrder extends Component {
                                 <ListItemInCreateOrder
                                     key={item._id}
                                     singleItem={item}
-                                    keyID={item.productID}
-                                    addThisItemToOrder={this.ADD_THIS_ITEM} />
+                                    NAME={item.productID}
+                                    ADD_THIS_ITEM={this.ADD_THIS_ITEM} />
                             ))}
                         </div>
                     </div>

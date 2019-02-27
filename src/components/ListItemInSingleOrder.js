@@ -17,7 +17,7 @@ class ListItemInSingleOrder extends Component {
                         </div>
                     </div>
                     <div className="col-2 card text-right" style={{ borderRadius: '0px' }}>
-                        <p className="card-text" style={{ margin: '5px 0 0 0' }}>{quantity} x {price}</p>
+                        <p className="card-text" style={{ margin: '5px 0 0 0' }}>{quantity} x {price.toFixed(2)}</p>
                         <p className="card-link" style={{ margin: '0px' }}><b>Rs. {(quantity * price).toFixed(2)}</b></p>
                     </div>
                 </div>
