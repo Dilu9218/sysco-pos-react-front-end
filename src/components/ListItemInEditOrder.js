@@ -20,7 +20,7 @@ class ListItemInEditOrder extends Component {
                     </div><div className="col-2 card">
                         <div className="card-body d-flex align-items-center" style={{ padding: '5px 0px' }}>
                             <ItemCounterInEdit
-                                NAME={this.props.keyID} MIN={0} MAX={quantity}
+                                NAME={this.props.NAME} MIN={0} MAX={quantity + this.props.CLONEITEMQUANTITY}
                                 COUNT={this.props.ITEMQUANTITY}
                                 ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
                                 INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT}

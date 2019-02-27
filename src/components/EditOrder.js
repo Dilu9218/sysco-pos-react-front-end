@@ -28,7 +28,7 @@ class EditOrder extends Component {
      * difference between the old quantity and the new quantity
      *************************************************************************/
     UPDATE_THIS_ORDER = () => {
-        let { UPDATEDITEMS } = this.state;
+        /* let { UPDATEDITEMS } = this.state;
         let REFINEDITEMS = {};
         for (var ID in UPDATEDITEMS) {
             if (parseInt(UPDATEDITEMS[ID]) !== 0) {
@@ -42,11 +42,12 @@ class EditOrder extends Component {
                     REFINEDITEMS[refinedItem] - this.state.ITEMQUANTITYINORDER[refinedItem]
                 )
             }
-        }
-        this.props.UPDATE_ITEMS_IN_THIS_ORDER(REFINEDITEMS, DIFFERENCES);
+        } */
+        //this.props.UPDATE_ITEMS_IN_THIS_ORDER(REFINEDITEMS, DIFFERENCES);
+        this.props.UPDATE_ITEMS_IN_THIS_ORDER();
         setTimeout(() => {
             this.props.history.push('/my_orders')
-        }, (50 * REFINEDITEMS.length));
+        }, (50 * this.props.ITEMQUANTITY.length));
     }
 
     /**************************************************************************
@@ -54,25 +55,8 @@ class EditOrder extends Component {
      * just redirect user back to order list
      *************************************************************************/
     CANCEL_EDITING_THE_ORDER = () => {
+        this.props.CLEAR_ORDER_UPDATE_PROCESS();
         this.props.history.push('/my_orders');
-    }
-
-    /**************************************************************************
-     * Local function to add a single item to a temporary list of items to be 
-     * added in to the order being updated. This will take care of duplicate 
-     * entries but not zero entries. We'll need to refine that when updating
-     * @param ID productID of the item being added
-     * @param VALUE quantity of the item added
-     *************************************************************************/
-    ADD_THIS_ITEM_TO_ORDER = (ID, VALUE) => {
-        try {
-            delete this.state.UPDATEDITEMS.id;
-        } catch (e) { }
-        let tempAddedItems = this.state.UPDATEDITEMS;
-        tempAddedItems[ID] = VALUE;
-        this.setState({
-            addedItems: tempAddedItems
-        });
     }
 
     render() {
@@ -90,12 +74,12 @@ class EditOrder extends Component {
                             <ListItemInEditOrder
                                 key={item._id}
                                 ITEM={item}
-                                keyID={item.productID}
-                                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
+                                NAME={item.productID}
+                                CLONEITEMQUANTITY={this.props.CLONEITEMQUANTITY[item.productID] === undefined
+                                    ? 0 : this.props.CLONEITEMQUANTITY[item.productID]}
                                 ITEMQUANTITY={this.props.ITEMQUANTITY[item.productID] === undefined
-                                    ? 0
-                                    : this.props.ITEMQUANTITY[item.productID]}
-                                ADD_THIS_ITEM_TO_ORDER={this.ADD_THIS_ITEM_TO_ORDER}
+                                    ? 0 : this.props.ITEMQUANTITY[item.productID]}
+                                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
                                 DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM}
                                 INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT} />
                         ))}

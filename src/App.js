@@ -59,7 +59,8 @@ class App extends Component {
       ORDERLIST: [],
       CURRENTORDER: {},
       CURRENTORDERID: '',
-      ITEMQUANTITY: {}
+      ITEMQUANTITY: {},
+      CLONEITEMQUANTITY: {}
     };
   }
 
@@ -191,37 +192,45 @@ class App extends Component {
    * to update in both orders collection and do necessary adjustments in items
    * collection. This will trigger a series of axios requests to perform the
    * said tasks. After waiting for a time out, user will be redirected to order
-   * list page.
+   * list page. Since ITEMQUANTITY will have more or the same number of items
+   * as in CLONEDITEMQUANTITY, we chose to perform actions on ITEMQUANTITY 
+   * rather than on the cloned one.
    ***************************************************************************/
-  UPDATE_ITEMS_IN_THIS_ORDER = (items, differences) => {
-    let axiosUpdateRequests = []; // Updating existing items
-    let axiosAddRequests = []; // Adding new items
-    let tempItems = {};
-    for (var updatedItem in differences) {
-      let PATCHBODY = {
-        productID: updatedItem,
-        quantity: items[updatedItem],
-        difference: differences[updatedItem]
-      };
-      axiosUpdateRequests.push(
-        axios.post(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-          PATCHBODY, { headers: { 'x-access-token': this.state.PASSKEY } })
-      );
-    }
-    for (var item in items) {
-      if (differences[item] === undefined) {
-        tempItems[item] = items[item];
+  UPDATE_ITEMS_IN_THIS_ORDER = () => {
+    let updateRequests = []; let newRequests = []; let deleteRequests = [];
+    let ITEMQUANTITY = this.state.ITEMQUANTITY;
+    let CLONEITEMQUANTITY = this.state.CLONEITEMQUANTITY;
+    // Iterate through every item in ITEMQUANTITY
+    for (var I in ITEMQUANTITY) {
+      // If the item is not present in the CLONEd list, that is a new item
+      if (CLONEITEMQUANTITY[I] === undefined) {
+        newRequests.push(
+          axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+            { productID: I, quantity: ITEMQUANTITY[I] },
+            { headers: { 'x-access-token': this.state.PASSKEY } })
+        );
+      } else if (ITEMQUANTITY[I] === 0) { // This will be a removed item
+        deleteRequests.push(
+          axios.put(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+            { productID: I, quantity: CLONEITEMQUANTITY[I] },
+            { headers: { 'x-access-token': this.state.PASSKEY } })
+        );
+      } else { // It's an update of an existing item
+        let difference = ITEMQUANTITY[I] - CLONEITEMQUANTITY[I];
+        updateRequests.push(
+          axios.post(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+            { productID: I, quantity: ITEMQUANTITY[I], difference },
+            { headers: { 'x-access-token': this.state.PASSKEY } })
+        );
       }
     }
-    for (var newItem in tempItems) {
-      axiosAddRequests.push(
-        axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-          { productID: newItem, quantity: tempItems[newItem] },
-          { headers: { 'x-access-token': this.state.PASSKEY } })
-      );
-    }
-    axios.all([...axiosUpdateRequests, ...axiosAddRequests])
-      .then(axios.spread(function (acct, perms) { console.log('DONE'); }));
+    axios.all([...updateRequests, ...newRequests, ...deleteRequests])
+      .then(axios.spread(function (acct, perms) {
+        console.log('DONE');
+      }));
+    this.CLEAR_ORDER_UPDATE_PROCESS();
+    this.GET_THE_ORDER_LIST_FOR_THIS_USER();
+    this.GET_THE_COMPLETE_ITEMS_LIST();
   }
 
   /****************************************************************************
@@ -256,7 +265,8 @@ class App extends Component {
         // Update state
         this.setState({
           CURRENTORDER: OrderList[order],
-          ITEMQUANTITY: tempItemQuantity
+          ITEMQUANTITY: tempItemQuantity,
+          CLONEITEMQUANTITY: JSON.parse(JSON.stringify(tempItemQuantity))
         });
       }
     }
@@ -299,6 +309,19 @@ class App extends Component {
     OLD_ITEMQUANTITY[ID] = 0;
     this.setState({
       ITEMQUANTITY: OLD_ITEMQUANTITY
+    });
+  }
+
+  /****************************************************************************
+   * Resets the current state to remove all the saved data from previous update
+   * process
+   ***************************************************************************/
+  CLEAR_ORDER_UPDATE_PROCESS = () => {
+    // Cleans out the state
+    this.setState({
+      ITEMQUANTITY: {},
+      CLONEITEMQUANTITY: {},
+      CURRENTORDERID: ''
     });
   }
 
@@ -367,10 +390,12 @@ class App extends Component {
                 CURRENTORDERID={this.state.CURRENTORDERID}
                 CURRENTORDER={this.state.CURRENTORDER}
                 ITEMQUANTITY={this.state.ITEMQUANTITY}
+                CLONEITEMQUANTITY={this.state.CLONEITEMQUANTITY}
                 ITEMSLIST={this.state.ITEMSLIST}
                 SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
                 UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER}
                 DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
+                CLEAR_ORDER_UPDATE_PROCESS={this.CLEAR_ORDER_UPDATE_PROCESS}
                 ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
                 INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT} />
             </ErrorBoundary>
