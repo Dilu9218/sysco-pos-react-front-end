@@ -18,61 +18,41 @@ function RenderDeleteButton(props) {
  * Custom component to increment and decrement value within a minimum and
  * maximum range. A local count will be maintained to help with validation
  * @param NAME Identifier for this counter
- * @param INITIAL Initial value to display
  * @param MIN Minimum allowable value
  * @param MAX Maximum allowable value
- * @param ADD_THIS_ITEM Function responsible for handling the item counts
  */
 class ItemCounterInEdit extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            COUNT: props.INITIAL
-        }
-    }
-
-    componentDidMount() {
-        this.setState({
-            COUNT: this.props.INITIAL
-        });
-    }
-
+    /**************************************************************************
+     * Triggers the parent component method to clear the count for this item
+     *************************************************************************/
     DELETE_THIS_ITEM = (e) => {
         e.preventDefault();
-        this.setState({
-            COUNT: 0
-        });
-        this.props.DELETE_THIS_ITEM();
+        this.props.DELETE_THIS_ITEM(this.props.NAME);
     }
 
     /**************************************************************************
-     * This will add one to the local count until it reaches the value defined
-     * by MAX value and triggers the ADD_THIS_ITEM function set by parent
+     * This will increment the item count by one if it is an existing item and
+     * will request to add a new item to the quantity list if it is not and do
+     * update its count as usual
      *************************************************************************/
     INCREMENT_COUNT = (e) => {
         e.preventDefault();
-        if (this.state.COUNT !== this.props.MAX) {
-            let newCount = this.state.COUNT + 1;
-            this.setState({
-                COUNT: newCount
-            });
-            this.props.ADD_THIS_ITEM(this.props.NAME, newCount);
+        if (this.props.COUNT !== this.props.MAX) {
+            if (this.props.COUNT === 0) {
+                this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY(this.props.NAME);
+            }
+            this.props.INDECCREMENT_ITEM_COUNT(this.props.NAME, true);
         }
     }
 
     /**************************************************************************
-     * This will substract one from the local count until it reaches the value
-     * defined by MIN value and triggers the ADD_THIS_ITEM function
+     * This method will decrement the count of item quantities in parent state
      *************************************************************************/
     DECREMENT_COUNT = (e) => {
         e.preventDefault();
-        if (this.state.COUNT !== this.props.MIN) {
-            let newCount = this.state.COUNT - 1;
-            this.setState({
-                COUNT: newCount
-            });
-            this.props.ADD_THIS_ITEM(this.props.NAME, newCount);
+        if (this.props.COUNT !== this.props.MIN) {
+            this.props.INDECCREMENT_ITEM_COUNT(this.props.NAME, false);
         }
     }
 
@@ -85,11 +65,11 @@ class ItemCounterInEdit extends Component {
                         <div style={{ width: '3em', textAlign: 'center' }}>
                             <span className="input-group-text" style={{
                                 display: 'inline-block', borderRadius: '0px', width: '100%', height: '100%'
-                            }}>{this.state.COUNT}</span></div>
+                            }}>{this.props.COUNT}</span></div>
                         <button type="button" className="btn btn-secondary" onClick={this.DECREMENT_COUNT}>&#8722;</button>
                     </div>
                     <RenderDeleteButton
-                        COUNT={this.state.COUNT}
+                        COUNT={this.props.COUNT}
                         DELETE_THIS_ITEM={this.DELETE_THIS_ITEM} />
                 </div>
             </React.Fragment>

@@ -239,19 +239,67 @@ class App extends Component {
    * Refresh the item list and add the selected order to CURRENTORDER
    ***************************************************************************/
   PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER = (ID) => {
-    //this.GET_THE_COMPLETE_ITEMS_LIST();
+    // First, fetch the item list as a good practice
+    this.GET_THE_COMPLETE_ITEMS_LIST();
+    // Save the order list to a local variable for easy access
     let OrderList = this.state.ORDERLIST;
+    // Find the required order from the order list
     for (var order in OrderList) {
       if (OrderList[order]._id === ID) {
+        // Prepare item quantities
+        let tempItemQuantity = {};
+        for (var item in OrderList[order].items) {
+          tempItemQuantity[
+            OrderList[order].items[item].productID
+          ] = OrderList[order].items[item].quantity;
+        }
+        // Update state
         this.setState({
-          CURRENTORDER: OrderList[order]
+          CURRENTORDER: OrderList[order],
+          ITEMQUANTITY: tempItemQuantity
         });
       }
     }
   }
 
-  DELETE_THIS_ITEM = (ID, VAL) => {
-    console.log(`${ID} and ${VAL}`);
+  /****************************************************************************
+   * Method used in Edit Order view to make the item count zero
+   ***************************************************************************/
+  DELETE_THIS_ITEM = (ID) => {
+    let OLD_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    OLD_ITEMQUANTITY[ID] = 0;
+    this.setState({
+      ITEMQUANTITY: OLD_ITEMQUANTITY
+    });
+  }
+
+  /****************************************************************************
+   * Method used in Edit Order view to increment and decrement the item count
+   * @param ID productID of the item
+   * @param DIRECTION true for increment, false for decrement
+   ***************************************************************************/
+  INDECCREMENT_ITEM_COUNT = (ID, DIRECTION) => {
+    let OLD_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    if (DIRECTION) {
+      OLD_ITEMQUANTITY[ID] += 1;
+    } else {
+      OLD_ITEMQUANTITY[ID] -= 1;
+    }
+    this.setState({
+      ITEMQUANTITY: OLD_ITEMQUANTITY
+    });
+  }
+
+  /****************************************************************************
+   * Method used in Edit Order view to add a new item to the ITEMQUANTITY and
+   * keeps on counting
+   ***************************************************************************/
+  ADD_THIS_ITEM_TO_ITEMQUANTITY = (ID) => {
+    let OLD_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    OLD_ITEMQUANTITY[ID] = 0;
+    this.setState({
+      ITEMQUANTITY: OLD_ITEMQUANTITY
+    });
   }
 
   render() {
@@ -318,10 +366,13 @@ class App extends Component {
                 ISLOGGEDIN={this.state.ISLOGGEDIN}
                 CURRENTORDERID={this.state.CURRENTORDERID}
                 CURRENTORDER={this.state.CURRENTORDER}
+                ITEMQUANTITY={this.state.ITEMQUANTITY}
                 ITEMSLIST={this.state.ITEMSLIST}
                 SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
                 UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER}
-                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM} />
+                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
+                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
+                INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT} />
             </ErrorBoundary>
           )} />
         </div>

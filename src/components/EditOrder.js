@@ -94,8 +94,11 @@ class EditOrder extends Component {
                                 ITEMQUANTITYINORDER={this.state.ITEMQUANTITYINORDER[item.productID] === undefined
                                     ? 0
                                     : this.state.ITEMQUANTITYINORDER[item.productID]}
+                                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
+                                ITEMQUANTITY={this.props.ITEMQUANTITY[item.productID]}
                                 ADD_THIS_ITEM_TO_ORDER={this.ADD_THIS_ITEM_TO_ORDER}
-                                DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM} />
+                                DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM}
+                                INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT} />
                         ))}
                     </div>
                 </div>
