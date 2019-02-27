@@ -193,17 +193,45 @@ class App extends Component {
    * said tasks. After waiting for a time out, user will be redirected to order
    * list page.
    ***************************************************************************/
-  UPDATE_ITEMS_IN_THIS_ORDER = (items) => {
-    //let axiosRequests = [];
+  UPDATE_ITEMS_IN_THIS_ORDER = (items, differences) => {
+    let axiosUpdateRequests = []; // Updating existing items
+    let axiosAddRequests = []; // Adding new items
+    let tempItems = items;
+    console.log('Before adding to queues items were these');
     console.log(items);
-    /* for (var item in items) {
-      axiosRequests.push(
-        axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-          { productID: item, quantity: items[item] },
-          { headers: { 'x-access-token': this.state.PASSKEY } })
-      );
+    console.log('Before adding to queues differences were these');
+    console.log(differences);
+    for (var updatedItem in differences) {
+      let PATCHBODY = {
+        productID: updatedItem,
+        quantity: items[updatedItem],
+        difference: differences[updatedItem]
+      };
+      console.log(PATCHBODY);
+      /* axiosUpdateRequests.push(
+        axios.post(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+          PATCHBODY, { headers: { 'x-access-token': this.state.PASSKEY } })
+      ); */
     }
-    axios.all(axiosRequests).then(axios.spread(function (acct, perms) { })); */
+    for (var item in items) {
+      if (differences[item]) {
+        continue;
+      } else {
+        tempItems[item] = items[item];
+      }
+    }
+    console.log('After removing the updated items, new ones were these');
+    console.log(tempItems);
+    for (var newItem in tempItems) {
+      /* axiosAddRequests.push(
+        axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+          { productID: newItem, quantity: tempItems[newItem] },
+          { headers: { 'x-access-token': this.state.PASSKEY } })
+      ); */
+    }
+
+/*     axios.all([...axiosUpdateRequests, ...axiosAddRequests])
+      .then(axios.spread(function (acct, perms) { })); */
   }
 
   /****************************************************************************
@@ -267,7 +295,7 @@ class App extends Component {
             </ErrorBoundary>
           )} />
 
-          <Route path="/my_orders" render={props => (
+          <Route path="/my_orders" render={() => (
             <ErrorBoundary>
               <OrderList
                 ISLOGGEDIN={this.state.ISLOGGEDIN}
@@ -279,7 +307,7 @@ class App extends Component {
             </ ErrorBoundary>
           )} />
 
-          <Route path="/view_order" render={props => (
+          <Route path="/view_order" render={() => (
             <ErrorBoundary>
               <ViewOrder
                 ISLOGGEDIN={this.state.ISLOGGEDIN}
@@ -289,7 +317,7 @@ class App extends Component {
             </ErrorBoundary>
           )} />
 
-          <Route path="/edit_order" render={props => (
+          <Route path="/edit_order" render={() => (
             <ErrorBoundary>
               <EditOrder
                 ISLOGGEDIN={this.state.ISLOGGEDIN}

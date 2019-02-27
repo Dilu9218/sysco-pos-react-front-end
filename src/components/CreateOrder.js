@@ -17,7 +17,8 @@ class CreateOrder extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ADDEDITEMS: {}
+            ADDEDITEMS: {},
+            TOTAL: 0
         };
     }
 
@@ -86,33 +87,45 @@ class CreateOrder extends Component {
             );
         } else {
             return (
-                <div className="card" style={{ margin: '25px' }}>
-                    <div className="card-body">
-                        <h5 className="card-title"
-                            style={{ margin: '0.5em 1em' }}>Item List</h5>
-                        {this.props.ITEMSLIST.map((item) => (
-                            <ListItemInCreateOrder
-                                key={item._id}
-                                singleItem={item}
-                                keyID={item.productID}
-                                addThisItemToOrder={this.ADD_THIS_ITEM} />
-                        ))}
-                    </div>
-                    <div className="card-body" style={{ paddingTop: '0px' }}>
-                        <div className="row">
-                            <div className="col-12 d-flex justify-content-end">
-                                <button
-                                    onClick={this.ADD_THESE_ITEMS_TO_THIS_ORDER}
-                                    className="btn btn-success"
-                                    style={{ marginRight: '10px' }}>Add to Cart</button>
-                                <button
-                                    onClick={this.CANCEL_THE_ORDER.bind(
-                                        this, this.props.CURRENTORDERID
-                                    )}
-                                    className="btn btn-danger">Cancel</button>
-                            </div>
+                <div>
+                    <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
+                        <div className="card-body">
+                            <h5 className="card-title"
+                                style={{ margin: '0.5em 1em' }}>Item List</h5>
+                            {this.props.ITEMSLIST.map((item) => (
+                                <ListItemInCreateOrder
+                                    key={item._id}
+                                    singleItem={item}
+                                    keyID={item.productID}
+                                    addThisItemToOrder={this.ADD_THIS_ITEM} />
+                            ))}
                         </div>
                     </div>
+                    <nav class="navbar navbar-light bg-light"
+                        style={{
+                            paddingRight: '25px',
+                            overflow: 'hidden',
+                            position: 'fixed',
+                            zIndex: 99,
+                            bottom: '0',
+                            width: '100%'
+                        }}>
+                        <div className="card-body" style={{ paddingTop: '0px' }}>
+                            <div className="row">
+                                <div className="col-12 d-flex justify-content-end">
+                                    <button
+                                        onClick={this.ADD_THESE_ITEMS_TO_THIS_ORDER}
+                                        className="btn btn-success"
+                                        style={{ marginRight: '10px' }}>Add to Cart</button>
+                                    <button
+                                        onClick={this.CANCEL_THE_ORDER.bind(
+                                            this, this.props.CURRENTORDERID
+                                        )}
+                                        className="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
             );
         }

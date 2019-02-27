@@ -34,6 +34,8 @@ class ListItemInEditOrder extends Component {
         }
     }
 
+    
+
     onTodoChange = (value) => {
         this.setState({
             itemCount: value

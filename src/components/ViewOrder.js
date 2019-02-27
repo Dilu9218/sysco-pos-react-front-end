@@ -48,36 +48,49 @@ class ViewOrder extends Component {
             )
         }
         return (
-            <div className="card" style={{ margin: '25px' }}>
-                <div className="card-body">
-                    <div className="card border-dark shadow" style={{ margin: '10px 0px 0px 0px' }}>
-                        <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}>
-                            <div className="row" style={{ width: '100%', margin: '0px' }}>
-                                <div className="col-8 d-flex justify-content-start">
-                                    Order ID: {this.state._id}</div>
-                                <div className="col-4 d-flex justify-content-end">
-                                    <b>Rs. {this.state.itemTotal.toFixed(2)}</b>
+            <div>
+                <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
+                    <div className="card-body">
+                        <div className="card border-dark shadow" style={{ margin: '10px 0px 0px 0px' }}>
+                            <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}>
+                                <div className="row" style={{ width: '100%', margin: '0px' }}>
+                                    <div className="col-8 d-flex justify-content-start">
+                                        Order ID: {this.state._id}</div>
+                                    <div className="col-4 d-flex justify-content-end">
+                                        <b>Rs. {this.state.itemTotal.toFixed(2)}</b>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <ul className="list-group list-group-flush">
-                            {this.state.items.map((item) => (
-                                <ListItemInOrderDetailView
-                                    key={item._id}
-                                    singleItem={item} />
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-                <div className="card-body" style={{ paddingTop: '0px' }}>
-                    <div className="row">
-                        <div className="col-12 d-flex justify-content-end">
-                            <button onClick={this.CHECK_OUT_THIS_ORDER.bind(this, this.state._id)}
-                                className="btn btn-success" style={{ marginRight: '10px' }}>Checkout</button>
-                            <button onClick={this.CANCEL_CHECK_OUT} className="btn btn-danger">Cancel</button>
+                            <ul className="list-group list-group-flush">
+                                {this.state.items.map((item) => (
+                                    <ListItemInOrderDetailView
+                                        key={item._id}
+                                        singleItem={item} />
+                                ))}
+                            </ul>
                         </div>
                     </div>
+
                 </div>
+                <nav class="navbar navbar-light bg-light"
+                    style={{
+                        paddingRight: '25px',
+                        overflow: 'hidden',
+                        position: 'fixed',
+                        zIndex: 99,
+                        bottom: '0',
+                        width: '100%'
+                    }}>
+                    <div className="card-body" style={{ paddingTop: '0px' }}>
+                        <div className="row">
+                            <div className="col-12 d-flex justify-content-end">
+                                <button onClick={this.CHECK_OUT_THIS_ORDER.bind(this, this.state._id)}
+                                    className="btn btn-success" style={{ marginRight: '10px' }}>Checkout</button>
+                                <button onClick={this.CANCEL_CHECK_OUT} className="btn btn-danger">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
             </div>
         );
     }

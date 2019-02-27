@@ -24,7 +24,8 @@ class EditOrder extends Component {
     }
 
     /**************************************************************************
-     * 
+     * Creates a list of items added and updated. This will calculate the made
+     * difference between the old quantity and the new quantity
      *************************************************************************/
     UPDATE_THIS_ORDER = () => {
         let { UPDATEDITEMS } = this.state;
@@ -34,8 +35,17 @@ class EditOrder extends Component {
                 REFINEDITEMS[ID] = UPDATEDITEMS[ID];
             }
         }
-        // TODO: Calculate differences
-        this.props.UPDATE_ITEMS_IN_THIS_ORDER(REFINEDITEMS);
+        // Difference = New QTY - Old QTY
+        let DIFFERENCES = {};
+        for (var refinedItem in REFINEDITEMS) {
+            if (this.state.ITEMQUANTITYINORDER[refinedItem]) {
+                DIFFERENCES[refinedItem] = (
+                    REFINEDITEMS[refinedItem] - this.state.ITEMQUANTITYINORDER[refinedItem]
+                )
+            }
+        }
+        console.log(DIFFERENCES);
+        this.props.UPDATE_ITEMS_IN_THIS_ORDER(REFINEDITEMS, DIFFERENCES);
         setTimeout(() => {
             this.props.history.push('/my_orders')
         }, (50 * REFINEDITEMS.length));
