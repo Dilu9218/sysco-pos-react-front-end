@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemCounter from './ItemCounter';
+import ItemCounterInCreate from './ItemCounterInCreate';
 
 class ListItemInCreateOrder extends Component {
 
@@ -15,7 +15,7 @@ class ListItemInCreateOrder extends Component {
                         </div>
                     </div><div className="col-2 card">
                         <div className="card-body d-flex align-items-center" style={{ padding: '5px 0px' }}>
-                            <ItemCounter
+                            <ItemCounterInCreate
                                 NAME={this.props.NAME} MIN={0} MAX={quantity} INITIAL={0}
                                 ADD_THIS_ITEM={this.props.ADD_THIS_ITEM} />
                         </div>

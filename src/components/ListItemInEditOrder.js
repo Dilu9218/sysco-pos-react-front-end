@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import ItemCounter from './ItemCounter';
+import ItemCounterInEdit from './ItemCounterInEdit';
 
 class ListItemInEditOrder extends Component {
+
+    DELETE_THIS_ITEM = (ID, VALUE) => {
+        this.props.DELETE_THIS_ITEM(ID, VALUE)
+    }
 
     render() {
         let { productTitle, description, quantity, price } = this.props.ITEM;
@@ -15,9 +19,10 @@ class ListItemInEditOrder extends Component {
                         </div>
                     </div><div className="col-2 card">
                         <div className="card-body d-flex align-items-center" style={{ padding: '5px 0px' }}>
-                            <ItemCounter
+                            <ItemCounterInEdit
                                 NAME={this.props.keyID} MIN={0} MAX={quantity} INITIAL={this.props.ITEMQTYINORDER}
-                                ADD_THIS_ITEM={this.props.ADD_THIS_ITEM_TO_ORDER} />
+                                ADD_THIS_ITEM={this.props.ADD_THIS_ITEM_TO_ORDER}
+                                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM.bind(this, this.props.keyID, this.props.ITEMQTYINORDER)} />
                         </div>
                     </div>
                     <div className="col-2 card text-right">

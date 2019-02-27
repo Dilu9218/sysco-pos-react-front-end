@@ -35,7 +35,6 @@ class EditOrder extends Component {
                 REFINEDITEMS[ID] = UPDATEDITEMS[ID];
             }
         }
-        // Difference = New QTY - Old QTY
         let DIFFERENCES = {};
         for (var refinedItem in REFINEDITEMS) {
             if (this.state.ITEMQUANTITYINORDER[refinedItem]) {
@@ -44,7 +43,6 @@ class EditOrder extends Component {
                 )
             }
         }
-        console.log(DIFFERENCES);
         this.props.UPDATE_ITEMS_IN_THIS_ORDER(REFINEDITEMS, DIFFERENCES);
         setTimeout(() => {
             this.props.history.push('/my_orders')
@@ -93,8 +91,9 @@ class EditOrder extends Component {
                                 key={item._id}
                                 ITEM={item}
                                 keyID={item.productID}
+                                ITEMQTYINORDER={this.state.ITEMQUANTITYINORDER[item.productID]}
                                 ADD_THIS_ITEM_TO_ORDER={this.ADD_THIS_ITEM_TO_ORDER}
-                                ITEMQTYINORDER={this.state.ITEMQUANTITYINORDER[item.productID]} />
+                                DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM} />
                         ))}
                     </div>
                 </div>

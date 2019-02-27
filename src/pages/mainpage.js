@@ -23,10 +23,10 @@ class MainPage extends Component {
                         <li className="list-group-item">&#10003; I should be able to see all the currently open orders in the order list</li>
                         <li className="list-group-item">&#10003; I should be able to view order details of an order by clicking the order in the order list</li>
                         <li className="list-group-item">&#10003; I should see all the items in the order, and their prices, and the total amount in the order detail view</li>
-                        <li className="list-group-item">&#10005; I should be able to add new items to an order from the order detail view</li>
+                        <li className="list-group-item">&#10003; I should be able to add new items to an order from the order detail view</li>
                         <li className="list-group-item">&#10005; I should be able to remove items from an order, from the order detail view</li>
-                        <li className="list-group-item">&#10005; I should be able to modify the item count in an order, from the order detail view</li>
-                        <li className="list-group-item">&#10005; I should be able to navigate away from the order detail view without having to explicitly save the order</li>
+                        <li className="list-group-item">&#10003; I should be able to modify the item count in an order, from the order detail view</li>
+                        <li className="list-group-item">&#10003; I should be able to navigate away from the order detail view without having to explicitly save the order</li>
                     </ul>
                 </div>
             </React.Fragment>

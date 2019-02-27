@@ -196,44 +196,32 @@ class App extends Component {
   UPDATE_ITEMS_IN_THIS_ORDER = (items, differences) => {
     let axiosUpdateRequests = []; // Updating existing items
     let axiosAddRequests = []; // Adding new items
-    let tempItems = items;
-    console.log('Before adding to queues items were these');
-    console.log(items);
-    console.log('Before adding to queues differences were these');
-    console.log(differences);
+    let tempItems = {};
     for (var updatedItem in differences) {
       let PATCHBODY = {
         productID: updatedItem,
         quantity: items[updatedItem],
         difference: differences[updatedItem]
       };
-      console.log(PATCHBODY);
-      /* axiosUpdateRequests.push(
+      axiosUpdateRequests.push(
         axios.post(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
           PATCHBODY, { headers: { 'x-access-token': this.state.PASSKEY } })
-      ); */
+      );
     }
     for (var item in items) {
-      console.error(`${item} is` + differences[item]);
-      if (typeof differences[item] === 'undefined') {
-        console.warn('Undefined');
-        continue;
-      } else {
+      if (differences[item] === undefined) {
         tempItems[item] = items[item];
       }
     }
-    console.log('After removing the updated items, new ones were these');
-    console.log(tempItems);
     for (var newItem in tempItems) {
-      /* axiosAddRequests.push(
+      axiosAddRequests.push(
         axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
           { productID: newItem, quantity: tempItems[newItem] },
           { headers: { 'x-access-token': this.state.PASSKEY } })
-      ); */
+      );
     }
-
-    /*     axios.all([...axiosUpdateRequests, ...axiosAddRequests])
-          .then(axios.spread(function (acct, perms) { })); */
+    axios.all([...axiosUpdateRequests, ...axiosAddRequests])
+      .then(axios.spread(function (acct, perms) { console.log('DONE'); }));
   }
 
   /****************************************************************************
@@ -262,7 +250,7 @@ class App extends Component {
     }
   }
 
-  ADD_THIS_ITEM = (ID, VAL) => {
+  DELETE_THIS_ITEM = (ID, VAL) => {
     console.log(`${ID} and ${VAL}`);
   }
 
@@ -331,7 +319,8 @@ class App extends Component {
                 CURRENTORDER={this.state.CURRENTORDER}
                 ITEMSLIST={this.state.ITEMSLIST}
                 SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
-                UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER} />
+                UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER}
+                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM} />
             </ErrorBoundary>
           )} />
         </div>
