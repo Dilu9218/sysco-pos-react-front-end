@@ -84,26 +84,38 @@ class EditOrder extends Component {
             );
         }
         return (
-            <div className="card" style={{ margin: '25px' }}>
-                <div className="card-body">
-                    <h5 className="card-title" style={{ margin: '0.5em 1em' }}>Editing Order {this.props.CURRENTORDERID}</h5>
-                    {this.props.ITEMSLIST.map((item) => (
-                        <ListItemInEditOrder
-                            key={item._id}
-                            ITEM={item}
-                            keyID={item.productID}
-                            ADD_THIS_ITEM_TO_ORDER={this.ADD_THIS_ITEM_TO_ORDER}
-                            ITEMQTYINORDER={this.state.ITEMQUANTITYINORDER[item.productID]} />
-                    ))}
-                </div>
-                <div className="card-body button-section" style={{ paddingTop: '0px' }}>
-                    <div className="row">
-                        <div className="col-12 d-flex justify-content-end">
-                            <button onClick={this.UPDATE_THIS_ORDER} className="btn btn-primary" style={{ marginRight: '10px' }}>Update Order</button>
-                            <button onClick={this.CANCEL_EDITING_THE_ORDER} className="btn btn-danger">Cancel</button>
-                        </div>
+            <div>
+                <div className="card" style={{ margin: '25px', paddingBottom: '50px'  }}>
+                    <div className="card-body">
+                        <h5 className="card-title" style={{ margin: '0.5em 1em' }}>Editing Order {this.props.CURRENTORDERID}</h5>
+                        {this.props.ITEMSLIST.map((item) => (
+                            <ListItemInEditOrder
+                                key={item._id}
+                                ITEM={item}
+                                keyID={item.productID}
+                                ADD_THIS_ITEM_TO_ORDER={this.ADD_THIS_ITEM_TO_ORDER}
+                                ITEMQTYINORDER={this.state.ITEMQUANTITYINORDER[item.productID]} />
+                        ))}
                     </div>
                 </div>
+                <nav className="navbar navbar-light bg-light"
+                    style={{
+                        paddingRight: '25px',
+                        overflow: 'hidden',
+                        position: 'fixed',
+                        zIndex: 99,
+                        bottom: '0',
+                        width: '100%'
+                    }}>
+                    <div className="card-body button-section" style={{ paddingTop: '0px' }}>
+                        <div className="row">
+                            <div className="col-12 d-flex justify-content-end">
+                                <button onClick={this.UPDATE_THIS_ORDER} className="btn btn-primary" style={{ marginRight: '10px' }}>Update Order</button>
+                                <button onClick={this.CANCEL_EDITING_THE_ORDER} className="btn btn-danger">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
             </div>
         );
     }

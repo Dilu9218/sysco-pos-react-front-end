@@ -72,7 +72,7 @@ class ViewOrder extends Component {
                     </div>
 
                 </div>
-                <nav class="navbar navbar-light bg-light"
+                <nav className="navbar navbar-light bg-light"
                     style={{
                         paddingRight: '25px',
                         overflow: 'hidden',

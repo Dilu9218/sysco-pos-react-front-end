@@ -11,10 +11,17 @@ import React, { Component } from 'react';
  */
 class ItemCounter extends Component {
 
-    state = {
-        count: 0
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: props.INITIAL || 0
+        }
     }
 
+    /**************************************************************************
+     * This will add one to the local count until it reaches the value defined
+     * by MAX value and triggers the ADD_THIS_ITEM function set by parent
+     *************************************************************************/
     INCREMENT_COUNT = (e) => {
         e.preventDefault();
         if (this.state.count !== this.props.MAX) {
@@ -26,6 +33,10 @@ class ItemCounter extends Component {
         }
     }
 
+    /**************************************************************************
+     * This will substract one from the local count until it reaches the value
+     * defined by MIN value and triggers the ADD_THIS_ITEM function
+     *************************************************************************/
     DECREMENT_COUNT = (e) => {
         e.preventDefault();
         if (this.state.count !== this.props.MIN) {
@@ -44,7 +55,7 @@ class ItemCounter extends Component {
                     <button type="button" className="btn btn-secondary" onClick={this.INCREMENT_COUNT}>&#43;</button>
                     <div style={{ width: '3em', textAlign: 'center' }}>
                         <span className="input-group-text" style={{
-                            display: 'inline-block', borderRadius: '0px', width: '100%'
+                            display: 'inline-block', borderRadius: '0px', width: '100%', height: '100%'
                         }}>{this.state.count}</span></div>
                     <button type="button" className="btn btn-secondary" onClick={this.DECREMENT_COUNT}>&#8722;</button>
                 </div>

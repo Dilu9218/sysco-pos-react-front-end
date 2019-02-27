@@ -214,7 +214,9 @@ class App extends Component {
       ); */
     }
     for (var item in items) {
-      if (differences[item]) {
+      console.error(`${item} is` + differences[item]);
+      if (typeof differences[item] === 'undefined') {
+        console.warn('Undefined');
         continue;
       } else {
         tempItems[item] = items[item];

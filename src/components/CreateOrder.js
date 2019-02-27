@@ -36,7 +36,6 @@ class CreateOrder extends Component {
      * @param VALUE quantity of the item added
      *************************************************************************/
     ADD_THIS_ITEM = (ID, VALUE) => {
-        console.log(`${ID} and ${VALUE}`);
         try {
             delete this.state.ADDEDITEMS.id;
         } catch (e) { }
@@ -102,7 +101,7 @@ class CreateOrder extends Component {
                             ))}
                         </div>
                     </div>
-                    <nav class="navbar navbar-light bg-light"
+                    <nav className="navbar navbar-light bg-light"
                         style={{
                             paddingRight: '25px',
                             overflow: 'hidden',
