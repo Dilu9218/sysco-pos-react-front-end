@@ -239,7 +239,7 @@ class App extends Component {
    * Refresh the item list and add the selected order to CURRENTORDER
    ***************************************************************************/
   PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER = (ID) => {
-    this.GET_THE_COMPLETE_ITEMS_LIST();
+    //this.GET_THE_COMPLETE_ITEMS_LIST();
     let OrderList = this.state.ORDERLIST;
     for (var order in OrderList) {
       if (OrderList[order]._id === ID) {
@@ -294,6 +294,7 @@ class App extends Component {
               <OrderList
                 ISLOGGEDIN={this.state.ISLOGGEDIN}
                 ORDERLIST={this.state.ORDERLIST}
+                GET_THE_COMPLETE_ITEMS_LIST={this.GET_THE_COMPLETE_ITEMS_LIST}
                 PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER={this.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER}
                 GET_THE_ORDER_LIST_FOR_THIS_USER={this.GET_THE_ORDER_LIST_FOR_THIS_USER}
                 SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}

@@ -12,6 +12,7 @@ class OrderList extends Component {
 
     componentDidMount() {
         this.props.GET_THE_ORDER_LIST_FOR_THIS_USER();
+        this.props.GET_THE_COMPLETE_ITEMS_LIST();
     }
 
     render() {

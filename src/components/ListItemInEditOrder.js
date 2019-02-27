@@ -20,9 +20,9 @@ class ListItemInEditOrder extends Component {
                     </div><div className="col-2 card">
                         <div className="card-body d-flex align-items-center" style={{ padding: '5px 0px' }}>
                             <ItemCounterInEdit
-                                NAME={this.props.keyID} MIN={0} MAX={quantity} INITIAL={this.props.ITEMQTYINORDER}
+                                NAME={this.props.keyID} MIN={0} MAX={quantity} INITIAL={this.props.ITEMQUANTITYINORDER}
                                 ADD_THIS_ITEM={this.props.ADD_THIS_ITEM_TO_ORDER}
-                                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM.bind(this, this.props.keyID, this.props.ITEMQTYINORDER)} />
+                                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM.bind(this, this.props.keyID, this.props.ITEMQUANTITYINORDER)} />
                         </div>
                     </div>
                     <div className="col-2 card text-right">

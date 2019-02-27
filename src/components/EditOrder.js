@@ -83,7 +83,7 @@ class EditOrder extends Component {
         }
         return (
             <div>
-                <div className="card" style={{ margin: '25px', paddingBottom: '50px'  }}>
+                <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
                     <div className="card-body">
                         <h5 className="card-title" style={{ margin: '0.5em 1em' }}>Editing Order {this.props.CURRENTORDERID}</h5>
                         {this.props.ITEMSLIST.map((item) => (
@@ -91,7 +91,9 @@ class EditOrder extends Component {
                                 key={item._id}
                                 ITEM={item}
                                 keyID={item.productID}
-                                ITEMQTYINORDER={this.state.ITEMQUANTITYINORDER[item.productID]}
+                                ITEMQUANTITYINORDER={this.state.ITEMQUANTITYINORDER[item.productID] === undefined
+                                    ? 0
+                                    : this.state.ITEMQUANTITYINORDER[item.productID]}
                                 ADD_THIS_ITEM_TO_ORDER={this.ADD_THIS_ITEM_TO_ORDER}
                                 DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM} />
                         ))}
