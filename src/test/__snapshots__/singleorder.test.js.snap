@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Single Order displays a single order 1`] = `
+<withRouter(SingleOrder)
+  DELETE_THIS_ORDER={[Function]}
+  ORDER={
+    Object {
+      "_id": 4324,
+      "items": Array [],
+    }
+  }
+  PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER={[Function]}
+  SET_THIS_ORDER_AS_CURRENT={[Function]}
+>
+  <Route>
+    <SingleOrder
+      DELETE_THIS_ORDER={[Function]}
+      ORDER={
+        Object {
+          "_id": 4324,
+          "items": Array [],
+        }
+      }
+      PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER={[Function]}
+      SET_THIS_ORDER_AS_CURRENT={[Function]}
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      location={Object {}}
+      match={Object {}}
+    >
+      <div
+        className="card border-dark shadow"
+        style={
+          Object {
+            "margin": "10px 0px",
+          }
+        }
+      >
+        <div
+          className="card-header text-white bg-dark"
+          style={
+            Object {
+              "padding": ".75em .1em",
+            }
+          }
+        >
+          <div
+            className="row"
+            style={
+              Object {
+                "margin": "0px",
+                "width": "100%",
+              }
+            }
+          >
+            <div
+              className="col-10 d-flex justify-content-start"
+              style={
+                Object {
+                  "textAlign": "initial",
+                }
+              }
+            >
+              Order ID: 
+              4324
+            </div>
+            <div
+              className="col-2 d-flex justify-content-end"
+              style={
+                Object {
+                  "textAlign": "initial",
+                }
+              }
+            >
+              <b>
+                Rs. 
+                0.00
+              </b>
+            </div>
+          </div>
+        </div>
+        <ul
+          className="list-group list-group-flush"
+        />
+        <div
+          className="card-footer d-flex justify-content-end"
+        >
+          <Link
+            className="card-link"
+            onClick={[Function]}
+            replace={false}
+            to="#"
+          >
+            <a
+              className="card-link"
+              href="/"
+              onClick={[Function]}
+            >
+              <i
+                className="fas fa-list-alt"
+              />
+               View
+            </a>
+          </Link>
+          <Link
+            className="card-link edit-order"
+            onClick={[Function]}
+            replace={false}
+            to="#"
+          >
+            <a
+              className="card-link edit-order"
+              href="/"
+              onClick={[Function]}
+            >
+              <i
+                className="fas fa-pen"
+              />
+               Edit
+            </a>
+          </Link>
+          <Link
+            className="card-link delete"
+            onClick={[Function]}
+            replace={false}
+            to="#"
+          >
+            <a
+              className="card-link delete"
+              href="/"
+              onClick={[Function]}
+            >
+              <i
+                className="fas fa-trash"
+              />
+               Delete
+            </a>
+          </Link>
+        </div>
+      </div>
+    </SingleOrder>
+  </Route>
+</withRouter(SingleOrder)>
+`;
