@@ -93,10 +93,7 @@ class App extends Component {
    * logs in, save the token and delete as he logs out
    ***************************************************************************/
   LOG_USER_IN_AND_OUT = (ISLOGGEDIN, PASSKEY) => {
-    this.setState({
-      ISLOGGEDIN,
-      PASSKEY
-    });
+    this.setState({ ISLOGGEDIN, PASSKEY });
     if (ISLOGGEDIN) {
       this.props.cookies.set(USERTOKEN, PASSKEY, { path: '/' });
     } else {
@@ -141,10 +138,7 @@ class App extends Component {
       { headers: { 'x-access-token': this.state.PASSKEY } })
       .then(newOrder => {
         this.setState({
-          ORDERLIST: [
-            newOrder.data,
-            ...this.state.ORDERLIST
-          ],
+          ORDERLIST: [newOrder.data, ...this.state.ORDERLIST],
           CURRENTORDERID: newOrder.data._id
         });
         this.GET_THE_COMPLETE_ITEMS_LIST();
@@ -248,11 +242,7 @@ class App extends Component {
    * situations. As an example, while viewing an order, this can be used inside
    * the component when mounting
    ***************************************************************************/
-  SET_THIS_ORDER_AS_CURRENT = (ID) => {
-    this.setState({
-      CURRENTORDERID: ID
-    });
-  }
+  SET_THIS_ORDER_AS_CURRENT = (ID) => this.setState({ CURRENTORDERID: ID });
 
   /****************************************************************************
    * Refresh the item list and add the selected order to CURRENTORDER
@@ -349,6 +339,7 @@ class App extends Component {
    ***************************************************************************/
   CLEAR_ORDER_UPDATE_PROCESS = () => {
     this.setState({
+      TOTAL: 0,
       ITEMQUANTITY: {},
       CLONEITEMQUANTITY: {},
       CURRENTORDERID: ''
