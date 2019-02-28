@@ -21,7 +21,7 @@ function RenderDeleteButton(props) {
  * @param MIN Minimum allowable value
  * @param MAX Maximum allowable value
  */
-class ItemCounterInEdit extends Component {
+class ItemCounterInListItem extends Component {
 
     /**************************************************************************
      * Triggers the parent component method to clear the count for this item
@@ -77,4 +77,4 @@ class ItemCounterInEdit extends Component {
     }
 }
 
-export default ItemCounterInEdit;
+export default ItemCounterInListItem;

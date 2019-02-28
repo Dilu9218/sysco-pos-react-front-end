@@ -1,27 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
-import ListItemInEditOrder from './ListItemInEditOrder';
+import ListItemInOrder from './ListItemInOrder';
 
 class EditOrder extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            UPDATEDITEMS: {},
-            ITEMQUANTITYINORDER: {}
-        };
-    }
-
-    // Once the component is mounted, filter out the productID and quantity of
-    // the items in order and append it to local state
-    componentDidMount() {
-        let { items } = this.props.CURRENTORDER;
-        let ITEMQUANTITYINORDER = {};
-        for (var i in items) {
-            ITEMQUANTITYINORDER[items[i].productID] = items[i].quantity;
-        }
-        this.setState({ ITEMQUANTITYINORDER });
-    }
 
     /**************************************************************************
      * Creates a list of items added and updated. This will calculate the made
@@ -55,12 +36,10 @@ class EditOrder extends Component {
                     <div className="card-body">
                         <h5 className="card-title" style={{ margin: '0.5em 1em' }}>Editing Order {this.props.CURRENTORDERID}</h5>
                         {this.props.ITEMSLIST.map((item) => (
-                            <ListItemInEditOrder
+                            <ListItemInOrder
                                 key={item._id}
                                 ITEM={item}
                                 NAME={item.productID}
-                                CLONEITEMQUANTITY={this.props.CLONEITEMQUANTITY[item.productID] === undefined
-                                    ? 0 : this.props.CLONEITEMQUANTITY[item.productID]}
                                 ITEMQUANTITY={this.props.ITEMQUANTITY[item.productID] === undefined
                                     ? 0 : this.props.ITEMQUANTITY[item.productID]}
                                 ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
