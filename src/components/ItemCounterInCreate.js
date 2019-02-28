@@ -11,25 +11,17 @@ import React, { Component } from 'react';
  */
 class ItemCounterInCreate extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            count: props.INITIAL || 0
-        }
-    }
-
     /**************************************************************************
      * This will add one to the local count until it reaches the value defined
      * by MAX value and triggers the ADD_THIS_ITEM function set by parent
      *************************************************************************/
     INCREMENT_COUNT = (e) => {
         e.preventDefault();
-        if (this.state.count !== this.props.MAX) {
-            let newCount = this.state.count + 1;
-            this.setState({
-                count: newCount
-            });
-            this.props.ADD_THIS_ITEM(this.props.NAME, newCount);
+        if (this.props.COUNT !== this.props.MAX) {
+            if (this.props.COUNT === 0) {
+                this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY(this.props.NAME);
+            }
+            this.props.INDECCREMENT_ITEM_COUNT(this.props.NAME, true);
         }
     }
 
@@ -39,12 +31,8 @@ class ItemCounterInCreate extends Component {
      *************************************************************************/
     DECREMENT_COUNT = (e) => {
         e.preventDefault();
-        if (this.state.count !== this.props.MIN) {
-            let newCount = this.state.count - 1;
-            this.setState({
-                count: newCount
-            });
-            this.props.ADD_THIS_ITEM(this.props.NAME, newCount);
+        if (this.props.COUNT !== this.props.MIN) {
+            this.props.INDECCREMENT_ITEM_COUNT(this.props.NAME, false);
         }
     }
 
@@ -56,7 +44,7 @@ class ItemCounterInCreate extends Component {
                     <div style={{ width: '3em', textAlign: 'center' }}>
                         <span className="input-group-text" style={{
                             display: 'inline-block', borderRadius: '0px', width: '100%', height: '100%'
-                        }}>{this.state.count}</span></div>
+                        }}>{this.props.COUNT}</span></div>
                     <button type="button" className="btn btn-secondary" onClick={this.DECREMENT_COUNT}>&#8722;</button>
                 </div>
             </div>

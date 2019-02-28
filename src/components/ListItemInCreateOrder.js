@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemCounterInCreate from './ItemCounterInCreate';
+import ItemCounterInEdit from './ItemCounterInEdit';
 
 class ListItemInCreateOrder extends Component {
 
@@ -15,9 +15,12 @@ class ListItemInCreateOrder extends Component {
                         </div>
                     </div><div className="col-2 card">
                         <div className="card-body d-flex align-items-center" style={{ padding: '5px 0px' }}>
-                            <ItemCounterInCreate
-                                NAME={this.props.NAME} MIN={0} MAX={quantity} INITIAL={0}
-                                ADD_THIS_ITEM={this.props.ADD_THIS_ITEM} />
+                            <ItemCounterInEdit
+                                NAME={this.props.NAME} MIN={0} MAX={quantity}
+                                COUNT={this.props.ITEMQUANTITY}
+                                INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT}
+                                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
+                                DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM} />
                         </div>
                     </div>
                     <div className="col-2 card text-right">

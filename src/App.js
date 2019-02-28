@@ -175,16 +175,24 @@ class App extends Component {
    * is a multiple request method where axios perform multiple web requests to
    * update each item in item collection
    ***************************************************************************/
-  ADD_ITEMS_TO_THIS_ORDER = (items) => {
+  ADD_ITEMS_TO_THIS_ORDER = () => {
     let axiosRequests = [];
-    for (var item in items) {
-      axiosRequests.push(
-        axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-          { productID: item, quantity: items[item] },
-          { headers: { 'x-access-token': this.state.PASSKEY } })
-      );
+    let ITEMQUANTITY = this.state.ITEMQUANTITY;
+    for (var I in ITEMQUANTITY) {
+      if (ITEMQUANTITY[I] !== 0) {
+        axiosRequests.push(
+          axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+            { productID: I, quantity: ITEMQUANTITY[I] },
+            { headers: { 'x-access-token': this.state.PASSKEY } })
+        );
+      }
     }
-    axios.all(axiosRequests).then(axios.spread(function (acct, perms) { }));
+    axios.all(axiosRequests).then(axios.spread(function (acct, perms) {
+      console.log('DONE');
+    }));
+    this.CLEAR_ORDER_UPDATE_PROCESS();
+    this.GET_THE_ORDER_LIST_FOR_THIS_USER();
+    this.GET_THE_COMPLETE_ITEMS_LIST();
   }
 
   /****************************************************************************
@@ -354,8 +362,13 @@ class App extends Component {
                 ISLOGGEDIN={this.state.ISLOGGEDIN}
                 CURRENTORDERID={this.state.CURRENTORDERID}
                 ITEMSLIST={this.state.ITEMSLIST}
+                ITEMQUANTITY={this.state.ITEMQUANTITY}
                 DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
+                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
+                INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT}
                 CREATE_NEW_ORDER_FOR_THIS_USER={this.CREATE_NEW_ORDER_FOR_THIS_USER}
+                CLEAR_ORDER_ADDING_PROCESS={this.CLEAR_ORDER_UPDATE_PROCESS}
+                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
                 ADD_ITEMS_TO_THIS_ORDER={this.ADD_ITEMS_TO_THIS_ORDER} />
             </ErrorBoundary>
           )} />

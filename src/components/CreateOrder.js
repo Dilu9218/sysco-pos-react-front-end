@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
-import ListItemInCreateOrder from './ListItemInCreateOrder';
+import ListItemInEditOrder from './ListItemInEditOrder';
 
 /**
  * @abstract Creates a new order
@@ -17,7 +17,6 @@ class CreateOrder extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ADDEDITEMS: {},
             TOTAL: 0
         };
     }
@@ -26,24 +25,6 @@ class CreateOrder extends Component {
     // and in the meantime fetch the complete item list
     componentDidMount() {
         this.props.CREATE_NEW_ORDER_FOR_THIS_USER();
-    }
-
-    /**************************************************************************
-     * Local function to add a single item to a temporary list of items to be 
-     * added in to the order being created. This will take care of duplicate 
-     * entries but not zero entries
-     * @param ID productID of the item being added
-     * @param VALUE quantity of the item added
-     *************************************************************************/
-    ADD_THIS_ITEM = (ID, VALUE) => {
-        try {
-            delete this.state.ADDEDITEMS.id;
-        } catch (e) { }
-        let tempAddedItems = this.state.ADDEDITEMS;
-        tempAddedItems[ID] = VALUE;
-        this.setState({
-            ADDEDITEMS: tempAddedItems
-        });
     }
 
     /**************************************************************************
@@ -57,17 +38,10 @@ class CreateOrder extends Component {
      * as it takes some time to complete the axios promises.
      *************************************************************************/
     ADD_THESE_ITEMS_TO_THIS_ORDER = () => {
-        let { ADDEDITEMS } = this.state;
-        let REFINEDITEMS = {};
-        for (var ID in ADDEDITEMS) {
-            if (parseInt(ADDEDITEMS[ID]) !== 0) {
-                REFINEDITEMS[ID] = ADDEDITEMS[ID];
-            }
-        }
-        this.props.ADD_ITEMS_TO_THIS_ORDER(REFINEDITEMS);
+        this.props.ADD_ITEMS_TO_THIS_ORDER();
         setTimeout(() => {
             this.props.history.push('/my_orders')
-        }, (50 * REFINEDITEMS.length));
+        }, (50 * this.props.ITEMQUANTITY.length));
     }
 
     /**************************************************************************
@@ -77,6 +51,7 @@ class CreateOrder extends Component {
      *************************************************************************/
     CANCEL_THE_ORDER = (ID) => {
         this.props.DELETE_THIS_ORDER(ID);
+        this.props.CLEAR_ORDER_ADDING_PROCESS();
         this.props.history.push('/my_orders');
     }
 
@@ -93,11 +68,15 @@ class CreateOrder extends Component {
                             <h5 className="card-title"
                                 style={{ margin: '0.5em 1em' }}>Item List</h5>
                             {this.props.ITEMSLIST.map((item) => (
-                                <ListItemInCreateOrder
+                                <ListItemInEditOrder
                                     key={item._id}
-                                    singleItem={item}
+                                    ITEM={item}
                                     NAME={item.productID}
-                                    ADD_THIS_ITEM={this.ADD_THIS_ITEM} />
+                                    ITEMQUANTITY={this.props.ITEMQUANTITY[item.productID] === undefined
+                                        ? 0 : this.props.ITEMQUANTITY[item.productID]}
+                                    ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
+                                    DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM}
+                                    INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT} />
                             ))}
                         </div>
                     </div>
