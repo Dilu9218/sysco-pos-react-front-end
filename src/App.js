@@ -114,6 +114,7 @@ class App extends Component {
             ...this.state.ORDERLIST.filter(order => (order._id !== ID))
           ]
         });
+        this.GET_THE_ORDER_LIST_FOR_THIS_USER();
       }).catch(err => {
         console.log(err);
       });
@@ -161,6 +162,7 @@ class App extends Component {
               order._id !== this.state.CURRENTORDERID))
           ]
         });
+        this.GET_THE_ORDER_LIST_FOR_THIS_USER();
       }).catch(err => {
         console.log(err);
       });
@@ -169,7 +171,7 @@ class App extends Component {
   /****************************************************************************
    * Parent method adding a list of items to the current order in context. This
    * is a multiple request method where axios perform multiple web requests to
-   * update each item in item collection
+   * update each item in items collection
    ***************************************************************************/
   ADD_ITEMS_TO_THIS_ORDER = () => {
     let axiosRequests = [];
