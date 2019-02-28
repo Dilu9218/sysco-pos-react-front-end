@@ -41,11 +41,10 @@ class MainPage extends Component {
                         </div>
                     </div>
                     <div className="card" style={{ border: '1px solid rgba(0,0,0,.125)' }}>
-                        <img className="card-img-top" src={require('./node_test_results.png')} alt="Card cap" />
+                        <img className="card-img-top" src={require('./react_test_results.png')} alt="Card cap" />
                         <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <p className="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <h5 className="card-title">ReactJS Front End</h5>
+                            <p className="card-text">Test results and total test coverage for the front end UI</p>
                         </div>
                     </div>
                 </div>
