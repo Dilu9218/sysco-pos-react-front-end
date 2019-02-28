@@ -422,6 +422,7 @@ class App extends Component {
               <ViewOrder
                 ISLOGGEDIN={this.state.ISLOGGEDIN}
                 CURRENTORDER={this.state.CURRENTORDER}
+                TOTAL={this.state.TOTAL}
                 DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
                 CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT} />
             </ErrorBoundary>
