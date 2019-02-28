@@ -185,10 +185,8 @@ class App extends Component {
         );
       }
     }
-    axios.all(axiosRequests).then(axios.spread(function (acct, perms) {
-      console.log('DONE');
-    }));
-    this.CLEAR_ORDER_ADDING_PROCESS();
+    axios.all(axiosRequests).then(axios.spread(function (acct, perms) { }));
+    this.CLEAR_ORDERING_PROCESS();
     this.GET_THE_ORDER_LIST_FOR_THIS_USER();
     this.GET_THE_COMPLETE_ITEMS_LIST();
   }
@@ -231,9 +229,7 @@ class App extends Component {
       }
     }
     axios.all([...updateRequests, ...newRequests, ...deleteRequests])
-      .then(axios.spread(function (acct, perms) {
-        console.log('DONE');
-      }));
+      .then(axios.spread(function (acct, perms) { }));
     this.CLEAR_ORDERING_PROCESS();
     this.GET_THE_ORDER_LIST_FOR_THIS_USER();
     this.GET_THE_COMPLETE_ITEMS_LIST();
@@ -391,7 +387,7 @@ class App extends Component {
                 DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
                 INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT}
                 CREATE_NEW_ORDER_FOR_THIS_USER={this.CREATE_NEW_ORDER_FOR_THIS_USER}
-                CLEAR_ORDER_ADDING_PROCESS={this.CLEAR_ORDER_ADDING_PROCESS}
+                CLEAR_ORDER_ADDING_PROCESS={this.CLEAR_ORDERING_PROCESS}
                 ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
                 ADD_ITEMS_TO_THIS_ORDER={this.ADD_ITEMS_TO_THIS_ORDER} />
             </ErrorBoundary>
