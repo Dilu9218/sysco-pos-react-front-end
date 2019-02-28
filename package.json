@@ -12,6 +12,7 @@
     "enzyme-adapter-react-16": "^1.9.1",
     "history": "^4.7.2",
     "react": "^16.8.2",
+    "react-beforeunload": "^1.0.4",
     "react-cookie": "^3.0.8",
     "react-dom": "^16.8.2",
     "react-router-dom": "^4.3.1",

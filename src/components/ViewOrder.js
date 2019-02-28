@@ -65,8 +65,8 @@ class ViewOrder extends Component {
                         <div className="row">
                             <div className="col-12 d-flex justify-content-end">
                                 <button onClick={this.CHECK_OUT_THIS_ORDER.bind(this, this.props.CURRENTORDER._id)}
-                                    className="btn btn-success" style={{ marginRight: '10px' }}>Checkout</button>
-                                <button onClick={this.CANCEL_CHECK_OUT} className="btn btn-danger">Cancel</button>
+                                    className="btn btn-success" style={{ marginRight: '10px' }}><i class="fas fa-shopping-cart"></i> Checkout</button>
+                                <button onClick={this.CANCEL_CHECK_OUT} className="btn btn-danger"><i class="fas fa-times-circle"></i> Cancel</button>
                             </div>
                         </div>
                     </div>

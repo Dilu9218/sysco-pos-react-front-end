@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
 import ListItemInOrder from './ListItemInOrder';
+import Beforeunload from 'react-beforeunload';
 
 class EditOrder extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            CANCELLED: false
+        }
+    }
 
     /**************************************************************************
      * Creates a list of items added and updated. This will calculate the made
@@ -12,7 +20,7 @@ class EditOrder extends Component {
         this.props.UPDATE_ITEMS_IN_THIS_ORDER();
         setTimeout(() => {
             this.props.history.push('/my_orders')
-        }, (50 * this.props.ITEMQUANTITY.length));
+        }, (50));
     }
 
     /**************************************************************************
@@ -20,8 +28,15 @@ class EditOrder extends Component {
      * just redirect user back to order list
      *************************************************************************/
     CANCEL_EDITING_THE_ORDER = () => {
+        this.setState({ CANCELLED: true });
         this.props.CLEAR_ORDER_UPDATE_PROCESS();
         this.props.history.push('/my_orders');
+    }
+
+    componentWillUnmount() {
+        if (!this.state.CANCELLED) {
+            this.props.UPDATE_ITEMS_IN_THIS_ORDER();
+        }
     }
 
     render() {
@@ -32,6 +47,7 @@ class EditOrder extends Component {
         }
         return (
             <div>
+                <Beforeunload onBeforeunload={() => "If you close the tab, changes made to this order will be lost!"} />
                 <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
                     <div className="card-body">
                         <h5 className="card-title" style={{ margin: '0.5em 1em' }}>Editing Order {this.props.CURRENTORDERID}</h5>
@@ -79,10 +95,10 @@ class EditOrder extends Component {
                                 <button
                                     onClick={this.UPDATE_THIS_ORDER}
                                     className="btn btn-primary"
-                                    style={{ marginRight: '10px' }}>Update Order</button>
+                                    style={{ marginRight: '10px' }}><i className="fas fa-pen"></i> Update Order</button>
                                 <button
                                     onClick={this.CANCEL_EDITING_THE_ORDER}
-                                    className="btn btn-danger">Cancel</button>
+                                    className="btn btn-danger"><i className="fas fa-times-circle"></i> Cancel</button>
                             </div>
                         </div>
                     </div>

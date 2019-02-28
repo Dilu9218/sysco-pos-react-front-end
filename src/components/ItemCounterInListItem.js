@@ -4,7 +4,7 @@ function RenderDeleteButton(props) {
     if (props.COUNT !== 0) {
         return (
             <div className="btn-group" role="group" aria-label="Delete-Group" style={{ marginLeft: '10px' }}>
-                <button type="button" className="btn btn-danger" onClick={props.DELETE_THIS_ITEM}>&#215;</button>
+                <button type="button" className="btn btn-danger" onClick={props.DELETE_THIS_ITEM}><i className="fas fa-trash"></i></button>
             </div>
         );
     } else {

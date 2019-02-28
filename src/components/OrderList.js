@@ -26,7 +26,7 @@ class OrderList extends Component {
                 <div className="card" style={{ margin: '25px' }}>
                     <div className="card-body" style={{ padding: '1.25rem 1.25rem 1rem 1.25rem' }}>
                         <h5 className="card-title" style={{ margin: '0.5em 1em 0 0' }}>Order List</h5>
-                        <p style={{ marginTop: '10px' }}>No Orders to display. Do you mind createing a <Link to="/create_order">new order</Link>?</p>
+                        <p style={{ marginTop: '10px' }}>No Orders to display. Do you mind creating a <Link to="/create_order">new order</Link>?</p>
                     </div>
                 </div>
             );

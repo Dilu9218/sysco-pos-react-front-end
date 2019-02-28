@@ -8,11 +8,11 @@ export function ConditionalHeader(P) {
             <div className="collapse navbar-collapse">
                 <Link className="navbar-brand" style={{ paddingTop: '0px' }} to="/home">Sysco PoS System</Link>
                 <div className="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <Link className="nav-item nav-link" to="/my_orders">My Orders</Link>
-                    <Link className="nav-item nav-link" to="/create_order">Create Order</Link>
+                    <Link className="nav-item nav-link" to="/my_orders"><i className="fas fa-list-ul"></i> My Orders</Link>
+                    <Link className="nav-item nav-link" to="/create_order"><i className="fas fa-plus"></i> Create Order</Link>
                 </div>
                 <div className="navbar-nav my-2 my-lg-0">
-                    <Link className="nav-item nav-link" to="/logout">Logout</Link>
+                    <Link className="nav-item nav-link" to="/logout"><i className="fas fa-sign-out-alt"></i> Logout</Link>
                 </div>
             </div>
         );
@@ -21,7 +21,7 @@ export function ConditionalHeader(P) {
             <div className="collapse navbar-collapse">
                 <Link className="navbar-brand" style={{ paddingTop: '0px' }} to="/home">Sysco PoS System</Link>
                 <div className="navbar-nav ml-auto">
-                    <Link className="nav-item nav-link" to="/login">Login</Link>
+                    <Link className="nav-item nav-link" to="/login"><i className="fas fa-sign-in-alt"></i> Login</Link>
                     <Link className="nav-item nav-link" to="/register">Register</Link>
                 </div>
             </div>

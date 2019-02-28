@@ -52,9 +52,9 @@ class SingleOrder extends Component {
                     ))}
                 </ul>
                 <div className="card-footer d-flex justify-content-end">
-                    <Link to="#" className="card-link" onClick={this.VIEW_THIS_ORDER}>View</Link>
-                    <Link to="#" className="card-link edit-order" onClick={this.EDIT_THIS_ORDER}>Edit</Link>
-                    <Link to="#" className="card-link delete" onClick={this.props.DELETE_THIS_ORDER}>Delete</Link>
+                    <Link to="#" className="card-link" onClick={this.VIEW_THIS_ORDER}><i className="fas fa-list-alt"></i> View</Link>
+                    <Link to="#" className="card-link edit-order" onClick={this.EDIT_THIS_ORDER}><i className="fas fa-pen"></i> Edit</Link>
+                    <Link to="#" className="card-link delete" onClick={this.props.DELETE_THIS_ORDER}><i className="fas fa-trash"></i> Delete</Link>
                 </div>
             </div>
         );

@@ -49,7 +49,10 @@ class CreateOrder extends Component {
     }
 
     componentWillUnmount() {
-        console.log('Unmounted');
+        if(this.props.ITEMQUANTITY.length === 0) {
+            this.props.DELETE_THIS_ORDER(this.props.CURRENTORDERID);
+            this.props.CLEAR_ORDER_ADDING_PROCESS();
+        }
     }
 
     render() {
@@ -107,12 +110,12 @@ class CreateOrder extends Component {
                                     <button
                                         onClick={this.ADD_THESE_ITEMS_TO_THIS_ORDER}
                                         className="btn btn-success"
-                                        style={{ marginRight: '10px' }}>Add to Cart</button>
+                                        style={{ marginRight: '10px' }}><i className="fas fa-cart-plus"></i> Add to Cart</button>
                                     <button
                                         onClick={this.CANCEL_THE_ORDER.bind(
                                             this, this.props.CURRENTORDERID
                                         )}
-                                        className="btn btn-danger">Cancel</button>
+                                        className="btn btn-danger"><i className="fas fa-times-circle"></i> Cancel</button>
                                 </div>
                             </div>
                         </div>

@@ -188,7 +188,7 @@ class App extends Component {
     axios.all(axiosRequests).then(axios.spread(function (acct, perms) {
       console.log('DONE');
     }));
-    this.CLEAR_ORDER_UPDATE_PROCESS();
+    this.CLEAR_ORDER_ADDING_PROCESS();
     this.GET_THE_ORDER_LIST_FOR_THIS_USER();
     this.GET_THE_COMPLETE_ITEMS_LIST();
   }
@@ -234,7 +234,7 @@ class App extends Component {
       .then(axios.spread(function (acct, perms) {
         console.log('DONE');
       }));
-    this.CLEAR_ORDER_UPDATE_PROCESS();
+    this.CLEAR_ORDERING_PROCESS();
     this.GET_THE_ORDER_LIST_FOR_THIS_USER();
     this.GET_THE_COMPLETE_ITEMS_LIST();
   }
@@ -339,7 +339,7 @@ class App extends Component {
    * Resets the current state to remove all the saved data from previous update
    * process
    ***************************************************************************/
-  CLEAR_ORDER_UPDATE_PROCESS = () => {
+  CLEAR_ORDERING_PROCESS = () => {
     this.setState({
       TOTAL: 0,
       ITEMQUANTITY: {},
@@ -391,7 +391,7 @@ class App extends Component {
                 DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
                 INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT}
                 CREATE_NEW_ORDER_FOR_THIS_USER={this.CREATE_NEW_ORDER_FOR_THIS_USER}
-                CLEAR_ORDER_ADDING_PROCESS={this.CLEAR_ORDER_UPDATE_PROCESS}
+                CLEAR_ORDER_ADDING_PROCESS={this.CLEAR_ORDER_ADDING_PROCESS}
                 ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
                 ADD_ITEMS_TO_THIS_ORDER={this.ADD_ITEMS_TO_THIS_ORDER} />
             </ErrorBoundary>
@@ -434,7 +434,7 @@ class App extends Component {
                 SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
                 UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER}
                 DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
-                CLEAR_ORDER_UPDATE_PROCESS={this.CLEAR_ORDER_UPDATE_PROCESS}
+                CLEAR_ORDER_UPDATE_PROCESS={this.CLEAR_ORDERING_PROCESS}
                 ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
                 INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT} />
             </ErrorBoundary>
