@@ -28,6 +28,12 @@ class EditOrder extends Component {
      * just redirect user back to order list
      *************************************************************************/
     CANCEL_EDITING_THE_ORDER = () => {
+        var byDate = this.props.ITEMSLIST.slice(0);
+        byDate.sort(function (a, b) {
+            return a.quantity - b.quantity;
+        });
+        console.log('by date:');
+        console.log(byDate);
         this.setState({ CANCELLED: true });
         this.props.CLEAR_ORDER_UPDATE_PROCESS();
         this.props.history.push('/my_orders');
