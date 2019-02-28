@@ -211,7 +211,7 @@ class App extends Component {
     // Iterate through every item in ITEMQUANTITY
     for (var I in ITEMQUANTITY) {
       // If the item is not present in the CLONEd list, that is a new item
-      if (CLONEITEMQUANTITY[I] === undefined) {
+      if (CLONEITEMQUANTITY[I] === undefined && ITEMQUANTITY[I] !== 0) {
         newRequests.push(
           axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
             { productID: I, quantity: ITEMQUANTITY[I] },
