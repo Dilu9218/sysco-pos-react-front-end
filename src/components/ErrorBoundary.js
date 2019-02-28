@@ -13,10 +13,6 @@ class ErrorBoundary extends React.Component {
         return { hasError: true };
     }
 
-    componentDidCatch(error) {
-        console.error(error);
-    }
-
     render() {
         if (this.state.hasError) {
             return <h1 className="d-flex justify-content-center"

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function ConditionalHeader(P) {
+export function ConditionalHeader(P) {
     if (P.ISLOGGEDIN) {
         return (
             <div className="collapse navbar-collapse">
