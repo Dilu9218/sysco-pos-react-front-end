@@ -29,7 +29,26 @@ class MainPage extends Component {
                         <li className="list-group-item">&#10003; I should be able to navigate away from the order detail view without having to explicitly save the order</li>
                     </ul>
                 </div>
-                <img src={require('./node_test_results.png')} alt="Node JS REST API Test Results and Coverage" style={{ width: '90%', marginBottom: '25px' }} />
+                <div className="card-deck" style={{ margin: '25px' }}>
+                    <div className="card" style={{ border: '1px solid rgba(0,0,0,.125)' }}>
+                        <img className="card-img-top" src={require('./node_test_results.png')}
+                            alt="Node JS REST API Test Results and Coverage"
+                            style={{ padding: '10px' }} />
+                        <div className="card-body">
+                            <h5 className="card-title">NodeJS REST API</h5>
+                            <p className="card-text">Test results and the total test coverage for the back end API developed with NodeJS
+                            </p>
+                        </div>
+                    </div>
+                    <div className="card" style={{ border: '1px solid rgba(0,0,0,.125)' }}>
+                        <img className="card-img-top" src={require('./node_test_results.png')} alt="Card cap" />
+                        <div className="card-body">
+                            <h5 className="card-title">Card title</h5>
+                            <p className="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                            <p className="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
             </React.Fragment>
         );
     }
