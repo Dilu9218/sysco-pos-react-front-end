@@ -34,24 +34,25 @@ class App extends Component {
   /****************************************************************************
    * APP STATE == The complete variable states of app circulated among others *
    * ======================================================================== *
-   * PASSKEY        = Usertoken related to the logged in user                 *
-   * ISLOGGEDIN     = Log status of user                                      *
-   * ITEMSLIST      = Every item in the database                              *
-   * ORDERLIST      = Every order user has placed                             *
-   * CURRENTORDER   = Order being created, viewed, edited, deleted            *
-   * CURRENTORDERID = ID of Order being created, viewed, edited, deleted      *
-   * ITEMQUANTITY   = ProductIDs & quantities of items in an order            *
+   * PASSKEY           = Usertoken related to the logged in user              *
+   * ISLOGGEDIN        = Log status of user                                   *
+   * ITEMSLIST         = Every item in the database                           *
+   * ORDERLIST         = Every order user has placed                          *
+   * CURRENTORDER      = Order being created, viewed, edited, deleted         *
+   * CURRENTORDERID    = ID of Order being created, viewed, edited, deleted   *
+   * ITEMQUANTITY      = ProductIDs & quantities of items in an order         *
+   * CLONEITEMQUANTITY = Copy of item quantities match with                   *
+   * TOTAL             = Total of item prices in an order in context          *
    ***************************************************************************/
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired
   };
 
   /****************************************************************************
-   * Constructor: Initiates state of app
+   * Constructor: Initiates the state of app
    ***************************************************************************/
   constructor(props) {
     super(props);
-    // This will the app state for the whole project
     this.state = {
       PASSKEY: props.cookies.get(USERTOKEN),
       ISLOGGEDIN: false,
@@ -60,7 +61,8 @@ class App extends Component {
       CURRENTORDER: {},
       CURRENTORDERID: '',
       ITEMQUANTITY: {},
-      CLONEITEMQUANTITY: {}
+      CLONEITEMQUANTITY: {},
+      TOTAL: 0
     };
   }
 
@@ -265,13 +267,19 @@ class App extends Component {
       if (OrderList[order]._id === ID) {
         // Prepare item quantities
         let tempItemQuantity = {};
+        let tempTotal = 0;
         for (var item in OrderList[order].items) {
+          tempTotal += (
+            OrderList[order].items[item].quantity *
+            OrderList[order].items[item].price
+          );
           tempItemQuantity[
             OrderList[order].items[item].productID
           ] = OrderList[order].items[item].quantity;
         }
         // Update state
         this.setState({
+          TOTAL: tempTotal,
           CURRENTORDER: OrderList[order],
           ITEMQUANTITY: tempItemQuantity,
           CLONEITEMQUANTITY: JSON.parse(JSON.stringify(tempItemQuantity))
@@ -285,10 +293,20 @@ class App extends Component {
    ***************************************************************************/
   DELETE_THIS_ITEM = (ID) => {
     let OLD_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    let NEW_TOTAL =
+      this.state.TOTAL - (this.GET_PRICE_OF_ITEM(ID) * OLD_ITEMQUANTITY[ID]);
     OLD_ITEMQUANTITY[ID] = 0;
     this.setState({
-      ITEMQUANTITY: OLD_ITEMQUANTITY
+      ITEMQUANTITY: OLD_ITEMQUANTITY,
+      TOTAL: NEW_TOTAL
     });
+  }
+
+  /****************************************************************************
+   * Finds the unit price of an item by it's product ID
+   ***************************************************************************/
+  GET_PRICE_OF_ITEM = (ID) => {
+    return this.state.ITEMSLIST.find(I => I.productID === ID).price;
   }
 
   /****************************************************************************
@@ -297,14 +315,19 @@ class App extends Component {
    * @param DIRECTION true for increment, false for decrement
    ***************************************************************************/
   INDECCREMENT_ITEM_COUNT = (ID, DIRECTION) => {
-    let OLD_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    let NEW_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    let NEW_TOTAL = this.state.TOTAL;
+    let PRICE = this.GET_PRICE_OF_ITEM(ID);
     if (DIRECTION) {
-      OLD_ITEMQUANTITY[ID] += 1;
+      NEW_ITEMQUANTITY[ID] += 1;
+      NEW_TOTAL += PRICE;
     } else {
-      OLD_ITEMQUANTITY[ID] -= 1;
+      NEW_ITEMQUANTITY[ID] -= 1;
+      NEW_TOTAL -= PRICE;
     }
     this.setState({
-      ITEMQUANTITY: OLD_ITEMQUANTITY
+      ITEMQUANTITY: NEW_ITEMQUANTITY,
+      TOTAL: NEW_TOTAL
     });
   }
 
@@ -313,10 +336,10 @@ class App extends Component {
    * keeps on counting
    ***************************************************************************/
   ADD_THIS_ITEM_TO_ITEMQUANTITY = (ID) => {
-    let OLD_ITEMQUANTITY = this.state.ITEMQUANTITY;
-    OLD_ITEMQUANTITY[ID] = 0;
+    let NEW_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    NEW_ITEMQUANTITY[ID] = 0;
     this.setState({
-      ITEMQUANTITY: OLD_ITEMQUANTITY
+      ITEMQUANTITY: NEW_ITEMQUANTITY
     });
   }
 
@@ -325,7 +348,6 @@ class App extends Component {
    * process
    ***************************************************************************/
   CLEAR_ORDER_UPDATE_PROCESS = () => {
-    // Cleans out the state
     this.setState({
       ITEMQUANTITY: {},
       CLONEITEMQUANTITY: {},
@@ -340,11 +362,19 @@ class App extends Component {
           <Header ISLOGGEDIN={this.state.ISLOGGEDIN} />
 
           <Route path="/login" render={() => (
-            <LogIn
-              ISLOGGEDIN={this.state.ISLOGGEDIN}
-              LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
+            <ErrorBoundary>
+              <LogIn
+                ISLOGGEDIN={this.state.ISLOGGEDIN}
+                LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />
+            </ErrorBoundary>
+          )} />
+
           <Route path="/register" render={() => (
-            <Register ISLOGGEDIN={this.state.ISLOGGEDIN} />)} />
+            <ErrorBoundary>
+              <Register ISLOGGEDIN={this.state.ISLOGGEDIN} />
+            </ErrorBoundary>
+          )} />
+
           <Route path="/logout" render={() => (
             <LogOut LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
 
@@ -363,6 +393,7 @@ class App extends Component {
                 CURRENTORDERID={this.state.CURRENTORDERID}
                 ITEMSLIST={this.state.ITEMSLIST}
                 ITEMQUANTITY={this.state.ITEMQUANTITY}
+                TOTAL={this.state.TOTAL}
                 DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
                 DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
                 INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT}
@@ -404,6 +435,7 @@ class App extends Component {
                 CURRENTORDER={this.state.CURRENTORDER}
                 ITEMQUANTITY={this.state.ITEMQUANTITY}
                 CLONEITEMQUANTITY={this.state.CLONEITEMQUANTITY}
+                TOTAL={this.state.TOTAL}
                 ITEMSLIST={this.state.ITEMSLIST}
                 SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
                 UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER}

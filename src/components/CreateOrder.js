@@ -14,13 +14,6 @@ import ListItemInOrder from './ListItemInOrder';
  */
 class CreateOrder extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            TOTAL: 0
-        };
-    }
-
     // As the create order view mounted, generate a new order for the user
     // and in the meantime fetch the complete item list
     componentDidMount() {
@@ -53,6 +46,10 @@ class CreateOrder extends Component {
         this.props.DELETE_THIS_ORDER(ID);
         this.props.CLEAR_ORDER_ADDING_PROCESS();
         this.props.history.push('/my_orders');
+    }
+
+    componentWillUnmount() {
+        console.log('Unmounted');
     }
 
     render() {
@@ -91,7 +88,22 @@ class CreateOrder extends Component {
                         }}>
                         <div className="card-body" style={{ paddingTop: '0px' }}>
                             <div className="row">
-                                <div className="col-12 d-flex justify-content-end">
+                                <div className="col-4 d-flex justify-content-start d-inline">
+                                    <div className="input-group-prepend" style={{ marginLeft: '10px' }}>
+                                        <span className="input-group-text"
+                                            style={{
+                                                borderTopRightRadius: '0px',
+                                                borderBottomRightRadius: '0px'
+                                            }}><strong>Total</strong></span>
+                                        <span className="input-group-text"
+                                            style={{
+                                                borderTopLeftRadius: '0px',
+                                                borderBottomLeftRadius: '0px'
+                                            }}>Rs. {Math.abs((this.props.TOTAL)).toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="col-8 d-flex justify-content-end">
                                     <button
                                         onClick={this.ADD_THESE_ITEMS_TO_THIS_ORDER}
                                         className="btn btn-success"

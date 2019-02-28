@@ -40,6 +40,7 @@ class EditOrder extends Component {
                                 key={item._id}
                                 ITEM={item}
                                 NAME={item.productID}
+                                CLONEITEMQUANTITY={this.CLONEITEMQUANTITY}
                                 ITEMQUANTITY={this.props.ITEMQUANTITY[item.productID] === undefined
                                     ? 0 : this.props.ITEMQUANTITY[item.productID]}
                                 ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
@@ -59,9 +60,29 @@ class EditOrder extends Component {
                     }}>
                     <div className="card-body button-section" style={{ paddingTop: '0px' }}>
                         <div className="row">
-                            <div className="col-12 d-flex justify-content-end">
-                                <button onClick={this.UPDATE_THIS_ORDER} className="btn btn-primary" style={{ marginRight: '10px' }}>Update Order</button>
-                                <button onClick={this.CANCEL_EDITING_THE_ORDER} className="btn btn-danger">Cancel</button>
+                            <div className="col-4 d-flex justify-content-start d-inline">
+                                <div className="input-group-prepend" style={{ marginLeft: '10px' }}>
+                                    <span className="input-group-text"
+                                        style={{
+                                            borderTopRightRadius: '0px',
+                                            borderBottomRightRadius: '0px'
+                                        }}><strong>Total</strong></span>
+                                    <span className="input-group-text"
+                                        style={{
+                                            borderTopLeftRadius: '0px',
+                                            borderBottomLeftRadius: '0px'
+                                        }}>Rs. {Math.abs((this.props.TOTAL)).toFixed(2)}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="col-8 d-flex justify-content-end">
+                                <button
+                                    onClick={this.UPDATE_THIS_ORDER}
+                                    className="btn btn-primary"
+                                    style={{ marginRight: '10px' }}>Update Order</button>
+                                <button
+                                    onClick={this.CANCEL_EDITING_THE_ORDER}
+                                    className="btn btn-danger">Cancel</button>
                             </div>
                         </div>
                     </div>
