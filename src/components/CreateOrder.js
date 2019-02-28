@@ -43,13 +43,20 @@ class CreateOrder extends Component {
      * Once done, user will be redirected to order list.
      *************************************************************************/
     CANCEL_THE_ORDER = (ID) => {
-        this.props.DELETE_THIS_ORDER(ID);
-        this.props.CLEAR_ORDER_ADDING_PROCESS();
+        if (this.props.ITEMQUANTITY.length !== undefined) {
+            this.props.DELETE_THIS_ORDER(ID);
+            this.props.CLEAR_ORDER_ADDING_PROCESS();
+        }
         this.props.history.push('/my_orders');
     }
 
+    /**************************************************************************
+     * When the view is ending, if user has not added any elements to order, we
+     * can delete it by checking if the ITEMQUANTITY is of no length and call
+     * the necessary functions to 
+     *************************************************************************/
     componentWillUnmount() {
-        if(this.props.ITEMQUANTITY.length === 0) {
+        if (this.props.ITEMQUANTITY.length === undefined) {
             this.props.DELETE_THIS_ORDER(this.props.CURRENTORDERID);
             this.props.CLEAR_ORDER_ADDING_PROCESS();
         }
