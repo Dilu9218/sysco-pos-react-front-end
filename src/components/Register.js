@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
 import axios from 'axios';
+import { USER_REGISTER_ENDPOINT } from '../constants';
 
 class Register extends Component {
 
@@ -23,7 +24,7 @@ class Register extends Component {
         e.preventDefault();
         if (this.state.newpassword === this.state.conpassword) {
             this.setState({ alertUser: false });
-            axios.post('http://localhost:8080/api/user/register', {
+            axios.post(USER_REGISTER_ENDPOINT, {
                 username: this.state.username,
                 password: this.state.newpassword,
                 isAdmin: false
