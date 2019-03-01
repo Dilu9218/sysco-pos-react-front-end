@@ -21,6 +21,11 @@ class ViewOrder extends Component {
         this.props.history.push('/my_orders');
     }
 
+    // When the view is unmounted, clean up the saved states
+    componentWillUnmount() {
+        this.props.CLEAR_ORDERING_PROCESS();
+    }
+
     render() {
         if (!this.props.ISLOGGEDIN) {
             return (

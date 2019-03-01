@@ -413,7 +413,8 @@ class App extends Component {
                 CURRENTORDER={this.state.CURRENTORDER}
                 TOTAL={this.state.TOTAL}
                 DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
-                CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT} />
+                CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT}
+                CLEAR_ORDERING_PROCESS={this.CLEAR_ORDERING_PROCESS} />
             </ErrorBoundary>
           )} />
 
