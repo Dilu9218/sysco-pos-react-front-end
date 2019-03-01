@@ -5,6 +5,7 @@ export const ITEMS_ENDPOINT          = '/api/item';
 export const USERS_ENDPOINT          = '/api/user';
 
 export const USER_LOGIN_ENDPOINT    = BASEURL + USERS_ENDPOINT + '/login';
+export const USER_REGISTER_ENDPOINT = BASEURL + USERS_ENDPOINT + '/register';
 
 export const ITEMS_LIST_ENDPOINT    = BASEURL + ITEMS_ENDPOINT + '/list';
 
