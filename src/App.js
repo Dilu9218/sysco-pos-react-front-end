@@ -5,6 +5,9 @@ import { withCookies, Cookies } from 'react-cookie';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 
+import { Provider } from 'react-redux';
+import store from './redux.store';
+
 import {
   ORDER_LIST_ENDPOINT,
   ORDER_REQUEST_ENDPOINT,
@@ -346,98 +349,100 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Header ISLOGGEDIN={this.state.ISLOGGEDIN} />
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Header ISLOGGEDIN={this.state.ISLOGGEDIN} />
 
-          <Route path="/login" render={() => (
-            <ErrorBoundary>
-              <LogIn
-                ISLOGGEDIN={this.state.ISLOGGEDIN}
-                LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />
-            </ErrorBoundary>
-          )} />
+            <Route path="/login" render={() => (
+              <ErrorBoundary>
+                <LogIn
+                  ISLOGGEDIN={this.state.ISLOGGEDIN}
+                  LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />
+              </ErrorBoundary>
+            )} />
 
-          <Route path="/register" render={() => (
-            <ErrorBoundary>
-              <Register ISLOGGEDIN={this.state.ISLOGGEDIN} />
-            </ErrorBoundary>
-          )} />
+            <Route path="/register" render={() => (
+              <ErrorBoundary>
+                <Register ISLOGGEDIN={this.state.ISLOGGEDIN} />
+              </ErrorBoundary>
+            )} />
 
-          <Route path="/logout" render={() => (
-            <LogOut LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
+            <Route path="/logout" render={() => (
+              <LogOut LOG_USER_IN_AND_OUT={this.LOG_USER_IN_AND_OUT} />)} />
 
-          <Route path="/home" render={() => (<MainPage />)} />
+            <Route path="/home" render={() => (<MainPage />)} />
 
-          <Route exact path="/" render={() => (
-            <ErrorBoundary>
-              <DecidedLandingPage ISLOGGEDIN={this.state.ISLOGGEDIN} />
-            </ErrorBoundary>
-          )} />
+            <Route exact path="/" render={() => (
+              <ErrorBoundary>
+                <DecidedLandingPage ISLOGGEDIN={this.state.ISLOGGEDIN} />
+              </ErrorBoundary>
+            )} />
 
-          <Route path="/create_order" render={() => (
-            <ErrorBoundary>
-              <CreateOrder
-                ISLOGGEDIN={this.state.ISLOGGEDIN}
-                CURRENTORDERID={this.state.CURRENTORDERID}
-                ITEMSLIST={this.state.ITEMSLIST}
-                ITEMQUANTITY={this.state.ITEMQUANTITY}
-                TOTAL={this.state.TOTAL}
-                DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
-                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
-                INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT}
-                CREATE_NEW_ORDER_FOR_THIS_USER={this.CREATE_NEW_ORDER_FOR_THIS_USER}
-                CLEAR_ORDER_ADDING_PROCESS={this.CLEAR_ORDERING_PROCESS}
-                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
-                ADD_ITEMS_TO_THIS_ORDER={this.ADD_ITEMS_TO_THIS_ORDER} />
-            </ErrorBoundary>
-          )} />
+            <Route path="/create_order" render={() => (
+              <ErrorBoundary>
+                <CreateOrder
+                  ISLOGGEDIN={this.state.ISLOGGEDIN}
+                  CURRENTORDERID={this.state.CURRENTORDERID}
+                  ITEMSLIST={this.state.ITEMSLIST}
+                  ITEMQUANTITY={this.state.ITEMQUANTITY}
+                  TOTAL={this.state.TOTAL}
+                  DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
+                  DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
+                  INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT}
+                  CREATE_NEW_ORDER_FOR_THIS_USER={this.CREATE_NEW_ORDER_FOR_THIS_USER}
+                  CLEAR_ORDER_ADDING_PROCESS={this.CLEAR_ORDERING_PROCESS}
+                  ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
+                  ADD_ITEMS_TO_THIS_ORDER={this.ADD_ITEMS_TO_THIS_ORDER} />
+              </ErrorBoundary>
+            )} />
 
-          <Route path="/my_orders" render={() => (
-            <ErrorBoundary>
-              <OrderList
-                ISLOGGEDIN={this.state.ISLOGGEDIN}
-                ORDERLIST={this.state.ORDERLIST}
-                GET_THE_COMPLETE_ITEMS_LIST={this.GET_THE_COMPLETE_ITEMS_LIST}
-                PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER={this.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER}
-                GET_THE_ORDER_LIST_FOR_THIS_USER={this.GET_THE_ORDER_LIST_FOR_THIS_USER}
-                SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
-                DELETE_THIS_ORDER={this.DELETE_THIS_ORDER} />
-            </ ErrorBoundary>
-          )} />
+            <Route path="/my_orders" render={() => (
+              <ErrorBoundary>
+                <OrderList
+                  ISLOGGEDIN={this.state.ISLOGGEDIN}
+                  ORDERLIST={this.state.ORDERLIST}
+                  GET_THE_COMPLETE_ITEMS_LIST={this.GET_THE_COMPLETE_ITEMS_LIST}
+                  PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER={this.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER}
+                  GET_THE_ORDER_LIST_FOR_THIS_USER={this.GET_THE_ORDER_LIST_FOR_THIS_USER}
+                  SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
+                  DELETE_THIS_ORDER={this.DELETE_THIS_ORDER} />
+              </ ErrorBoundary>
+            )} />
 
-          <Route path="/view_order" render={() => (
-            <ErrorBoundary>
-              <ViewOrder
-                ISLOGGEDIN={this.state.ISLOGGEDIN}
-                CURRENTORDER={this.state.CURRENTORDER}
-                TOTAL={this.state.TOTAL}
-                DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
-                CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT}
-                CLEAR_ORDERING_PROCESS={this.CLEAR_ORDERING_PROCESS} />
-            </ErrorBoundary>
-          )} />
+            <Route path="/view_order" render={() => (
+              <ErrorBoundary>
+                <ViewOrder
+                  ISLOGGEDIN={this.state.ISLOGGEDIN}
+                  CURRENTORDER={this.state.CURRENTORDER}
+                  TOTAL={this.state.TOTAL}
+                  DELETE_THIS_ORDER={this.DELETE_THIS_ORDER}
+                  CHECK_THIS_ORDER_OUT={this.CHECK_THIS_ORDER_OUT}
+                  CLEAR_ORDERING_PROCESS={this.CLEAR_ORDERING_PROCESS} />
+              </ErrorBoundary>
+            )} />
 
-          <Route path="/edit_order" render={() => (
-            <ErrorBoundary>
-              <EditOrder
-                ISLOGGEDIN={this.state.ISLOGGEDIN}
-                CURRENTORDERID={this.state.CURRENTORDERID}
-                CURRENTORDER={this.state.CURRENTORDER}
-                ITEMQUANTITY={this.state.ITEMQUANTITY}
-                CLONEITEMQUANTITY={this.state.CLONEITEMQUANTITY}
-                TOTAL={this.state.TOTAL}
-                ITEMSLIST={this.state.ITEMSLIST}
-                SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
-                UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER}
-                DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
-                CLEAR_ORDER_UPDATE_PROCESS={this.CLEAR_ORDERING_PROCESS}
-                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
-                INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT} />
-            </ErrorBoundary>
-          )} />
-        </div>
-      </Router>
+            <Route path="/edit_order" render={() => (
+              <ErrorBoundary>
+                <EditOrder
+                  ISLOGGEDIN={this.state.ISLOGGEDIN}
+                  CURRENTORDERID={this.state.CURRENTORDERID}
+                  CURRENTORDER={this.state.CURRENTORDER}
+                  ITEMQUANTITY={this.state.ITEMQUANTITY}
+                  CLONEITEMQUANTITY={this.state.CLONEITEMQUANTITY}
+                  TOTAL={this.state.TOTAL}
+                  ITEMSLIST={this.state.ITEMSLIST}
+                  SET_THIS_ORDER_AS_CURRENT={this.SET_THIS_ORDER_AS_CURRENT}
+                  UPDATE_ITEMS_IN_THIS_ORDER={this.UPDATE_ITEMS_IN_THIS_ORDER}
+                  DELETE_THIS_ITEM={this.DELETE_THIS_ITEM}
+                  CLEAR_ORDER_UPDATE_PROCESS={this.CLEAR_ORDERING_PROCESS}
+                  ADD_THIS_ITEM_TO_ITEMQUANTITY={this.ADD_THIS_ITEM_TO_ITEMQUANTITY}
+                  INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT} />
+              </ErrorBoundary>
+            )} />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
