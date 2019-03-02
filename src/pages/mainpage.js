@@ -9,7 +9,7 @@ class MainPage extends Component {
                     <p className="lead">Back end should be developed as a REST API in either JS, Java or Golang. Front end should be developed using React.js.
                     </p>
                     <hr className="my-4" />
-                    <p style={{ padding: '0px 20px' }}>REST API should be designed and specified before development starts. Test coverage should be as close to 100% as possible, and should be
+                    <p style={{ padding: '0px 20px' }}><a href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.0">REST API</a> should be designed and specified before development starts. Test coverage should be as close to 100% as possible, and should be
                     developed along with the code (not later). There should be extensive error handling and validations – app should fail gracefully even under
                     the most unexpected circumstances. Code should be clean and self-explanatory for any other developer. Code should be simple and self-explanatory.
                     There should be a demo of work every two days</p>
@@ -41,9 +41,9 @@ class MainPage extends Component {
                         </div>
                     </div>
                     <div className="card" style={{ border: '1px solid rgba(0,0,0,.125)' }}>
-                        <img className="card-img-top" src={require('./react_test_results.png')} 
-                        style={{ padding: '10px' }} 
-                        alt="React JS Front end Test Results and Coverage" />
+                        <img className="card-img-top" src={require('./react_test_results.png')}
+                            style={{ padding: '10px' }}
+                            alt="React JS Front end Test Results and Coverage" />
                         <div className="card-body">
                             <h5 className="card-title">ReactJS Front End</h5>
                             <p className="card-text">Test results and total test coverage for the front end UI</p>
