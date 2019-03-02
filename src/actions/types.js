@@ -17,10 +17,10 @@
  *****************************************************************************/
 export const SAVE_PASS_KEY
     = 'SAVE_PASS_KEY';
+export const SHOW_LOGIN_ERROR
+    = 'SHOW_LOGIN_ERROR';
 export const CLEAR_PASS_KEY
     = 'CLEAR_PASS_KEY';
-export const SET_LOGGED_IN_STATUS
-    = 'SET_LOGGED_IN_STATUS';
 
 /******************************************************************************
 * Actions related to items list

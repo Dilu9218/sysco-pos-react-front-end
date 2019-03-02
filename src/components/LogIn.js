@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { USER_LOGIN_ENDPOINT } from '../constants';
+import { LOG_USER_IN } from '../actions/useraccountcontrolactions';
 
 class LogIn extends Component {
 
@@ -23,40 +24,7 @@ class LogIn extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.setState({ alertUser: false });
-        axios.post(USER_LOGIN_ENDPOINT, {
-            username: this.state.username,
-            password: this.state.password
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    this.setState({
-                        alertUser: false,
-                        alertMessage: ''
-                    });
-                    this.props.LOG_USER_IN_AND_OUT(true, res.data.token);
-                    this.props.history.push('/my_orders');
-                }
-            }).catch(err => {
-                if (err.response.status === 401) {
-                    this.setState({
-                        password: '',
-                        alertUser: true,
-                        alertMessage: 'Password is wrong'
-                    });
-                } else if (err.response.status === 404) {
-                    this.setState({
-                        username: '',
-                        password: '',
-                        alertUser: true,
-                        alertMessage: 'User doesn\'t exist'
-                    });
-                } else {
-                    this.setState({
-                        alertUser: true,
-                        alertMessage: 'Error at server'
-                    });
-                }
-            });
+        this.props.LOG_USER_IN(this.state.username, this.state.password, this.props.history);
     }
 
     render() {
@@ -100,4 +68,13 @@ class LogIn extends Component {
     }
 }
 
-export default withRouter(LogIn);
+LogIn.propTypes = {
+    LOG_USER_IN: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+    alertUser: state.alertUser,
+    alertMessage: state.alertMessage
+});
+
+export default connect(mapStateToProps, { LOG_USER_IN })(withRouter(LogIn));
