@@ -17,6 +17,7 @@ class CreateOrder extends Component {
     // As the create order view mounted, generate a new order for the user
     // and in the meantime fetch the complete item list
     componentDidMount() {
+        this.props.CLEAR_ORDER_ADDING_PROCESS();
         this.props.CREATE_NEW_ORDER_FOR_THIS_USER();
     }
 
