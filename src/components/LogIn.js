@@ -7,18 +7,18 @@ import { LOG_USER_IN } from '../actions/useraccountcontrolactions';
 
 class LogIn extends Component {
 
-    // Keep a local state to capture the username and password entered by user
+    // Keep a local state to capture username and password entered by user
     state = {
         username: '',
         password: ''
     }
 
-    // As the values are being changed in each text box, add them to the current state
+    // As the values change in each text box, add them to the current state
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    // When the submit button is clicked, validate if the passwords are matching. If not,
-    // prompt user with a warning and do not submit the results up in the ladder. If they
-    // are valid, register user and redirect to login page.
+    // When the submit button is clicked, call an action to dispatch an event
+    // to perform user login actions. If there are any errors, error messages
+    // will be displayed extracted from the state
     onSubmit = (e) => {
         e.preventDefault();
         this.props.LOG_USER_IN(this.state.username, this.state.password);

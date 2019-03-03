@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 export function ConditionalHeader(P) {
     if (P.ISLOGGEDIN) {
@@ -47,7 +48,11 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-    ISLOGGEDIN: PropTypes.bool,
+    ISLOGGEDIN: PropTypes.bool.isRequired
 };
 
-export default Header;
+const mapStateToProps = state => ({
+    ISLOGGEDIN: state.uac.ISLOGGEDIN
+});
+
+export default connect(mapStateToProps, null)(Header)

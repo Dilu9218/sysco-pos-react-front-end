@@ -352,7 +352,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Header ISLOGGEDIN={false/* this.state.ISLOGGEDIN */} />
+            <Header />
 
             <Route path="/login" render={() => (
               <ErrorBoundary>
