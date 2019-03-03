@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { LOG_USER_IN } from '../actions/useraccountcontrolactions';
+import { withCookies } from 'react-cookie';
 
 class LogIn extends Component {
 
@@ -24,6 +25,13 @@ class LogIn extends Component {
         this.props.LOG_USER_IN(this.state.username, this.state.password);
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.cookies.get('usertoken') !== this.props.PASSKEY) {
+            this.props.cookies.set('usertoken',
+                this.props.PASSKEY, { path: '/' });
+        }
+    }
+
     render() {
         if (this.props.ISLOGGEDIN) {
             return (
@@ -33,29 +41,57 @@ class LogIn extends Component {
         return (
             <React.Fragment>
                 <div className="d-flex justify-content-center">
-                    <div className='card' style={{ marginTop: '9rem', width: '30%' }}>
+                    <div className='card'
+                        style={{ marginTop: '9rem', width: '30%' }}>
                         <div className="card-body">
-                            <div className={this.props.ALERTMESSAGE !== "" ? "alert alert-warning" : "alert alert-warning d-none"}>
+                            <div className={this.props.ALERTMESSAGE !== ""
+                                ? "alert alert-warning"
+                                : "alert alert-warning d-none"}>
                                 {this.props.ALERTMESSAGE}
                             </div>
                             <form className="mx-2" onSubmit={this.onSubmit}>
                                 <div className="input-group my-3">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1" style={{ width: '125px' }}>Username</span>
+                                        <span
+                                            className="input-group-text"
+                                            id="basic-addon1"
+                                            style={{ width: '125px' }}>
+                                            Username</span>
                                     </div>
-                                    <input name="username" type="text" className="form-control" placeholder="Enter your username"
-                                        aria-label="Username" aria-describedby="basic-addon1" required autoFocus autoComplete="true"
-                                        value={this.state.username} onChange={this.onChange} />
+                                    <input
+                                        name="username"
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Enter your username"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        required autoFocus autoComplete="true"
+                                        value={this.state.username}
+                                        onChange={this.onChange} />
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon2" style={{ width: '125px' }}>Password</span>
+                                        <span
+                                            className="input-group-text"
+                                            id="basic-addon2"
+                                            style={{ width: '125px' }}>
+                                            Password</span>
                                     </div>
-                                    <input name="password" type="password" className="form-control" placeholder="Password here"
-                                        aria-label="Password" aria-describedby="basic-addon2" autoComplete="true" required
-                                        value={this.state.password} onChange={this.onChange} />
+                                    <input
+                                        name="password"
+                                        type="password"
+                                        className="form-control"
+                                        placeholder="Password here"
+                                        aria-label="Password"
+                                        aria-describedby="basic-addon2"
+                                        autoComplete="true" required
+                                        value={this.state.password}
+                                        onChange={this.onChange} />
                                 </div>
-                                <button className="btn btn-primary text-uppercase my-3" style={{ width: '100%' }} type="submit">Sign in</button>
+                                <button
+                                    className="btn btn-primary text-uppercase my-3"
+                                    style={{ width: '100%' }}
+                                    type="submit">Sign in</button>
                             </form>
                         </div>
                     </div>
@@ -68,12 +104,14 @@ class LogIn extends Component {
 LogIn.propTypes = {
     LOG_USER_IN: PropTypes.func.isRequired,
     ISLOGGEDIN: PropTypes.bool.isRequired,
+    PASSKEY: PropTypes.string,
     ALERTMESSAGE: PropTypes.string.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     ISLOGGEDIN: state.uac.ISLOGGEDIN,
+    PASSKEY: state.uac.PASSKEY,
     ALERTMESSAGE: state.uac.ALERTMESSAGE
 });
 
-export default withRouter(connect(mapStateToProps, { LOG_USER_IN })(LogIn));
+export default withCookies(withRouter(connect(mapStateToProps, { LOG_USER_IN })(LogIn)));

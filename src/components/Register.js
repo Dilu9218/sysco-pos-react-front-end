@@ -1,58 +1,45 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
-import axios from 'axios';
-import { USER_REGISTER_ENDPOINT } from '../constants';
+import { REGISTER_USER } from '../actions/useraccountcontrolactions';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Register extends Component {
 
-    // Register component will have the following states to help with user registration
-    state = {
-        username: '',
-        newpassword: '',
-        conpassword: '',
-        alertMessage: 'Passwords don\'t match',
-        alertUser: false
+    // Register component will have the following states to help with
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            newpassword: '',
+            conpassword: ''
+        }
     }
 
-    // As the values are being changed in each text box, add them to the current state
+    componentDidUpdate(prevProps) {
+        if (prevProps.ALERTMESSAGE !== this.props.ALERTMESSAGE) {
+            this.setState({
+                username: '',
+                newpassword: '',
+                conpassword: ''
+            })
+        }
+    }
+
+    // As the values are being changed in each text box, add them to the state
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    // When the submit button is clicked, validate if the passwords are matching. If not,
-    // prompt user with a warning and do not submit the results up in the ladder. If they
-    // are valid, register user and redirect to login page.
+    // When the submit button is clicked, dispatch an action to validate if the
+    // passwords are matching. If they are, register the user and if they are 
+    // not, show error message. Similarly when the user name is already taken,
+    // show an error message displaying that the user already exists
     onSubmit = (e) => {
         e.preventDefault();
-        if (this.state.newpassword === this.state.conpassword) {
-            this.setState({ alertUser: false });
-            axios.post(USER_REGISTER_ENDPOINT, {
-                username: this.state.username,
-                password: this.state.newpassword,
-                isAdmin: false
-            })
-                .then(res => {
-                    if (res.status === 200) {
-                        this.props.history.push('/login');
-                    }
-                }).catch(err => {
-                    if (err.response.status === 409) {
-                        this.setState({
-                            username: '',
-                            newpassword: '',
-                            conpassword: '',
-                            alertMessage: 'User already exists',
-                            alertUser: true
-                        });
-                    }
-                });
-        } else {
-            this.setState({
-                username: this.state.username,
-                newpassword: '',
-                conpassword: '',
-                alertMessage: 'Passwords don\'t match',
-                alertUser: true
-            });
-        }
+        this.props.REGISTER_USER(
+            this.state.username,
+            this.state.newpassword,
+            this.state.conpassword
+        );
     }
 
     render() {
@@ -60,41 +47,85 @@ class Register extends Component {
             return (
                 <Redirect to="/my_orders" />
             );
+        } else if (this.props.REGISTERED) {
+            return (
+                <Redirect to="/login" />
+            );
         }
         return (
             <React.Fragment>
                 <div className="d-flex justify-content-center">
-                    <div className='card' style={{ marginTop: '9rem', width: '30%' }}>
+                    <div className='card'
+                        style={{ marginTop: '9rem', width: '30%' }}>
                         <div className="card-body">
-                            <div className={this.state.alertUser ? "alert alert-warning" : "alert alert-warning d-none"}>
-                                {this.state.alertMessage}
+                            <div className={this.props.ALERTMESSAGE !== ""
+                                ? "alert alert-warning"
+                                : "alert alert-warning d-none"}>
+                                {this.props.ALERTMESSAGE}
                             </div>
                             <form className="mx-2" onSubmit={this.onSubmit}>
                                 <div className="input-group my-3">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1" style={{ width: '125px' }}>Username</span>
+                                        <span
+                                            className="input-group-text"
+                                            id="basic-addon1"
+                                            style={{ width: '125px' }}>
+                                            Username</span>
                                     </div>
-                                    <input name="username" type="text" className="form-control" placeholder="Enter your username"
-                                        aria-label="Username" aria-describedby="basic-addon1" value={this.state.username} required autoFocus
+                                    <input
+                                        name="username"
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Enter your username"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        value={this.state.username}
+                                        required autoFocus
                                         onChange={this.onChange} />
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon2" style={{ width: '125px' }}>Password</span>
+                                        <span
+                                            className="input-group-text"
+                                            id="basic-addon2"
+                                            style={{ width: '125px' }}>
+                                            Password</span>
                                     </div>
-                                    <input name="newpassword" type="password" className="form-control" placeholder="New Password"
-                                        aria-label="Password" aria-describedby="basic-addon2" value={this.state.newpassword} required
-                                        onChange={this.onChange} autoComplete="false" />
+                                    <input
+                                        name="newpassword"
+                                        type="password"
+                                        className="form-control"
+                                        placeholder="New Password"
+                                        aria-label="Password"
+                                        aria-describedby="basic-addon2"
+                                        value={this.state.newpassword}
+                                        required
+                                        onChange={this.onChange}
+                                        autoComplete="false" />
                                 </div>
                                 <div className="input-group my-3">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon2" style={{ width: '125px' }}>Password</span>
+                                        <span
+                                            className="input-group-text"
+                                            id="basic-addon2"
+                                            style={{ width: '125px' }}>
+                                            Password</span>
                                     </div>
-                                    <input name="conpassword" type="password" className="form-control" placeholder="Confirm Password"
-                                        aria-label="Password" aria-describedby="basic-addon2" value={this.state.conpassword} required
-                                        onChange={this.onChange} autoComplete="false" />
+                                    <input
+                                        name="conpassword"
+                                        type="password"
+                                        className="form-control"
+                                        placeholder="Confirm Password"
+                                        aria-label="Password"
+                                        aria-describedby="basic-addon2"
+                                        value={this.state.conpassword} required
+                                        onChange={this.onChange}
+                                        autoComplete="false" />
                                 </div>
-                                <button className="btn btn-success text-uppercase" style={{ width: '100%' }} type="submit">Register</button>
+                                <button
+                                    className="btn btn-success text-uppercase"
+                                    style={{ width: '100%' }}
+                                    type="submit">Register</button>
                             </form>
                         </div>
                     </div>
@@ -104,4 +135,18 @@ class Register extends Component {
     }
 }
 
-export default withRouter(Register);
+
+Register.propTypes = {
+    REGISTER_USER: PropTypes.func.isRequired,
+    ALERTMESSAGE: PropTypes.string.isRequired,
+    REGISTERED: PropTypes.bool.isRequired,
+    ISLOGGEDIN: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    ISLOGGEDIN: state.uac.ISLOGGEDIN,
+    ALERTMESSAGE: state.reg.ALERTMESSAGE,
+    REGISTERED: state.reg.REGISTERED
+});
+
+export default withRouter(connect(mapStateToProps, { REGISTER_USER })(Register));

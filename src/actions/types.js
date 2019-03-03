@@ -19,6 +19,10 @@ export const SAVE_PASS_KEY
     = 'SAVE_PASS_KEY';
 export const SHOW_LOGIN_ERROR
     = 'SHOW_LOGIN_ERROR';
+export const SHOW_REGISTER_ERROR
+    = 'SHOW_REGISTER_ERROR';
+export const COMPLETE_REGISTRAION
+    = 'COMPLETE_REGISTRAION';
 export const CLEAR_PASS_KEY
     = 'CLEAR_PASS_KEY';
 
