@@ -1,45 +1,35 @@
 import {
-    SAVE_PASS_KEY,
-    CLEAR_PASS_KEY,
-    SET_LOGGED_IN_STATUS
+  SAVE_PASS_KEY,
+  SHOW_LOGIN_ERROR,
+  CLEAR_PASS_KEY
 } from '../actions/types';
 
 const initialState = {
-    items: [],
-    item: {}
+  PASSKEY: '',
+  ALERTMESSAGE: '',
+  ISLOGGEDIN: false
 };
 
-function visibilityFilter(state = 'SHOW_ALL', action) {
-    if (action.type === 'SET_VISIBILITY_FILTER') {
-      return action.filter
-    } else {
-      return state
-    }
+export const PASS_KEY_REDUCER = (state = initialState, action) => {
+  switch (action.type) {
+    case SAVE_PASS_KEY:
+      return {
+        PASSKEY: action.PASSKEY,
+        ALERTMESSAGE: '',
+        ISLOGGEDIN: true
+      }
+    case CLEAR_PASS_KEY:
+      return {
+        PASSKEY: action.PASSKEY,
+        ALERTMESSAGE: '',
+        ISLOGGEDIN: false
+      }
+    case SHOW_LOGIN_ERROR:
+      return {
+        ...state,
+        ALERTMESSAGE: action.ALERTMESSAGE
+      }
+    default:
+      return state;
   }
-  
-  function todos(state = [], action) {
-    switch (action.type) {
-      case 'ADD_TODO':
-        return state.concat([{ text: action.text, completed: false }])
-      case 'TOGGLE_TODO':
-        return state.map((todo, index) =>
-          action.index === index
-            ? { text: todo.text, completed: !todo.completed }
-            : todo
-        )
-      default:
-        return state
-    }
-  }
-
-export default function (state = initialState, action) {
-    switch (action.type) {
-        case FETCH_POST:
-            return {
-                ...state,
-                items: action.payload
-            }
-        default:
-            return state;
-    }
 }

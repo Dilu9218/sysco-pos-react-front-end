@@ -7,12 +7,10 @@ import { LOG_USER_IN } from '../actions/useraccountcontrolactions';
 
 class LogIn extends Component {
 
-    // Register component will have the following states to help with user registration
+    // Keep a local state to capture the username and password entered by user
     state = {
         username: '',
-        password: '',
-        alertMessage: '',
-        alertUser: false
+        password: ''
     }
 
     // As the values are being changed in each text box, add them to the current state
@@ -23,8 +21,7 @@ class LogIn extends Component {
     // are valid, register user and redirect to login page.
     onSubmit = (e) => {
         e.preventDefault();
-        this.setState({ alertUser: false });
-        this.props.LOG_USER_IN(this.state.username, this.state.password, this.props.history);
+        this.props.LOG_USER_IN(this.state.username, this.state.password);
     }
 
     render() {
@@ -38,8 +35,8 @@ class LogIn extends Component {
                 <div className="d-flex justify-content-center">
                     <div className='card' style={{ marginTop: '9rem', width: '30%' }}>
                         <div className="card-body">
-                            <div className={this.state.alertUser ? "alert alert-warning" : "alert alert-warning d-none"}>
-                                {this.state.alertMessage}
+                            <div className={this.props.ALERTMESSAGE !== "" ? "alert alert-warning" : "alert alert-warning d-none"}>
+                                {this.props.ALERTMESSAGE}
                             </div>
                             <form className="mx-2" onSubmit={this.onSubmit}>
                                 <div className="input-group my-3">
@@ -69,12 +66,14 @@ class LogIn extends Component {
 }
 
 LogIn.propTypes = {
-    LOG_USER_IN: PropTypes.func.isRequired
+    LOG_USER_IN: PropTypes.func.isRequired,
+    ISLOGGEDIN: PropTypes.bool.isRequired,
+    ALERTMESSAGE: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-    alertUser: state.alertUser,
-    alertMessage: state.alertMessage
+    ISLOGGEDIN: state.uac.ISLOGGEDIN,
+    ALERTMESSAGE: state.uac.ALERTMESSAGE
 });
 
-export default connect(mapStateToProps, { LOG_USER_IN })(withRouter(LogIn));
+export default withRouter(connect(mapStateToProps, { LOG_USER_IN })(LogIn));

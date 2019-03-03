@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-/* import postReducer from './postReducer'; */
+import { PASS_KEY_REDUCER } from './useraccountcontrolreducer';
 
 export default combineReducers({
-    /* posts: postReducer */
+    uac: PASS_KEY_REDUCER
 });
