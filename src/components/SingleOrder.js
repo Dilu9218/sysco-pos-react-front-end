@@ -30,8 +30,6 @@ class SingleOrder extends Component {
      *************************************************************************/
     DELETE_THIS_ORDER = () => {
         this.props.PREPARE_ORDER_AS_CURRENT(this.props.ORDER, '/delete_order');
-        /* this.props.REMOVE_THIS_ORDER(this.props.CURRENTORDER._id,
-            this.props.PASSKEY); */
     }
 
     render() {

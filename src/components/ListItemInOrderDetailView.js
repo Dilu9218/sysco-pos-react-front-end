@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-/**
- * Contains a single item view of a single order in it's detailed view
- */
 class ListItemInOrderDetailView extends Component {
 
     render() {
@@ -30,4 +29,16 @@ class ListItemInOrderDetailView extends Component {
     }
 }
 
-export default ListItemInOrderDetailView;
+ListItemInOrderDetailView.propTypes = {
+    ISLOGGEDIN: PropTypes.bool.isRequired,
+    CURRENTORDER: PropTypes.object.isRequired,
+    PASSKEY: PropTypes.string.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    PASSKEY: state.uac.PASSKEY,
+    ISLOGGEDIN: state.uac.ISLOGGEDIN,
+    CURRENTORDER: state.cor.CURRENTORDER
+});
+
+export default connect(mapStateToProps, null)(ListItemInOrderDetailView);

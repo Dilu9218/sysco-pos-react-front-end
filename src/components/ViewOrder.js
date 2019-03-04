@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ListItemInOrderDetailView from './ListItemInOrderDetailView';
+import { RESET_CURRENT_ORDER } from '../actions/ordercontrolactions';
 
 class ViewOrder extends Component {
 
@@ -17,13 +20,13 @@ class ViewOrder extends Component {
      * the item counts won't get changed
      *************************************************************************/
     CHECK_OUT_THIS_ORDER = (ID) => {
-        this.props.CHECK_THIS_ORDER_OUT(ID);
+        //this.props.CHECK_THIS_ORDER_OUT(ID);
         this.props.history.push('/my_orders');
     }
 
     // When the view is unmounted, clean up the saved states
     componentWillUnmount() {
-        this.props.CLEAR_ORDERING_PROCESS();
+        this.props.RESET_CURRENT_ORDER();
     }
 
     render() {
@@ -69,9 +72,13 @@ class ViewOrder extends Component {
                     <div className="card-body" style={{ paddingTop: '0px' }}>
                         <div className="row">
                             <div className="col-12 d-flex justify-content-end">
-                                <button onClick={this.CHECK_OUT_THIS_ORDER.bind(this, this.props.CURRENTORDER._id)}
-                                    className="btn btn-success" style={{ marginRight: '10px' }}><i className="fas fa-shopping-cart"></i> Checkout</button>
-                                <button onClick={this.CANCEL_CHECK_OUT} className="btn btn-danger"><i className="fas fa-times-circle"></i> Cancel</button>
+                                <button onClick={this.CHECK_OUT_THIS_ORDER}
+                                    className="btn btn-success"
+                                    style={{ marginRight: '10px' }}>
+                                    <i className="fas fa-shopping-cart"></i> Checkout</button>
+                                <button onClick={this.CANCEL_CHECK_OUT}
+                                    className="btn btn-danger">
+                                    <i className="fas fa-times-circle"></i> Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -81,4 +88,18 @@ class ViewOrder extends Component {
     }
 }
 
-export default withRouter(ViewOrder);
+ViewOrder.propTypes = {
+    ISLOGGEDIN: PropTypes.bool.isRequired,
+    CURRENTORDER: PropTypes.object.isRequired,
+    PASSKEY: PropTypes.string.isRequired,
+    RESET_CURRENT_ORDER: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    TOTAL: state.cor.TOTAL,
+    PASSKEY: state.uac.PASSKEY,
+    ISLOGGEDIN: state.uac.ISLOGGEDIN,
+    CURRENTORDER: state.cor.CURRENTORDER
+});
+
+export default withRouter(connect(mapStateToProps, { RESET_CURRENT_ORDER })(ViewOrder));

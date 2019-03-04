@@ -8,13 +8,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 
 import {
-    ORDER_LIST_ENDPOINT,
-    ORDER_REQUEST_ENDPOINT,
-    ITEMS_LIST_ENDPOINT,
-    NEW_ORDER_ENDPOINT,
-    ADD_TO_ORDER_ENDPOINT,
-    ORDER_CHECKOUT_ENDPOINT,
-    USERTOKEN
+  ORDER_LIST_ENDPOINT,
+  ORDER_REQUEST_ENDPOINT,
+  ITEMS_LIST_ENDPOINT,
+  NEW_ORDER_ENDPOINT,
+  ADD_TO_ORDER_ENDPOINT,
+  ORDER_CHECKOUT_ENDPOINT,
+  USERTOKEN
 } from './constants';
 
 import TTT from './components/TTT';
@@ -35,338 +35,338 @@ import { DecidedLandingPage } from './components/ConditionalComponents';
 
 class App extends Component {
 
-    /****************************************************************************
-     * APP STATE == The complete variable states of app circulated among others *
-     * ======================================================================== *
-     * PASSKEY           = Usertoken related to the logged in user              *
-     * ISLOGGEDIN        = Log status of user                                   *
-     * ITEMSLIST         = Every item in the database                           *
-     * ORDERLIST         = Every order user has placed                          *
-     * CURRENTORDER      = Order being created, viewed, edited, deleted         *
-     * CURRENTORDERID    = ID of Order being created, viewed, edited, deleted   *
-     * ITEMQUANTITY      = ProductIDs & quantities of items in an order         *
-     * CLONEITEMQUANTITY = Copy of item quantities match with                   *
-     * TOTAL             = Total of item prices in an order in context          *
-     ***************************************************************************/
-    /* static propTypes = {
-      cookies: instanceOf(Cookies).isRequired
-    }; */
+  /****************************************************************************
+   * APP STATE == The complete variable states of app circulated among others *
+   * ======================================================================== *
+   * PASSKEY           = Usertoken related to the logged in user              *
+   * ISLOGGEDIN        = Log status of user                                   *
+   * ITEMSLIST         = Every item in the database                           *
+   * ORDERLIST         = Every order user has placed                          *
+   * CURRENTORDER      = Order being created, viewed, edited, deleted         *
+   * CURRENTORDERID    = ID of Order being created, viewed, edited, deleted   *
+   * ITEMQUANTITY      = ProductIDs & quantities of items in an order         *
+   * CLONEITEMQUANTITY = Copy of item quantities match with                   *
+   * TOTAL             = Total of item prices in an order in context          *
+   ***************************************************************************/
+  /* static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  }; */
 
-    /****************************************************************************
-     * Constructor: Initiates the state of app
-     ***************************************************************************/
-    //constructor(props) {
-    //super(props);
-    /* this.state = {
-      PASSKEY: props.cookies.get(USERTOKEN),
-      ISLOGGEDIN: false,
-      ITEMSLIST: [],
-      ORDERLIST: [],
-      CURRENTORDER: {},
-      CURRENTORDERID: '',
+  /****************************************************************************
+   * Constructor: Initiates the state of app
+   ***************************************************************************/
+  //constructor(props) {
+  //super(props);
+  /* this.state = {
+    PASSKEY: props.cookies.get(USERTOKEN),
+    ISLOGGEDIN: false,
+    ITEMSLIST: [],
+    ORDERLIST: [],
+    CURRENTORDER: {},
+    CURRENTORDERID: '',
+    ITEMQUANTITY: {},
+    CLONEITEMQUANTITY: {},
+    TOTAL: 0
+  }; */
+  //}
+
+  /****************************************************************************
+   * Life Cycle Methods
+   ***************************************************************************/
+  /* componentDidMount() {
+      // Check if it's a logged user and set log status in state
+      if (this.props.cookies.get(USERTOKEN)) {
+          console.log('Hey i\'m logged in')
+      }
+  } */
+
+  /****************************************************************************
+   * Fetches all the orders related to the current user
+   ***************************************************************************/
+  /* GET_THE_ORDER_LIST_FOR_THIS_USER = () => {
+    axios.get(ORDER_LIST_ENDPOINT,
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(res => { this.setState({ ORDERLIST: res.data }); })
+      .catch(err => { this.setState({ ORDERLIST: [] }); });
+  } */
+
+  /****************************************************************************
+   * This method will be called when user tries to login or logout. When he
+   * logs in, save the token and delete as he logs out
+   ***************************************************************************/
+  /* LOG_USER_IN_AND_OUT = (ISLOGGEDIN, PASSKEY) => {
+    this.setState({ ISLOGGEDIN, PASSKEY });
+    if (ISLOGGEDIN) {
+      this.props.cookies.set(USERTOKEN, PASSKEY, { path: '/' });
+    } else {
+      this.props.cookies.remove(USERTOKEN);
+    }
+  } */
+
+  /****************************************************************************
+   * Deletes the order from collection and updates the state so that the view
+   * also gets rid of the order entry
+   ***************************************************************************/
+  /* DELETE_THIS_ORDER = (ID) => {
+    axios.delete(ORDER_REQUEST_ENDPOINT + `/${ID}`,
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(deletedOrder => {
+        this.setState({
+          ORDERLIST: [
+            ...this.state.ORDERLIST.filter(order => (order._id !== ID))
+          ]
+        });
+        this.GET_THE_ORDER_LIST_FOR_THIS_USER();
+      }).catch(err => {
+        console.log(err);
+      });
+  } */
+
+  /****************************************************************************
+   * Fetches all the items available in collection
+   ***************************************************************************/
+  /* GET_THE_COMPLETE_ITEMS_LIST = () => {
+    axios.get(ITEMS_LIST_ENDPOINT,
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(res => { this.setState({ ITEMSLIST: res.data }); })
+      .catch(err => { this.setState({ ITEMSLIST: [] }); });
+  } */
+
+  /****************************************************************************
+   * Deletes the order from collection and updates the state so that the view
+   * also gets rid of the order entry
+   ***************************************************************************/
+  /* CREATE_NEW_ORDER_FOR_THIS_USER = () => {
+    axios.post(NEW_ORDER_ENDPOINT, {},
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(newOrder => {
+        this.setState({
+          ORDERLIST: [newOrder.data, ...this.state.ORDERLIST],
+          CURRENTORDERID: newOrder.data._id
+        });
+        this.GET_THE_COMPLETE_ITEMS_LIST();
+      })
+      .catch(err => console.log(err));
+  } */
+
+  /****************************************************************************
+   * Similar to deleting an order but doesn't change item counts in the global
+   * item collection as the order is purchased and the item count should not
+   * increase
+   ***************************************************************************/
+  /* CHECK_THIS_ORDER_OUT = () => {
+    axios.delete(ORDER_CHECKOUT_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+      { headers: { 'x-access-token': this.state.PASSKEY } })
+      .then(checkedOut => {
+        this.setState({
+          ORDERLIST: [
+            ...this.state.ORDERLIST.filter(order => (
+              order._id !== this.state.CURRENTORDERID))
+          ]
+        });
+        this.GET_THE_ORDER_LIST_FOR_THIS_USER();
+      }).catch(err => {
+        console.log(err);
+      });
+  } */
+
+  /****************************************************************************
+   * Parent method adding a list of items to the current order in context. This
+   * is a multiple request method where axios perform multiple web requests to
+   * update each item in items collection
+   ***************************************************************************/
+  /* ADD_ITEMS_TO_THIS_ORDER = () => {
+    let axiosRequests = [];
+    let ITEMQUANTITY = this.state.ITEMQUANTITY;
+    for (var I in ITEMQUANTITY) {
+      if (ITEMQUANTITY[I] !== 0) {
+        axiosRequests.push(
+          axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+            { productID: I, quantity: ITEMQUANTITY[I] },
+            { headers: { 'x-access-token': this.state.PASSKEY } })
+        );
+      }
+    }
+    axios.all(axiosRequests).then(axios.spread(function (acct, perms) { }));
+    this.CLEAR_ORDERING_PROCESS();
+    this.GET_THE_ORDER_LIST_FOR_THIS_USER();
+    this.GET_THE_COMPLETE_ITEMS_LIST();
+  } */
+
+  /****************************************************************************
+   * Parent method taking care of updating the list of `items` provided by user
+   * to update in both orders collection and do necessary adjustments in items
+   * collection. This will trigger a series of axios requests to perform the
+   * said tasks. After waiting for a time out, user will be redirected to order
+   * list page. Since ITEMQUANTITY will have more or the same number of items
+   * as in CLONEDITEMQUANTITY, we chose to perform actions on ITEMQUANTITY 
+   * rather than on the cloned one.
+   ***************************************************************************/
+  /* UPDATE_ITEMS_IN_THIS_ORDER = () => {
+    let updateRequests = []; let newRequests = []; let deleteRequests = [];
+    let ITEMQUANTITY = this.state.ITEMQUANTITY;
+    let CLONEITEMQUANTITY = this.state.CLONEITEMQUANTITY;
+    // Iterate through every item in ITEMQUANTITY
+    for (var I in ITEMQUANTITY) {
+      // If the item is not present in the CLONEd list, that is a new item
+      if (CLONEITEMQUANTITY[I] === undefined && ITEMQUANTITY[I] !== 0) {
+        newRequests.push(
+          axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+            { productID: I, quantity: ITEMQUANTITY[I] },
+            { headers: { 'x-access-token': this.state.PASSKEY } })
+        );
+      } else if (ITEMQUANTITY[I] === 0) { // This will be a removed item
+        deleteRequests.push(
+          axios.put(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+            { productID: I, quantity: CLONEITEMQUANTITY[I] },
+            { headers: { 'x-access-token': this.state.PASSKEY } })
+        );
+      } else { // It's an update of an existing item
+        let difference = ITEMQUANTITY[I] - CLONEITEMQUANTITY[I];
+        updateRequests.push(
+          axios.post(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
+            { productID: I, quantity: ITEMQUANTITY[I], difference },
+            { headers: { 'x-access-token': this.state.PASSKEY } })
+        );
+      }
+    }
+    axios.all([...updateRequests, ...newRequests, ...deleteRequests])
+      .then(axios.spread(function (acct, perms) { }));
+    this.CLEAR_ORDERING_PROCESS();
+    this.GET_THE_ORDER_LIST_FOR_THIS_USER();
+    this.GET_THE_COMPLETE_ITEMS_LIST();
+  } */
+
+  /****************************************************************************
+   * Update state to have the given ID as the current order to use in different
+   * situations. As an example, while viewing an order, this can be used inside
+   * the component when mounting
+   ***************************************************************************/
+  /* SET_THIS_ORDER_AS_CURRENT = (ID) => this.setState({ CURRENTORDERID: ID }); */
+
+  /****************************************************************************
+   * Refresh the item list and add the selected order to CURRENTORDER
+   ***************************************************************************/
+  /* PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER = (ID) => {
+    // First, fetch the item list as a good practice
+    this.GET_THE_COMPLETE_ITEMS_LIST();
+    // Save the order list to a local variable for easy access
+    let OrderList = this.state.ORDERLIST;
+    // Find the required order from the order list
+    for (var order in OrderList) {
+      if (OrderList[order]._id === ID) {
+        // Prepare item quantities
+        let tempItemQuantity = {};
+        let tempTotal = 0;
+        for (var item in OrderList[order].items) {
+          tempTotal += (
+            OrderList[order].items[item].quantity *
+            OrderList[order].items[item].price
+          );
+          tempItemQuantity[
+            OrderList[order].items[item].productID
+          ] = OrderList[order].items[item].quantity;
+        }
+        // Update state
+        this.setState({
+          TOTAL: tempTotal,
+          CURRENTORDER: OrderList[order],
+          ITEMQUANTITY: tempItemQuantity,
+          CLONEITEMQUANTITY: JSON.parse(JSON.stringify(tempItemQuantity))
+        });
+      }
+    }
+  } */
+
+  /****************************************************************************
+   * Method used in Edit Order view to make the item count zero
+   ***************************************************************************/
+  /* DELETE_THIS_ITEM = (ID) => {
+    let OLD_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    let NEW_TOTAL =
+      this.state.TOTAL - (this.GET_PRICE_OF_ITEM(ID) * OLD_ITEMQUANTITY[ID]);
+    OLD_ITEMQUANTITY[ID] = 0;
+    this.setState({
+      ITEMQUANTITY: OLD_ITEMQUANTITY,
+      TOTAL: NEW_TOTAL
+    });
+  } */
+
+  /****************************************************************************
+   * Finds the unit price of an item by it's product ID
+   ***************************************************************************/
+  /* GET_PRICE_OF_ITEM = (ID) => {
+    return this.state.ITEMSLIST.find(I => I.productID === ID).price;
+  } */
+
+  /****************************************************************************
+   * Method used in Edit Order view to increment and decrement the item count
+   * @param ID productID of the item
+   * @param DIRECTION true for increment, false for decrement
+   ***************************************************************************/
+  /* INDECCREMENT_ITEM_COUNT = (ID, DIRECTION) => {
+    let NEW_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    let NEW_TOTAL = this.state.TOTAL;
+    let PRICE = this.GET_PRICE_OF_ITEM(ID);
+    if (DIRECTION) {
+      NEW_ITEMQUANTITY[ID] += 1;
+      NEW_TOTAL += PRICE;
+    } else {
+      NEW_ITEMQUANTITY[ID] -= 1;
+      NEW_TOTAL -= PRICE;
+    }
+    this.setState({
+      ITEMQUANTITY: NEW_ITEMQUANTITY,
+      TOTAL: NEW_TOTAL
+    });
+  } */
+
+  /****************************************************************************
+   * Method used in Edit Order view to add a new item to the ITEMQUANTITY and
+   * keeps on counting
+   ***************************************************************************/
+  /* ADD_THIS_ITEM_TO_ITEMQUANTITY = (ID) => {
+    let NEW_ITEMQUANTITY = this.state.ITEMQUANTITY;
+    NEW_ITEMQUANTITY[ID] = 0;
+    this.setState({
+      ITEMQUANTITY: NEW_ITEMQUANTITY
+    });
+  } */
+
+  /****************************************************************************
+   * Resets the current state to remove all the saved data from previous update
+   * process
+   ***************************************************************************/
+  /* CLEAR_ORDERING_PROCESS = () => {
+    this.setState({
+      TOTAL: 0,
       ITEMQUANTITY: {},
       CLONEITEMQUANTITY: {},
-      TOTAL: 0
-    }; */
-    //}
+      CURRENTORDERID: ''
+    });
+  } */
 
-    /****************************************************************************
-     * Life Cycle Methods
-     ***************************************************************************/
-    componentDidMount() {
-        // Check if it's a logged user and set log status in state
-        if (this.props.cookies.get(USERTOKEN)) {
-            console.log('Hey i\'m logged in')
-        }
-    }
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Header />
 
-    /****************************************************************************
-     * Fetches all the orders related to the current user
-     ***************************************************************************/
-    /* GET_THE_ORDER_LIST_FOR_THIS_USER = () => {
-      axios.get(ORDER_LIST_ENDPOINT,
-        { headers: { 'x-access-token': this.state.PASSKEY } })
-        .then(res => { this.setState({ ORDERLIST: res.data }); })
-        .catch(err => { this.setState({ ORDERLIST: [] }); });
-    } */
+          <Route path="/login" render={() => (
+            <ErrorBoundary>
+              <LogIn />
+            </ErrorBoundary>
+          )} />
 
-    /****************************************************************************
-     * This method will be called when user tries to login or logout. When he
-     * logs in, save the token and delete as he logs out
-     ***************************************************************************/
-    /* LOG_USER_IN_AND_OUT = (ISLOGGEDIN, PASSKEY) => {
-      this.setState({ ISLOGGEDIN, PASSKEY });
-      if (ISLOGGEDIN) {
-        this.props.cookies.set(USERTOKEN, PASSKEY, { path: '/' });
-      } else {
-        this.props.cookies.remove(USERTOKEN);
-      }
-    } */
+          <Route path="/logout" render={() => (
+            <LogOut />
+          )} />
 
-    /****************************************************************************
-     * Deletes the order from collection and updates the state so that the view
-     * also gets rid of the order entry
-     ***************************************************************************/
-    /* DELETE_THIS_ORDER = (ID) => {
-      axios.delete(ORDER_REQUEST_ENDPOINT + `/${ID}`,
-        { headers: { 'x-access-token': this.state.PASSKEY } })
-        .then(deletedOrder => {
-          this.setState({
-            ORDERLIST: [
-              ...this.state.ORDERLIST.filter(order => (order._id !== ID))
-            ]
-          });
-          this.GET_THE_ORDER_LIST_FOR_THIS_USER();
-        }).catch(err => {
-          console.log(err);
-        });
-    } */
+          <Route path="/my_orders" render={() => (
+            <TTT />
+          )} />
 
-    /****************************************************************************
-     * Fetches all the items available in collection
-     ***************************************************************************/
-    /* GET_THE_COMPLETE_ITEMS_LIST = () => {
-      axios.get(ITEMS_LIST_ENDPOINT,
-        { headers: { 'x-access-token': this.state.PASSKEY } })
-        .then(res => { this.setState({ ITEMSLIST: res.data }); })
-        .catch(err => { this.setState({ ITEMSLIST: [] }); });
-    } */
-
-    /****************************************************************************
-     * Deletes the order from collection and updates the state so that the view
-     * also gets rid of the order entry
-     ***************************************************************************/
-    /* CREATE_NEW_ORDER_FOR_THIS_USER = () => {
-      axios.post(NEW_ORDER_ENDPOINT, {},
-        { headers: { 'x-access-token': this.state.PASSKEY } })
-        .then(newOrder => {
-          this.setState({
-            ORDERLIST: [newOrder.data, ...this.state.ORDERLIST],
-            CURRENTORDERID: newOrder.data._id
-          });
-          this.GET_THE_COMPLETE_ITEMS_LIST();
-        })
-        .catch(err => console.log(err));
-    } */
-
-    /****************************************************************************
-     * Similar to deleting an order but doesn't change item counts in the global
-     * item collection as the order is purchased and the item count should not
-     * increase
-     ***************************************************************************/
-    /* CHECK_THIS_ORDER_OUT = () => {
-      axios.delete(ORDER_CHECKOUT_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-        { headers: { 'x-access-token': this.state.PASSKEY } })
-        .then(checkedOut => {
-          this.setState({
-            ORDERLIST: [
-              ...this.state.ORDERLIST.filter(order => (
-                order._id !== this.state.CURRENTORDERID))
-            ]
-          });
-          this.GET_THE_ORDER_LIST_FOR_THIS_USER();
-        }).catch(err => {
-          console.log(err);
-        });
-    } */
-
-    /****************************************************************************
-     * Parent method adding a list of items to the current order in context. This
-     * is a multiple request method where axios perform multiple web requests to
-     * update each item in items collection
-     ***************************************************************************/
-    /* ADD_ITEMS_TO_THIS_ORDER = () => {
-      let axiosRequests = [];
-      let ITEMQUANTITY = this.state.ITEMQUANTITY;
-      for (var I in ITEMQUANTITY) {
-        if (ITEMQUANTITY[I] !== 0) {
-          axiosRequests.push(
-            axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-              { productID: I, quantity: ITEMQUANTITY[I] },
-              { headers: { 'x-access-token': this.state.PASSKEY } })
-          );
-        }
-      }
-      axios.all(axiosRequests).then(axios.spread(function (acct, perms) { }));
-      this.CLEAR_ORDERING_PROCESS();
-      this.GET_THE_ORDER_LIST_FOR_THIS_USER();
-      this.GET_THE_COMPLETE_ITEMS_LIST();
-    } */
-
-    /****************************************************************************
-     * Parent method taking care of updating the list of `items` provided by user
-     * to update in both orders collection and do necessary adjustments in items
-     * collection. This will trigger a series of axios requests to perform the
-     * said tasks. After waiting for a time out, user will be redirected to order
-     * list page. Since ITEMQUANTITY will have more or the same number of items
-     * as in CLONEDITEMQUANTITY, we chose to perform actions on ITEMQUANTITY 
-     * rather than on the cloned one.
-     ***************************************************************************/
-    /* UPDATE_ITEMS_IN_THIS_ORDER = () => {
-      let updateRequests = []; let newRequests = []; let deleteRequests = [];
-      let ITEMQUANTITY = this.state.ITEMQUANTITY;
-      let CLONEITEMQUANTITY = this.state.CLONEITEMQUANTITY;
-      // Iterate through every item in ITEMQUANTITY
-      for (var I in ITEMQUANTITY) {
-        // If the item is not present in the CLONEd list, that is a new item
-        if (CLONEITEMQUANTITY[I] === undefined && ITEMQUANTITY[I] !== 0) {
-          newRequests.push(
-            axios.post(ADD_TO_ORDER_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-              { productID: I, quantity: ITEMQUANTITY[I] },
-              { headers: { 'x-access-token': this.state.PASSKEY } })
-          );
-        } else if (ITEMQUANTITY[I] === 0) { // This will be a removed item
-          deleteRequests.push(
-            axios.put(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-              { productID: I, quantity: CLONEITEMQUANTITY[I] },
-              { headers: { 'x-access-token': this.state.PASSKEY } })
-          );
-        } else { // It's an update of an existing item
-          let difference = ITEMQUANTITY[I] - CLONEITEMQUANTITY[I];
-          updateRequests.push(
-            axios.post(ORDER_REQUEST_ENDPOINT + `/${this.state.CURRENTORDERID}`,
-              { productID: I, quantity: ITEMQUANTITY[I], difference },
-              { headers: { 'x-access-token': this.state.PASSKEY } })
-          );
-        }
-      }
-      axios.all([...updateRequests, ...newRequests, ...deleteRequests])
-        .then(axios.spread(function (acct, perms) { }));
-      this.CLEAR_ORDERING_PROCESS();
-      this.GET_THE_ORDER_LIST_FOR_THIS_USER();
-      this.GET_THE_COMPLETE_ITEMS_LIST();
-    } */
-
-    /****************************************************************************
-     * Update state to have the given ID as the current order to use in different
-     * situations. As an example, while viewing an order, this can be used inside
-     * the component when mounting
-     ***************************************************************************/
-    /* SET_THIS_ORDER_AS_CURRENT = (ID) => this.setState({ CURRENTORDERID: ID }); */
-
-    /****************************************************************************
-     * Refresh the item list and add the selected order to CURRENTORDER
-     ***************************************************************************/
-    /* PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER = (ID) => {
-      // First, fetch the item list as a good practice
-      this.GET_THE_COMPLETE_ITEMS_LIST();
-      // Save the order list to a local variable for easy access
-      let OrderList = this.state.ORDERLIST;
-      // Find the required order from the order list
-      for (var order in OrderList) {
-        if (OrderList[order]._id === ID) {
-          // Prepare item quantities
-          let tempItemQuantity = {};
-          let tempTotal = 0;
-          for (var item in OrderList[order].items) {
-            tempTotal += (
-              OrderList[order].items[item].quantity *
-              OrderList[order].items[item].price
-            );
-            tempItemQuantity[
-              OrderList[order].items[item].productID
-            ] = OrderList[order].items[item].quantity;
-          }
-          // Update state
-          this.setState({
-            TOTAL: tempTotal,
-            CURRENTORDER: OrderList[order],
-            ITEMQUANTITY: tempItemQuantity,
-            CLONEITEMQUANTITY: JSON.parse(JSON.stringify(tempItemQuantity))
-          });
-        }
-      }
-    } */
-
-    /****************************************************************************
-     * Method used in Edit Order view to make the item count zero
-     ***************************************************************************/
-    /* DELETE_THIS_ITEM = (ID) => {
-      let OLD_ITEMQUANTITY = this.state.ITEMQUANTITY;
-      let NEW_TOTAL =
-        this.state.TOTAL - (this.GET_PRICE_OF_ITEM(ID) * OLD_ITEMQUANTITY[ID]);
-      OLD_ITEMQUANTITY[ID] = 0;
-      this.setState({
-        ITEMQUANTITY: OLD_ITEMQUANTITY,
-        TOTAL: NEW_TOTAL
-      });
-    } */
-
-    /****************************************************************************
-     * Finds the unit price of an item by it's product ID
-     ***************************************************************************/
-    /* GET_PRICE_OF_ITEM = (ID) => {
-      return this.state.ITEMSLIST.find(I => I.productID === ID).price;
-    } */
-
-    /****************************************************************************
-     * Method used in Edit Order view to increment and decrement the item count
-     * @param ID productID of the item
-     * @param DIRECTION true for increment, false for decrement
-     ***************************************************************************/
-    /* INDECCREMENT_ITEM_COUNT = (ID, DIRECTION) => {
-      let NEW_ITEMQUANTITY = this.state.ITEMQUANTITY;
-      let NEW_TOTAL = this.state.TOTAL;
-      let PRICE = this.GET_PRICE_OF_ITEM(ID);
-      if (DIRECTION) {
-        NEW_ITEMQUANTITY[ID] += 1;
-        NEW_TOTAL += PRICE;
-      } else {
-        NEW_ITEMQUANTITY[ID] -= 1;
-        NEW_TOTAL -= PRICE;
-      }
-      this.setState({
-        ITEMQUANTITY: NEW_ITEMQUANTITY,
-        TOTAL: NEW_TOTAL
-      });
-    } */
-
-    /****************************************************************************
-     * Method used in Edit Order view to add a new item to the ITEMQUANTITY and
-     * keeps on counting
-     ***************************************************************************/
-    /* ADD_THIS_ITEM_TO_ITEMQUANTITY = (ID) => {
-      let NEW_ITEMQUANTITY = this.state.ITEMQUANTITY;
-      NEW_ITEMQUANTITY[ID] = 0;
-      this.setState({
-        ITEMQUANTITY: NEW_ITEMQUANTITY
-      });
-    } */
-
-    /****************************************************************************
-     * Resets the current state to remove all the saved data from previous update
-     * process
-     ***************************************************************************/
-    /* CLEAR_ORDERING_PROCESS = () => {
-      this.setState({
-        TOTAL: 0,
-        ITEMQUANTITY: {},
-        CLONEITEMQUANTITY: {},
-        CURRENTORDERID: ''
-      });
-    } */
-
-    render() {
-        return (
-            <Router>
-                <div className="App">
-                    <Header />
-
-                    <Route path="/login" render={() => (
-                        <ErrorBoundary>
-                            <LogIn />
-                        </ErrorBoundary>
-                    )} />
-
-                    <Route path="/logout" render={() => (
-                        <LogOut />
-                    )} />
-
-                    <Route path="/my_orders" render={() => (
-                        <TTT />
-                    )} />
-
-                    {/* <Route path="/register" render={() => (
+          {/* <Route path="/register" render={() => (
               <ErrorBoundary>
                 <Register ISLOGGEDIN={this.state.ISLOGGEDIN} />
               </ErrorBoundary>
@@ -443,18 +443,18 @@ class App extends Component {
                   INDECCREMENT_ITEM_COUNT={this.INDECCREMENT_ITEM_COUNT} />
               </ErrorBoundary>
             )} /> */}
-                </div>
-            </Router>
-        );
-    }
+        </div>
+      </Router>
+    );
+  }
 }
 
 App.propTypes = {
-    PASSKEY: PropTypes.string
+  PASSKEY: PropTypes.string
 };
 
 const mapStateToProps = state => ({
-    PASSKEY: state.uac.PASSKEY
+  PASSKEY: state.uac.PASSKEY
 });
 
 export default withCookies(connect(mapStateToProps, null)(App));
