@@ -83,7 +83,7 @@ SingleOrder.propTypes = {
 
 const mapStateToProps = (state) => ({
     PASSKEY: state.uac.PASSKEY,
-    CURRENTORDER: state.cor.CURRENTORDER
+    CURRENTORDER: state.ord.CURRENTORDER
 });
 
 export default withRouter(connect(mapStateToProps, {

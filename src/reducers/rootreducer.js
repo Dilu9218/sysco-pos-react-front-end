@@ -7,8 +7,7 @@ import {
     ITEM_LIST_REDUCER
 } from './itemcontrolreducer'
 import {
-    ORDER_LIST_REDUCER,
-    CURRENT_ORDER_REDUCER
+    ORDER_LIST_REDUCER
 } from './ordercontrolreducer'
 
 export default combineReducers({
@@ -16,5 +15,4 @@ export default combineReducers({
     reg: REGISTRATION_REDUCER,
     itm: ITEM_LIST_REDUCER,
     ord: ORDER_LIST_REDUCER,
-    cor: CURRENT_ORDER_REDUCER
 });

@@ -75,8 +75,8 @@ OrderList.propTypes = {
 
 const mapStateToProps = (state) => ({
     PASSKEY: state.uac.PASSKEY,
-    CURRENTORDER: state.cor.CURRENTORDER,
-    URL: state.cor.URL,
+    CURRENTORDER: state.ord.CURRENTORDER,
+    URL: state.ord.URL,
     ORDERLIST: state.ord.ORDERLIST,
     ITMESLIST: state.itm.ITMESLIST
 });

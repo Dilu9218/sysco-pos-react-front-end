@@ -3,7 +3,10 @@ import { withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ListItemInOrderDetailView from './ListItemInOrderDetailView';
-import { RESET_CURRENT_ORDER } from '../actions/ordercontrolactions';
+import {
+    RESET_CURRENT_ORDER,
+    CHECK_OUT_THIS_ORDER
+} from '../actions/ordercontrolactions';
 
 class ViewOrder extends Component {
 
@@ -19,12 +22,25 @@ class ViewOrder extends Component {
      * Checking out an order will delete the order from order collection and
      * the item counts won't get changed
      *************************************************************************/
-    CHECK_OUT_THIS_ORDER = (ID) => {
-        //this.props.CHECK_THIS_ORDER_OUT(ID);
-        this.props.history.push('/my_orders');
+    CHECK_OUT_THIS_ORDER = () => {
+        this.props.CHECK_OUT_THIS_ORDER(
+            this.props.CURRENTORDER._id,
+            this.props.PASSKEY
+        );
     }
 
-    // When the view is unmounted, clean up the saved states
+    // We need to redirect user back to orders list once checkout completes.
+    // When an order is checked out, props will change and we can capture that
+    // here and redirect user to the order list. Otherwise there can be network
+    // delays making the checkout slow but user is already at the orders list.
+    componentDidUpdate(prevProps) {
+        if (this.props.URL === '/my_orders') {
+            this.props.history.push(this.props.URL);
+        }
+    }
+
+    // When the view is unmounted, clean up the saved states as we are using
+    // the same state variables to populate other views such as edit order
     componentWillUnmount() {
         this.props.RESET_CURRENT_ORDER();
     }
@@ -42,7 +58,8 @@ class ViewOrder extends Component {
                         <div className="card border-dark shadow" style={{ margin: '10px 0px 0px 0px' }}>
                             <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}>
                                 <div className="row" style={{ width: '100%', margin: '0px' }}>
-                                    <div className="col-8 d-flex justify-content-start">
+                                    <div className="col-8 d-flex"
+                                        style={{ textAlign: 'left' }}>
                                         Order ID: {this.props.CURRENTORDER._id}</div>
                                     <div className="col-4 d-flex justify-content-end">
                                         <b>Rs. {this.props.TOTAL.toFixed(2)}</b>
@@ -92,14 +109,19 @@ ViewOrder.propTypes = {
     ISLOGGEDIN: PropTypes.bool.isRequired,
     CURRENTORDER: PropTypes.object.isRequired,
     PASSKEY: PropTypes.string.isRequired,
-    RESET_CURRENT_ORDER: PropTypes.func.isRequired
+    RESET_CURRENT_ORDER: PropTypes.func.isRequired,
+    CHECK_OUT_THIS_ORDER: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    TOTAL: state.cor.TOTAL,
+    TOTAL: state.ord.TOTAL,
+    URL: state.ord.URL,
     PASSKEY: state.uac.PASSKEY,
     ISLOGGEDIN: state.uac.ISLOGGEDIN,
-    CURRENTORDER: state.cor.CURRENTORDER
+    CURRENTORDER: state.ord.CURRENTORDER
 });
 
-export default withRouter(connect(mapStateToProps, { RESET_CURRENT_ORDER })(ViewOrder));
+export default withRouter(connect(mapStateToProps, {
+    RESET_CURRENT_ORDER,
+    CHECK_OUT_THIS_ORDER
+})(ViewOrder));
