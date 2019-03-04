@@ -15,6 +15,8 @@ import LogIn from './components/LogIn';
 import Register from './components/Register';
 import ErrorBoundary from './components/ErrorBoundary';
 
+import OrderList from './components/OrderList';
+
 import Header from './components/Header';
 import LogOut from './components/LogOut';
 
@@ -48,7 +50,7 @@ class App extends Component {
           <Route path="/logout" render={() => (<LogOut />)} />
 
           <Route path="/my_orders" render={() => (
-            <TTT />
+            <OrderList />
           )} />
 
         </div>

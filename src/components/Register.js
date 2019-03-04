@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { REGISTER_USER } from '../actions/useraccountcontrolactions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -149,4 +149,4 @@ const mapStateToProps = (state) => ({
     REGISTERED: state.reg.REGISTERED
 });
 
-export default withRouter(connect(mapStateToProps, { REGISTER_USER })(Register));
+export default connect(mapStateToProps, { REGISTER_USER })(Register);
