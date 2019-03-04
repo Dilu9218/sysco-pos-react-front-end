@@ -20,15 +20,15 @@ import EditOrder from './components/EditOrder';
 import Header from './components/Header';
 import LogOut from './components/LogOut';
 
+/***************************************************************************************************
+ * TOP LEVEL COMPONENT. Houses every sub-component and handles routes.
+ **************************************************************************************************/
 class App extends Component {
 
-  /****************************************************************************
-   * Constructor: Initiates the state of app
-   ***************************************************************************/
   constructor(props) {
     super(props);
-    // When the cookie is present, user has already logged in. Dispatch action
-    // to update initial state with saved credentials
+    // When a cookie is present, user has already logged in. Dispatch action to update initial state 
+    // with saved credentials and set logged status as true along with the cookie as PASSKEY
     let savedCookie = props.cookies.get(USERTOKEN);
     if (savedCookie) {
       props.RE_LOG_USER_IN(savedCookie);

@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import { withRouter, Link, Redirect } from 'react-router-dom'
-import { GET_THE_COMPLETE_ITEMS_LIST } from '../actions/itemcontrolactions';
+import { connect } from 'react-redux';
+import { withRouter, Link, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import {
+    GET_THE_COMPLETE_ITEMS_LIST
+} from '../actions/itemcontrolactions';
 import {
     GET_THE_ORDER_LIST_FOR_THIS_USER,
     REMOVE_THIS_ORDER,
     RESET_CURRENT_ORDER
 } from '../actions/ordercontrolactions';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+
 import SingleOrder from './SingleOrder';
 
+/***************************************************************************************************
+ * Displays all available orders related to the logged user
+ **************************************************************************************************/
 class OrderList extends Component {
 
     componentDidMount() {
@@ -19,12 +26,10 @@ class OrderList extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.URL === '/delete_order') {
-            this.props.REMOVE_THIS_ORDER(
-                this.props.CURRENTORDER._id, this.props.PASSKEY);
+            this.props.REMOVE_THIS_ORDER(this.props.CURRENTORDER._id, this.props.PASSKEY);
             this.props.RESET_CURRENT_ORDER();
         } else if (prevProps.CURRENTORDER._id !== this.props.CURRENTORDER._id) {
-            this.props.history.push(
-                this.props.URL === '' ? '/my_orders' : this.props.URL);
+            this.props.history.push(this.props.URL === '' ? '/my_orders' : this.props.URL);
         }
     }
 
@@ -55,10 +60,7 @@ class OrderList extends Component {
                         <h5 className="card-title"
                             style={{ margin: '0.5em 1em 0 0' }}>Order List</h5>
                         {this.props.ORDERLIST.map((order) => (
-                            <SingleOrder
-                                key={order._id}
-                                ORDER={order}
-                            />
+                            <SingleOrder key={order._id} ORDER={order} />
                         ))}
                     </div>
                 </div>

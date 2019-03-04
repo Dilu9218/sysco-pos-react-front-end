@@ -48,6 +48,8 @@ class CreateOrder extends Component {
         }
     }
 
+    // Once the order is cancelled, props will change as checking in the following if block. If it
+    // is reset, there are no current orders and we can redirect user back to orders list.
     componentDidUpdate(prevProps) {
         if (prevProps.CURRENTORDERID !== '' & this.props.CURRENTORDERID === '') {
             this.props.history.push('/my_orders');
