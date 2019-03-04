@@ -4,12 +4,14 @@ import {
     DELETE_THIS_ORDER,
     CHECK_OUT_ORDER,
     RESET_CURRENT_ORDER_STATES,
-    SET_THIS_ORDER_AS_CURRENT_ORDER
+    SET_THIS_ORDER_AS_CURRENT_ORDER,
+    CREATE_NEW_ORDER_FOR_THIS_USER
 } from '../actions/types';
 
 let initialState = {
     ORDERLIST: [],
     CURRENTORDER: {},
+    CURRENTORDERID: '',
     TOTAL: 0,
     ITEMQUANTITY: {},
     CLONEITEMQUANTITY: {},
@@ -27,6 +29,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             return {
                 ORDERLIST: [],
                 CURRENTORDER: {},
+                CURRENTORDERID: '',
                 TOTAL: 0,
                 ITEMQUANTITY: {},
                 CLONEITEMQUANTITY: {},
@@ -36,6 +39,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             return {
                 ORDERLIST: state.ORDERLIST.filter(order => (order._id !== action.ID)),
                 CURRENTORDER: {},
+                CURRENTORDERID: '',
                 TOTAL: 0,
                 ITEMQUANTITY: {},
                 CLONEITEMQUANTITY: {},
@@ -63,6 +67,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             return {
                 ...state,
                 CURRENTORDER: action.CURRENTORDER,
+                CURRENTORDERID: action.CURRENTORDER._id,
                 TOTAL: tempTotal,
                 ITEMQUANTITY: tempItemQuantity,
                 CLONEITEMQUANTITY: JSON.parse(JSON.stringify(tempItemQuantity)),
@@ -72,10 +77,16 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             return {
                 ...state,
                 CURRENTORDER: {},
+                CURRENTORDERID: '',
                 TOTAL: 0,
                 ITEMQUANTITY: {},
                 CLONEITEMQUANTITY: {},
                 URL: ''
+            }
+        case CREATE_NEW_ORDER_FOR_THIS_USER:
+            return {
+                ...state,
+                CURRENTORDERID: action.ID
             }
         default:
             return state;

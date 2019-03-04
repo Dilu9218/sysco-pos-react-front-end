@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ListItemInOrder from './ListItemInOrder';
+import {
+    CREATE_NEW_ORDER,
+    REMOVE_THIS_ORDER,
+    RESET_CURRENT_ORDER
+} from '../actions/ordercontrolactions';
+import { GET_THE_COMPLETE_ITEMS_LIST } from '../actions/itemcontrolactions';
 
-/**
- * @abstract Creates a new order
- * @description Creates a new order with multiple items added to it
- * @param ISLOGGEDIN
- * @param CURRENTORDERID
- * @param ITEMSLIST
- * @param DELETE_THIS_ORDER
- * @param CREATE_NEW_ORDER_FOR_THIS_USER
- * @param ADD_ITEMS_TO_THIS_ORDER
- */
 class CreateOrder extends Component {
 
-    // As the create order view mounted, generate a new order for the user
-    // and in the meantime fetch the complete item list
-    componentDidMount() {
-        this.props.CREATE_NEW_ORDER_FOR_THIS_USER();
+    constructor(props) {
+        super(props);
+        this.props.CREATE_NEW_ORDER(props.PASSKEY);
+        this.props.GET_THE_COMPLETE_ITEMS_LIST(this.props.PASSKEY);
     }
 
     /**************************************************************************
@@ -31,10 +29,10 @@ class CreateOrder extends Component {
      * as it takes some time to complete the axios promises.
      *************************************************************************/
     ADD_THESE_ITEMS_TO_THIS_ORDER = () => {
-        this.props.ADD_ITEMS_TO_THIS_ORDER();
+        /* this.props.ADD_ITEMS_TO_THIS_ORDER();
         setTimeout(() => {
             this.props.history.push('/my_orders')
-        }, (50 * this.props.ITEMQUANTITY.length));
+        }, (50 * this.props.ITEMQUANTITY.length)); */
     }
 
     /**************************************************************************
@@ -42,12 +40,18 @@ class CreateOrder extends Component {
      * parent component function to delete the current order being created. 
      * Once done, user will be redirected to order list.
      *************************************************************************/
-    CANCEL_THE_ORDER = (ID) => {
-        if (this.props.ITEMQUANTITY.length !== undefined) {
-            this.props.DELETE_THIS_ORDER(ID);
-            this.props.CLEAR_ORDER_ADDING_PROCESS();
+    CANCEL_THE_ORDER = () => {
+        if (this.props.ITEMQUANTITY.length === undefined) {
+            this.props.REMOVE_THIS_ORDER(
+                this.props.CURRENTORDERID, this.props.PASSKEY);
+            this.props.RESET_CURRENT_ORDER();
         }
-        this.props.history.push('/my_orders');
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.CURRENTORDERID !== '' & this.props.CURRENTORDERID === '') {
+            this.props.history.push('/my_orders');
+        }
     }
 
     /**************************************************************************
@@ -57,8 +61,9 @@ class CreateOrder extends Component {
      *************************************************************************/
     componentWillUnmount() {
         if (this.props.ITEMQUANTITY.length === undefined) {
-            this.props.DELETE_THIS_ORDER(this.props.CURRENTORDERID);
-            this.props.CLEAR_ORDER_ADDING_PROCESS();
+            this.props.REMOVE_THIS_ORDER(
+                this.props.CURRENTORDERID, this.props.PASSKEY);
+            this.props.RESET_CURRENT_ORDER();
         }
     }
 
@@ -81,9 +86,9 @@ class CreateOrder extends Component {
                                     NAME={item.productID}
                                     ITEMQUANTITY={this.props.ITEMQUANTITY[item.productID] === undefined
                                         ? 0 : this.props.ITEMQUANTITY[item.productID]}
-                                    ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
-                                    DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM}
-                                    INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT} />
+                                    ADD_THIS_ITEM_TO_ITEMQUANTITY={() => { }}
+                                    DELETE_THIS_ITEM={() => { }}
+                                    INDECCREMENT_ITEM_COUNT={() => { }} />
                             ))}
                         </div>
                     </div>
@@ -119,9 +124,7 @@ class CreateOrder extends Component {
                                         className="btn btn-success"
                                         style={{ marginRight: '10px' }}><i className="fas fa-cart-plus"></i> Add to Cart</button>
                                     <button
-                                        onClick={this.CANCEL_THE_ORDER.bind(
-                                            this, this.props.CURRENTORDERID
-                                        )}
+                                        onClick={this.CANCEL_THE_ORDER}
                                         className="btn btn-danger"><i className="fas fa-times-circle"></i> Cancel</button>
                                 </div>
                             </div>
@@ -133,4 +136,28 @@ class CreateOrder extends Component {
     }
 }
 
-export default withRouter(CreateOrder);
+
+CreateOrder.propTypes = {
+    CREATE_NEW_ORDER: PropTypes.func.isRequired,
+    REMOVE_THIS_ORDER: PropTypes.func.isRequired,
+    GET_THE_COMPLETE_ITEMS_LIST: PropTypes.func.isRequired,
+    RESET_CURRENT_ORDER: PropTypes.func.isRequired,
+    PASSKEY: PropTypes.string.isRequired,
+    ISLOGGEDIN: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    ISLOGGEDIN: state.uac.ISLOGGEDIN,
+    CURRENTORDERID: state.ord.CURRENTORDERID,
+    PASSKEY: state.uac.PASSKEY,
+    ITEMQUANTITY: state.ord.ITEMQUANTITY,
+    ITEMSLIST: state.itm.ITEMSLIST,
+    TOTAL: state.ord.TOTAL
+});
+
+export default withRouter(connect(mapStateToProps, {
+    CREATE_NEW_ORDER,
+    RESET_CURRENT_ORDER,
+    REMOVE_THIS_ORDER,
+    GET_THE_COMPLETE_ITEMS_LIST
+})(CreateOrder));

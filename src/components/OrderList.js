@@ -19,10 +19,12 @@ class OrderList extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.URL === '/delete_order') {
-            this.props.REMOVE_THIS_ORDER(this.props.CURRENTORDER._id, this.props.PASSKEY);
+            this.props.REMOVE_THIS_ORDER(
+                this.props.CURRENTORDER._id, this.props.PASSKEY);
             this.props.RESET_CURRENT_ORDER();
         } else if (prevProps.CURRENTORDER._id !== this.props.CURRENTORDER._id) {
-            this.props.history.push(this.props.URL === '' ? '/my_orders' : this.props.URL);
+            this.props.history.push(
+                this.props.URL === '' ? '/my_orders' : this.props.URL);
         }
     }
 
@@ -78,7 +80,7 @@ const mapStateToProps = (state) => ({
     CURRENTORDER: state.ord.CURRENTORDER,
     URL: state.ord.URL,
     ORDERLIST: state.ord.ORDERLIST,
-    ITMESLIST: state.itm.ITMESLIST
+    ITEMSLIST: state.itm.ITEMSLIST
 });
 
 export default withRouter(connect(mapStateToProps, {

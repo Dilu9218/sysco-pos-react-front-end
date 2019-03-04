@@ -3,7 +3,8 @@ import axios from 'axios';
 import {
     ORDER_LIST_ENDPOINT,
     ORDER_REQUEST_ENDPOINT,
-    ORDER_CHECKOUT_ENDPOINT
+    ORDER_CHECKOUT_ENDPOINT,
+    NEW_ORDER_ENDPOINT
 } from '../constants';
 
 import {
@@ -12,7 +13,8 @@ import {
     SET_THIS_ORDER_AS_CURRENT_ORDER,
     RESET_CURRENT_ORDER_STATES,
     CHECK_OUT_ORDER,
-    DELETE_THIS_ORDER
+    DELETE_THIS_ORDER,
+    CREATE_NEW_ORDER_FOR_THIS_USER
 } from './types';
 
 export const GET_THE_ORDER_LIST_FOR_THIS_USER = (accesstoken) => (dispatch) => {
@@ -29,6 +31,18 @@ export const GET_THE_ORDER_LIST_FOR_THIS_USER = (accesstoken) => (dispatch) => {
                 type: ERROR_FETCHING_ORDER_LIST_FOR_USER
             });
         });
+}
+
+export const CREATE_NEW_ORDER = (accesstoken) => (dispatch) => {
+    axios.post(NEW_ORDER_ENDPOINT, {},
+        { headers: { 'x-access-token': accesstoken } })
+        .then(newOrder => {
+            dispatch({
+                type: CREATE_NEW_ORDER_FOR_THIS_USER,
+                ID: newOrder.data._id
+            });
+        })
+        .catch(err => console.log(err));
 }
 
 export const RESET_CURRENT_ORDER = () => (dispatch) => {
