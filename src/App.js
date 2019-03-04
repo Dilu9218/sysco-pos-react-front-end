@@ -8,14 +8,17 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { RE_LOG_USER_IN } from './actions/useraccountcontrolactions';
 import { USERTOKEN } from './constants';
 
+// eslint-disable-next-line
 import TTT from './components/TTT';
 
 import MainPage from './pages/mainpage';
 import LogIn from './components/LogIn';
 import Register from './components/Register';
-import ErrorBoundary from './components/ErrorBoundary';
 
 import OrderList from './components/OrderList';
+import ViewOrder from './components/ViewOrder';
+import CreateOrder from './components/CreateOrder';
+import EditOrder from './components/EditOrder';
 
 import Header from './components/Header';
 import LogOut from './components/LogOut';
@@ -29,8 +32,9 @@ class App extends Component {
     super(props);
     // When the cookie is present, user has already logged in. Dispatch action
     // to update initial state with saved credentials
-    if (props.cookies.get(USERTOKEN)) {
-      props.RE_LOG_USER_IN(props.cookies.get(USERTOKEN));
+    let savedCookie = props.cookies.get(USERTOKEN);
+    if (savedCookie) {
+      props.RE_LOG_USER_IN(savedCookie);
     }
   }
 
@@ -43,16 +47,14 @@ class App extends Component {
 
           <Route exact path="/" render={() => (<MainPage />)} />
 
-          <Route path="/login" render={() => (
-            <ErrorBoundary><LogIn /></ErrorBoundary>
-          )} />
+          <Route path="/login" render={() => (<LogIn />)} />
           <Route path="/register" render={() => (<Register />)} />
           <Route path="/logout" render={() => (<LogOut />)} />
 
-          <Route path="/my_orders" render={() => (
-            <OrderList />
-          )} />
-
+          <Route path="/my_orders" render={() => (<OrderList />)} />
+          <Route path="/view_order" render={() => (<ViewOrder />)} />
+          <Route path="/create_order" render={() => (<CreateOrder />)} />
+          <Route path="/edit_order" render={() => (<EditOrder />)} />
         </div>
       </Router>
     );

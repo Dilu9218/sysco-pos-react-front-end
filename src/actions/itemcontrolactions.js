@@ -21,7 +21,6 @@ export const GET_THE_COMPLETE_ITEMS_LIST = (accesstoken) => (dispatch) => {
         .catch(err => {
             dispatch({
                 type: ERROR_FETCHING_ITEMS_LIST
-            })
-            this.setState({ ITEMSLIST: [] });
+            });
         });
 }
