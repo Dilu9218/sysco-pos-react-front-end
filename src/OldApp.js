@@ -1,37 +1,18 @@
 import './App.css';
 import React, { Component } from 'react';
-import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from 'react-cookie';
+import { withCookies } from 'react-cookie';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import axios from 'axios';
-
-import {
-  ORDER_LIST_ENDPOINT,
-  ORDER_REQUEST_ENDPOINT,
-  ITEMS_LIST_ENDPOINT,
-  NEW_ORDER_ENDPOINT,
-  ADD_TO_ORDER_ENDPOINT,
-  ORDER_CHECKOUT_ENDPOINT,
-  USERTOKEN
-} from './constants';
 
 import TTT from './components/TTT';
 
 import LogIn from './components/LogIn';
-import Register from './components/Register';
-import MainPage from './pages/mainpage';
 import ErrorBoundary from './components/ErrorBoundary';
 
 import Header from './components/Header';
 import LogOut from './components/LogOut';
-import OrderList from './components/OrderList';
-import CreateOrder from './components/CreateOrder';
-import ViewOrder from './components/ViewOrder';
-import EditOrder from './components/EditOrder';
 
-import { DecidedLandingPage } from './components/ConditionalComponents';
 
 class App extends Component {
 
