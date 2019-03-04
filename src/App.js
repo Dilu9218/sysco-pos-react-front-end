@@ -8,9 +8,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { RE_LOG_USER_IN } from './actions/useraccountcontrolactions';
 import { USERTOKEN } from './constants';
 
-// eslint-disable-next-line
-import TTT from './components/TTT';
-
 import MainPage from './pages/mainpage';
 import LogIn from './components/LogIn';
 import Register from './components/Register';
@@ -42,9 +39,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-
           <Header />
-
           <Route exact path="/" render={() => (<MainPage />)} />
 
           <Route path="/login" render={() => (<LogIn />)} />

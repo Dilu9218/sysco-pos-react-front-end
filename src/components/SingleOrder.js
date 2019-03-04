@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { PREPARE_ORDER_AS_CURRENT } from '../actions/ordercontrolactions';
 import ListItemInSingleOrder from './ListItemInSingleOrder';
 
 class SingleOrder extends Component {
@@ -10,9 +13,7 @@ class SingleOrder extends Component {
      * the order to user
      *************************************************************************/
     VIEW_THIS_ORDER = () => {
-        this.props.SET_THIS_ORDER_AS_CURRENT();
-        this.props.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER();
-        this.props.history.push('/view_order');
+        this.props.PREPARE_ORDER_AS_CURRENT(this.props.ORDER, '/view_order');
     }
 
     /**************************************************************************
@@ -20,9 +21,17 @@ class SingleOrder extends Component {
      * item list.
      *************************************************************************/
     EDIT_THIS_ORDER = () => {
-        this.props.SET_THIS_ORDER_AS_CURRENT();
-        this.props.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER();
-        setTimeout(() => this.props.history.push('/edit_order'), 500);
+        this.props.PREPARE_ORDER_AS_CURRENT(this.props.ORDER, '/edit_order');
+    }
+
+    /**************************************************************************
+     * Triggers an action to dispatch an event to remove the order from state
+     * and collection
+     *************************************************************************/
+    DELETE_THIS_ORDER = () => {
+        this.props.PREPARE_ORDER_AS_CURRENT(this.props.ORDER, '/delete_order');
+        /* this.props.REMOVE_THIS_ORDER(this.props.CURRENTORDER._id,
+            this.props.PASSKEY); */
     }
 
     render() {
@@ -51,13 +60,34 @@ class SingleOrder extends Component {
                     ))}
                 </ul>
                 <div className="card-footer d-flex justify-content-end">
-                    <Link to="#" className="card-link" onClick={this.VIEW_THIS_ORDER}><i className="fas fa-list-alt"></i> View</Link>
-                    <Link to="#" className="card-link edit-order" onClick={this.EDIT_THIS_ORDER}><i className="fas fa-pen"></i> Edit</Link>
-                    <Link to="#" className="card-link delete" onClick={this.props.DELETE_THIS_ORDER}><i className="fas fa-trash"></i> Delete</Link>
+                    <Link to="#"
+                        className="card-link"
+                        onClick={this.VIEW_THIS_ORDER}>
+                        <i className="fas fa-list-alt"></i> View</Link>
+                    <Link to="#"
+                        className="card-link edit-order"
+                        onClick={this.EDIT_THIS_ORDER}>
+                        <i className="fas fa-pen"></i> Edit</Link>
+                    <Link to="#"
+                        className="card-link delete"
+                        onClick={this.DELETE_THIS_ORDER}>
+                        <i className="fas fa-trash"></i> Delete</Link>
                 </div>
             </div>
         );
     }
 }
 
-export default withRouter(SingleOrder);
+SingleOrder.propTypes = {
+    PREPARE_ORDER_AS_CURRENT: PropTypes.func.isRequired,
+    PASSKEY: PropTypes.string.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    PASSKEY: state.uac.PASSKEY,
+    CURRENTORDER: state.cor.CURRENTORDER
+});
+
+export default withRouter(connect(mapStateToProps, {
+    PREPARE_ORDER_AS_CURRENT
+})(SingleOrder));
