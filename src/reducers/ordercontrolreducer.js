@@ -127,6 +127,10 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
         case ADD_THESE_ITEMS_TO_THIS_ORDER:
             return {
                 ...state,
+                ORDERLIST: [
+                    ...state.ORDERLIST,
+                    action.UPDATEDORDER
+                ],
                 STATUS: true
             }
         default:

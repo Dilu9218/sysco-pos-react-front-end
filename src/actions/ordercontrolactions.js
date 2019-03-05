@@ -120,7 +120,6 @@ export const dispatch_ADD_THESE_ITEMS_TO_THIS_ORDER = (id, items, accesstoken) =
         .then(res => {
             dispatch({
                 type: ADD_THESE_ITEMS_TO_THIS_ORDER,
-                ID: id,
                 UPDATEDORDER: res.data
             });
         })
