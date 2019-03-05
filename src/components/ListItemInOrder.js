@@ -16,15 +16,16 @@ class ListItemInOrder extends Component {
                             <p className="card-subtitle text-muted d-flex justify-content-right"
                                 style={{ textAlign: 'initial' }}>{description}</p>
                         </div>
-                    </div><div className="col-2 card">
+                    </div>
+                    <div className="col-2 card">
                         <div className="card-body d-flex align-items-center"
                             style={{ padding: '5px 0px' }}>
                             <ItemCounterInListItem
                                 NAME={productID}
-                                MIN={0}
+                                MIN={1}
                                 MAX={quantity + (this.props.CLONEITEMQUANTITY === undefined
                                     ? 0 : this.props.CLONEITEMQUANTITY)}
-                                COUNT={this.props.ITEMQUANTITY} />
+                                COUNT={this.props.COUNT} />
                         </div>
                     </div>
                     <div className="col-2 card text-right">

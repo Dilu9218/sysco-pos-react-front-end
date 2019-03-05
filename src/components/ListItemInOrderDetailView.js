@@ -1,22 +1,38 @@
 import React, { Component } from 'react';
+import ItemCounterInListItem from './ItemCounterInListItem';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class ListItemInOrderDetailView extends Component {
 
+    REMOVE_ITEM_FROM_ORDER = () => {
+
+    }
+
     render() {
-        let { productTitle, description, quantity, price } = this.props.singleItem;
+        let { productID, productTitle, description, quantity, price } = this.props.singleItem;
         return (
             <li className="list-group-item d-flex justify-content-right"
                 style={{ margin: '0px', padding: '0px', width: '100%' }}>
                 <div className="row" style={{ margin: '0px', width: '100%' }}>
-                    <div className="col-9 card">
+                    <div className="col-8 card">
                         <div className="card-body" style={{ padding: '5px 0px' }}>
-                            <h6 className="card-title d-flex justify-content-right">{productTitle}</h6>
+                            <h6 className="card-title d-flex justify-content-right">
+                                {productTitle}</h6>
                             <p className="card-subtitle text-muted"
                                 style={{ textAlign: 'left' }}>{description}</p>
                         </div>
-                    </div><div className="col-1 card" style={{ padding: '0px', textAlign: 'center' }}>
-                        <div className="card-body d-flex align-items-center">
-                            <b>{quantity}</b>&nbsp;Nos
+                    </div>
+                    <div className="col-2 card">
+                        <div className="card-body d-flex align-items-center"
+                            style={{ padding: '5px 0px' }}>
+                            <ItemCounterInListItem
+                                NAME={productID}
+                                MIN={1}
+                                COUNT={this.props.ITEMQUANTITY[productID] === undefined
+                                    ? 0 : this.props.ITEMQUANTITY[productID]}
+                                MAX={quantity + this.props.ITEMSLIST.find(
+                                    I => I.productID === productID).quantity} />
                         </div>
                     </div>
                     <div className="col-2 card text-right">
@@ -33,4 +49,16 @@ class ListItemInOrderDetailView extends Component {
     }
 }
 
-export default ListItemInOrderDetailView;
+ListItemInOrderDetailView.propTypes = {
+    PASSKEY: PropTypes.string.isRequired,
+    ITEMQUANTITY: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    PASSKEY: state.uac.PASSKEY,
+    ITEMQUANTITY: state.ord.ITEMQUANTITY,
+    ITEMSLIST: state.itm.ITEMSLIST,
+    CURRENTORDER: state.ord.CURRENTORDER
+});
+
+export default connect(mapStateToProps, null)(ListItemInOrderDetailView);

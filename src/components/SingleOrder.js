@@ -17,14 +17,6 @@ class SingleOrder extends Component {
     }
 
     /**************************************************************************
-     * Sets the current order in context as this order and starts fetching the
-     * item list.
-     *************************************************************************/
-    EDIT_THIS_ORDER = () => {
-        this.props.PREPARE_ORDER_AS_CURRENT(this.props.ORDER, '/edit_order');
-    }
-
-    /**************************************************************************
      * Triggers an action to dispatch an event to remove the order from state
      * and collection
      *************************************************************************/
@@ -62,10 +54,6 @@ class SingleOrder extends Component {
                         className="card-link"
                         onClick={this.VIEW_THIS_ORDER}>
                         <i className="fas fa-list-alt"></i> View</Link>
-                    <Link to="#"
-                        className="card-link edit-order"
-                        onClick={this.EDIT_THIS_ORDER}>
-                        <i className="fas fa-pen"></i> Edit</Link>
                     <Link to="#"
                         className="card-link delete"
                         onClick={this.DELETE_THIS_ORDER}>

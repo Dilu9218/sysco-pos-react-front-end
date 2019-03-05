@@ -93,6 +93,8 @@ class CreateOrder extends Component {
                                 <ListItemInOrder
                                     key={item._id}
                                     ITEM={item}
+                                    COUNT={this.props.ITEMQUANTITY[item.productID] === undefined
+                                        ? 0 : this.props.ITEMQUANTITY[item.productID]}
                                     ITEMQUANTITY={
                                         this.props.ITEMQUANTITY[item.productID] === undefined
                                             ? 0 : this.props.ITEMQUANTITY[item.productID]} />

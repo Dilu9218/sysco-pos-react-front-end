@@ -62,10 +62,12 @@ class ItemCounterInListItem extends Component {
      *************************************************************************/
     DECREMENT_COUNT = (e) => {
         e.preventDefault();
-        if (this.props.COUNT !== this.props.MIN) {
+        if (this.props.COUNT > this.props.MIN) {
             let P = this.props.ITEMSLIST.find(
                 I => I.productID === this.props.NAME).price;
             this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.NAME, false, P);
+        } else if (this.props.COUNT === this.props.MIN) {
+            this.DELETE_THIS_ITEM(e);
         }
     }
 
