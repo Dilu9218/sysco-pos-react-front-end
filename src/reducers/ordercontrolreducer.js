@@ -8,6 +8,7 @@ import {
     ADD_THIS_ITEM_TO_QUANTITY,
     DELETE_THIS_ITEM_FROM_QUANTITY,
     INDECREMENT_ITEM_FROM_QUANTITY,
+    ADD_THESE_ITEMS_TO_THIS_ORDER,
     CREATE_NEW_ORDER_FOR_THIS_USER
 } from '../actions/types';
 
@@ -18,7 +19,8 @@ let initialState = {
     TOTAL: 0,
     ITEMQUANTITY: {},
     CLONEITEMQUANTITY: {},
-    URL: ''
+    URL: '',
+    STATUS: false
 }
 
 export const ORDER_LIST_REDUCER = (state = initialState, action) => {
@@ -36,7 +38,8 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 TOTAL: 0,
                 ITEMQUANTITY: {},
                 CLONEITEMQUANTITY: {},
-                URL: ''
+                URL: '',
+                STATUS: false
             }
         case DELETE_THIS_ORDER:
             return {
@@ -46,7 +49,8 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 TOTAL: 0,
                 ITEMQUANTITY: {},
                 CLONEITEMQUANTITY: {},
-                URL: ''
+                URL: '',
+                STATUS: false
             }
         case CHECK_OUT_ORDER:
             return {
@@ -84,7 +88,8 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 TOTAL: 0,
                 ITEMQUANTITY: {},
                 CLONEITEMQUANTITY: {},
-                URL: ''
+                URL: '',
+                STATUS: false
             }
         case CREATE_NEW_ORDER_FOR_THIS_USER:
             return {
@@ -118,6 +123,11 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                     [action.ID]: state.ITEMQUANTITY[action.ID] + (
                         action.DIRECTION ? 1 : -1)
                 }
+            }
+        case ADD_THESE_ITEMS_TO_THIS_ORDER:
+            return {
+                ...state,
+                STATUS: true
             }
         default:
             return state;

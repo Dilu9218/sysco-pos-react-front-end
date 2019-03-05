@@ -7,9 +7,9 @@ import {
     GET_THE_COMPLETE_ITEMS_LIST
 } from '../actions/itemcontrolactions';
 import {
-    GET_THE_ORDER_LIST_FOR_THIS_USER,
-    REMOVE_THIS_ORDER,
-    RESET_CURRENT_ORDER
+    dispatch_FETCH_EVERY_ORDER_FOR_THIS_USER,
+    dispatch_DELETE_THIS_ORDER,
+    dispatch_RESET_CURRENT_ORDER_STATES
 } from '../actions/ordercontrolactions';
 
 import SingleOrder from './SingleOrder';
@@ -87,7 +87,7 @@ const mapStateToProps = (state) => ({
 
 export default withRouter(connect(mapStateToProps, {
     GET_THE_COMPLETE_ITEMS_LIST,
-    GET_THE_ORDER_LIST_FOR_THIS_USER,
-    RESET_CURRENT_ORDER,
-    REMOVE_THIS_ORDER
+    GET_THE_ORDER_LIST_FOR_THIS_USER: dispatch_FETCH_EVERY_ORDER_FOR_THIS_USER,
+    RESET_CURRENT_ORDER: dispatch_RESET_CURRENT_ORDER_STATES,
+    REMOVE_THIS_ORDER: dispatch_DELETE_THIS_ORDER
 })(OrderList));

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ListItemInOrderDetailView from './ListItemInOrderDetailView';
 import {
-    RESET_CURRENT_ORDER,
-    CHECK_OUT_THIS_ORDER
+    dispatch_RESET_CURRENT_ORDER_STATES,
+    dispatch_CHECK_OUT_ORDER
 } from '../actions/ordercontrolactions';
 
 class ViewOrder extends Component {
@@ -122,6 +122,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(connect(mapStateToProps, {
-    RESET_CURRENT_ORDER,
-    CHECK_OUT_THIS_ORDER
+    RESET_CURRENT_ORDER: dispatch_RESET_CURRENT_ORDER_STATES,
+    CHECK_OUT_THIS_ORDER: dispatch_CHECK_OUT_ORDER
 })(ViewOrder));

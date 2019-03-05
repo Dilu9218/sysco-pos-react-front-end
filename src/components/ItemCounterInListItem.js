@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-    ADD_THIS_ITEM_TO_ITEMQUANTITY,
-    DELETE_THIS_ITEM_FROM_ITEMQUANTITY,
-    INDECREMENT_ITEM_FROM_ITEMQUANTITY
+    dispatch_ADD_THIS_ITEM_TO_QUANTITY,
+    dispatch_DELETE_THIS_ITEM_FROM_QUANTITY,
+    dispatch_INDECREMENT_ITEM_FROM_QUANTITY
 } from '../actions/ordercontrolactions';
 
 function RenderDeleteButton(props) {
@@ -108,7 +108,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    ADD_THIS_ITEM_TO_ITEMQUANTITY,
-    INDECREMENT_ITEM_FROM_ITEMQUANTITY,
-    DELETE_THIS_ITEM_FROM_ITEMQUANTITY
+    ADD_THIS_ITEM_TO_ITEMQUANTITY: dispatch_ADD_THIS_ITEM_TO_QUANTITY,
+    INDECREMENT_ITEM_FROM_ITEMQUANTITY: dispatch_INDECREMENT_ITEM_FROM_QUANTITY,
+    DELETE_THIS_ITEM_FROM_ITEMQUANTITY: dispatch_DELETE_THIS_ITEM_FROM_QUANTITY
 })(ItemCounterInListItem);

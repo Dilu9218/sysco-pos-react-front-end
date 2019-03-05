@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { PREPARE_ORDER_AS_CURRENT } from '../actions/ordercontrolactions';
+import { dispatch_SET_THIS_ORDER_AS_CURRENT_ORDER } from '../actions/ordercontrolactions';
 import ListItemInSingleOrder from './ListItemInSingleOrder';
 
 class SingleOrder extends Component {
@@ -87,5 +87,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(connect(mapStateToProps, {
-    PREPARE_ORDER_AS_CURRENT
+    PREPARE_ORDER_AS_CURRENT: dispatch_SET_THIS_ORDER_AS_CURRENT_ORDER
 })(SingleOrder));
