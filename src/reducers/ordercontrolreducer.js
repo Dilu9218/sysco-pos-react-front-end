@@ -101,15 +101,18 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             }
         case DELETE_THIS_ITEM_FROM_QUANTITY:
             let NEWITEMQTY = state.ITEMQUANTITY;
+            let RESERVE = (action.PRICE * state.ITEMQUANTITY[action.ID]);
             delete NEWITEMQTY[action.ID];
             return {
                 ...state,
-                TOTAL: state.TOTAL - action.PRICE,
+                TOTAL: state.TOTAL - RESERVE,
                 ITEMQUANTITY: NEWITEMQTY
             }
         case INDECREMENT_ITEM_FROM_QUANTITY:
             return {
                 ...state,
+                TOTAL: state.TOTAL + (
+                    action.DIRECTION ? 1 : -1) * action.PRICE,
                 ITEMQUANTITY: {
                     ...state.ITEMQUANTITY,
                     [action.ID]: state.ITEMQUANTITY[action.ID] + (

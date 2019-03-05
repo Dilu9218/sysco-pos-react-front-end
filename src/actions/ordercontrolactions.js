@@ -103,10 +103,11 @@ export const DELETE_THIS_ITEM_FROM_ITEMQUANTITY = (id, price) => (dispatch) => {
     });
 }
 
-export const INDECREMENT_ITEM_FROM_ITEMQUANTITY = (id, direction) => (dispatch) => {
+export const INDECREMENT_ITEM_FROM_ITEMQUANTITY = (id, direction, price) => (dispatch) => {
     dispatch({
         type: INDECREMENT_ITEM_FROM_QUANTITY,
         ID: id,
-        DIRECTION: direction
+        DIRECTION: direction,
+        PRICE: price
     });
 }

@@ -51,7 +51,9 @@ class ItemCounterInListItem extends Component {
             if (this.props.COUNT === 0) {
                 this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY(this.props.NAME);
             }
-            this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.NAME, true);
+            let P = this.props.ITEMSLIST.find(
+                I => I.productID === this.props.NAME).price;
+            this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.NAME, true, P);
         }
     }
 
@@ -61,7 +63,9 @@ class ItemCounterInListItem extends Component {
     DECREMENT_COUNT = (e) => {
         e.preventDefault();
         if (this.props.COUNT !== this.props.MIN) {
-            this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.NAME, false);
+            let P = this.props.ITEMSLIST.find(
+                I => I.productID === this.props.NAME).price;
+            this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.NAME, false, P);
         }
     }
 
