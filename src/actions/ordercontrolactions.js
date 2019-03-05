@@ -16,6 +16,7 @@ import {
     DELETE_THIS_ORDER,
     ADD_THIS_ITEM_TO_QUANTITY,
     DELETE_THIS_ITEM_FROM_QUANTITY,
+    INDECREMENT_ITEM_FROM_QUANTITY,
     CREATE_NEW_ORDER_FOR_THIS_USER
 } from './types';
 
@@ -99,5 +100,13 @@ export const DELETE_THIS_ITEM_FROM_ITEMQUANTITY = (id, price) => (dispatch) => {
         type: DELETE_THIS_ITEM_FROM_QUANTITY,
         ID: id,
         PRICE: price
+    });
+}
+
+export const INDECREMENT_ITEM_FROM_ITEMQUANTITY = (id, direction) => (dispatch) => {
+    dispatch({
+        type: INDECREMENT_ITEM_FROM_QUANTITY,
+        ID: id,
+        DIRECTION: direction
     });
 }

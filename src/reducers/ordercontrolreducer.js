@@ -7,6 +7,7 @@ import {
     SET_THIS_ORDER_AS_CURRENT_ORDER,
     ADD_THIS_ITEM_TO_QUANTITY,
     DELETE_THIS_ITEM_FROM_QUANTITY,
+    INDECREMENT_ITEM_FROM_QUANTITY,
     CREATE_NEW_ORDER_FOR_THIS_USER
 } from '../actions/types';
 
@@ -105,6 +106,15 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 ...state,
                 TOTAL: state.TOTAL - action.PRICE,
                 ITEMQUANTITY: NEWITEMQTY
+            }
+        case INDECREMENT_ITEM_FROM_QUANTITY:
+            return {
+                ...state,
+                ITEMQUANTITY: {
+                    ...state.ITEMQUANTITY,
+                    [action.ID]: state.ITEMQUANTITY[action.ID] + (
+                        action.DIRECTION ? 1 : -1)
+                }
             }
         default:
             return state;

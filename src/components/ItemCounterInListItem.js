@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
     ADD_THIS_ITEM_TO_ITEMQUANTITY,
-    DELETE_THIS_ITEM_FROM_ITEMQUANTITY
+    DELETE_THIS_ITEM_FROM_ITEMQUANTITY,
+    INDECREMENT_ITEM_FROM_ITEMQUANTITY
 } from '../actions/ordercontrolactions';
 
 function RenderDeleteButton(props) {
@@ -46,13 +47,12 @@ class ItemCounterInListItem extends Component {
      *************************************************************************/
     INCREMENT_COUNT = (e) => {
         e.preventDefault();
-        this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY(this.props.NAME);
-        /* if (this.props.COUNT !== this.props.MAX) {
+        if (this.props.COUNT !== this.props.MAX) {
             if (this.props.COUNT === 0) {
                 this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY(this.props.NAME);
             }
-            this.props.INDECCREMENT_ITEM_COUNT(this.props.NAME, true);
-        } */
+            this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.NAME, true);
+        }
     }
 
     /**************************************************************************
@@ -61,7 +61,7 @@ class ItemCounterInListItem extends Component {
     DECREMENT_COUNT = (e) => {
         e.preventDefault();
         if (this.props.COUNT !== this.props.MIN) {
-            this.props.INDECCREMENT_ITEM_COUNT(this.props.NAME, false);
+            this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.NAME, false);
         }
     }
 
@@ -90,6 +90,7 @@ class ItemCounterInListItem extends Component {
 
 ItemCounterInListItem.propTypes = {
     ADD_THIS_ITEM_TO_ITEMQUANTITY: PropTypes.func.isRequired,
+    INDECREMENT_ITEM_FROM_ITEMQUANTITY: PropTypes.func.isRequired,
     DELETE_THIS_ITEM_FROM_ITEMQUANTITY: PropTypes.func.isRequired
 };
 
@@ -104,5 +105,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
     ADD_THIS_ITEM_TO_ITEMQUANTITY,
+    INDECREMENT_ITEM_FROM_ITEMQUANTITY,
     DELETE_THIS_ITEM_FROM_ITEMQUANTITY
 })(ItemCounterInListItem);
