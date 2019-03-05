@@ -88,8 +88,6 @@ class CreateOrder extends Component {
                                     NAME={item.productID}
                                     ITEMQUANTITY={this.props.ITEMQUANTITY[item.productID] === undefined
                                         ? 0 : this.props.ITEMQUANTITY[item.productID]}
-                                    ADD_THIS_ITEM_TO_ITEMQUANTITY={() => { }}
-                                    DELETE_THIS_ITEM={() => { }}
                                     INDECCREMENT_ITEM_COUNT={() => { }} />
                             ))}
                         </div>

@@ -5,6 +5,8 @@ import {
     CHECK_OUT_ORDER,
     RESET_CURRENT_ORDER_STATES,
     SET_THIS_ORDER_AS_CURRENT_ORDER,
+    ADD_THIS_ITEM_TO_QUANTITY,
+    DELETE_THIS_ITEM_FROM_QUANTITY,
     CREATE_NEW_ORDER_FOR_THIS_USER
 } from '../actions/types';
 
@@ -87,6 +89,22 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             return {
                 ...state,
                 CURRENTORDERID: action.ID
+            }
+        case ADD_THIS_ITEM_TO_QUANTITY:
+            return {
+                ...state,
+                ITEMQUANTITY: {
+                    ...state.ITEMQUANTITY,
+                    [action.ID]: 0
+                }
+            }
+        case DELETE_THIS_ITEM_FROM_QUANTITY:
+            let NEWITEMQTY = state.ITEMQUANTITY;
+            delete NEWITEMQTY[action.ID];
+            return {
+                ...state,
+                TOTAL: state.TOTAL - action.PRICE,
+                ITEMQUANTITY: NEWITEMQTY
             }
         default:
             return state;

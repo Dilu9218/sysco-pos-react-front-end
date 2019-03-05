@@ -14,6 +14,8 @@ import {
     RESET_CURRENT_ORDER_STATES,
     CHECK_OUT_ORDER,
     DELETE_THIS_ORDER,
+    ADD_THIS_ITEM_TO_QUANTITY,
+    DELETE_THIS_ITEM_FROM_QUANTITY,
     CREATE_NEW_ORDER_FOR_THIS_USER
 } from './types';
 
@@ -83,4 +85,19 @@ export const REMOVE_THIS_ORDER = (id, accesstoken) => (dispatch) => {
         }).catch(err => {
             console.log(err);
         });
+}
+
+export const ADD_THIS_ITEM_TO_ITEMQUANTITY = (id) => (dispatch) => {
+    dispatch({
+        type: ADD_THIS_ITEM_TO_QUANTITY,
+        ID: id
+    });
+}
+
+export const DELETE_THIS_ITEM_FROM_ITEMQUANTITY = (id, price) => (dispatch) => {
+    dispatch({
+        type: DELETE_THIS_ITEM_FROM_QUANTITY,
+        ID: id,
+        PRICE: price
+    });
 }

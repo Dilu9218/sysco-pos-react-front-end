@@ -23,9 +23,7 @@ class ListItemInOrder extends Component {
                                 NAME={this.props.NAME} MIN={0} MAX={quantity + (this.props.CLONEITEMQUANTITY === undefined
                                     ? 0 : this.props.CLONEITEMQUANTITY)}
                                 COUNT={this.props.ITEMQUANTITY}
-                                ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
-                                INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT}
-                                DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM} />
+                                INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT} />
                         </div>
                     </div>
                     <div className="col-2 card text-right">
