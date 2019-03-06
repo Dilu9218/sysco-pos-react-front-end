@@ -24,9 +24,8 @@ class ListItemInOrderDetailView extends Component {
                             style={{ padding: '5px 0px' }}>
                             <ItemCounterInListItem
                                 name={productID}
+                                count={this.props.itemQuantity[productID]}
                                 min={1}
-                                count={this.props.itemQuantity[productID] === undefined
-                                    ? 0 : this.props.itemQuantity[productID]}
                                 max={quantity + this.props.itemsList.find(
                                     I => I.productID === productID).quantity} />
                         </div>

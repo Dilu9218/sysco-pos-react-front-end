@@ -12,6 +12,8 @@ import {
     INDECREMENT_ITEM_FROM_QUANTITY,
     ADD_THESE_ITEMS_TO_THIS_ORDER,
     APPEND_THIS_ITEM_TO_ORDER,
+    QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
+    QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
     CREATE_NEW_ORDER_FOR_THIS_USER
 } from '../actions/types';
 
@@ -163,6 +165,25 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 itemQuantity: {
                     ...state.itemQuantity,
                     [action.productID]: 1
+                }
+            }
+        case QUICK_DELETE_THIS_ITEM_FROM_QUANTITY:
+            let nItm = state.itemQuantity;
+            let r = (action.price * state.itemQuantity[action.id]);
+            delete nItm[action.id];
+            return {
+                ...state,
+                currentOrder: action.updatedOrder,
+                total: state.total - r,
+                itemQuantity: nItm
+            }
+        case QUICK_INDECREMENT_ITEM_FROM_QUANTITY:
+            return {
+                ...state,
+                total: state.total + (action.direction ? 1 : -1) * action.price,
+                itemQuantity: {
+                    ...state.itemQuantity,
+                    [action.id]: state.itemQuantity[action.id] + (action.direction ? 1 : -1)
                 }
             }
         default:

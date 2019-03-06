@@ -21,6 +21,8 @@ import {
     APPEND_THIS_ITEM_TO_ORDER,
     DELETE_THIS_ORDER,
     ADD_THIS_ITEM_TO_QUANTITY,
+    QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
+    QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
     DELETE_THIS_ITEM_FROM_QUANTITY,
     INDECREMENT_ITEM_FROM_QUANTITY,
     ADD_THESE_ITEMS_TO_THIS_ORDER
@@ -169,3 +171,29 @@ export const dispatch_GetTheCompleteItemsList = (accesstoken) => (dispatch) => {
             });
         });
 }
+
+export const dispatch_QuickDeleteThisItemFromQuantity = (id, orderID, count, price, accesstoken) =>
+    (dispatch) => {
+        axios.put(ORDER_REQUEST_ENDPOINT + `/${orderID}`, {
+            productID: id,
+            quantity: count
+        }, { headers: { 'x-access-token': accesstoken } }).then(updatedOrder => {
+            console.log(updatedOrder);
+            dispatch({
+                type: QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
+                updatedOrder: updatedOrder.data,
+                id,
+                price
+            });
+        });
+    };
+
+export const dispatch_QuickIndecrementItemFromQuantity = (id, direction, orderID, price) =>
+    (dispatch) => {
+        dispatch({
+            type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
+            id,
+            direction,
+            price
+        });
+    } 

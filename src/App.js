@@ -15,7 +15,6 @@ import Register from './components/Register';
 import OrderList from './components/OrderList';
 import ViewOrder from './components/ViewOrder';
 import CreateOrder from './components/CreateOrder';
-import EditOrder from './components/EditOrder';
 
 import Header from './components/Header';
 import LogOut from './components/LogOut';
@@ -49,7 +48,6 @@ class App extends Component {
           <Route path="/my_orders" render={() => (<OrderList />)} />
           <Route path="/view_order" render={() => (<ViewOrder />)} />
           <Route path="/create_order" render={() => (<CreateOrder />)} />
-          <Route path="/edit_order" render={() => (<EditOrder />)} />
         </div>
       </Router>
     );
