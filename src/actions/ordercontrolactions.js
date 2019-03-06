@@ -145,11 +145,10 @@ export const dispatch_AppendThisItemToOrder = (productID, orderID, accesstoken, 
         },
             { headers: { 'x-access-token': accesstoken } })
             .then(res => {
-                console.log(res.data);
                 dispatch({
                     type: APPEND_THIS_ITEM_TO_ORDER,
                     productID,
-                    itemsList
+                    currentOrder: res.data
                 });
             })
             .catch(err => console.log(err));

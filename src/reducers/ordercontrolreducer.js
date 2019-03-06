@@ -150,25 +150,16 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 status: true
             }
         case APPEND_THIS_ITEM_TO_ORDER:
-            // Add this item to `currentOrder` with a quantity of 1
             let newItem = JSON.parse(JSON.stringify(
                 state.itemsList.find(I => (I.productID === action.productID))));
-            let originalItem = JSON.parse(JSON.stringify(newItem));
-            originalItem.quantity--;
+            newItem.quantity--;
             let newItemsList = JSON.parse(JSON.stringify(
                 state.itemsList.filter(I => (I.productID !== action.productID))));
-            newItemsList.push(originalItem);
-            newItem.quantity = 1;
-            let orderItems = state.currentOrder.items;
-            orderItems.push(newItem);
-            // Deduct the item count from `itemsList` by one
+            newItemsList.push(newItem);
             return {
                 ...state,
                 itemsList: newItemsList,
-                currentOrder: {
-                    ...state.currentOrder,
-                    items: orderItems
-                },
+                currentOrder: action.currentOrder,
                 itemQuantity: {
                     ...state.itemQuantity,
                     [action.productID]: 1
