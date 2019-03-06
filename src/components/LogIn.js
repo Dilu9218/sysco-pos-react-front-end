@@ -26,14 +26,14 @@ class LogIn extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.cookies.get('usertoken') !== this.props.PASSKEY) {
+        if (prevProps.cookies.get('usertoken') !== this.props.passKey) {
             this.props.cookies.set('usertoken',
-                this.props.PASSKEY, { path: '/' });
+                this.props.passKey, { path: '/' });
         }
     }
 
     render() {
-        if (this.props.ISLOGGEDIN) {
+        if (this.props.isLoggedIn) {
             return (
                 <Redirect to="/my_orders" />
             );
@@ -44,10 +44,10 @@ class LogIn extends Component {
                     <div className='card'
                         style={{ marginTop: '9rem', width: '30%' }}>
                         <div className="card-body">
-                            <div className={this.props.ALERTMESSAGE !== ""
+                            <div className={this.props.alertMessage !== ""
                                 ? "alert alert-warning"
                                 : "alert alert-warning d-none"}>
-                                {this.props.ALERTMESSAGE}
+                                {this.props.alertMessage}
                             </div>
                             <form className="mx-2" onSubmit={this.onSubmit}>
                                 <div className="input-group my-3">
@@ -103,15 +103,15 @@ class LogIn extends Component {
 
 LogIn.propTypes = {
     LOG_USER_IN: PropTypes.func.isRequired,
-    ISLOGGEDIN: PropTypes.bool.isRequired,
-    PASSKEY: PropTypes.string,
-    ALERTMESSAGE: PropTypes.string.isRequired
+    isLoggedIn: PropTypes.bool.isRequired,
+    passKey: PropTypes.string,
+    alertMessage: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    ISLOGGEDIN: state.uac.ISLOGGEDIN,
-    PASSKEY: state.uac.PASSKEY,
-    ALERTMESSAGE: state.uac.ALERTMESSAGE
+    isLoggedIn: state.uac.isLoggedIn,
+    passKey: state.uac.passKey,
+    alertMessage: state.uac.alertMessage
 });
 
 export default withCookies(withRouter(connect(mapStateToProps, { LOG_USER_IN })(LogIn)));

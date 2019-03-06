@@ -8,10 +8,13 @@ import {
 } from '../actions/ordercontrolactions';
 
 function RenderDeleteButton(props) {
-    if (props.count !== 0) {
+    if (props.quantity !== 0) {
         return (
-            <div className="btn-group" role="group" aria-label="Delete-Group" style={{ marginLeft: '10px' }}>
-                <button type="button" className="btn btn-danger" onClick={props.DELETE_THIS_ITEM}><i className="fas fa-trash"></i></button>
+            <div className="btn-group"
+                role="group" aria-label="Delete-Group" style={{ marginLeft: '10px' }}>
+                <button type="button"
+                    className="btn btn-danger"
+                    onClick={props.DELETE_THIS_ITEM}><i className="fas fa-trash"></i></button>
             </div>
         );
     } else {
@@ -28,7 +31,7 @@ function RenderDeleteButton(props) {
  * @param min Minimum allowable value
  * @param max Maximum allowable value
  */
-class ItemCounterInListItem extends Component {
+class ItemCounterInCreateOrder extends Component {
 
     /**************************************************************************
      * Triggers the parent component method to clear the count for this item
@@ -45,10 +48,10 @@ class ItemCounterInListItem extends Component {
      * will request to add a new item to the quantity list if it is not and do
      * update its count as usual
      *************************************************************************/
-    INCREMENT_COUNT = (e) => {
+    incrementCount = (e) => {
         e.preventDefault();
-        if (this.props.count !== this.props.max) {
-            if (this.props.count === 0) {
+        if (this.props.quantity !== this.props.max) {
+            if (this.props.quantity === 0) {
                 this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY(this.props.name);
             }
             let P = this.props.itemsList.find(
@@ -60,13 +63,13 @@ class ItemCounterInListItem extends Component {
     /**************************************************************************
      * This method will decrement the count of item quantities in parent state
      *************************************************************************/
-    DECREMENT_COUNT = (e) => {
+    decrementCount = (e) => {
         e.preventDefault();
-        if (this.props.count > this.props.min) {
+        if (this.props.quantity > this.props.min) {
             let P = this.props.itemsList.find(
                 I => I.productID === this.props.name).price;
             this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.name, false, P);
-        } else if (this.props.count === this.props.min) {
+        } else if (this.props.quantity === this.props.min) {
             this.DELETE_THIS_ITEM(e);
         }
     }
@@ -77,17 +80,16 @@ class ItemCounterInListItem extends Component {
                 <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div className="btn-group" role="group" aria-label="Item-Group">
                         <button type="button" className="btn btn-secondary"
-                            onClick={this.INCREMENT_COUNT}>&#43;</button>
+                            onClick={this.incrementCount}>&#43;</button>
                         <div style={{ width: '3em', textAlign: 'center' }}>
                             <span className="input-group-text" style={{
-                                display: 'inline-block', borderRadius: '0px',
-                                width: '100%', height: '100%'
-                            }}>{this.props.count}</span></div>
+                                display: 'inline-block', borderRadius: '0px', width: '100%', height: '100%'
+                            }}>{this.props.quantity}</span></div>
                         <button type="button" className="btn btn-secondary"
-                            onClick={this.DECREMENT_COUNT}>&#8722;</button>
+                            onClick={this.decrementCount}>&#8722;</button>
                     </div>
                     <RenderDeleteButton
-                        count={this.props.count}
+                        quantity={this.props.quantity}
                         DELETE_THIS_ITEM={this.DELETE_THIS_ITEM} />
                 </div>
             </React.Fragment>
@@ -97,7 +99,7 @@ class ItemCounterInListItem extends Component {
 
 
 
-ItemCounterInListItem.propTypes = {
+ItemCounterInCreateOrder.propTypes = {
     ADD_THIS_ITEM_TO_ITEMQUANTITY: PropTypes.func.isRequired,
     INDECREMENT_ITEM_FROM_ITEMQUANTITY: PropTypes.func.isRequired,
     DELETE_THIS_ITEM_FROM_ITEMQUANTITY: PropTypes.func.isRequired
@@ -116,4 +118,4 @@ export default connect(mapStateToProps, {
     ADD_THIS_ITEM_TO_ITEMQUANTITY: dispatch_ADD_THIS_ITEM_TO_QUANTITY,
     INDECREMENT_ITEM_FROM_ITEMQUANTITY: dispatch_INDECREMENT_ITEM_FROM_QUANTITY,
     DELETE_THIS_ITEM_FROM_ITEMQUANTITY: dispatch_DELETE_THIS_ITEM_FROM_QUANTITY
-})(ItemCounterInListItem);
+})(ItemCounterInCreateOrder);

@@ -4,15 +4,11 @@ import {
     REGISTRATION_REDUCER
 } from './useraccountcontrolreducer';
 import {
-    ITEM_LIST_REDUCER
-} from './itemcontrolreducer'
-import {
     ORDER_LIST_REDUCER
 } from './ordercontrolreducer'
 
 export default combineReducers({
     uac: PASS_KEY_REDUCER,
     reg: REGISTRATION_REDUCER,
-    itm: ITEM_LIST_REDUCER,
     ord: ORDER_LIST_REDUCER,
 });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
-import ListItemInOrder from './ListItemInOrder';
+import ListItemInOrder from './ListItemInCreateOrder';
 import Beforeunload from 'react-beforeunload';
 
 class EditOrder extends Component {

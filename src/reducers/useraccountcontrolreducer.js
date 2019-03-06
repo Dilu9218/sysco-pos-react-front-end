@@ -7,29 +7,29 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  PASSKEY: '',
-  ALERTMESSAGE: '',
-  ISLOGGEDIN: false
+  passKey: '',
+  alertMessage: '',
+  isLoggedIn: false
 };
 
 export const PASS_KEY_REDUCER = (state = initialState, action) => {
   switch (action.type) {
     case SAVE_PASS_KEY:
       return {
-        PASSKEY: action.PASSKEY,
-        ALERTMESSAGE: '',
-        ISLOGGEDIN: true
+        passKey: action.passKey,
+        alertMessage: '',
+        isLoggedIn: true
       }
     case CLEAR_PASS_KEY:
       return {
-        PASSKEY: '',
-        ALERTMESSAGE: '',
-        ISLOGGEDIN: false
+        passKey: '',
+        alertMessage: '',
+        isLoggedIn: false
       }
     case SHOW_LOGIN_ERROR:
       return {
         ...state,
-        ALERTMESSAGE: action.ALERTMESSAGE
+        alertMessage: action.alertMessage
       }
     default:
       return state;
@@ -37,19 +37,19 @@ export const PASS_KEY_REDUCER = (state = initialState, action) => {
 }
 
 export const REGISTRATION_REDUCER = (state = {
-  ALERTMESSAGE: '',
-  REGISTERED: false
+  alertMessage: '',
+  registered: false
 }, action) => {
   switch (action.type) {
     case SHOW_REGISTER_ERROR:
       return {
         ...state,
-        ALERTMESSAGE: action.ALERTMESSAGE,
+        alertMessage: action.alertMessage,
       }
     case COMPLETE_REGISTRAION:
       return {
-        ALERTMESSAGE: '',
-        REGISTERED: true
+        alertMessage: '',
+        registered: true
       }
     default:
       return state;

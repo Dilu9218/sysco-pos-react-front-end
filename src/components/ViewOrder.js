@@ -3,11 +3,10 @@ import { withRouter, Redirect } from 'react-router-dom';
 import Modal from "react-responsive-modal";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ListItemInOrderDetailView from './ListItemInOrderDetailView';
+import ListItemInViewOrder from './ListItemInViewOrder';
+import ListItemInAddNewItemsToOrder from './ListItemInAddNewItemsToOrder';
 import {
-    GET_THE_COMPLETE_ITEMS_LIST
-} from '../actions/itemcontrolactions';
-import {
+    dispatch_GetTheCompleteItemsList,
     dispatch_RESET_CURRENT_ORDER_STATES,
     dispatch_CHECK_OUT_ORDER
 } from '../actions/ordercontrolactions';
@@ -22,7 +21,7 @@ class ViewOrder extends Component {
     }
 
     componentDidMount() {
-        this.props.GET_THE_COMPLETE_ITEMS_LIST(this.props.PASSKEY);
+        this.props.dispatch_GetTheCompleteItemsList(this.props.passKey);
     }
 
     DISPLAY_ITEMS_LIST = () => {
@@ -47,8 +46,8 @@ class ViewOrder extends Component {
      *************************************************************************/
     CHECK_OUT_THIS_ORDER = () => {
         this.props.CHECK_OUT_THIS_ORDER(
-            this.props.CURRENTORDER._id,
-            this.props.PASSKEY
+            this.props.currentOrder._id,
+            this.props.passKey
         );
     }
 
@@ -57,8 +56,8 @@ class ViewOrder extends Component {
     // here and redirect user to the order list. Otherwise there can be network
     // delays making the checkout slow but user is already at the orders list.
     componentDidUpdate(prevProps) {
-        if (this.props.URL === '/my_orders') {
-            this.props.history.push(this.props.URL);
+        if (this.props.url === '/my_orders') {
+            this.props.history.push(this.props.url);
         }
     }
 
@@ -69,18 +68,28 @@ class ViewOrder extends Component {
     }
 
     render() {
-        if (!this.props.ISLOGGEDIN) {
+        if (!this.props.isLoggedIn) {
             return (
                 <Redirect to="/login" />
             )
         }
         return (
             <div>
-                <Modal open={this.state.itemListOpen} onClose={this.ITEM_LIST_CLOSING} center>
-                    <h2>Simple centered modal</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar
-                        risus non risus hendrerit venenatis. Pellentesque sit amet hendrerit risus,
-                         sed porttitor quam.</p>
+                <Modal open={this.state.itemListOpen} onClose={this.ITEM_LIST_CLOSING} center
+                    styles={{ width: '100%', margin: '0px' }}>
+                    <div className="card" style={{ margin: '5px' }}>
+                        <div className="card-body" style={{ padding: '0px' }}>
+                            <h5 className="card-title"
+                                style={{ margin: '0.5em 1em', textAlign: 'center', width: '100%' }}>
+                                Item List</h5>
+                            {this.props.itemsList.filter((item) => {
+                                return ((item.quantity > 0) &&
+                                    this.props.itemQuantity[item.productID] === undefined)
+                            }).map((item) => (
+                                <ListItemInAddNewItemsToOrder key={item._id} item={item} />
+                            ))}
+                        </div>
+                    </div>
                 </Modal>
                 <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
                     <div className="card-body">
@@ -89,17 +98,19 @@ class ViewOrder extends Component {
                                 <div className="row" style={{ width: '100%', margin: '0px' }}>
                                     <div className="col-8 d-flex"
                                         style={{ textAlign: 'left' }}>
-                                        Order ID: {this.props.CURRENTORDER._id}</div>
+                                        Order ID: {this.props.currentOrder._id}</div>
                                     <div className="col-4 d-flex justify-content-end">
-                                        <b>Rs. {this.props.TOTAL.toFixed(2)}</b>
+                                        <b>Rs. {this.props.total.toFixed(2)}</b>
                                     </div>
                                 </div>
                             </div>
                             <ul className="list-group list-group-flush">
-                                {this.props.CURRENTORDER.items.map((item) => (
-                                    <ListItemInOrderDetailView
+                                {this.props.currentOrder.items.map((item) => (
+                                    <ListItemInViewOrder
                                         key={item._id}
-                                        singleItem={item} />
+                                        singleItem={item}
+                                        quantity={this.props.itemQuantity[item.productID] === undefined
+                                            ? 0 : this.props.itemQuantity[item.productID]} />
                                 ))}
                             </ul>
                         </div>
@@ -141,24 +152,26 @@ class ViewOrder extends Component {
 }
 
 ViewOrder.propTypes = {
-    ISLOGGEDIN: PropTypes.bool.isRequired,
-    CURRENTORDER: PropTypes.object.isRequired,
-    PASSKEY: PropTypes.string.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
+    currentOrder: PropTypes.object.isRequired,
+    passKey: PropTypes.string.isRequired,
     RESET_CURRENT_ORDER: PropTypes.func.isRequired,
     CHECK_OUT_THIS_ORDER: PropTypes.func.isRequired,
-    GET_THE_COMPLETE_ITEMS_LIST: PropTypes.func.isRequired
+    dispatch_GetTheCompleteItemsList: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    TOTAL: state.ord.TOTAL,
-    URL: state.ord.URL,
-    PASSKEY: state.uac.PASSKEY,
-    ISLOGGEDIN: state.uac.ISLOGGEDIN,
-    CURRENTORDER: state.ord.CURRENTORDER
+    total: state.ord.total,
+    url: state.ord.url,
+    itemsList: state.ord.itemsList,
+    passKey: state.uac.passKey,
+    itemQuantity: state.ord.itemQuantity,
+    isLoggedIn: state.uac.isLoggedIn,
+    currentOrder: state.ord.currentOrder
 });
 
 export default withRouter(connect(mapStateToProps, {
     RESET_CURRENT_ORDER: dispatch_RESET_CURRENT_ORDER_STATES,
     CHECK_OUT_THIS_ORDER: dispatch_CHECK_OUT_ORDER,
-    GET_THE_COMPLETE_ITEMS_LIST
+    dispatch_GetTheCompleteItemsList
 })(ViewOrder));

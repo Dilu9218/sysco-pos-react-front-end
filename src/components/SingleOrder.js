@@ -66,12 +66,12 @@ class SingleOrder extends Component {
 
 SingleOrder.propTypes = {
     PREPARE_ORDER_AS_CURRENT: PropTypes.func.isRequired,
-    PASSKEY: PropTypes.string.isRequired
+    passKey: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    PASSKEY: state.uac.PASSKEY,
-    CURRENTORDER: state.ord.CURRENTORDER
+    passKey: state.uac.passKey,
+    currentOrder: state.ord.currentOrder
 });
 
 export default withRouter(connect(mapStateToProps, {

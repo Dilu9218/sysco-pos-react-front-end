@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 
 class ListItemInOrderDetailView extends Component {
 
-    REMOVE_ITEM_FROM_ORDER = () => {
-
-    }
-
     render() {
         let { productID, productTitle, description, quantity, price } = this.props.singleItem;
         return (
@@ -27,11 +23,11 @@ class ListItemInOrderDetailView extends Component {
                         <div className="card-body d-flex align-items-center"
                             style={{ padding: '5px 0px' }}>
                             <ItemCounterInListItem
-                                NAME={productID}
-                                MIN={1}
-                                COUNT={this.props.ITEMQUANTITY[productID] === undefined
-                                    ? 0 : this.props.ITEMQUANTITY[productID]}
-                                MAX={quantity + this.props.ITEMSLIST.find(
+                                name={productID}
+                                min={1}
+                                count={this.props.itemQuantity[productID] === undefined
+                                    ? 0 : this.props.itemQuantity[productID]}
+                                max={quantity + this.props.itemsList.find(
                                     I => I.productID === productID).quantity} />
                         </div>
                     </div>
@@ -50,15 +46,15 @@ class ListItemInOrderDetailView extends Component {
 }
 
 ListItemInOrderDetailView.propTypes = {
-    PASSKEY: PropTypes.string.isRequired,
-    ITEMQUANTITY: PropTypes.object.isRequired
+    passKey: PropTypes.string.isRequired,
+    itemQuantity: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    PASSKEY: state.uac.PASSKEY,
-    ITEMQUANTITY: state.ord.ITEMQUANTITY,
-    ITEMSLIST: state.itm.ITEMSLIST,
-    CURRENTORDER: state.ord.CURRENTORDER
+    passKey: state.uac.passKey,
+    itemQuantity: state.ord.itemQuantity,
+    itemsList: state.ord.itemsList,
+    currentOrder: state.ord.currentOrder
 });
 
 export default connect(mapStateToProps, null)(ListItemInOrderDetailView);

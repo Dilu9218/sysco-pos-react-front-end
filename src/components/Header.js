@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 export function ConditionalHeader(P) {
-    if (P.ISLOGGEDIN) {
+    if (P.isLoggedIn) {
         return (
             <div className="collapse navbar-collapse">
                 <Link className="navbar-brand"
@@ -53,7 +53,7 @@ class Header extends Component {
         return (
             <header>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <ConditionalHeader ISLOGGEDIN={this.props.ISLOGGEDIN} />
+                    <ConditionalHeader isLoggedIn={this.props.isLoggedIn} />
                 </nav>
             </header>
         );
@@ -61,11 +61,11 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-    ISLOGGEDIN: PropTypes.bool.isRequired
+    isLoggedIn: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-    ISLOGGEDIN: state.uac.ISLOGGEDIN
+    isLoggedIn: state.uac.isLoggedIn
 });
 
 export default connect(mapStateToProps, null)(Header)

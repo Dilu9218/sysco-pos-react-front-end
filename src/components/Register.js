@@ -17,7 +17,7 @@ class Register extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.ALERTMESSAGE !== this.props.ALERTMESSAGE) {
+        if (prevProps.alertMessage !== this.props.alertMessage) {
             this.setState({
                 username: '',
                 newpassword: '',
@@ -43,11 +43,11 @@ class Register extends Component {
     }
 
     render() {
-        if (this.props.ISLOGGEDIN) {
+        if (this.props.isLoggedIn) {
             return (
                 <Redirect to="/my_orders" />
             );
-        } else if (this.props.REGISTERED) {
+        } else if (this.props.registered) {
             return (
                 <Redirect to="/login" />
             );
@@ -58,10 +58,10 @@ class Register extends Component {
                     <div className='card'
                         style={{ marginTop: '9rem', width: '30%' }}>
                         <div className="card-body">
-                            <div className={this.props.ALERTMESSAGE !== ""
+                            <div className={this.props.alertMessage !== ""
                                 ? "alert alert-warning"
                                 : "alert alert-warning d-none"}>
-                                {this.props.ALERTMESSAGE}
+                                {this.props.alertMessage}
                             </div>
                             <form className="mx-2" onSubmit={this.onSubmit}>
                                 <div className="input-group my-3">
@@ -138,15 +138,15 @@ class Register extends Component {
 
 Register.propTypes = {
     REGISTER_USER: PropTypes.func.isRequired,
-    ALERTMESSAGE: PropTypes.string.isRequired,
-    REGISTERED: PropTypes.bool.isRequired,
-    ISLOGGEDIN: PropTypes.bool.isRequired
+    alertMessage: PropTypes.string.isRequired,
+    registered: PropTypes.bool.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    ISLOGGEDIN: state.uac.ISLOGGEDIN,
-    ALERTMESSAGE: state.reg.ALERTMESSAGE,
-    REGISTERED: state.reg.REGISTERED
+    isLoggedIn: state.uac.isLoggedIn,
+    alertMessage: state.reg.alertMessage,
+    registered: state.reg.registered
 });
 
 export default connect(mapStateToProps, { REGISTER_USER })(Register);

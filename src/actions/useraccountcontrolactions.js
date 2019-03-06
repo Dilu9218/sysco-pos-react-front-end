@@ -24,26 +24,26 @@ export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) 
                 if (res.status === 200) {
                     dispatch({
                         type: COMPLETE_REGISTRAION,
-                        ALERTMESSAGE: ''
+                        alertMessage: ''
                     });
                 }
             }).catch(err => {
                 if (err.response.status === 409) {
                     dispatch({
                         type: SHOW_REGISTER_ERROR,
-                        ALERTMESSAGE: 'User already exists'
+                        alertMessage: 'User already exists'
                     });
                 } else {
                     dispatch({
                         type: SHOW_REGISTER_ERROR,
-                        ALERTMESSAGE: 'Server error'
+                        alertMessage: 'Server error'
                     });
                 }
             });
     } else {
         dispatch({
             type: SHOW_REGISTER_ERROR,
-            ALERTMESSAGE: 'Passwords don\'t match'
+            alertMessage: 'Passwords don\'t match'
         });
     }
 }
@@ -54,7 +54,7 @@ export const LOG_USER_IN = (username, password) => (dispatch) => {
             if (res.status === 200) {
                 dispatch({
                     type: SAVE_PASS_KEY,
-                    PASSKEY: res.data.token
+                    passKey: res.data.token
                 });
             }
         }).catch(err => {
@@ -63,26 +63,26 @@ export const LOG_USER_IN = (username, password) => (dispatch) => {
                     case 401:
                         dispatch({
                             type: SHOW_LOGIN_ERROR,
-                            ALERTMESSAGE: 'Password is wrong'
+                            alertMessage: 'Password is wrong'
                         });
                         break;
                     case 404:
                         dispatch({
                             type: SHOW_LOGIN_ERROR,
-                            ALERTMESSAGE: 'User doesn\'t exist'
+                            alertMessage: 'User doesn\'t exist'
                         });
                         break;
                     default:
                         dispatch({
                             type: SHOW_LOGIN_ERROR,
-                            ALERTMESSAGE: 'Server error'
+                            alertMessage: 'Server error'
                         });
                         break;
                 }
             } catch (e) {
                 dispatch({
                     type: SHOW_LOGIN_ERROR,
-                    ALERTMESSAGE: 'Server error'
+                    alertMessage: 'Server error'
                 });
             }
         });
@@ -91,7 +91,7 @@ export const LOG_USER_IN = (username, password) => (dispatch) => {
 export const RE_LOG_USER_IN = (cookie) => (dispatch) => {
     dispatch({
         type: SAVE_PASS_KEY,
-        PASSKEY: cookie
+        passKey: cookie
     })
 }
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ItemCounterInListItem from './ItemCounterInListItem';
+import ItemCounterInCreateOrder from './ItemCounterInCreateOrder';
 
 class ListItemInOrder extends Component {
 
     render() {
-        let { productID, productTitle, description, quantity, price } = this.props.ITEM;
+        let { productID, productTitle, description, quantity, price } = this.props.item;
         return (
             <li className="list-group-item d-flex justify-content-right"
                 style={{ margin: '0px', padding: '0px', width: '100%' }}>
@@ -20,12 +20,11 @@ class ListItemInOrder extends Component {
                     <div className="col-2 card">
                         <div className="card-body d-flex align-items-center"
                             style={{ padding: '5px 0px' }}>
-                            <ItemCounterInListItem
-                                NAME={productID}
-                                MIN={1}
-                                MAX={quantity + (this.props.CLONEITEMQUANTITY === undefined
-                                    ? 0 : this.props.CLONEITEMQUANTITY)}
-                                COUNT={this.props.COUNT} />
+                            <ItemCounterInCreateOrder
+                                name={productID}
+                                min={1}
+                                max={quantity}
+                                quantity={this.props.quantity} />
                         </div>
                     </div>
                     <div className="col-2 card text-right">
