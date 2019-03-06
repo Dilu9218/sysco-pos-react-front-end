@@ -33,7 +33,9 @@ class SingleOrder extends Component {
         }
         return (
             <div className="card border-dark shadow" style={{ margin: '10px 0px' }}>
-                <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}>
+                <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}
+                    data-target={'#i' + _id} data-toggle="collapse" aria-expanded="true"
+                    aria-controls={'i' + _id}>
                     <div className="row" style={{ width: '100%', margin: '0px' }}>
                         <div className="col-10 d-flex justify-content-start" style={{ textAlign: 'initial' }}>
                             Order ID: {_id}</div>
@@ -42,7 +44,7 @@ class SingleOrder extends Component {
                         </div>
                     </div>
                 </div>
-                <ul className="list-group list-group-flush">
+                <ul id={'i' + _id} className="list-group list-group-flush panel-collapse collapse in">
                     {items.map((item) => (
                         <ListItemInSingleOrder
                             key={item._id}

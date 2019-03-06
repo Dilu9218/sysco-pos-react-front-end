@@ -53,8 +53,9 @@ class OrderList extends Component {
                 <div className="card" style={{ margin: '25px' }}>
                     <div className="card-body"
                         style={{ padding: '1.25rem 1.25rem 1rem 1.25rem' }}>
-                        <h5 className="card-title"
-                            style={{ margin: '0.5em 1em 0 0' }}>Order List</h5>
+                        <div className="alert alert-dark" role="alert"><h5
+                            style={{ margin: 'auto', textAlign: 'initial' }}>
+                            <i className="fas fa-th-list"></i> Order List</h5></div>
                         {this.props.orderList.map((order) => (
                             <SingleOrder key={order._id} ORDER={order} />
                         ))}

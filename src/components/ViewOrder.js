@@ -76,12 +76,12 @@ class ViewOrder extends Component {
         return (
             <div>
                 <Modal open={this.state.itemListOpen} onClose={this.ITEM_LIST_CLOSING} center
-                    styles={{ width: '100%', margin: '0px' }}>
+                    showCloseIcon={false}>
                     <div className="card" style={{ margin: '5px' }}>
                         <div className="card-body" style={{ padding: '0px' }}>
-                            <h5 className="card-title"
-                                style={{ margin: '0.5em 1em', textAlign: 'center', width: '100%' }}>
-                                Item List</h5>
+                            <div className="alert alert-dark" role="alert"><h5
+                                style={{ margin: 'auto', textAlign: 'initial' }}>
+                                <i className="fas fa-th-list"></i> Items List</h5></div>
                             {this.props.itemsList.filter((item) => {
                                 return ((item.quantity > 0) &&
                                     this.props.itemQuantity[item.productID] === undefined)

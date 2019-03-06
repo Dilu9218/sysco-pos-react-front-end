@@ -89,8 +89,9 @@ class CreateOrder extends Component {
                 <div>
                     <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
                         <div className="card-body">
-                            <h5 className="card-title"
-                                style={{ margin: '0.5em 1em' }}>Item List</h5>
+                            <div className="alert alert-dark" role="alert"><h5
+                                style={{ margin: 'auto', textAlign: 'initial' }}>
+                                <i className="fas fa-th-list"></i> Items List</h5></div>
                             {this.props.itemsList.filter((item) => {
                                 return (item.quantity > 0)
                             }).map((item) => (
