@@ -181,6 +181,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             return {
                 ...state,
                 total: state.total + (action.direction ? 1 : -1) * action.price,
+                currentOrder: action.updatedOrder,
                 itemQuantity: {
                     ...state.itemQuantity,
                     [action.id]: state.itemQuantity[action.id] + (action.direction ? 1 : -1)

@@ -178,7 +178,6 @@ export const dispatch_QuickDeleteThisItemFromQuantity = (id, orderID, count, pri
             productID: id,
             quantity: count
         }, { headers: { 'x-access-token': accesstoken } }).then(updatedOrder => {
-            console.log(updatedOrder);
             dispatch({
                 type: QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
                 updatedOrder: updatedOrder.data,
@@ -188,12 +187,22 @@ export const dispatch_QuickDeleteThisItemFromQuantity = (id, orderID, count, pri
         });
     };
 
-export const dispatch_QuickIndecrementItemFromQuantity = (id, direction, orderID, price) =>
+export const dispatch_QuickIndecrementItemFromQuantity = (
+    id, direction, count, orderID, price, accesstoken) =>
     (dispatch) => {
-        dispatch({
-            type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
-            id,
-            direction,
-            price
+        console.log(count);
+        axios.post(ORDER_REQUEST_ENDPOINT + `/${orderID}`, {
+            productID: id,
+            difference: 1 * (direction ? 1 : -1),
+            quantity: count + (1 * (direction ? 1 : -1))
+        }, { headers: { 'x-access-token': accesstoken } }).then(updatedOrder => {
+            console.log(updatedOrder.data);
+            dispatch({
+                type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
+                direction,
+                updatedOrder: updatedOrder.data,
+                id,
+                price
+            });
         });
     } 

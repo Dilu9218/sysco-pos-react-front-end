@@ -33,7 +33,8 @@ class ItemCounterInListItem extends Component {
         if (this.props.count !== this.props.max) {
             let P = this.props.itemsList.find(I => I.productID === this.props.name).price;
             this.props.dispatch_QuickIndecrementItemFromQuantity(
-                this.props.name, true, this.props.currentOrderID, P);
+                this.props.name, true, this.props.count, this.props.currentOrderID,
+                P, this.props.passKey);
         }
     }
 
@@ -45,7 +46,8 @@ class ItemCounterInListItem extends Component {
         if (this.props.count > this.props.min) {
             let P = this.props.itemsList.find(
                 I => I.productID === this.props.name).price;
-            this.props.dispatch_QuickIndecrementItemFromQuantity(this.props.name, false, P);
+            this.props.dispatch_QuickIndecrementItemFromQuantity(this.props.name, false,
+                this.props.count, this.props.currentOrderID, P, this.props.passKey);
         }
     }
 
