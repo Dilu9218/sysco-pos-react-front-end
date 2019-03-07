@@ -215,7 +215,6 @@ export const dispatch_QuickIndecrementItemFromQuantity = (
             difference: 1 * (direction ? 1 : -1),
             quantity: count + (1 * (direction ? 1 : -1))
         }, { headers: { 'x-access-token': accesstoken } }).then(updatedOrder => {
-            console.log(updatedOrder.data);
             dispatch({
                 type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
                 direction,

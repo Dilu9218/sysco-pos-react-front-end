@@ -19,7 +19,6 @@ describe('<Header />', () => {
     describe('render()', () => {
         test('renders the component', () => {
             const wrapper = shallow(<Header isLoggedIn={true} />);
-            console.log(wrapper.debug());
         });
     });
 });

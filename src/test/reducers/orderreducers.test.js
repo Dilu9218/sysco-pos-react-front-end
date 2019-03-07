@@ -225,16 +225,228 @@ describe('Current orders', () => {
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
     });
-
-    case ADD_THIS_ITEM_TO_QUANTITY:
-    return {
-        ...state,
-        itemQuantity: {
-            ...state.itemQuantity,
-            [action.id]: 0
-        }
-    }
-
+    it('Adds an item to item quantity', () => {
+        const action = {
+            type: ADD_THIS_ITEM_TO_QUANTITY,
+            id: 'ITEM'
+        };
+        const expectation = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 0,
+            itemQuantity: { 'ITEM': 0 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
+    });
+    it('Deletes an item from item quantity', () => {
+        const action = {
+            type: DELETE_THIS_ITEM_FROM_QUANTITY,
+            price: 10,
+            id: 'A'
+        };
+        const init = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 100,
+            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        const expectation = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 90,
+            itemQuantity: { 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
+    });
+    it('Adds removes items from item quantity', () => {
+        const action = {
+            type: INDECREMENT_ITEM_FROM_QUANTITY,
+            direction: true,
+            price: 10,
+            id: 'A'
+        };
+        const init = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 100,
+            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        const expectation = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 110,
+            itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
+    });
+    it('Adds updated order to order list', () => {
+        const action = {
+            type: ADD_THESE_ITEMS_TO_THIS_ORDER,
+            updatedOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'A': 1, 'B': 2 }]
+            }
+        };
+        const expectation = {
+            itemsList: [],
+            orderList: [{
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'A': 1, 'B': 2 }]
+            }],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 0,
+            itemQuantity: {},
+            clonedItemQuantity: {},
+            url: '',
+            status: true
+        };
+        expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
+    });
+    describe('Append item to this order', () => {
+        const action = {
+            type: APPEND_THIS_ITEM_TO_ORDER,
+            productID: 'A',
+            currentOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'A': 1 }]
+            }
+        };
+        const init = {
+            itemsList: [{ productID: 'A', quantity: 10 }, { productID: 'B', quantity: 20 }],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 0,
+            itemQuantity: {},
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        const expectation = {
+            itemsList: [{ productID: 'B', quantity: 20 }, { productID: 'A', quantity: 9 }],
+            orderList: [],
+            currentOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'A': 1 }]
+            },
+            currentOrderID: '',
+            total: 0,
+            itemQuantity: { 'A': 1 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
+    });
+    it('Quickly removes items from item quantity', () => {
+        const action = {
+            type: QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
+            price: 10,
+            id: 'A',
+            updatedOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'B': 1 }]
+            }
+        };
+        const init = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 100,
+            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        const expectation = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'B': 1 }]
+            },
+            currentOrderID: '',
+            total: 90,
+            itemQuantity: { 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
+    });
+    it('Quickly changes items from item quantity', () => {
+        const action = {
+            type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
+            direction: true,
+            price: 10,
+            id: 'A',
+            updatedOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'B': 1 }]
+            }
+        };
+        const init = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 100,
+            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        const expectation = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'B': 1 }]
+            },
+            currentOrderID: '',
+            total: 110,
+            itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
+    });
 });
 
 describe('Initial state', () => {
@@ -245,85 +457,3 @@ describe('Initial state', () => {
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(initialState);
     });
 });
-
-/*
-describe('Initial state of user account control reducer', () => {
-
-    const initialState = {
-        passKey: '',
-        alertMessage: '',
-        isLoggedIn: false
-    };
-
-    it('Initial state is as expected', () => {
-        const action = {
-            type: 'DEFAULT'
-        };
-        expect(PASS_KEY_REDUCER(undefined, action)).toEqual(initialState);
-    });
-    it('State updates with passkey', () => {
-        const action = {
-            type: SAVE_PASS_KEY,
-            passKey: 'testkey'
-        };
-        const expectation = {
-            passKey: 'testkey',
-            alertMessage: '',
-            isLoggedIn: true
-        };
-        expect(PASS_KEY_REDUCER(undefined, action)).toEqual(expectation);
-    });
-    it('Clears passKey', () => {
-        const action = {
-            type: CLEAR_PASS_KEY
-        };
-        expect(PASS_KEY_REDUCER(undefined, action)).toEqual(initialState);
-    });
-    it('Shows login errors properly', () => {
-        const action = {
-            type: SHOW_LOGIN_ERROR,
-            alertMessage: 'Error message'
-        };
-        const expectation = {
-            passKey: '',
-            alertMessage: 'Error message',
-            isLoggedIn: false
-        };
-        expect(PASS_KEY_REDUCER(undefined, action)).toEqual(expectation);
-    });
-});
-
-describe('Initial state of user registration', () => {
-
-    const initialState = {
-        alertMessage: '',
-        registered: false
-    };
-    it('Initial state is as expected', () => {
-        const action = {
-            type: 'DEFAULT'
-        };
-        expect(REGISTRATION_REDUCER(undefined, action)).toEqual(initialState);
-    });
-    it('Shows registration errors properly', () => {
-        const action = {
-            type: SHOW_REGISTER_ERROR,
-            alertMessage: 'testMessage'
-        };
-        const expectation = {
-            alertMessage: 'testMessage',
-            registered: false
-        };
-        expect(REGISTRATION_REDUCER(undefined, action)).toEqual(expectation);
-    });
-    it('Completes registration', () => {
-        const action = {
-            type: COMPLETE_REGISTRAION
-        };
-        const expectation = {
-            alertMessage: '',
-            registered: true
-        };
-        expect(REGISTRATION_REDUCER(undefined, action)).toEqual(expectation);
-    })
-}); */
