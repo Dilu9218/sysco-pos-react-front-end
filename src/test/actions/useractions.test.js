@@ -7,13 +7,13 @@ import {
     SHOW_REGISTER_ERROR,
     COMPLETE_REGISTRAION,
     CLEAR_PASS_KEY
-} from '../actions/types';
+} from '../../actions/types';
 import {
     REGISTER_USER,
     LOG_USER_IN,
     LOG_USER_OUT,
     RE_LOG_USER_IN
-} from '../actions/useraccountcontrolactions';
+} from '../../actions/useraccountcontrolactions';
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares);

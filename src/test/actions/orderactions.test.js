@@ -22,7 +22,7 @@ import {
     ERROR_DELETE_THIS_ORDER,
     ERROR_APPEND_THIS_ITEM_TO_ORDER,
     ERROR_CHECK_OUT_ORDER
-} from '../actions/types';
+} from '../../actions/types';
 import {
     dispatch_CreateNewOrderForThisUser,
     dispatch_AddTheseItemsToThisOrder,
@@ -38,7 +38,7 @@ import {
     dispatch_QuickIndecrementItemFromQuantity,
     dispatch_ResetCurrentOrderStates,
     dispatch_SetThisOrderAsCurrentOrder
-} from '../actions/ordercontrolactions';
+} from '../../actions/ordercontrolactions';
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares);

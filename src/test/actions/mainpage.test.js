@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from './enzyme';
+import { shallow } from '../enzyme';
 
-import MainPage from '../pages/mainpage';
+import MainPage from '../../pages/mainpage';
 
 describe('Main page', () => {
 
