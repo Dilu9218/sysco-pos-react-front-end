@@ -15,7 +15,7 @@ import {
 
 export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) => {
     if (newpassword === conpassword) {
-        axios.post(USER_REGISTER_ENDPOINT, {
+        return axios.post(USER_REGISTER_ENDPOINT, {
             username: username,
             password: newpassword,
             isAdmin: false
@@ -49,7 +49,7 @@ export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) 
 }
 
 export const LOG_USER_IN = (username, password) => (dispatch) => {
-    axios.post(USER_LOGIN_ENDPOINT, { username, password })
+    return axios.post(USER_LOGIN_ENDPOINT, { username, password })
         .then(res => {
             if (res.status === 200) {
                 dispatch({
@@ -79,12 +79,7 @@ export const LOG_USER_IN = (username, password) => (dispatch) => {
                         });
                         break;
                 }
-            } catch (e) {
-                dispatch({
-                    type: SHOW_LOGIN_ERROR,
-                    alertMessage: 'Server error'
-                });
-            }
+            } catch (e) { }
         });
 };
 

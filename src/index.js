@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './redux.store';
 import ErrorBoundary from './components/ErrorBoundary';
 
-ReactDOM.render(
+export default ReactDOM.render(
     <CookiesProvider>
         <Provider store={store}>
             <ErrorBoundary>
