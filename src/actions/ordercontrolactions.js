@@ -47,7 +47,7 @@ export const dispatch_CreateNewOrderForThisUser = (accesstoken) => (dispatch) =>
         .catch(err => console.log(err));
 }
 
-export const dispatch_FETCH_EVERY_ORDER_FOR_THIS_USER = (accesstoken) => (dispatch) => {
+export const dispatch_FetchEveryOrderForThisUser = (accesstoken) => (dispatch) => {
     axios.get(ORDER_LIST_ENDPOINT,
         { headers: { 'x-access-token': accesstoken } })
         .then(res => {
@@ -63,13 +63,13 @@ export const dispatch_FETCH_EVERY_ORDER_FOR_THIS_USER = (accesstoken) => (dispat
         });
 }
 
-export const dispatch_RESET_CURRENT_ORDER_STATES = () => (dispatch) => {
+export const dispatch_ResetCurrentOrderStates = () => (dispatch) => {
     dispatch({
         type: RESET_CURRENT_ORDER_STATES
     });
 }
 
-export const dispatch_CHECK_OUT_ORDER = (id, accesstoken) => (dispatch) => {
+export const dispatch_CheckOutOrder = (id, accesstoken) => (dispatch) => {
     axios.delete(ORDER_CHECKOUT_ENDPOINT + `/${id}`,
         { headers: { 'x-access-token': accesstoken } })
         .then(checkedOut => {
@@ -82,7 +82,7 @@ export const dispatch_CHECK_OUT_ORDER = (id, accesstoken) => (dispatch) => {
         });
 }
 
-export const dispatch_SET_THIS_ORDER_AS_CURRENT_ORDER = (order, url) => (dispatch) => {
+export const dispatch_SetThisOrderAsCurrentOrder = (order, url) => (dispatch) => {
     dispatch({
         type: SET_THIS_ORDER_AS_CURRENT_ORDER,
         currentOrder: order,
@@ -90,7 +90,7 @@ export const dispatch_SET_THIS_ORDER_AS_CURRENT_ORDER = (order, url) => (dispatc
     });
 }
 
-export const dispatch_DELETE_THIS_ORDER = (id, accesstoken) => (dispatch) => {
+export const dispatch_DeleteThisOrder = (id, accesstoken) => (dispatch) => {
     axios.delete(ORDER_REQUEST_ENDPOINT + `/${id}`,
         { headers: { 'x-access-token': accesstoken } })
         .then(deletedOrder => {
@@ -103,14 +103,14 @@ export const dispatch_DELETE_THIS_ORDER = (id, accesstoken) => (dispatch) => {
         });
 }
 
-export const dispatch_ADD_THIS_ITEM_TO_QUANTITY = (id) => (dispatch) => {
+export const dispatch_AddThisItemToQuantity = (id) => (dispatch) => {
     dispatch({
         type: ADD_THIS_ITEM_TO_QUANTITY,
         id
     });
 }
 
-export const dispatch_DELETE_THIS_ITEM_FROM_QUANTITY = (id, price) => (dispatch) => {
+export const dispatch_DeleteThisItemFromQuantity = (id, price) => (dispatch) => {
     dispatch({
         type: DELETE_THIS_ITEM_FROM_QUANTITY,
         id,
@@ -118,7 +118,7 @@ export const dispatch_DELETE_THIS_ITEM_FROM_QUANTITY = (id, price) => (dispatch)
     });
 }
 
-export const dispatch_INDECREMENT_ITEM_FROM_QUANTITY = (id, direction, price) => (dispatch) => {
+export const dispatch_IndecrementItemFromQuantity = (id, direction, price) => (dispatch) => {
     dispatch({
         type: INDECREMENT_ITEM_FROM_QUANTITY,
         id,
@@ -127,7 +127,7 @@ export const dispatch_INDECREMENT_ITEM_FROM_QUANTITY = (id, direction, price) =>
     });
 }
 
-export const dispatch_ADD_THESE_ITEMS_TO_THIS_ORDER = (id, items, accesstoken) => (dispatch) => {
+export const dispatch_AddTheseItemsToThisOrder = (id, items, accesstoken) => (dispatch) => {
     axios.put(ADD_TO_ORDER_ENDPOINT + `/${id}`, { items },
         { headers: { 'x-access-token': accesstoken } })
         .then(res => {

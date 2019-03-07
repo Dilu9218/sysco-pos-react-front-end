@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { dispatch_SET_THIS_ORDER_AS_CURRENT_ORDER } from '../actions/ordercontrolactions';
+import { dispatch_SetThisOrderAsCurrentOrder } from '../actions/ordercontrolactions';
 import ListItemInSingleOrder from './ListItemInSingleOrder';
 
 class SingleOrder extends Component {
@@ -12,20 +12,20 @@ class SingleOrder extends Component {
      * view_order where it will fetch the order details and display content of
      * the order to user
      *************************************************************************/
-    VIEW_THIS_ORDER = () => {
-        this.props.PREPARE_ORDER_AS_CURRENT(this.props.ORDER, '/view_order');
+    viewThisOrder = () => {
+        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, '/view_order');
     }
 
     /**************************************************************************
      * Triggers an action to dispatch an event to remove the order from state
      * and collection
      *************************************************************************/
-    DELETE_THIS_ORDER = () => {
-        this.props.PREPARE_ORDER_AS_CURRENT(this.props.ORDER, '/delete_order');
+    deleteThisOrder = () => {
+        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, '/delete_order');
     }
 
     render() {
-        let { _id, items } = this.props.ORDER;
+        let { _id, items } = this.props.order;
         let totalCost = 0;
         for (var i = 0; i < items.length; i++) {
             let { quantity, price } = items[i];
@@ -54,11 +54,11 @@ class SingleOrder extends Component {
                 <div className="card-footer d-flex justify-content-end">
                     <Link to="#"
                         className="card-link"
-                        onClick={this.VIEW_THIS_ORDER}>
+                        onClick={this.viewThisOrder}>
                         <i className="fas fa-list-alt"></i> View</Link>
                     <Link to="#"
                         className="card-link delete"
-                        onClick={this.DELETE_THIS_ORDER}>
+                        onClick={this.deleteThisOrder}>
                         <i className="fas fa-trash"></i> Delete</Link>
                 </div>
             </div>
@@ -67,7 +67,7 @@ class SingleOrder extends Component {
 }
 
 SingleOrder.propTypes = {
-    PREPARE_ORDER_AS_CURRENT: PropTypes.func.isRequired,
+    dispatch_SetThisOrderAsCurrentOrder: PropTypes.func.isRequired,
     passKey: PropTypes.string.isRequired
 };
 
@@ -77,5 +77,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(connect(mapStateToProps, {
-    PREPARE_ORDER_AS_CURRENT: dispatch_SET_THIS_ORDER_AS_CURRENT_ORDER
+    dispatch_SetThisOrderAsCurrentOrder
 })(SingleOrder));

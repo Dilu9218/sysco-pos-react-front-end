@@ -7,8 +7,8 @@ import ListItemInViewOrder from './ListItemInViewOrder';
 import ListItemInAddNewItemsToOrder from './ListItemInAddNewItemsToOrder';
 import {
     dispatch_GetTheCompleteItemsList,
-    dispatch_RESET_CURRENT_ORDER_STATES,
-    dispatch_CHECK_OUT_ORDER
+    dispatch_ResetCurrentOrderStates,
+    dispatch_CheckOutOrder
 } from '../actions/ordercontrolactions';
 
 class ViewOrder extends Component {
@@ -24,11 +24,11 @@ class ViewOrder extends Component {
         this.props.dispatch_GetTheCompleteItemsList(this.props.passKey);
     }
 
-    DISPLAY_ITEMS_LIST = () => {
+    displayItemsList = () => {
         this.setState({ itemListOpen: true });
     }
 
-    ITEM_LIST_CLOSING = () => {
+    itemListClosing = () => {
         this.setState({ itemListOpen: false });
     }
 
@@ -36,7 +36,7 @@ class ViewOrder extends Component {
      * This method will redirect user back to orders list without making any
      * change to collections or order states
      *************************************************************************/
-    CANCEL_CHECK_OUT = () => {
+    cancelCheckOut = () => {
         this.props.history.push('/my_orders');
     }
 
@@ -44,8 +44,8 @@ class ViewOrder extends Component {
      * Checking out an order will delete the order from order collection and
      * the item counts won't get changed
      *************************************************************************/
-    CHECK_OUT_THIS_ORDER = () => {
-        this.props.CHECK_OUT_THIS_ORDER(
+    checkOutThisOrder = () => {
+        this.props.dispatch_CheckOutOrder(
             this.props.currentOrder._id,
             this.props.passKey
         );
@@ -64,7 +64,7 @@ class ViewOrder extends Component {
     // When the view is unmounted, clean up the saved states as we are using
     // the same state variables to populate other views such as edit order
     componentWillUnmount() {
-        this.props.RESET_CURRENT_ORDER();
+        this.props.dispatch_ResetCurrentOrderStates();
     }
 
     render() {
@@ -75,7 +75,7 @@ class ViewOrder extends Component {
         }
         return (
             <div>
-                <Modal open={this.state.itemListOpen} onClose={this.ITEM_LIST_CLOSING} center
+                <Modal open={this.state.itemListOpen} onClose={this.itemListClosing} center
                     showCloseIcon={false}>
                     <div className="card" style={{ margin: '5px' }}>
                         <div className="card-body" style={{ padding: '0px' }}>
@@ -129,17 +129,17 @@ class ViewOrder extends Component {
                     <div className="card-body" style={{ paddingTop: '0px' }}>
                         <div className="row">
                             <div className="col-4 d-flex justify-content-start d-inline">
-                                <button onClick={this.DISPLAY_ITEMS_LIST}
+                                <button onClick={this.displayItemsList}
                                     className="btn btn-primary"
                                     style={{ marginLeft: '10px' }}>
                                     <i className="fas fa-plus-circle"></i> Add Items</button>
                             </div>
                             <div className="col-8 d-flex justify-content-end">
-                                <button onClick={this.CHECK_OUT_THIS_ORDER}
+                                <button onClick={this.checkOutThisOrder}
                                     className="btn btn-success"
                                     style={{ marginRight: '10px' }}>
                                     <i className="fas fa-shopping-cart"></i> Checkout</button>
-                                <button onClick={this.CANCEL_CHECK_OUT}
+                                <button onClick={this.cancelCheckOut}
                                     className="btn btn-danger">
                                     <i className="fas fa-times-circle"></i> Cancel</button>
                             </div>
@@ -155,8 +155,8 @@ ViewOrder.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     currentOrder: PropTypes.object.isRequired,
     passKey: PropTypes.string.isRequired,
-    RESET_CURRENT_ORDER: PropTypes.func.isRequired,
-    CHECK_OUT_THIS_ORDER: PropTypes.func.isRequired,
+    dispatch_ResetCurrentOrderStates: PropTypes.func.isRequired,
+    dispatch_CheckOutOrder: PropTypes.func.isRequired,
     dispatch_GetTheCompleteItemsList: PropTypes.func.isRequired
 };
 
@@ -171,7 +171,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(connect(mapStateToProps, {
-    RESET_CURRENT_ORDER: dispatch_RESET_CURRENT_ORDER_STATES,
-    CHECK_OUT_THIS_ORDER: dispatch_CHECK_OUT_ORDER,
+    dispatch_ResetCurrentOrderStates,
+    dispatch_CheckOutOrder,
     dispatch_GetTheCompleteItemsList
 })(ViewOrder));

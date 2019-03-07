@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-    dispatch_ADD_THIS_ITEM_TO_QUANTITY,
-    dispatch_DELETE_THIS_ITEM_FROM_QUANTITY,
-    dispatch_INDECREMENT_ITEM_FROM_QUANTITY
+    dispatch_AddThisItemToQuantity,
+    dispatch_DeleteThisItemFromQuantity,
+    dispatch_IndecrementItemFromQuantity
 } from '../actions/ordercontrolactions';
 
 function RenderDeleteButton(props) {
@@ -36,11 +36,11 @@ class ItemCounterInCreateOrder extends Component {
     /**************************************************************************
      * Triggers the parent component method to clear the count for this item
      *************************************************************************/
-    DELETE_THIS_ITEM = (e) => {
+    deleteThisItem = (e) => {
         e.preventDefault();
         let P = this.props.itemsList.find(
             I => I.productID === this.props.name).price;
-        this.props.DELETE_THIS_ITEM_FROM_ITEMQUANTITY(this.props.name, P);
+        this.props.dispatch_DeleteThisItemFromQuantity(this.props.name, P);
     }
 
     /**************************************************************************
@@ -52,11 +52,11 @@ class ItemCounterInCreateOrder extends Component {
         e.preventDefault();
         if (this.props.quantity !== this.props.max) {
             if (this.props.quantity === 0) {
-                this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY(this.props.name);
+                this.props.dispatch_AddThisItemToQuantity(this.props.name);
             }
             let P = this.props.itemsList.find(
                 I => I.productID === this.props.name).price;
-            this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.name, true, P);
+            this.props.dispatch_IndecrementItemFromQuantity(this.props.name, true, P);
         }
     }
 
@@ -68,9 +68,9 @@ class ItemCounterInCreateOrder extends Component {
         if (this.props.quantity > this.props.min) {
             let P = this.props.itemsList.find(
                 I => I.productID === this.props.name).price;
-            this.props.INDECREMENT_ITEM_FROM_ITEMQUANTITY(this.props.name, false, P);
+            this.props.dispatch_IndecrementItemFromQuantity(this.props.name, false, P);
         } else if (this.props.quantity === this.props.min) {
-            this.DELETE_THIS_ITEM(e);
+            this.deleteThisItem(e);
         }
     }
 
@@ -90,7 +90,7 @@ class ItemCounterInCreateOrder extends Component {
                     </div>
                     <RenderDeleteButton
                         quantity={this.props.quantity}
-                        DELETE_THIS_ITEM={this.DELETE_THIS_ITEM} />
+                        DELETE_THIS_ITEM={this.deleteThisItem} />
                 </div>
             </React.Fragment>
         );
@@ -100,9 +100,9 @@ class ItemCounterInCreateOrder extends Component {
 
 
 ItemCounterInCreateOrder.propTypes = {
-    ADD_THIS_ITEM_TO_ITEMQUANTITY: PropTypes.func.isRequired,
-    INDECREMENT_ITEM_FROM_ITEMQUANTITY: PropTypes.func.isRequired,
-    DELETE_THIS_ITEM_FROM_ITEMQUANTITY: PropTypes.func.isRequired
+    dispatch_AddThisItemToQuantity: PropTypes.func.isRequired,
+    dispatch_IndecrementItemFromQuantity: PropTypes.func.isRequired,
+    dispatch_DeleteThisItemFromQuantity: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -115,7 +115,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    ADD_THIS_ITEM_TO_ITEMQUANTITY: dispatch_ADD_THIS_ITEM_TO_QUANTITY,
-    INDECREMENT_ITEM_FROM_ITEMQUANTITY: dispatch_INDECREMENT_ITEM_FROM_QUANTITY,
-    DELETE_THIS_ITEM_FROM_ITEMQUANTITY: dispatch_DELETE_THIS_ITEM_FROM_QUANTITY
+    dispatch_AddThisItemToQuantity,
+    dispatch_IndecrementItemFromQuantity,
+    dispatch_DeleteThisItemFromQuantity
 })(ItemCounterInCreateOrder);

@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import ListItemInCreateOrder from './ListItemInCreateOrder';
 import {
     dispatch_CreateNewOrderForThisUser,
-    dispatch_DELETE_THIS_ORDER,
+    dispatch_DeleteThisOrder,
     dispatch_GetTheCompleteItemsList,
-    dispatch_RESET_CURRENT_ORDER_STATES,
-    dispatch_ADD_THESE_ITEMS_TO_THIS_ORDER
+    dispatch_ResetCurrentOrderStates,
+    dispatch_AddTheseItemsToThisOrder
 } from '../actions/ordercontrolactions';
 
 /***************************************************************************************************
@@ -32,7 +32,7 @@ class CreateOrder extends Component {
      * and update the state with added data
      **********************************************************************************************/
     addSelectedItemsToThisOrder = () => {
-        this.props.dispatch_ADD_THESE_ITEMS_TO_THIS_ORDER(
+        this.props.dispatch_AddTheseItemsToThisOrder(
             this.props.currentOrderID,
             this.props.itemQuantity,
             this.props.passKey
@@ -46,11 +46,11 @@ class CreateOrder extends Component {
      *************************************************************************/
     CANCEL_THE_ORDER = () => {
         if (Object.keys(this.props.itemQuantity).length === 0) {
-            this.props.dispatch_DELETE_THIS_ORDER(
+            this.props.dispatch_DeleteThisOrder(
                 this.props.currentOrderID,
                 this.props.passKey
             );
-            this.props.dispatch_RESET_CURRENT_ORDER_STATES();
+            this.props.dispatch_ResetCurrentOrderStates();
         }
     }
 
@@ -61,7 +61,7 @@ class CreateOrder extends Component {
             this.props.history.push('/my_orders');
         }
         if (this.props.status) {
-            this.props.dispatch_RESET_CURRENT_ORDER_STATES();
+            this.props.dispatch_ResetCurrentOrderStates();
             this.props.history.push('/my_orders');
         }
     }
@@ -73,9 +73,9 @@ class CreateOrder extends Component {
      *************************************************************************/
     componentWillUnmount() {
         if (Object.keys(this.props.itemQuantity).length === 0) {
-            this.props.dispatch_DELETE_THIS_ORDER(
+            this.props.dispatch_DeleteThisOrder(
                 this.props.currentOrderID, this.props.passKey);
-            this.props.dispatch_RESET_CURRENT_ORDER_STATES();
+            this.props.dispatch_ResetCurrentOrderStates();
         }
     }
 
@@ -148,9 +148,9 @@ class CreateOrder extends Component {
 
 CreateOrder.propTypes = {
     dispatch_CreateNewOrderForThisUser: PropTypes.func.isRequired,
-    dispatch_DELETE_THIS_ORDER: PropTypes.func.isRequired,
-    dispatch_ADD_THESE_ITEMS_TO_THIS_ORDER: PropTypes.func.isRequired,
-    dispatch_RESET_CURRENT_ORDER_STATES: PropTypes.func.isRequired,
+    dispatch_DeleteThisOrder: PropTypes.func.isRequired,
+    dispatch_AddTheseItemsToThisOrder: PropTypes.func.isRequired,
+    dispatch_ResetCurrentOrderStates: PropTypes.func.isRequired,
     dispatch_GetTheCompleteItemsList: PropTypes.func.isRequired,
     passKey: PropTypes.string.isRequired,
     isLoggedIn: PropTypes.bool.isRequired
@@ -168,8 +168,8 @@ const mapStateToProps = (state) => ({
 
 export default withRouter(connect(mapStateToProps, {
     dispatch_CreateNewOrderForThisUser,
-    dispatch_RESET_CURRENT_ORDER_STATES,
-    dispatch_DELETE_THIS_ORDER,
-    dispatch_ADD_THESE_ITEMS_TO_THIS_ORDER,
+    dispatch_ResetCurrentOrderStates,
+    dispatch_DeleteThisOrder,
+    dispatch_AddTheseItemsToThisOrder,
     dispatch_GetTheCompleteItemsList
 })(CreateOrder));
