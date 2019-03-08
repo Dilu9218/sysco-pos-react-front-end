@@ -48,7 +48,7 @@ export function ConditionalHeader(P) {
  * the log state of user. The final render will be conditioned on that and will
  * be rendered using `ConditionalHeader` component in this same component class
  *****************************************************************************/
-class Header extends Component {
+export class Header extends Component {
     render() {
         return (
             <header>

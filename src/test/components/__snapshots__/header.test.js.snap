@@ -1,0 +1,404 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConditionalHeader /> component mounts the component with login false 1`] = `
+<ConditionalHeader
+  isLoggedIn={false}
+>
+  <div
+    className="collapse navbar-collapse"
+  >
+    <Link
+      className="navbar-brand"
+      replace={false}
+      style={
+        Object {
+          "paddingTop": "0px",
+        }
+      }
+      to="/"
+    >
+      <a
+        className="navbar-brand"
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "paddingTop": "0px",
+          }
+        }
+      >
+        Sysco PoS System
+      </a>
+    </Link>
+    <div
+      className="navbar-nav ml-auto"
+    >
+      <Link
+        className="nav-item nav-link"
+        replace={false}
+        to="/login"
+      >
+        <a
+          className="nav-item nav-link"
+          href="/login"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-sign-in-alt"
+          />
+           Login
+        </a>
+      </Link>
+      <Link
+        className="nav-item nav-link"
+        replace={false}
+        to="/register"
+      >
+        <a
+          className="nav-item nav-link"
+          href="/register"
+          onClick={[Function]}
+        >
+          Register
+        </a>
+      </Link>
+    </div>
+  </div>
+</ConditionalHeader>
+`;
+
+exports[`<ConditionalHeader /> component mounts the component with login true 1`] = `
+<ConditionalHeader
+  isLoggedIn={true}
+>
+  <div
+    className="collapse navbar-collapse"
+  >
+    <Link
+      className="navbar-brand"
+      replace={false}
+      style={
+        Object {
+          "paddingTop": "0px",
+        }
+      }
+      to="/"
+    >
+      <a
+        className="navbar-brand"
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "paddingTop": "0px",
+          }
+        }
+      >
+        Sysco PoS System
+      </a>
+    </Link>
+    <div
+      className="navbar-nav mr-auto mt-2 mt-lg-0"
+    >
+      <Link
+        className="nav-item nav-link"
+        replace={false}
+        to="/my_orders"
+      >
+        <a
+          className="nav-item nav-link"
+          href="/my_orders"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-list-ul"
+          />
+           My Orders
+        </a>
+      </Link>
+      <Link
+        className="nav-item nav-link"
+        replace={false}
+        to="/create_order"
+      >
+        <a
+          className="nav-item nav-link"
+          href="/create_order"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-plus"
+          />
+           Create Order
+        </a>
+      </Link>
+    </div>
+    <div
+      className="navbar-nav my-2 my-lg-0"
+    >
+      <Link
+        className="nav-item nav-link"
+        replace={false}
+        to="/logout"
+      >
+        <a
+          className="nav-item nav-link"
+          href="/logout"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-sign-out-alt"
+          />
+           Logout
+        </a>
+      </Link>
+    </div>
+  </div>
+</ConditionalHeader>
+`;
+
+exports[`<ConditionalHeader /> component renders the component 1`] = `
+<div
+  className="collapse navbar-collapse"
+>
+  <Link
+    className="navbar-brand"
+    replace={false}
+    style={
+      Object {
+        "paddingTop": "0px",
+      }
+    }
+    to="/"
+  >
+    Sysco PoS System
+  </Link>
+  <div
+    className="navbar-nav mr-auto mt-2 mt-lg-0"
+  >
+    <Link
+      className="nav-item nav-link"
+      replace={false}
+      to="/my_orders"
+    >
+      <i
+        className="fas fa-list-ul"
+      />
+       My Orders
+    </Link>
+    <Link
+      className="nav-item nav-link"
+      replace={false}
+      to="/create_order"
+    >
+      <i
+        className="fas fa-plus"
+      />
+       Create Order
+    </Link>
+  </div>
+  <div
+    className="navbar-nav my-2 my-lg-0"
+  >
+    <Link
+      className="nav-item nav-link"
+      replace={false}
+      to="/logout"
+    >
+      <i
+        className="fas fa-sign-out-alt"
+      />
+       Logout
+    </Link>
+  </div>
+</div>
+`;
+
+exports[`<Header /> component mounts the component with login false 1`] = `
+<Header
+  isLoggedIn={false}
+>
+  <header>
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light"
+    >
+      <ConditionalHeader
+        isLoggedIn={false}
+      >
+        <div
+          className="collapse navbar-collapse"
+        >
+          <Link
+            className="navbar-brand"
+            replace={false}
+            style={
+              Object {
+                "paddingTop": "0px",
+              }
+            }
+            to="/"
+          >
+            <a
+              className="navbar-brand"
+              href="/"
+              onClick={[Function]}
+              style={
+                Object {
+                  "paddingTop": "0px",
+                }
+              }
+            >
+              Sysco PoS System
+            </a>
+          </Link>
+          <div
+            className="navbar-nav ml-auto"
+          >
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/login"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/login"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-sign-in-alt"
+                />
+                 Login
+              </a>
+            </Link>
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/register"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/register"
+                onClick={[Function]}
+              >
+                Register
+              </a>
+            </Link>
+          </div>
+        </div>
+      </ConditionalHeader>
+    </nav>
+  </header>
+</Header>
+`;
+
+exports[`<Header /> component mounts the component with login true 1`] = `
+<Header
+  isLoggedIn={true}
+>
+  <header>
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light"
+    >
+      <ConditionalHeader
+        isLoggedIn={true}
+      >
+        <div
+          className="collapse navbar-collapse"
+        >
+          <Link
+            className="navbar-brand"
+            replace={false}
+            style={
+              Object {
+                "paddingTop": "0px",
+              }
+            }
+            to="/"
+          >
+            <a
+              className="navbar-brand"
+              href="/"
+              onClick={[Function]}
+              style={
+                Object {
+                  "paddingTop": "0px",
+                }
+              }
+            >
+              Sysco PoS System
+            </a>
+          </Link>
+          <div
+            className="navbar-nav mr-auto mt-2 mt-lg-0"
+          >
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/my_orders"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/my_orders"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-list-ul"
+                />
+                 My Orders
+              </a>
+            </Link>
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/create_order"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/create_order"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-plus"
+                />
+                 Create Order
+              </a>
+            </Link>
+          </div>
+          <div
+            className="navbar-nav my-2 my-lg-0"
+          >
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/logout"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/logout"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-sign-out-alt"
+                />
+                 Logout
+              </a>
+            </Link>
+          </div>
+        </div>
+      </ConditionalHeader>
+    </nav>
+  </header>
+</Header>
+`;
+
+exports[`<Header /> component renders the component 1`] = `
+<header>
+  <nav
+    className="navbar navbar-expand-lg navbar-light bg-light"
+  >
+    <ConditionalHeader
+      isLoggedIn={true}
+    />
+  </nav>
+</header>
+`;
