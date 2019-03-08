@@ -38,12 +38,12 @@ class SingleOrder extends Component {
                     aria-controls={'i' + _id}>
                     <div className="row" style={{ width: '100%', margin: '0px' }}>
                         <div className="col-10 d-flex justify-content-start" style={{ textAlign: 'initial' }}>
-                            <p className="badge badge-secondary"
+                            Order ID: {_id}</div>
+                        <div className="col-2 d-flex justify-content-end" style={{ textAlign: 'initial' }}>
+                            <b><p className="badge badge-secondary"
                                 style={{
                                     margin: 'unset', marginRight: '10px', padding: '5px'
-                                }}><i className="fas fa-comment-dots"></i> {items.length}</p>Order ID: {_id}</div>
-                        <div className="col-2 d-flex justify-content-end" style={{ textAlign: 'initial' }}>
-                            <b>Rs. {totalCost.toFixed(2)}</b>
+                                }}><i className="fab fa-slack-hash"></i> {items.length}</p> Rs. {totalCost.toFixed(2)}</b>
                         </div>
                     </div>
                 </div>

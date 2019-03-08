@@ -45,21 +45,17 @@ class CreateOrder extends Component {
      * Once done, user will be redirected to order list.
      *************************************************************************/
     CANCEL_THE_ORDER = () => {
-        if (Object.keys(this.props.itemQuantity).length === 0) {
-            this.props.dispatch_DeleteThisOrder(
-                this.props.currentOrderID,
-                this.props.passKey
-            );
-            this.props.dispatch_ResetCurrentOrderStates();
-        }
+        this.props.dispatch_DeleteThisOrder(
+            this.props.currentOrderID,
+            this.props.passKey
+        );
+        this.props.dispatch_ResetCurrentOrderStates();
+        this.props.history.push('/my_orders');
     }
 
     // Once the order is cancelled, props will change as checking in the following if block. If it
     // is reset, there are no current orders and we can redirect user back to orders list.
     componentDidUpdate(prevProps) {
-        if (prevProps.currentOrderID !== '' & this.props.currentOrderID === '') {
-            this.props.history.push('/my_orders');
-        }
         if (this.props.status) {
             this.props.dispatch_ResetCurrentOrderStates();
             this.props.history.push('/my_orders');
