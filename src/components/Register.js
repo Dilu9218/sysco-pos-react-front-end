@@ -123,7 +123,7 @@ class Register extends Component {
                                         autoComplete="false" />
                                 </div>
                                 <button
-                                    className="btn btn-success text-uppercase"
+                                    className="btn btn-success text-uppercase btn-register"
                                     style={{ width: '100%' }}
                                     type="submit">Register</button>
                             </form>
