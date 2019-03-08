@@ -89,7 +89,7 @@ export class LogIn extends Component {
                                         onChange={this.onChange} />
                                 </div>
                                 <button
-                                    className="btn btn-primary text-uppercase my-3"
+                                    className="btn btn-primary text-uppercase my-3 sign-in-btn"
                                     style={{ width: '100%' }}
                                     type="submit">Sign in</button>
                             </form>
