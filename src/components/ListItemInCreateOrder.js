@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ItemCounterInCreateOrder from './ItemCounterInCreateOrder';
 
-class ListItemInOrder extends Component {
+class ListItemInCreateOrder extends Component {
 
     render() {
         let { productID, productTitle, description, quantity, price } = this.props.item;
@@ -39,4 +39,4 @@ class ListItemInOrder extends Component {
     }
 }
 
-export default ListItemInOrder;
+export default ListItemInCreateOrder;
