@@ -21,12 +21,10 @@ export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) 
             isAdmin: false
         })
             .then(res => {
-                if (res.status === 200) {
-                    dispatch({
-                        type: COMPLETE_REGISTRAION,
-                        alertMessage: ''
-                    });
-                }
+                dispatch({
+                    type: COMPLETE_REGISTRAION,
+                    alertMessage: ''
+                });
             }).catch(err => {
                 if (err.response.status === 409) {
                     dispatch({
@@ -51,12 +49,10 @@ export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) 
 export const LOG_USER_IN = (username, password) => (dispatch) => {
     return axios.post(USER_LOGIN_ENDPOINT, { username, password })
         .then(res => {
-            if (res.status === 200) {
-                dispatch({
-                    type: SAVE_PASS_KEY,
-                    passKey: res.data.token
-                });
-            }
+            dispatch({
+                type: SAVE_PASS_KEY,
+                passKey: res.data.token
+            });
         }).catch(err => {
             try {
                 switch (err.response.status) {

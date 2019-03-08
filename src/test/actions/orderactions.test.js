@@ -42,7 +42,7 @@ import {
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares);
-const accesstoken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNzQ5MjViYzk2ODEyMWM3ZDE2YTAxOCIsImlhdCI6MTU1MTk0ODUyNCwiZXhwIjoxNTUyMDM0OTI0fQ.aCaQ10Xb14J3DyY6KU39DCz8uxKV5qK0ekLSI4l4sM0";
+const accesstoken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNzQ5MjViYzk2ODEyMWM3ZDE2YTAxOCIsImlhdCI6MTU1MjAzNjgxOSwiZXhwIjoxNTUyMTIzMjE5fQ.ukSW4PGvYC-0Z5rvQvPtPaaSNBfqBZ0Xy63WXkmC08w";
 
 let gOrder = undefined;
 
@@ -229,6 +229,13 @@ describe('Current order modifications', () => {
     it('Quickly vary the item quantity', (done) => {
         store.dispatch(dispatch_QuickIndecrementItemFromQuantity(
             'MU-LTI-PL3', true, 10, lOrder, 1, accesstoken)).then(() => {
+                expect(store.getActions()[0].type).toBe(QUICK_INDECREMENT_ITEM_FROM_QUANTITY);
+                done();
+            });
+    });
+    it('Quickly vary the item quantity', (done) => {
+        store.dispatch(dispatch_QuickIndecrementItemFromQuantity(
+            'MU-LTI-PL3', false, 10, lOrder, 1, accesstoken)).then(() => {
                 expect(store.getActions()[0].type).toBe(QUICK_INDECREMENT_ITEM_FROM_QUANTITY);
                 done();
             });

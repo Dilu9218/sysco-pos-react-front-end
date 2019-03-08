@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { LOG_USER_IN } from '../actions/useraccountcontrolactions';
 import { withCookies } from 'react-cookie';
 
-class LogIn extends Component {
+export class LogIn extends Component {
 
     // Keep a local state to capture username and password entered by user
     state = {

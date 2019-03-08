@@ -304,6 +304,37 @@ describe('Current orders', () => {
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
+    it('Adds removes items from item quantity', () => {
+        const action = {
+            type: INDECREMENT_ITEM_FROM_QUANTITY,
+            direction: false,
+            price: 10,
+            id: 'A'
+        };
+        const init = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 100,
+            itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        const expectation = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 90,
+            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
+    });
     it('Adds updated order to order list', () => {
         const action = {
             type: ADD_THESE_ITEMS_TO_THIS_ORDER,
@@ -441,6 +472,46 @@ describe('Current orders', () => {
             currentOrderID: '',
             total: 110,
             itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
+    });
+    it('Quickly changes items from item quantity', () => {
+        const action = {
+            type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
+            direction: false,
+            price: 10,
+            id: 'A',
+            updatedOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'B': 1 }]
+            }
+        };
+        const init = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {},
+            currentOrderID: '',
+            total: 100,
+            itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            clonedItemQuantity: {},
+            url: '',
+            status: false
+        };
+        const expectation = {
+            itemsList: [],
+            orderList: [],
+            currentOrder: {
+                _id: 123,
+                cartID: 12345,
+                items: [{ 'B': 1 }]
+            },
+            currentOrderID: '',
+            total: 90,
+            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
             clonedItemQuantity: {},
             url: '',
             status: false
