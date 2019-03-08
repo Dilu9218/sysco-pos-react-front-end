@@ -2,7 +2,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { shallowWrap, mountWrap, mount } from '../enzyme';
+import { mount } from '../enzyme';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 
@@ -24,7 +24,7 @@ describe('<LogIn /> component with logged out', () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-    })
+    });
 
     it('renders with login and register links', () => {
         const wrapper = mount(
@@ -66,7 +66,6 @@ describe('<LogIn /> component with logged in', () => {
                 </Provider>
             </CookiesProvider>
         );
-        console.log(wrapper.debug());
         expect(wrapper.contains(<Redirect to="/my_orders" push={false} />)).toBeTruthy();
     });
 });
