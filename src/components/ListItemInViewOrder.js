@@ -3,7 +3,7 @@ import ItemCounterInListItem from './ItemCounterInListItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class ListItemInOrderDetailView extends Component {
+class ListItemInViewOrder extends Component {
 
     render() {
         let { productID, productTitle, description, quantity, price } = this.props.singleItem;
@@ -44,7 +44,7 @@ class ListItemInOrderDetailView extends Component {
     }
 }
 
-ListItemInOrderDetailView.propTypes = {
+ListItemInViewOrder.propTypes = {
     passKey: PropTypes.string.isRequired,
     itemQuantity: PropTypes.object.isRequired
 };
@@ -56,4 +56,4 @@ const mapStateToProps = (state) => ({
     currentOrder: state.ord.currentOrder
 });
 
-export default connect(mapStateToProps, null)(ListItemInOrderDetailView);
+export default connect(mapStateToProps, null)(ListItemInViewOrder);
