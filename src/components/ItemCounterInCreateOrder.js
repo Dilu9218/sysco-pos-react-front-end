@@ -97,8 +97,6 @@ class ItemCounterInCreateOrder extends Component {
     }
 }
 
-
-
 ItemCounterInCreateOrder.propTypes = {
     dispatch_AddThisItemToQuantity: PropTypes.func.isRequired,
     dispatch_IndecrementItemFromQuantity: PropTypes.func.isRequired,

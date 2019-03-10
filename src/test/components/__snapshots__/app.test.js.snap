@@ -1,0 +1,1154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> component renders correctly 1`] = `
+<CookiesProvider>
+  <Provider
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <ForwardRef>
+      <withCookies(Connect(App))
+        cookies={
+          Cookies {
+            "HAS_DOCUMENT_COOKIE": true,
+            "changeListeners": Array [
+              [Function],
+            ],
+            "cookies": Object {},
+          }
+        }
+        forwardedRef={null}
+      >
+        <Connect(App)
+          allCookies={Object {}}
+          cookies={
+            Cookies {
+              "HAS_DOCUMENT_COOKIE": true,
+              "changeListeners": Array [
+                [Function],
+              ],
+              "cookies": Object {},
+            }
+          }
+        >
+          <App
+            RE_LOG_USER_IN={[Function]}
+            allCookies={Object {}}
+            cookies={
+              Cookies {
+                "HAS_DOCUMENT_COOKIE": true,
+                "changeListeners": Array [
+                  [Function],
+                ],
+                "cookies": Object {},
+              }
+            }
+          >
+            <BrowserRouter>
+              <Router
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+              >
+                <div
+                  className="App"
+                >
+                  <Connect(Header)>
+                    <Header
+                      dispatch={[Function]}
+                      isLoggedIn={false}
+                    >
+                      <header>
+                        <nav
+                          className="navbar navbar-expand-lg navbar-light bg-light"
+                        >
+                          <ConditionalHeader
+                            isLoggedIn={false}
+                          >
+                            <div
+                              className="collapse navbar-collapse"
+                            >
+                              <Link
+                                className="navbar-brand"
+                                replace={false}
+                                style={
+                                  Object {
+                                    "paddingTop": "0px",
+                                  }
+                                }
+                                to="/"
+                              >
+                                <a
+                                  className="navbar-brand"
+                                  href="/"
+                                  onClick={[Function]}
+                                  style={
+                                    Object {
+                                      "paddingTop": "0px",
+                                    }
+                                  }
+                                >
+                                  Sysco PoS System
+                                </a>
+                              </Link>
+                              <div
+                                className="navbar-nav ml-auto"
+                              >
+                                <Link
+                                  className="nav-item nav-link"
+                                  replace={false}
+                                  to="/login"
+                                >
+                                  <a
+                                    className="nav-item nav-link"
+                                    href="/login"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-sign-in-alt"
+                                    />
+                                     Login
+                                  </a>
+                                </Link>
+                                <Link
+                                  className="nav-item nav-link"
+                                  replace={false}
+                                  to="/register"
+                                >
+                                  <a
+                                    className="nav-item nav-link"
+                                    href="/register"
+                                    onClick={[Function]}
+                                  >
+                                    Register
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                          </ConditionalHeader>
+                        </nav>
+                      </header>
+                    </Header>
+                  </Connect(Header)>
+                  <Route
+                    exact={true}
+                    path="/"
+                    render={[Function]}
+                  >
+                    <MainPage>
+                      <div
+                        className="jumbotron jumbotron-fluid"
+                      >
+                        <h1
+                          className="display-4"
+                        >
+                          Mini-project: a simple Point of Sale (POS) system
+                        </h1>
+                        <p
+                          className="lead"
+                        >
+                          Back end should be developed as a REST API in either JS, Java or Golang. Front end should be developed using React.js.
+                        </p>
+                        <hr
+                          className="my-4"
+                        />
+                        <p
+                          style={
+                            Object {
+                              "padding": "0px 20px",
+                            }
+                          }
+                        >
+                          REST API should be designed and specified before development starts. Test coverage should be as close to 100% as possible, and should be developed along with the code (not later). There should be extensive error handling and validations – app should fail gracefully even under the most unexpected circumstances. Code should be clean and self-explanatory for any other developer. Code should be simple and self-explanatory. There should be a demo of work every two days
+                        </p>
+                      </div>
+                      <div
+                        className="card"
+                        style={
+                          Object {
+                            "margin": "20px",
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
+                        }
+                      >
+                        <ul
+                          className="list-group list-group-flush"
+                        >
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to reach the system using a web browser
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be directed to the login screen if I'm not already logged in
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to login using my username and password
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be directed to the order list immediately after login
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to see all the currently open orders in the order list
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to view order details of an order by clicking the order in the order list
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should see all the items in the order, and their prices, and the total amount in the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to add new items to an order from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to remove items from an order, from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to modify the item count in an order, from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to navigate away from the order detail view without having to explicitly save the order
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="card-deck"
+                        style={
+                          Object {
+                            "margin": "25px",
+                          }
+                        }
+                      >
+                        <div
+                          className="card"
+                          style={
+                            Object {
+                              "border": "1px solid rgba(0,0,0,.125)",
+                            }
+                          }
+                        >
+                          <img
+                            alt="Node JS REST API Test Results and Coverage"
+                            className="card-img-top"
+                            src="node_test_results.png"
+                            style={
+                              Object {
+                                "padding": "10px",
+                              }
+                            }
+                          />
+                          <div
+                            className="card-body"
+                          >
+                            <h5
+                              className="card-title"
+                            >
+                              NodeJS REST API
+                            </h5>
+                            <p
+                              className="card-text"
+                            >
+                              Test results and the total test coverage for the back end API developed with NodeJS
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          className="card"
+                          style={
+                            Object {
+                              "border": "1px solid rgba(0,0,0,.125)",
+                            }
+                          }
+                        >
+                          <img
+                            alt="React JS Front end Test Results and Coverage"
+                            className="card-img-top"
+                            src="react_test_results.png"
+                            style={
+                              Object {
+                                "padding": "10px",
+                              }
+                            }
+                          />
+                          <div
+                            className="card-body"
+                          >
+                            <h5
+                              className="card-title"
+                            >
+                              ReactJS Front End
+                            </h5>
+                            <p
+                              className="card-text"
+                            >
+                              Test results and total test coverage for the front end UI
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </MainPage>
+                  </Route>
+                  <Route
+                    path="/login"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/register"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/logout"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/my_orders"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/view_order"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/create_order"
+                    render={[Function]}
+                  />
+                </div>
+              </Router>
+            </BrowserRouter>
+          </App>
+        </Connect(App)>
+      </withCookies(Connect(App))>
+    </ForwardRef>
+  </Provider>
+</CookiesProvider>
+`;
+
+exports[`<App /> component with login renders correctly 1`] = `
+<CookiesProvider>
+  <Provider
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <ForwardRef>
+      <withCookies(Connect(App))
+        cookies={
+          Cookies {
+            "HAS_DOCUMENT_COOKIE": true,
+            "changeListeners": Array [
+              [Function],
+            ],
+            "cookies": Object {},
+          }
+        }
+        forwardedRef={null}
+      >
+        <Connect(App)
+          allCookies={Object {}}
+          cookies={
+            Cookies {
+              "HAS_DOCUMENT_COOKIE": true,
+              "changeListeners": Array [
+                [Function],
+              ],
+              "cookies": Object {},
+            }
+          }
+        >
+          <App
+            RE_LOG_USER_IN={[Function]}
+            allCookies={Object {}}
+            cookies={
+              Cookies {
+                "HAS_DOCUMENT_COOKIE": true,
+                "changeListeners": Array [
+                  [Function],
+                ],
+                "cookies": Object {},
+              }
+            }
+          >
+            <BrowserRouter>
+              <Router
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+              >
+                <div
+                  className="App"
+                >
+                  <Connect(Header)>
+                    <Header
+                      dispatch={[Function]}
+                      isLoggedIn={true}
+                    >
+                      <header>
+                        <nav
+                          className="navbar navbar-expand-lg navbar-light bg-light"
+                        >
+                          <ConditionalHeader
+                            isLoggedIn={true}
+                          >
+                            <div
+                              className="collapse navbar-collapse"
+                            >
+                              <Link
+                                className="navbar-brand"
+                                replace={false}
+                                style={
+                                  Object {
+                                    "paddingTop": "0px",
+                                  }
+                                }
+                                to="/"
+                              >
+                                <a
+                                  className="navbar-brand"
+                                  href="/"
+                                  onClick={[Function]}
+                                  style={
+                                    Object {
+                                      "paddingTop": "0px",
+                                    }
+                                  }
+                                >
+                                  Sysco PoS System
+                                </a>
+                              </Link>
+                              <div
+                                className="navbar-nav mr-auto mt-2 mt-lg-0"
+                              >
+                                <Link
+                                  className="nav-item nav-link"
+                                  replace={false}
+                                  to="/my_orders"
+                                >
+                                  <a
+                                    className="nav-item nav-link"
+                                    href="/my_orders"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-list-ul"
+                                    />
+                                     My Orders
+                                  </a>
+                                </Link>
+                                <Link
+                                  className="nav-item nav-link"
+                                  replace={false}
+                                  to="/create_order"
+                                >
+                                  <a
+                                    className="nav-item nav-link"
+                                    href="/create_order"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-plus"
+                                    />
+                                     Create Order
+                                  </a>
+                                </Link>
+                              </div>
+                              <div
+                                className="navbar-nav my-2 my-lg-0"
+                              >
+                                <Link
+                                  className="nav-item nav-link"
+                                  replace={false}
+                                  to="/logout"
+                                >
+                                  <a
+                                    className="nav-item nav-link"
+                                    href="/logout"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-sign-out-alt"
+                                    />
+                                     Logout
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                          </ConditionalHeader>
+                        </nav>
+                      </header>
+                    </Header>
+                  </Connect(Header)>
+                  <Route
+                    exact={true}
+                    path="/"
+                    render={[Function]}
+                  >
+                    <MainPage>
+                      <div
+                        className="jumbotron jumbotron-fluid"
+                      >
+                        <h1
+                          className="display-4"
+                        >
+                          Mini-project: a simple Point of Sale (POS) system
+                        </h1>
+                        <p
+                          className="lead"
+                        >
+                          Back end should be developed as a REST API in either JS, Java or Golang. Front end should be developed using React.js.
+                        </p>
+                        <hr
+                          className="my-4"
+                        />
+                        <p
+                          style={
+                            Object {
+                              "padding": "0px 20px",
+                            }
+                          }
+                        >
+                          REST API should be designed and specified before development starts. Test coverage should be as close to 100% as possible, and should be developed along with the code (not later). There should be extensive error handling and validations – app should fail gracefully even under the most unexpected circumstances. Code should be clean and self-explanatory for any other developer. Code should be simple and self-explanatory. There should be a demo of work every two days
+                        </p>
+                      </div>
+                      <div
+                        className="card"
+                        style={
+                          Object {
+                            "margin": "20px",
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
+                        }
+                      >
+                        <ul
+                          className="list-group list-group-flush"
+                        >
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to reach the system using a web browser
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be directed to the login screen if I'm not already logged in
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to login using my username and password
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be directed to the order list immediately after login
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to see all the currently open orders in the order list
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to view order details of an order by clicking the order in the order list
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should see all the items in the order, and their prices, and the total amount in the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to add new items to an order from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to remove items from an order, from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to modify the item count in an order, from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to navigate away from the order detail view without having to explicitly save the order
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="card-deck"
+                        style={
+                          Object {
+                            "margin": "25px",
+                          }
+                        }
+                      >
+                        <div
+                          className="card"
+                          style={
+                            Object {
+                              "border": "1px solid rgba(0,0,0,.125)",
+                            }
+                          }
+                        >
+                          <img
+                            alt="Node JS REST API Test Results and Coverage"
+                            className="card-img-top"
+                            src="node_test_results.png"
+                            style={
+                              Object {
+                                "padding": "10px",
+                              }
+                            }
+                          />
+                          <div
+                            className="card-body"
+                          >
+                            <h5
+                              className="card-title"
+                            >
+                              NodeJS REST API
+                            </h5>
+                            <p
+                              className="card-text"
+                            >
+                              Test results and the total test coverage for the back end API developed with NodeJS
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          className="card"
+                          style={
+                            Object {
+                              "border": "1px solid rgba(0,0,0,.125)",
+                            }
+                          }
+                        >
+                          <img
+                            alt="React JS Front end Test Results and Coverage"
+                            className="card-img-top"
+                            src="react_test_results.png"
+                            style={
+                              Object {
+                                "padding": "10px",
+                              }
+                            }
+                          />
+                          <div
+                            className="card-body"
+                          >
+                            <h5
+                              className="card-title"
+                            >
+                              ReactJS Front End
+                            </h5>
+                            <p
+                              className="card-text"
+                            >
+                              Test results and total test coverage for the front end UI
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </MainPage>
+                  </Route>
+                  <Route
+                    path="/login"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/register"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/logout"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/my_orders"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/view_order"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/create_order"
+                    render={[Function]}
+                  />
+                </div>
+              </Router>
+            </BrowserRouter>
+          </App>
+        </Connect(App)>
+      </withCookies(Connect(App))>
+    </ForwardRef>
+  </Provider>
+</CookiesProvider>
+`;
+
+exports[`<App /> component with memory router renders correctly 1`] = `
+<CookiesProvider>
+  <Provider
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <ForwardRef>
+      <withCookies(Connect(App))
+        cookies={
+          Cookies {
+            "HAS_DOCUMENT_COOKIE": true,
+            "changeListeners": Array [
+              [Function],
+            ],
+            "cookies": Object {},
+          }
+        }
+        forwardedRef={null}
+      >
+        <Connect(App)
+          allCookies={Object {}}
+          cookies={
+            Cookies {
+              "HAS_DOCUMENT_COOKIE": true,
+              "changeListeners": Array [
+                [Function],
+              ],
+              "cookies": Object {},
+            }
+          }
+        >
+          <App
+            RE_LOG_USER_IN={[Function]}
+            allCookies={Object {}}
+            cookies={
+              Cookies {
+                "HAS_DOCUMENT_COOKIE": true,
+                "changeListeners": Array [
+                  [Function],
+                ],
+                "cookies": Object {},
+              }
+            }
+          >
+            <BrowserRouter>
+              <Router
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+              >
+                <div
+                  className="App"
+                >
+                  <Connect(Header)>
+                    <Header
+                      dispatch={[Function]}
+                      isLoggedIn={true}
+                    >
+                      <header>
+                        <nav
+                          className="navbar navbar-expand-lg navbar-light bg-light"
+                        >
+                          <ConditionalHeader
+                            isLoggedIn={true}
+                          >
+                            <div
+                              className="collapse navbar-collapse"
+                            >
+                              <Link
+                                className="navbar-brand"
+                                replace={false}
+                                style={
+                                  Object {
+                                    "paddingTop": "0px",
+                                  }
+                                }
+                                to="/"
+                              >
+                                <a
+                                  className="navbar-brand"
+                                  href="/"
+                                  onClick={[Function]}
+                                  style={
+                                    Object {
+                                      "paddingTop": "0px",
+                                    }
+                                  }
+                                >
+                                  Sysco PoS System
+                                </a>
+                              </Link>
+                              <div
+                                className="navbar-nav mr-auto mt-2 mt-lg-0"
+                              >
+                                <Link
+                                  className="nav-item nav-link"
+                                  replace={false}
+                                  to="/my_orders"
+                                >
+                                  <a
+                                    className="nav-item nav-link"
+                                    href="/my_orders"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-list-ul"
+                                    />
+                                     My Orders
+                                  </a>
+                                </Link>
+                                <Link
+                                  className="nav-item nav-link"
+                                  replace={false}
+                                  to="/create_order"
+                                >
+                                  <a
+                                    className="nav-item nav-link"
+                                    href="/create_order"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-plus"
+                                    />
+                                     Create Order
+                                  </a>
+                                </Link>
+                              </div>
+                              <div
+                                className="navbar-nav my-2 my-lg-0"
+                              >
+                                <Link
+                                  className="nav-item nav-link"
+                                  replace={false}
+                                  to="/logout"
+                                >
+                                  <a
+                                    className="nav-item nav-link"
+                                    href="/logout"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-sign-out-alt"
+                                    />
+                                     Logout
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                          </ConditionalHeader>
+                        </nav>
+                      </header>
+                    </Header>
+                  </Connect(Header)>
+                  <Route
+                    exact={true}
+                    path="/"
+                    render={[Function]}
+                  >
+                    <MainPage>
+                      <div
+                        className="jumbotron jumbotron-fluid"
+                      >
+                        <h1
+                          className="display-4"
+                        >
+                          Mini-project: a simple Point of Sale (POS) system
+                        </h1>
+                        <p
+                          className="lead"
+                        >
+                          Back end should be developed as a REST API in either JS, Java or Golang. Front end should be developed using React.js.
+                        </p>
+                        <hr
+                          className="my-4"
+                        />
+                        <p
+                          style={
+                            Object {
+                              "padding": "0px 20px",
+                            }
+                          }
+                        >
+                          REST API should be designed and specified before development starts. Test coverage should be as close to 100% as possible, and should be developed along with the code (not later). There should be extensive error handling and validations – app should fail gracefully even under the most unexpected circumstances. Code should be clean and self-explanatory for any other developer. Code should be simple and self-explanatory. There should be a demo of work every two days
+                        </p>
+                      </div>
+                      <div
+                        className="card"
+                        style={
+                          Object {
+                            "margin": "20px",
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
+                        }
+                      >
+                        <ul
+                          className="list-group list-group-flush"
+                        >
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to reach the system using a web browser
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be directed to the login screen if I'm not already logged in
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to login using my username and password
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be directed to the order list immediately after login
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to see all the currently open orders in the order list
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to view order details of an order by clicking the order in the order list
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should see all the items in the order, and their prices, and the total amount in the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to add new items to an order from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to remove items from an order, from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to modify the item count in an order, from the order detail view
+                          </li>
+                          <li
+                            className="list-group-item"
+                          >
+                            ✓ I should be able to navigate away from the order detail view without having to explicitly save the order
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="card-deck"
+                        style={
+                          Object {
+                            "margin": "25px",
+                          }
+                        }
+                      >
+                        <div
+                          className="card"
+                          style={
+                            Object {
+                              "border": "1px solid rgba(0,0,0,.125)",
+                            }
+                          }
+                        >
+                          <img
+                            alt="Node JS REST API Test Results and Coverage"
+                            className="card-img-top"
+                            src="node_test_results.png"
+                            style={
+                              Object {
+                                "padding": "10px",
+                              }
+                            }
+                          />
+                          <div
+                            className="card-body"
+                          >
+                            <h5
+                              className="card-title"
+                            >
+                              NodeJS REST API
+                            </h5>
+                            <p
+                              className="card-text"
+                            >
+                              Test results and the total test coverage for the back end API developed with NodeJS
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          className="card"
+                          style={
+                            Object {
+                              "border": "1px solid rgba(0,0,0,.125)",
+                            }
+                          }
+                        >
+                          <img
+                            alt="React JS Front end Test Results and Coverage"
+                            className="card-img-top"
+                            src="react_test_results.png"
+                            style={
+                              Object {
+                                "padding": "10px",
+                              }
+                            }
+                          />
+                          <div
+                            className="card-body"
+                          >
+                            <h5
+                              className="card-title"
+                            >
+                              ReactJS Front End
+                            </h5>
+                            <p
+                              className="card-text"
+                            >
+                              Test results and total test coverage for the front end UI
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </MainPage>
+                  </Route>
+                  <Route
+                    path="/login"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/register"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/logout"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/my_orders"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/view_order"
+                    render={[Function]}
+                  />
+                  <Route
+                    path="/create_order"
+                    render={[Function]}
+                  />
+                </div>
+              </Router>
+            </BrowserRouter>
+          </App>
+        </Connect(App)>
+      </withCookies(Connect(App))>
+    </ForwardRef>
+  </Provider>
+</CookiesProvider>
+`;
