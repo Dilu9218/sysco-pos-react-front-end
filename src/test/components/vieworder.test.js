@@ -3,6 +3,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { mount } from '../enzyme';
+import sinon from 'sinon';
 import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 
@@ -81,9 +82,9 @@ describe('<ViewOrder /> component', () => {
 
 describe('<ViewOrder /> component with logout', () => {
 
-    const getCompleteItemList = jest.fn();
-    const resetCurrentOrder = jest.fn();
-    const deleteThisOrder = jest.fn();
+    const getCompleteItemList = sinon.spy();
+    const resetCurrentOrder = sinon.spy();
+    const deleteThisOrder = sinon.spy();
 
     const initialState = {
         uac: {
@@ -131,5 +132,18 @@ describe('<ViewOrder /> component with logout', () => {
             </CookiesProvider>
         );
         expect(wrapper.contains(<Redirect to="/login" push={false} />)).toBeTruthy();
+    });
+    it('unmounts', () => {
+        const wrapper = mount(
+            <CookiesProvider>
+                <Provider store={store}>
+                    <Router>
+                        <ViewOrder />
+                    </Router>
+                </Provider>
+            </CookiesProvider>
+        );
+        wrapper.unmount();
+        expect(wrapper.exists()).toBe(false);
     });
 });

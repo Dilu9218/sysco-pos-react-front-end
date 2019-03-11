@@ -52,6 +52,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "react-router-enzyme-context": "^1.2.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }
