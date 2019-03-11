@@ -38,6 +38,18 @@ describe('<LogIn /> component with logged out', () => {
         );
         expect(wrapper.find('.sign-in-btn').length).toBe(1);
     });
+    it('calls on submit', () => {
+        const wrapper = mount(
+            <CookiesProvider>
+                <Provider store={store}>
+                    <Router>
+                        <LogIn />
+                    </Router>
+                </Provider>
+            </CookiesProvider>
+        );
+        expect(wrapper.find('.mx-2').simulate('submit'));
+    });
 });
 
 describe('<LogIn /> component with logged in', () => {

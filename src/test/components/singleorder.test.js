@@ -80,9 +80,9 @@ describe('<SingleOrder /> component', () => {
     it('calls delete this order action', () => {
         let order = {
             cartID: 'testCart', items: [
-                { productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                { productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                { productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
+                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
+                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
             ]
         }
         const wrapper = mount(

@@ -25,7 +25,7 @@
     "redux-cookie": "^0.5.9",
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
-    "sinon": "^7.2.5"
+    "sinon": "^7.2.7"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,6 +39,10 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js"
     ]
   },
   "browserslist": [

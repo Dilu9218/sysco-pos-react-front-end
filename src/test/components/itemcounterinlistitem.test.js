@@ -24,9 +24,9 @@ describe('<ItemCounterInListItem /> component', () => {
             currentOrderID: 'abcdefg111',
             itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
             itemsList: [
-                { productID: 'A', price: 1 },
-                { productID: 'B', price: 2 },
-                { productID: 'C', price: 3 }
+                { _id: 'a', productID: 'A', price: 1 },
+                { _id: 'b', productID: 'B', price: 2 },
+                { _id: 'c', productID: 'C', price: 3 }
             ],
             total: 100,
             currentOrder: {
@@ -61,7 +61,6 @@ describe('<ItemCounterInListItem /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        console.log(wrapper.debug());
         expect(wrapper).toMatchSnapshot();
     });
     it('calls delete', () => {

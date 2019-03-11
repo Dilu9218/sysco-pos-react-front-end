@@ -50,14 +50,17 @@ exports[`<ItemCounterInListItem /> component renders with correct value 1`] = `
             itemsList={
               Array [
                 Object {
+                  "_id": "a",
                   "price": 1,
                   "productID": "A",
                 },
                 Object {
+                  "_id": "b",
                   "price": 2,
                   "productID": "B",
                 },
                 Object {
+                  "_id": "c",
                   "price": 3,
                   "productID": "C",
                 },

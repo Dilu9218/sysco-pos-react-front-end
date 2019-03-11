@@ -35,3 +35,34 @@ describe('<Logout /> component rendering', () => {
         expect(wrapper.contains(<Redirect to="/login" push={false} />)).toBeTruthy();
     });
 });
+
+describe('<Logout /> component rendering', () => {
+
+    const initialState = {
+        LOG_USER_OUT: jest.fn()
+    };
+    const mockStore = configureStore(middlewares);
+    let store;
+
+    beforeEach(() => {
+        store = mockStore(initialState);
+    });
+
+    it('logout component renders successfully', () => {
+        const wrapper = mount(
+            <CookiesProvider>
+                <Provider store={store}>
+                    <Router>
+                        <LogOut cookies={{
+                            getAll: jest.fn(),
+                            get: () => { return true },
+                            addChangeListener: jest.fn(),
+                            remove: jest.fn()
+                        }} />
+                    </Router>
+                </Provider>
+            </CookiesProvider>
+        );
+        expect(wrapper.contains(<Redirect to="/login" push={false} />)).toBeTruthy();
+    });
+});
