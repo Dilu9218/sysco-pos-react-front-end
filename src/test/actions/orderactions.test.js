@@ -39,10 +39,11 @@ import {
     dispatch_ResetCurrentOrderStates,
     dispatch_SetThisOrderAsCurrentOrder
 } from '../../actions/ordercontrolactions';
+import { key } from '../key'
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares);
-const accesstoken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNzQ5MjViYzk2ODEyMWM3ZDE2YTAxOCIsImlhdCI6MTU1MjE4ODg1MSwiZXhwIjoxNTUyMjc1MjUxfQ.aVv_YLd3EH-GKG_zvLT4oHmc3nQGteRjCMZ1N1o392w";
+const accesstoken = key;
 
 let gOrder = undefined;
 
