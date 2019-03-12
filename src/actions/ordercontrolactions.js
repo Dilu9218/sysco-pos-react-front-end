@@ -79,7 +79,7 @@ export const dispatch_ResetCurrentOrderStates = () => (dispatch) => {
 }
 
 export const dispatch_CheckOutOrder = (id, accesstoken) => (dispatch) => {
-    return axios.delete(ORDER_CHECKOUT_ENDPOINT + `/${id}`,
+    return axios.post(ORDER_CHECKOUT_ENDPOINT + `/${id}`, {},
         { headers: { 'x-access-token': accesstoken } })
         .then(checkedOut => {
             dispatch({
@@ -211,7 +211,7 @@ export const dispatch_QuickDeleteThisItemFromQuantity = (id, orderID, count, pri
 export const dispatch_QuickIndecrementItemFromQuantity = (
     id, direction, count, orderID, price, accesstoken) =>
     (dispatch) => {
-        return axios.post(ORDER_REQUEST_ENDPOINT + `/${orderID}`, {
+        return axios.patch(ORDER_REQUEST_ENDPOINT + `/${orderID}`, {
             productID: id,
             difference: 1 * (direction ? 1 : -1),
             quantity: count + (1 * (direction ? 1 : -1))
