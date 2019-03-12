@@ -30,6 +30,12 @@ class MainPage extends Component {
                         <li className="list-group-item">&#10003; I should be able to navigate away from the order detail view without having to explicitly save the order</li>
                     </ul>
                 </div>
+                <footer style={{ marginBottom: '15px' }}>
+                    <a href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.1#/"
+                        target="_blank" rel="noopener noreferrer">
+                        <h3><span className="badge badge-secondary" style={{ padding: '10px' }}>
+                            <i className="fas fa-book"></i> REST API Documentation</span></h3>
+                    </a></footer>
                 <div className="card-deck" style={{ margin: '25px' }}>
                     <div className="card" style={{ border: '1px solid rgba(0,0,0,.125)' }}>
                         <img className="card-img-top" src={require('./node_test_results.png')}
@@ -51,9 +57,7 @@ class MainPage extends Component {
                         </div>
                     </div>
                 </div>
-                <footer style={{ marginBottom: '15px' }}>
-                    <a href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.1#/"
-                        target="_blank" rel="noopener noreferrer">REST API Documentation</a></footer>
+
             </React.Fragment>
         );
     }

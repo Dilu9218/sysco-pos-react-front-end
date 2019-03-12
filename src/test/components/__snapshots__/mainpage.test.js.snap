@@ -98,6 +98,35 @@ exports[`Main page renders the main landing page as expected 1`] = `
       </li>
     </ul>
   </div>
+  <footer
+    style={
+      Object {
+        "marginBottom": "15px",
+      }
+    }
+  >
+    <a
+      href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.1#/"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <h3>
+        <span
+          className="badge badge-secondary"
+          style={
+            Object {
+              "padding": "10px",
+            }
+          }
+        >
+          <i
+            className="fas fa-book"
+          />
+           REST API Documentation
+        </span>
+      </h3>
+    </a>
+  </footer>
   <div
     className="card-deck"
     style={
