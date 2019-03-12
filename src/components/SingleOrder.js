@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { dispatch_SetThisOrderAsCurrentOrder } from '../actions/ordercontrolactions';
 import ListItemInSingleOrder from './ListItemInSingleOrder';
 
 class SingleOrder extends Component {
@@ -9,24 +12,20 @@ class SingleOrder extends Component {
      * view_order where it will fetch the order details and display content of
      * the order to user
      *************************************************************************/
-    VIEW_THIS_ORDER = () => {
-        this.props.SET_THIS_ORDER_AS_CURRENT();
-        this.props.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER();
-        this.props.history.push('/view_order');
+    viewThisOrder = () => {
+        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, '/view_order');
     }
 
     /**************************************************************************
-     * Sets the current order in context as this order and starts fetching the
-     * item list.
+     * Triggers an action to dispatch an event to remove the order from state
+     * and collection
      *************************************************************************/
-    EDIT_THIS_ORDER = () => {
-        this.props.SET_THIS_ORDER_AS_CURRENT();
-        this.props.PREPARE_TO_EDIT_OR_VIEW_THIS_ORDER();
-        setTimeout(() => this.props.history.push('/edit_order'), 500);
+    deleteThisOrder = () => {
+        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, '/delete_order');
     }
 
     render() {
-        let { _id, items } = this.props.ORDER;
+        let { _id, items } = this.props.order;
         let totalCost = 0;
         for (var i = 0; i < items.length; i++) {
             let { quantity, price } = items[i];
@@ -34,16 +33,21 @@ class SingleOrder extends Component {
         }
         return (
             <div className="card border-dark shadow" style={{ margin: '10px 0px' }}>
-                <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}>
+                <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}
+                    data-target={'#i' + _id} data-toggle="collapse" aria-expanded="true"
+                    aria-controls={'i' + _id}>
                     <div className="row" style={{ width: '100%', margin: '0px' }}>
                         <div className="col-10 d-flex justify-content-start" style={{ textAlign: 'initial' }}>
                             Order ID: {_id}</div>
                         <div className="col-2 d-flex justify-content-end" style={{ textAlign: 'initial' }}>
-                            <b>Rs. {totalCost.toFixed(2)}</b>
+                            <b><p className="badge badge-secondary"
+                                style={{
+                                    margin: 'unset', marginRight: '10px', padding: '5px'
+                                }}><i className="fab fa-slack-hash"></i> {items.length}</p> Rs. {totalCost.toFixed(2)}</b>
                         </div>
                     </div>
                 </div>
-                <ul className="list-group list-group-flush">
+                <ul id={'i' + _id} className="list-group list-group-flush panel-collapse collapse in">
                     {items.map((item) => (
                         <ListItemInSingleOrder
                             key={item._id}
@@ -51,13 +55,30 @@ class SingleOrder extends Component {
                     ))}
                 </ul>
                 <div className="card-footer d-flex justify-content-end">
-                    <Link to="#" className="card-link" onClick={this.VIEW_THIS_ORDER}><i className="fas fa-list-alt"></i> View</Link>
-                    <Link to="#" className="card-link edit-order" onClick={this.EDIT_THIS_ORDER}><i className="fas fa-pen"></i> Edit</Link>
-                    <Link to="#" className="card-link delete" onClick={this.props.DELETE_THIS_ORDER}><i className="fas fa-trash"></i> Delete</Link>
+                    <Link to="#"
+                        className="card-link view-order"
+                        onClick={this.viewThisOrder}>
+                        <i className="fas fa-list-alt"></i> View</Link>
+                    <Link to="#"
+                        className="card-link delete-order"
+                        onClick={this.deleteThisOrder}>
+                        <i className="fas fa-trash"></i> Delete</Link>
                 </div>
             </div>
         );
     }
 }
 
-export default withRouter(SingleOrder);
+SingleOrder.propTypes = {
+    dispatch_SetThisOrderAsCurrentOrder: PropTypes.func.isRequired,
+    passKey: PropTypes.string.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    passKey: state.uac.passKey,
+    currentOrder: state.ord.currentOrder
+});
+
+export default withRouter(connect(mapStateToProps, {
+    dispatch_SetThisOrderAsCurrentOrder
+})(SingleOrder));

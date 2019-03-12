@@ -32,11 +32,11 @@
   }
 }
 
-.delete {
+.delete-order {
   color: rgba(150, 0, 50, 0.75);
 }
 
-.delete:hover {
+.delete-order:hover {
   color: rgb(150, 0, 50);
 }
 
