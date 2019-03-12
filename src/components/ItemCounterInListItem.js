@@ -30,7 +30,7 @@ class ItemCounterInListItem extends Component {
      **********************************************************************************************/
     incrementItemCount = (e) => {
         e.preventDefault();
-        if (this.props.count !== this.props.max) {
+        if (this.props.count < this.props.max) {
             let P = this.props.itemsList.find(I => I.productID === this.props.name).price;
             this.props.dispatch_QuickIndecrementItemFromQuantity(
                 this.props.name, true, this.props.count, this.props.currentOrderID,

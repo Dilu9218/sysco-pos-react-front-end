@@ -26,8 +26,12 @@ class ListItemInViewOrder extends Component {
                                 name={productID}
                                 count={this.props.itemQuantity[productID]}
                                 min={1}
-                                max={quantity + this.props.itemsList.find(
-                                    I => I.productID === productID).quantity} />
+                                max={this.props.clonedItemQuantity[productID] === undefined
+                                    ? 0
+                                    : this.props.clonedItemQuantity[productID]
+                                    + this.props.itemsList.find(
+                                        I => I.productID === productID).quantity
+                                } />
                         </div>
                     </div>
                     <div className="col-2 card text-right">
@@ -52,6 +56,8 @@ ListItemInViewOrder.propTypes = {
 const mapStateToProps = (state) => ({
     passKey: state.uac.passKey,
     itemQuantity: state.ord.itemQuantity,
+    clonedItemQuantity: state.ord.clonedItemQuantity,
+    viewItemList: state.ord.viewItemList,
     itemsList: state.ord.itemsList,
     currentOrder: state.ord.currentOrder
 });

@@ -23,6 +23,7 @@ describe('<ListItemInViewOrder /> component renders', () => {
         uac: { passKey: '' },
         ord: {
             itemQuantity: {},
+            clonedItemQuantity: {},
             itemsList: [{
                 productID: 'A',
                 quantity: 1

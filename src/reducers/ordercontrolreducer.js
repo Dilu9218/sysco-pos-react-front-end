@@ -19,6 +19,7 @@ import {
 
 let initialState = {
     itemsList: [],
+    viewItemList: [],
     orderList: [],
     currentOrder: {},
     currentOrderID: '',
@@ -34,12 +35,14 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
         case FETCH_COMPLETE_ITEMS_LIST:
             return {
                 ...state,
-                itemsList: action.itemsList
+                itemsList: action.itemsList,
+                viewItemList: JSON.parse(JSON.stringify(action.itemsList)),
             }
         case ERROR_FETCHING_ITEMS_LIST:
             return {
                 ...state,
-                itemsList: []
+                itemsList: [],
+                viewItemList: []
             }
         case FETCH_EVERY_ORDER_FOR_THIS_USER:
             return {
@@ -102,6 +105,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             return {
                 ...state,
                 currentOrder: {},
+                viewItemList: [],
                 currentOrderID: '',
                 total: 0,
                 itemQuantity: {},
@@ -157,13 +161,19 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             newItem.quantity--;
             let newItemsList = JSON.parse(JSON.stringify(
                 state.itemsList.filter(I => (I.productID !== action.productID))));
-            newItemsList.push(newItem);
+            let oldItemsList = JSON.parse(JSON.stringify(state.itemsList));
+            oldItemsList.find(I => (I.productID === action.productID)).quantity--;
             return {
                 ...state,
-                itemsList: newItemsList,
+                viewItemList: newItemsList,
+                itemsList: oldItemsList,
                 currentOrder: action.currentOrder,
                 itemQuantity: {
                     ...state.itemQuantity,
+                    [action.productID]: 1
+                },
+                clonedItemQuantity: {
+                    ...state.clonedItemQuantity,
                     [action.productID]: 1
                 }
             }

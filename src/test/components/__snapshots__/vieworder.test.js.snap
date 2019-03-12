@@ -141,7 +141,26 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                     "C": 3,
                   }
                 }
-                itemsList={
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  }
+                }
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/",
+                    "url": "/",
+                  }
+                }
+                passKey="abcd"
+                total={1100}
+                url=""
+                viewItemList={
                   Array [
                     Object {
                       "_id": "a",
@@ -169,25 +188,6 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                     },
                   ]
                 }
-                location={
-                  Object {
-                    "hash": "",
-                    "pathname": "/",
-                    "search": "",
-                    "state": undefined,
-                  }
-                }
-                match={
-                  Object {
-                    "isExact": true,
-                    "params": Object {},
-                    "path": "/",
-                    "url": "/",
-                  }
-                }
-                passKey="abcd"
-                total={1100}
-                url=""
               >
                 <div>
                   <Modal
@@ -306,6 +306,13 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                             }
                           >
                             <ListItemInViewOrder
+                              clonedItemQuantity={
+                                Object {
+                                  "A": 1,
+                                  "B": 2,
+                                  "C": 3,
+                                }
+                              }
                               currentOrder={
                                 Object {
                                   "_id": "asdadasdasda",
@@ -386,6 +393,34 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                   "quantity": 10,
                                 }
                               }
+                              viewItemList={
+                                Array [
+                                  Object {
+                                    "_id": "a",
+                                    "description": "A aa",
+                                    "price": 1,
+                                    "productID": "A",
+                                    "productTitle": "AAA",
+                                    "quantity": 10,
+                                  },
+                                  Object {
+                                    "_id": "b",
+                                    "description": "B bb",
+                                    "price": 2,
+                                    "productID": "B",
+                                    "productTitle": "BBB",
+                                    "quantity": 20,
+                                  },
+                                  Object {
+                                    "_id": "c",
+                                    "description": "C cc",
+                                    "price": 3,
+                                    "productID": "C",
+                                    "productTitle": "CCC",
+                                    "quantity": 30,
+                                  },
+                                ]
+                              }
                             >
                               <li
                                 className="list-group-item d-flex justify-content-right"
@@ -447,7 +482,7 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                     >
                                       <Connect(ItemCounterInListItem)
                                         count={1}
-                                        max={20}
+                                        max={11}
                                         min={1}
                                         name="A"
                                       >
@@ -483,7 +518,7 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                               },
                                             ]
                                           }
-                                          max={20}
+                                          max={11}
                                           min={1}
                                           name="A"
                                           passKey="abcd"
@@ -607,6 +642,13 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                             }
                           >
                             <ListItemInViewOrder
+                              clonedItemQuantity={
+                                Object {
+                                  "A": 1,
+                                  "B": 2,
+                                  "C": 3,
+                                }
+                              }
                               currentOrder={
                                 Object {
                                   "_id": "asdadasdasda",
@@ -687,6 +729,34 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                   "quantity": 20,
                                 }
                               }
+                              viewItemList={
+                                Array [
+                                  Object {
+                                    "_id": "a",
+                                    "description": "A aa",
+                                    "price": 1,
+                                    "productID": "A",
+                                    "productTitle": "AAA",
+                                    "quantity": 10,
+                                  },
+                                  Object {
+                                    "_id": "b",
+                                    "description": "B bb",
+                                    "price": 2,
+                                    "productID": "B",
+                                    "productTitle": "BBB",
+                                    "quantity": 20,
+                                  },
+                                  Object {
+                                    "_id": "c",
+                                    "description": "C cc",
+                                    "price": 3,
+                                    "productID": "C",
+                                    "productTitle": "CCC",
+                                    "quantity": 30,
+                                  },
+                                ]
+                              }
                             >
                               <li
                                 className="list-group-item d-flex justify-content-right"
@@ -748,7 +818,7 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                     >
                                       <Connect(ItemCounterInListItem)
                                         count={2}
-                                        max={40}
+                                        max={22}
                                         min={1}
                                         name="B"
                                       >
@@ -784,7 +854,7 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                               },
                                             ]
                                           }
-                                          max={40}
+                                          max={22}
                                           min={1}
                                           name="B"
                                           passKey="abcd"
@@ -908,6 +978,13 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                             }
                           >
                             <ListItemInViewOrder
+                              clonedItemQuantity={
+                                Object {
+                                  "A": 1,
+                                  "B": 2,
+                                  "C": 3,
+                                }
+                              }
                               currentOrder={
                                 Object {
                                   "_id": "asdadasdasda",
@@ -988,6 +1065,34 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                   "quantity": 30,
                                 }
                               }
+                              viewItemList={
+                                Array [
+                                  Object {
+                                    "_id": "a",
+                                    "description": "A aa",
+                                    "price": 1,
+                                    "productID": "A",
+                                    "productTitle": "AAA",
+                                    "quantity": 10,
+                                  },
+                                  Object {
+                                    "_id": "b",
+                                    "description": "B bb",
+                                    "price": 2,
+                                    "productID": "B",
+                                    "productTitle": "BBB",
+                                    "quantity": 20,
+                                  },
+                                  Object {
+                                    "_id": "c",
+                                    "description": "C cc",
+                                    "price": 3,
+                                    "productID": "C",
+                                    "productTitle": "CCC",
+                                    "quantity": 30,
+                                  },
+                                ]
+                              }
                             >
                               <li
                                 className="list-group-item d-flex justify-content-right"
@@ -1049,7 +1154,7 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                     >
                                       <Connect(ItemCounterInListItem)
                                         count={3}
-                                        max={60}
+                                        max={33}
                                         min={1}
                                         name="C"
                                       >
@@ -1085,7 +1190,7 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                               },
                                             ]
                                           }
-                                          max={60}
+                                          max={33}
                                           min={1}
                                           name="C"
                                           passKey="abcd"

@@ -25,6 +25,7 @@ describe('<ViewOrder /> component', () => {
         ord: {
             total: 1100,
             itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            clonedItemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
             currentOrder: {
                 _id: 'asdadasdasda',
                 cartID: 'abc',
@@ -36,6 +37,11 @@ describe('<ViewOrder /> component', () => {
             },
             url: '',
             itemsList: [
+                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
+                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
+                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+            ],
+            viewItemList: [
                 { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
                 { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
                 { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
@@ -94,6 +100,7 @@ describe('<ViewOrder /> component with logout', () => {
         ord: {
             total: 1100,
             itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            clonedItemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
             currentOrder: {
                 _id: 'asdadasdasda',
                 cartID: 'abc',
@@ -105,6 +112,11 @@ describe('<ViewOrder /> component with logout', () => {
             },
             url: '',
             itemsList: [
+                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
+                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
+                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+            ],
+            viewItemList: [
                 { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
                 { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
                 { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }

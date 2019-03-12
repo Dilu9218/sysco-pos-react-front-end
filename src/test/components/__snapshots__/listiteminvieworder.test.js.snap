@@ -48,6 +48,7 @@ exports[`<ListItemInViewOrder /> component renders renders 1`] = `
         }
       >
         <ListItemInViewOrder
+          clonedItemQuantity={Object {}}
           currentOrder={Object {}}
           dispatch={[Function]}
           itemQuantity={Object {}}
@@ -129,7 +130,7 @@ exports[`<ListItemInViewOrder /> component renders renders 1`] = `
                   }
                 >
                   <Connect(ItemCounterInListItem)
-                    max={101}
+                    max={0}
                     min={1}
                     name="A"
                   >
@@ -144,7 +145,7 @@ exports[`<ListItemInViewOrder /> component renders renders 1`] = `
                           },
                         ]
                       }
-                      max={101}
+                      max={0}
                       min={1}
                       name="A"
                       passKey=""

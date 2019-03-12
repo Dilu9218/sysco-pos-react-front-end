@@ -29,6 +29,7 @@ const initialState = {
     itemQuantity: {},
     clonedItemQuantity: {},
     url: '',
+    viewItemList: [],
     status: false
 }
 
@@ -49,6 +50,7 @@ describe('Items list', () => {
         };
         const expectation = {
             itemsList: [{ 'Item1': 12 }, { 'Item2': 20 }],
+            viewItemList: [{ 'Item1': 12 }, { 'Item2': 20 }],
             orderList: [],
             currentOrder: {},
             currentOrderID: '',
@@ -73,6 +75,7 @@ describe('Items list', () => {
         };
         const expectation = {
             itemsList: [],
+            viewItemList: [],
             orderList: [{ 'Item1': 12 }, { 'Item2': 20 }],
             currentOrder: {},
             currentOrderID: '',
@@ -197,6 +200,7 @@ describe('Current orders', () => {
             itemQuantity: { 'A': 2, 'B': 3 },
             clonedItemQuantity: { 'A': 2, 'B': 3 },
             url: '/test_url',
+            viewItemList: [],
             status: false
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
@@ -221,6 +225,7 @@ describe('Current orders', () => {
             itemQuantity: {},
             clonedItemQuantity: {},
             url: '',
+            viewItemList: [],
             status: false
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
@@ -233,6 +238,7 @@ describe('Current orders', () => {
         const expectation = {
             itemsList: [],
             orderList: [],
+            viewItemList: [],
             currentOrder: {},
             currentOrderID: '',
             total: 0,
@@ -346,6 +352,7 @@ describe('Current orders', () => {
         };
         const expectation = {
             itemsList: [],
+            viewItemList: [],
             orderList: [{
                 _id: 123,
                 cartID: 12345,
@@ -383,7 +390,8 @@ describe('Current orders', () => {
             status: false
         };
         const expectation = {
-            itemsList: [{ productID: 'B', quantity: 20 }, { productID: 'A', quantity: 9 }],
+            itemsList: [{ productID: 'A', quantity: 9 }, { productID: 'B', quantity: 20 }],
+            viewItemList: [{ productID: 'B', quantity: 20 }],
             orderList: [],
             currentOrder: {
                 _id: 123,
@@ -393,7 +401,7 @@ describe('Current orders', () => {
             currentOrderID: '',
             total: 0,
             itemQuantity: { 'A': 1 },
-            clonedItemQuantity: {},
+            clonedItemQuantity: { 'A': 1 },
             url: '',
             status: false
         };

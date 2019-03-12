@@ -82,7 +82,7 @@ class ViewOrder extends Component {
                             <div className="alert alert-dark" role="alert"><h5
                                 style={{ margin: 'auto', textAlign: 'initial' }}>
                                 <i className="fas fa-th-list"></i> Items List</h5></div>
-                            {this.props.itemsList.filter((item) => {
+                            {this.props.viewItemList.filter((item) => {
                                 return ((item.quantity > 0) &&
                                     this.props.itemQuantity[item.productID] === undefined)
                             }).map((item) => (
@@ -163,7 +163,7 @@ ViewOrder.propTypes = {
 const mapStateToProps = (state) => ({
     total: state.ord.total,
     url: state.ord.url,
-    itemsList: state.ord.itemsList,
+    viewItemList: state.ord.viewItemList,
     passKey: state.uac.passKey,
     itemQuantity: state.ord.itemQuantity,
     isLoggedIn: state.uac.isLoggedIn,
