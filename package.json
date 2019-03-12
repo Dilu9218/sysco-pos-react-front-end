@@ -25,7 +25,9 @@
     "redux-cookie": "^0.5.9",
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
-    "sinon": "^7.2.7"
+    "sinon": "^7.2.7",
+    "react-router-enzyme-context": "^1.2.0",
+    "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,8 +53,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {
-    "react-router-enzyme-context": "^1.2.0",
-    "redux-devtools-extension": "^2.13.8"
-  }
+  "devDependencies": {}
 }
