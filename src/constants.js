@@ -1,4 +1,4 @@
-export const BASEURL = process.env.BASEURL;
+export const BASEURL = 'https://sysco-pos-rest-api.herokuapp.com/api';
 export const ORDER_ENDPOINT = '/order';
 export const ITEMS_ENDPOINT = '/item';
 export const USERS_ENDPOINT = '/user';

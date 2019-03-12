@@ -4,6 +4,7 @@ class MainPage extends Component {
     render() {
         return (
             <React.Fragment>
+
                 <div className="jumbotron jumbotron-fluid">
                     <h1 className="display-4">Mini-project: a simple Point of Sale (POS) system</h1>
                     <p className="lead">Back end should be developed as a REST API in either JS, Java or Golang. Front end should be developed using React.js.
