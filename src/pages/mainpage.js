@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class MainPage extends Component {
     render() {
@@ -41,15 +42,18 @@ class MainPage extends Component {
                         </div>
                     </div>
                     <div className="card" style={{ border: '1px solid rgba(0,0,0,.125)' }}>
-                        <img className="card-img-top" src={require('./react_test_results.png')} 
-                        style={{ padding: '10px' }} 
-                        alt="React JS Front end Test Results and Coverage" />
+                        <img className="card-img-top" src={require('./react_test_results.png')}
+                            style={{ padding: '10px' }}
+                            alt="React JS Front end Test Results and Coverage" />
                         <div className="card-body">
                             <h5 className="card-title">ReactJS Front End</h5>
                             <p className="card-text">Test results and total test coverage for the front end UI</p>
                         </div>
                     </div>
                 </div>
+                <footer style={{ marginBottom: '15px' }}>
+                    <a href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.1#/"
+                        target="_blank" rel="noopener noreferrer">REST API Documentation</a></footer>
             </React.Fragment>
         );
     }
