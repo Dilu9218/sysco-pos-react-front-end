@@ -5,6 +5,7 @@ import {
     ORDER_REQUEST_ENDPOINT,
     ORDER_CHECKOUT_ENDPOINT,
     ADD_TO_ORDER_ENDPOINT,
+    APPEND_TO_ORDER_ENDPOINT,
     ITEMS_LIST_ENDPOINT,
     NEW_ORDER_ENDPOINT
 } from '../constants';
@@ -157,7 +158,7 @@ export const dispatch_AddTheseItemsToThisOrder = (id, items, accesstoken) => (di
 
 export const dispatch_AppendThisItemToOrder = (productID, orderID, accesstoken) =>
     (dispatch) => {
-        return axios.post(ADD_TO_ORDER_ENDPOINT + `/${orderID}`, {
+        return axios.put(APPEND_TO_ORDER_ENDPOINT + `/${orderID}`, {
             productID,
             quantity: 1
         },
