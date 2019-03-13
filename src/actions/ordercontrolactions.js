@@ -156,7 +156,7 @@ export const dispatch_AddTheseItemsToThisOrder = (id, items, accesstoken) => (di
         });
 }
 
-export const dispatch_AppendThisItemToOrder = (productID, orderID, accesstoken) =>
+export const dispatch_AppendThisItemToOrder = (price, productID, orderID, accesstoken) =>
     (dispatch) => {
         return axios.put(APPEND_TO_ORDER_ENDPOINT + `/${orderID}`, {
             productID,
@@ -167,7 +167,8 @@ export const dispatch_AppendThisItemToOrder = (productID, orderID, accesstoken) 
                 dispatch({
                     type: APPEND_THIS_ITEM_TO_ORDER,
                     productID,
-                    currentOrder: res.data
+                    currentOrder: res.data,
+                    price
                 });
             })
             .catch(err => {

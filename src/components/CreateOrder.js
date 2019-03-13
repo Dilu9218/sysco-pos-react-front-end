@@ -7,6 +7,7 @@ import {
     dispatch_CreateNewOrderForThisUser,
     dispatch_DeleteThisOrder,
     dispatch_GetTheCompleteItemsList,
+    dispatch_FetchEveryOrderForThisUser,
     dispatch_ResetCurrentOrderStates,
     dispatch_AddTheseItemsToThisOrder
 } from '../actions/ordercontrolactions';
@@ -68,10 +69,11 @@ class CreateOrder extends Component {
      * the necessary functions to 
      *************************************************************************/
     componentWillUnmount() {
-        if (Object.keys(this.props.itemQuantity).length === 0) {
+        if (Object.keys(this.props.itemQuantity).length === 0 || !this.props.status) {
             this.props.dispatch_DeleteThisOrder(
                 this.props.currentOrderID, this.props.passKey);
             this.props.dispatch_ResetCurrentOrderStates();
+            this.props.dispatch_FetchEveryOrderForThisUser(this.props.passKey);
         }
     }
 
@@ -144,6 +146,7 @@ class CreateOrder extends Component {
 
 CreateOrder.propTypes = {
     dispatch_CreateNewOrderForThisUser: PropTypes.func.isRequired,
+    dispatch_FetchEveryOrderForThisUser: PropTypes.func.isRequired,
     dispatch_DeleteThisOrder: PropTypes.func.isRequired,
     dispatch_AddTheseItemsToThisOrder: PropTypes.func.isRequired,
     dispatch_ResetCurrentOrderStates: PropTypes.func.isRequired,
@@ -166,6 +169,7 @@ export default withRouter(connect(mapStateToProps, {
     dispatch_CreateNewOrderForThisUser,
     dispatch_ResetCurrentOrderStates,
     dispatch_DeleteThisOrder,
+    dispatch_FetchEveryOrderForThisUser,
     dispatch_AddTheseItemsToThisOrder,
     dispatch_GetTheCompleteItemsList
 })(CreateOrder));

@@ -376,7 +376,8 @@ describe('Current orders', () => {
                 _id: 123,
                 cartID: 12345,
                 items: [{ 'A': 1 }]
-            }
+            },
+            price: 10
         };
         const init = {
             itemsList: [{ productID: 'A', quantity: 10 }, { productID: 'B', quantity: 20 }],
@@ -399,7 +400,7 @@ describe('Current orders', () => {
                 items: [{ 'A': 1 }]
             },
             currentOrderID: '',
-            total: 0,
+            total: 10,
             itemQuantity: { 'A': 1 },
             clonedItemQuantity: { 'A': 1 },
             url: '',

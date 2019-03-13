@@ -82,6 +82,7 @@ exports[`<CreateOrder /> component renders with an create order layout 1`] = `
                 dispatch_AddTheseItemsToThisOrder={[Function]}
                 dispatch_CreateNewOrderForThisUser={[Function]}
                 dispatch_DeleteThisOrder={[Function]}
+                dispatch_FetchEveryOrderForThisUser={[Function]}
                 dispatch_GetTheCompleteItemsList={[Function]}
                 dispatch_ResetCurrentOrderStates={[Function]}
                 history={

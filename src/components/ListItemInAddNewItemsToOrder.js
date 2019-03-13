@@ -8,7 +8,7 @@ import {
 class ListItemInAddNewItemsToOrder extends Component {
 
     addThisItemToOrder = () => {
-        this.props.dispatch_AppendThisItemToOrder(
+        this.props.dispatch_AppendThisItemToOrder(this.props.item.price,
             this.props.item.productID, this.props.currentOrderID,
             this.props.passKey, this.props.itemsList);
     }

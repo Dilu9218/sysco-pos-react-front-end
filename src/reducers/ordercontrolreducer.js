@@ -175,7 +175,8 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 clonedItemQuantity: {
                     ...state.clonedItemQuantity,
                     [action.productID]: 1
-                }
+                },
+                total: state.total + (action.price)
             }
         case QUICK_DELETE_THIS_ITEM_FROM_QUANTITY:
             let nItm = state.itemQuantity;

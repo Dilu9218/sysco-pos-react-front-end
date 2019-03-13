@@ -197,13 +197,13 @@ describe('Current order modifications', () => {
             });
     });
     it('Append new items to this order', (done) => {
-        store.dispatch(dispatch_AppendThisItemToOrder('MU-LTI-PL3', lOrder, accesstoken)).then(() => {
+        store.dispatch(dispatch_AppendThisItemToOrder(10, 'MU-LTI-PL3', lOrder, accesstoken)).then(() => {
             expect(store.getActions()[0].type).toBe(APPEND_THIS_ITEM_TO_ORDER);
             done();
         });
     });
     it('Append no items to this order', (done) => {
-        store.dispatch(dispatch_AppendThisItemToOrder('X', lOrder, accesstoken)).then(() => {
+        store.dispatch(dispatch_AppendThisItemToOrder(10, 'X', lOrder, accesstoken)).then(() => {
             expect(store.getActions()[0].type).toBe(ERROR_APPEND_THIS_ITEM_TO_ORDER);
             done();
         });
