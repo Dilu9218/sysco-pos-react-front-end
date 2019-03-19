@@ -39,7 +39,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          <Route exact path="/" render={() => (<MainPage />)} />
+          <Route path="/home" render={() => (<MainPage />)} />
+          <Route exact path="/" render={() => (<LogIn />)} />
 
           <Route path="/login" render={() => (<LogIn />)} />
           <Route path="/register" render={() => (<Register />)} />

@@ -6,6 +6,7 @@ import {
     ORDER_CHECKOUT_ENDPOINT,
     ADD_TO_ORDER_ENDPOINT,
     APPEND_TO_ORDER_ENDPOINT,
+    DELETE_ORDER_ITEM_ENDPOINT,
     ITEMS_LIST_ENDPOINT,
     NEW_ORDER_ENDPOINT
 } from '../constants';
@@ -196,7 +197,7 @@ export const dispatch_GetTheCompleteItemsList = (accesstoken) => (dispatch) => {
 
 export const dispatch_QuickDeleteThisItemFromQuantity = (id, orderID, count, price, accesstoken) =>
     (dispatch) => {
-        return axios.put(ORDER_REQUEST_ENDPOINT + `/${orderID}`, {
+        return axios.patch(DELETE_ORDER_ITEM_ENDPOINT + `/${orderID}`, {
             productID: id,
             quantity: count
         }, { headers: { 'x-access-token': accesstoken } }).then(updatedOrder => {
