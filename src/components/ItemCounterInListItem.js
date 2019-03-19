@@ -1,58 +1,53 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {
+    dispatch_QuickDeleteThisItemFromQuantity,
+    dispatch_QuickIndecrementItemFromQuantity
+} from '../actions/ordercontrolactions';
 
-function RenderDeleteButton(props) {
-    if (props.COUNT !== 0) {
-        return (
-            <div className="btn-group" role="group" aria-label="Delete-Group" style={{ marginLeft: '10px' }}>
-                <button type="button" className="btn btn-danger" onClick={props.DELETE_THIS_ITEM}><i className="fas fa-trash"></i></button>
-            </div>
-        );
-    } else {
-        return (
-            <React.Fragment></React.Fragment>
-        );
-    }
-}
-
-/**
- * Custom component to increment and decrement value within a minimum and
+/***************************************************************************************************
+ *  Custom component to increment and decrement value within a minimum and
  * maximum range. A local count will be maintained to help with validation
- * @param NAME Identifier for this counter
- * @param MIN Minimum allowable value
- * @param MAX Maximum allowable value
- */
+ * @param name Identifier for this counter
+ * @param min Minimum allowable value
+ * @param max Maximum allowable value
+ **************************************************************************************************/
 class ItemCounterInListItem extends Component {
 
-    /**************************************************************************
-     * Triggers the parent component method to clear the count for this item
-     *************************************************************************/
-    DELETE_THIS_ITEM = (e) => {
+    /***********************************************************************************************
+     * 
+     **********************************************************************************************/
+    deleteThisItem = (e) => {
         e.preventDefault();
-        this.props.DELETE_THIS_ITEM(this.props.NAME);
+        let P = this.props.itemsList.find(I => I.productID === this.props.name).price;
+        this.props.dispatch_QuickDeleteThisItemFromQuantity(
+            this.props.name, this.props.currentOrderID, this.props.count, P, this.props.passKey);
     }
 
-    /**************************************************************************
-     * This will increment the item count by one if it is an existing item and
-     * will request to add a new item to the quantity list if it is not and do
-     * update its count as usual
-     *************************************************************************/
-    INCREMENT_COUNT = (e) => {
+    /***********************************************************************************************
+     * 
+     **********************************************************************************************/
+    incrementItemCount = (e) => {
         e.preventDefault();
-        if (this.props.COUNT !== this.props.MAX) {
-            if (this.props.COUNT === 0) {
-                this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY(this.props.NAME);
-            }
-            this.props.INDECCREMENT_ITEM_COUNT(this.props.NAME, true);
+        if (this.props.count < this.props.max) {
+            let P = this.props.itemsList.find(I => I.productID === this.props.name).price;
+            this.props.dispatch_QuickIndecrementItemFromQuantity(
+                this.props.name, true, this.props.count, this.props.currentOrderID,
+                P, this.props.passKey);
         }
     }
 
-    /**************************************************************************
-     * This method will decrement the count of item quantities in parent state
-     *************************************************************************/
-    DECREMENT_COUNT = (e) => {
+    /***********************************************************************************************
+     * 
+     **********************************************************************************************/
+    decrementItemCount = (e) => {
         e.preventDefault();
-        if (this.props.COUNT !== this.props.MIN) {
-            this.props.INDECCREMENT_ITEM_COUNT(this.props.NAME, false);
+        if (this.props.count > this.props.min) {
+            let P = this.props.itemsList.find(
+                I => I.productID === this.props.name).price;
+            this.props.dispatch_QuickIndecrementItemFromQuantity(this.props.name, false,
+                this.props.count, this.props.currentOrderID, P, this.props.passKey);
         }
     }
 
@@ -61,20 +56,40 @@ class ItemCounterInListItem extends Component {
             <React.Fragment>
                 <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div className="btn-group" role="group" aria-label="Item-Group">
-                        <button type="button" className="btn btn-secondary" onClick={this.INCREMENT_COUNT}>&#43;</button>
+                        <button type="button" className="btn btn-secondary"
+                            onClick={this.incrementItemCount}>&#43;</button>
                         <div style={{ width: '3em', textAlign: 'center' }}>
                             <span className="input-group-text" style={{
-                                display: 'inline-block', borderRadius: '0px', width: '100%', height: '100%'
-                            }}>{this.props.COUNT}</span></div>
-                        <button type="button" className="btn btn-secondary" onClick={this.DECREMENT_COUNT}>&#8722;</button>
+                                display: 'inline-block', borderRadius: '0px',
+                                width: '100%', height: '100%'
+                            }}>{this.props.count}</span></div>
+                        <button type="button" className="btn btn-secondary"
+                            onClick={this.decrementItemCount}>&#8722;</button>
                     </div>
-                    <RenderDeleteButton
-                        COUNT={this.props.COUNT}
-                        DELETE_THIS_ITEM={this.DELETE_THIS_ITEM} />
+                    <div className="btn-group"
+                        role="group" aria-label="Delete-Group" style={{ marginLeft: '10px' }}>
+                        <button
+                            type="button" className="btn btn-danger"
+                            onClick={this.deleteThisItem}><i className="fas fa-trash"></i></button>
+                    </div>
                 </div>
             </React.Fragment>
         );
     }
 }
 
-export default ItemCounterInListItem;
+ItemCounterInListItem.propTypes = {
+    dispatch_QuickIndecrementItemFromQuantity: PropTypes.func.isRequired,
+    dispatch_QuickDeleteThisItemFromQuantity: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    passKey: state.uac.passKey,
+    itemsList: state.ord.itemsList,
+    currentOrderID: state.ord.currentOrderID
+});
+
+export default connect(mapStateToProps, {
+    dispatch_QuickIndecrementItemFromQuantity,
+    dispatch_QuickDeleteThisItemFromQuantity
+})(ItemCounterInListItem);

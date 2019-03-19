@@ -1,41 +1,43 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom'
-import ListItemInOrder from './ListItemInOrder';
+import { withRouter, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import ListItemInCreateOrder from './ListItemInCreateOrder';
+import {
+    dispatch_CreateNewOrderForThisUser,
+    dispatch_DeleteThisOrder,
+    dispatch_GetTheCompleteItemsList,
+    dispatch_FetchEveryOrderForThisUser,
+    dispatch_ResetCurrentOrderStates,
+    dispatch_AddTheseItemsToThisOrder
+} from '../actions/ordercontrolactions';
 
-/**
- * @abstract Creates a new order
- * @description Creates a new order with multiple items added to it
- * @param ISLOGGEDIN
- * @param CURRENTORDERID
- * @param ITEMSLIST
- * @param DELETE_THIS_ORDER
- * @param CREATE_NEW_ORDER_FOR_THIS_USER
- * @param ADD_ITEMS_TO_THIS_ORDER
- */
+/***************************************************************************************************
+ * Displays a list of all the available items to create a new order
+ **************************************************************************************************/
 class CreateOrder extends Component {
 
-    // As the create order view mounted, generate a new order for the user
-    // and in the meantime fetch the complete item list
-    componentDidMount() {
-        this.props.CLEAR_ORDER_ADDING_PROCESS();
-        this.props.CREATE_NEW_ORDER_FOR_THIS_USER();
+    /***********************************************************************************************
+     * As the view gets constructed, we need the latest item list with updated quantities. Dispatch
+     * actions to create a new order as the inital step as we need an order ID to feed items into &
+     * fetch the latest item list with updated quantities to show
+     **********************************************************************************************/
+    constructor(props) {
+        super(props);
+        this.props.dispatch_CreateNewOrderForThisUser(props.passKey);
+        this.props.dispatch_GetTheCompleteItemsList(this.props.passKey);
     }
 
-    /**************************************************************************
-     * Once all the items are set, this method will trigger the order state 
-     * updating function in parent component to trigger a series of axios 
-     * requests adding the items selected to the order and update the global 
-     * item count. Before all that, this will filter the items for zero item 
-     * counts. Once the parent function is triggered, redirects user to order
-     * list after waiting for a time out depending on the number of items being
-     * added to show user the completed order rather than a half filled order
-     * as it takes some time to complete the axios promises.
-     *************************************************************************/
-    ADD_THESE_ITEMS_TO_THIS_ORDER = () => {
-        this.props.ADD_ITEMS_TO_THIS_ORDER();
-        setTimeout(() => {
-            this.props.history.push('/my_orders')
-        }, (50 * this.props.ITEMQUANTITY.length));
+    /***********************************************************************************************
+     * Once the items quantities are all set, dispatch an action to save the quantities to database
+     * and update the state with added data
+     **********************************************************************************************/
+    addSelectedItemsToThisOrder = () => {
+        this.props.dispatch_AddTheseItemsToThisOrder(
+            this.props.currentOrderID,
+            this.props.itemQuantity,
+            this.props.passKey
+        );
     }
 
     /**************************************************************************
@@ -43,28 +45,40 @@ class CreateOrder extends Component {
      * parent component function to delete the current order being created. 
      * Once done, user will be redirected to order list.
      *************************************************************************/
-    CANCEL_THE_ORDER = (ID) => {
-        if (this.props.ITEMQUANTITY.length !== undefined) {
-            this.props.DELETE_THIS_ORDER(ID);
-            this.props.CLEAR_ORDER_ADDING_PROCESS();
-        }
+    CANCEL_THE_ORDER = () => {
+        this.props.dispatch_DeleteThisOrder(
+            this.props.currentOrderID,
+            this.props.passKey
+        );
+        this.props.dispatch_ResetCurrentOrderStates();
         this.props.history.push('/my_orders');
+    }
+
+    // Once the order is cancelled, props will change as checking in the following if block. If it
+    // is reset, there are no current orders and we can redirect user back to orders list.
+    componentDidUpdate(prevProps) {
+        if (this.props.status) {
+            this.props.dispatch_ResetCurrentOrderStates();
+            this.props.history.push('/my_orders');
+        }
     }
 
     /**************************************************************************
      * When the view is ending, if user has not added any elements to order, we
-     * can delete it by checking if the ITEMQUANTITY is of no length and call
+     * can delete it by checking if the itemQuantity is of no length and call
      * the necessary functions to 
      *************************************************************************/
     componentWillUnmount() {
-        if (this.props.ITEMQUANTITY.length === undefined) {
-            this.props.DELETE_THIS_ORDER(this.props.CURRENTORDERID);
-            this.props.CLEAR_ORDER_ADDING_PROCESS();
+        if (Object.keys(this.props.itemQuantity).length === 0 || !this.props.status) {
+            this.props.dispatch_DeleteThisOrder(
+                this.props.currentOrderID, this.props.passKey);
+            this.props.dispatch_ResetCurrentOrderStates();
+            this.props.dispatch_FetchEveryOrderForThisUser(this.props.passKey);
         }
     }
 
     render() {
-        if (!this.props.ISLOGGEDIN) {
+        if (!this.props.isLoggedIn) {
             return (
                 <Redirect to="/login" />
             );
@@ -73,34 +87,30 @@ class CreateOrder extends Component {
                 <div>
                     <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
                         <div className="card-body">
-                            <h5 className="card-title"
-                                style={{ margin: '0.5em 1em' }}>Item List</h5>
-                            {this.props.ITEMSLIST.map((item) => (
-                                <ListItemInOrder
+                            <div className="alert alert-dark" role="alert"><h5
+                                style={{ margin: 'auto', textAlign: 'initial' }}>
+                                <i className="fas fa-th-list"></i> Items List</h5></div>
+                            {this.props.itemsList.filter((item) => {
+                                return (item.quantity > 0)
+                            }).map((item) => (
+                                <ListItemInCreateOrder
                                     key={item._id}
-                                    ITEM={item}
-                                    NAME={item.productID}
-                                    ITEMQUANTITY={this.props.ITEMQUANTITY[item.productID] === undefined
-                                        ? 0 : this.props.ITEMQUANTITY[item.productID]}
-                                    ADD_THIS_ITEM_TO_ITEMQUANTITY={this.props.ADD_THIS_ITEM_TO_ITEMQUANTITY}
-                                    DELETE_THIS_ITEM={this.props.DELETE_THIS_ITEM}
-                                    INDECCREMENT_ITEM_COUNT={this.props.INDECCREMENT_ITEM_COUNT} />
+                                    item={item}
+                                    quantity={this.props.itemQuantity[item.productID] === undefined
+                                        ? 0 : this.props.itemQuantity[item.productID]} />
                             ))}
                         </div>
                     </div>
                     <nav className="navbar navbar-light bg-light"
                         style={{
-                            paddingRight: '25px',
-                            overflow: 'hidden',
-                            position: 'fixed',
-                            zIndex: 99,
-                            bottom: '0',
-                            width: '100%'
+                            paddingRight: '25px', overflow: 'hidden', position: 'fixed', zIndex: 99,
+                            bottom: '0', width: '100%'
                         }}>
                         <div className="card-body" style={{ paddingTop: '0px' }}>
                             <div className="row">
                                 <div className="col-4 d-flex justify-content-start d-inline">
-                                    <div className="input-group-prepend" style={{ marginLeft: '10px' }}>
+                                    <div className="input-group-prepend"
+                                        style={{ marginLeft: '10px' }}>
                                         <span className="input-group-text"
                                             style={{
                                                 borderTopRightRadius: '0px',
@@ -110,20 +120,20 @@ class CreateOrder extends Component {
                                             style={{
                                                 borderTopLeftRadius: '0px',
                                                 borderBottomLeftRadius: '0px'
-                                            }}>Rs. {Math.abs((this.props.TOTAL)).toFixed(2)}
+                                            }}>Rs. {Math.abs((this.props.total)).toFixed(2)}
                                         </span>
                                     </div>
                                 </div>
                                 <div className="col-8 d-flex justify-content-end">
                                     <button
-                                        onClick={this.ADD_THESE_ITEMS_TO_THIS_ORDER}
+                                        onClick={this.addSelectedItemsToThisOrder}
                                         className="btn btn-success"
-                                        style={{ marginRight: '10px' }}><i className="fas fa-cart-plus"></i> Add to Cart</button>
+                                        style={{ marginRight: '10px' }}>
+                                        <i className="fas fa-cart-plus"></i> Add to Cart</button>
                                     <button
-                                        onClick={this.CANCEL_THE_ORDER.bind(
-                                            this, this.props.CURRENTORDERID
-                                        )}
-                                        className="btn btn-danger"><i className="fas fa-times-circle"></i> Cancel</button>
+                                        onClick={this.CANCEL_THE_ORDER}
+                                        className="btn btn-danger">
+                                        <i className="fas fa-times-circle"></i> Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -134,4 +144,32 @@ class CreateOrder extends Component {
     }
 }
 
-export default withRouter(CreateOrder);
+CreateOrder.propTypes = {
+    dispatch_CreateNewOrderForThisUser: PropTypes.func.isRequired,
+    dispatch_FetchEveryOrderForThisUser: PropTypes.func.isRequired,
+    dispatch_DeleteThisOrder: PropTypes.func.isRequired,
+    dispatch_AddTheseItemsToThisOrder: PropTypes.func.isRequired,
+    dispatch_ResetCurrentOrderStates: PropTypes.func.isRequired,
+    dispatch_GetTheCompleteItemsList: PropTypes.func.isRequired,
+    passKey: PropTypes.string.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.uac.isLoggedIn,
+    currentOrderID: state.ord.currentOrderID,
+    passKey: state.uac.passKey,
+    itemQuantity: state.ord.itemQuantity,
+    itemsList: state.ord.itemsList,
+    status: state.ord.status,
+    total: state.ord.total
+});
+
+export default withRouter(connect(mapStateToProps, {
+    dispatch_CreateNewOrderForThisUser,
+    dispatch_ResetCurrentOrderStates,
+    dispatch_DeleteThisOrder,
+    dispatch_FetchEveryOrderForThisUser,
+    dispatch_AddTheseItemsToThisOrder,
+    dispatch_GetTheCompleteItemsList
+})(CreateOrder));

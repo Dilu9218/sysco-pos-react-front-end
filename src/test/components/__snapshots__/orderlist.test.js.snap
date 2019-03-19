@@ -1,0 +1,1657 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OrderList /> component renders orderlist with orders 1`] = `
+<CookiesProvider>
+  <Provider
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <BrowserRouter>
+      <Router
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+      >
+        <withRouter(Connect(OrderList))>
+          <Route>
+            <Connect(OrderList)
+              history={
+                Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "length": 1,
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                }
+              }
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "/",
+                  "search": "",
+                  "state": undefined,
+                }
+              }
+              match={
+                Object {
+                  "isExact": true,
+                  "params": Object {},
+                  "path": "/",
+                  "url": "/",
+                }
+              }
+            >
+              <OrderList
+                currentOrder={
+                  Object {
+                    "_id": "asdadasdasda",
+                    "cartID": "abc",
+                    "items": Array [
+                      Object {},
+                    ],
+                  }
+                }
+                dispatch_DeleteThisOrder={[Function]}
+                dispatch_FetchEveryOrderForThisUser={[Function]}
+                dispatch_GetTheCompleteItemsList={[Function]}
+                dispatch_ResetCurrentOrderStates={[Function]}
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+                itemsList={
+                  Array [
+                    Object {},
+                  ]
+                }
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  }
+                }
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/",
+                    "url": "/",
+                  }
+                }
+                orderList={
+                  Array [
+                    Object {
+                      "_id": "asdadasdasda",
+                      "cartID": "testCart",
+                      "items": Array [
+                        Object {
+                          "_id": "a",
+                          "description": "A aa",
+                          "price": 1,
+                          "productID": "A",
+                          "productTitle": "AAA",
+                          "quantity": 10,
+                        },
+                        Object {
+                          "_id": "b",
+                          "description": "B bb",
+                          "price": 2,
+                          "productID": "B",
+                          "productTitle": "BBB",
+                          "quantity": 20,
+                        },
+                        Object {
+                          "_id": "c",
+                          "description": "C cc",
+                          "price": 3,
+                          "productID": "C",
+                          "productTitle": "CCC",
+                          "quantity": 30,
+                        },
+                      ],
+                    },
+                    Object {
+                      "_id": "asdadafdasda",
+                      "cartID": "tesdCart",
+                      "items": Array [
+                        Object {
+                          "_id": "a",
+                          "description": "A aa",
+                          "price": 1,
+                          "productID": "A",
+                          "productTitle": "AAA",
+                          "quantity": 10,
+                        },
+                        Object {
+                          "_id": "b",
+                          "description": "B bb",
+                          "price": 2,
+                          "productID": "B",
+                          "productTitle": "BBB",
+                          "quantity": 20,
+                        },
+                        Object {
+                          "_id": "c",
+                          "description": "C cc",
+                          "price": 3,
+                          "productID": "C",
+                          "productTitle": "CCC",
+                          "quantity": 30,
+                        },
+                      ],
+                    },
+                  ]
+                }
+                passKey="abcd"
+                url=""
+              >
+                <div
+                  className="card"
+                  style={
+                    Object {
+                      "margin": "25px",
+                    }
+                  }
+                >
+                  <div
+                    className="card-body"
+                    style={
+                      Object {
+                        "padding": "1.25rem 1.25rem 1rem 1.25rem",
+                      }
+                    }
+                  >
+                    <div
+                      className="alert alert-dark"
+                      role="alert"
+                    >
+                      <h5
+                        style={
+                          Object {
+                            "margin": "auto",
+                            "textAlign": "initial",
+                          }
+                        }
+                      >
+                        <i
+                          className="fas fa-th-list"
+                        />
+                         Order List
+                      </h5>
+                    </div>
+                    <withRouter(Connect(SingleOrder))
+                      key="asdadasdasda"
+                      order={
+                        Object {
+                          "_id": "asdadasdasda",
+                          "cartID": "testCart",
+                          "items": Array [
+                            Object {
+                              "_id": "a",
+                              "description": "A aa",
+                              "price": 1,
+                              "productID": "A",
+                              "productTitle": "AAA",
+                              "quantity": 10,
+                            },
+                            Object {
+                              "_id": "b",
+                              "description": "B bb",
+                              "price": 2,
+                              "productID": "B",
+                              "productTitle": "BBB",
+                              "quantity": 20,
+                            },
+                            Object {
+                              "_id": "c",
+                              "description": "C cc",
+                              "price": 3,
+                              "productID": "C",
+                              "productTitle": "CCC",
+                              "quantity": 30,
+                            },
+                          ],
+                        }
+                      }
+                    >
+                      <Route>
+                        <Connect(SingleOrder)
+                          history={
+                            Object {
+                              "action": "POP",
+                              "block": [Function],
+                              "createHref": [Function],
+                              "go": [Function],
+                              "goBack": [Function],
+                              "goForward": [Function],
+                              "length": 1,
+                              "listen": [Function],
+                              "location": Object {
+                                "hash": "",
+                                "pathname": "/",
+                                "search": "",
+                                "state": undefined,
+                              },
+                              "push": [Function],
+                              "replace": [Function],
+                            }
+                          }
+                          location={
+                            Object {
+                              "hash": "",
+                              "pathname": "/",
+                              "search": "",
+                              "state": undefined,
+                            }
+                          }
+                          match={
+                            Object {
+                              "isExact": true,
+                              "params": Object {},
+                              "path": "/",
+                              "url": "/",
+                            }
+                          }
+                          order={
+                            Object {
+                              "_id": "asdadasdasda",
+                              "cartID": "testCart",
+                              "items": Array [
+                                Object {
+                                  "_id": "a",
+                                  "description": "A aa",
+                                  "price": 1,
+                                  "productID": "A",
+                                  "productTitle": "AAA",
+                                  "quantity": 10,
+                                },
+                                Object {
+                                  "_id": "b",
+                                  "description": "B bb",
+                                  "price": 2,
+                                  "productID": "B",
+                                  "productTitle": "BBB",
+                                  "quantity": 20,
+                                },
+                                Object {
+                                  "_id": "c",
+                                  "description": "C cc",
+                                  "price": 3,
+                                  "productID": "C",
+                                  "productTitle": "CCC",
+                                  "quantity": 30,
+                                },
+                              ],
+                            }
+                          }
+                        >
+                          <SingleOrder
+                            currentOrder={
+                              Object {
+                                "_id": "asdadasdasda",
+                                "cartID": "abc",
+                                "items": Array [
+                                  Object {},
+                                ],
+                              }
+                            }
+                            dispatch_SetThisOrderAsCurrentOrder={[Function]}
+                            history={
+                              Object {
+                                "action": "POP",
+                                "block": [Function],
+                                "createHref": [Function],
+                                "go": [Function],
+                                "goBack": [Function],
+                                "goForward": [Function],
+                                "length": 1,
+                                "listen": [Function],
+                                "location": Object {
+                                  "hash": "",
+                                  "pathname": "/",
+                                  "search": "",
+                                  "state": undefined,
+                                },
+                                "push": [Function],
+                                "replace": [Function],
+                              }
+                            }
+                            location={
+                              Object {
+                                "hash": "",
+                                "pathname": "/",
+                                "search": "",
+                                "state": undefined,
+                              }
+                            }
+                            match={
+                              Object {
+                                "isExact": true,
+                                "params": Object {},
+                                "path": "/",
+                                "url": "/",
+                              }
+                            }
+                            order={
+                              Object {
+                                "_id": "asdadasdasda",
+                                "cartID": "testCart",
+                                "items": Array [
+                                  Object {
+                                    "_id": "a",
+                                    "description": "A aa",
+                                    "price": 1,
+                                    "productID": "A",
+                                    "productTitle": "AAA",
+                                    "quantity": 10,
+                                  },
+                                  Object {
+                                    "_id": "b",
+                                    "description": "B bb",
+                                    "price": 2,
+                                    "productID": "B",
+                                    "productTitle": "BBB",
+                                    "quantity": 20,
+                                  },
+                                  Object {
+                                    "_id": "c",
+                                    "description": "C cc",
+                                    "price": 3,
+                                    "productID": "C",
+                                    "productTitle": "CCC",
+                                    "quantity": 30,
+                                  },
+                                ],
+                              }
+                            }
+                            passKey="abcd"
+                          >
+                            <div
+                              className="card border-dark shadow"
+                              style={
+                                Object {
+                                  "margin": "10px 0px",
+                                }
+                              }
+                            >
+                              <div
+                                aria-controls="iasdadasdasda"
+                                aria-expanded="true"
+                                className="card-header text-white bg-dark"
+                                data-target="#iasdadasdasda"
+                                data-toggle="collapse"
+                                style={
+                                  Object {
+                                    "padding": ".75em .1em",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="row"
+                                  style={
+                                    Object {
+                                      "margin": "0px",
+                                      "width": "100%",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    className="col-10 d-flex justify-content-start"
+                                    style={
+                                      Object {
+                                        "textAlign": "initial",
+                                      }
+                                    }
+                                  >
+                                    Order ID: 
+                                    asdadasdasda
+                                  </div>
+                                  <div
+                                    className="col-2 d-flex justify-content-end"
+                                    style={
+                                      Object {
+                                        "textAlign": "initial",
+                                      }
+                                    }
+                                  >
+                                    <b>
+                                      <p
+                                        className="badge badge-secondary"
+                                        style={
+                                          Object {
+                                            "margin": "unset",
+                                            "marginRight": "10px",
+                                            "padding": "5px",
+                                          }
+                                        }
+                                      >
+                                        <i
+                                          className="fab fa-slack-hash"
+                                        />
+                                         
+                                        3
+                                      </p>
+                                       Rs. 
+                                      140.00
+                                    </b>
+                                  </div>
+                                </div>
+                              </div>
+                              <ul
+                                className="list-group list-group-flush panel-collapse collapse in"
+                                id="iasdadasdasda"
+                              >
+                                <ListItemInSingleOrder
+                                  key="a"
+                                  singleItem={
+                                    Object {
+                                      "_id": "a",
+                                      "description": "A aa",
+                                      "price": 1,
+                                      "productID": "A",
+                                      "productTitle": "AAA",
+                                      "quantity": 10,
+                                    }
+                                  }
+                                >
+                                  <li
+                                    className="list-group-item d-flex justify-content-right"
+                                    style={
+                                      Object {
+                                        "margin": "0px",
+                                        "padding": "0px",
+                                        "width": "100%",
+                                      }
+                                    }
+                                  >
+                                    <div
+                                      className="row"
+                                      style={
+                                        Object {
+                                          "margin": "0px",
+                                          "width": "100%",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="col-10 card"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <div
+                                          className="card-body"
+                                          style={
+                                            Object {
+                                              "padding": "5px 0px",
+                                            }
+                                          }
+                                        >
+                                          <h6
+                                            className="card-title d-flex justify-content-right"
+                                          >
+                                            AAA
+                                          </h6>
+                                          <p
+                                            className="card-subtitle text-muted d-flex justify-content-right"
+                                            style={
+                                              Object {
+                                                "textAlign": "initial",
+                                              }
+                                            }
+                                          >
+                                            A aa
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div
+                                        className="col-2 card text-right"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <p
+                                          className="card-text"
+                                          style={
+                                            Object {
+                                              "margin": "5px 0 0 0",
+                                            }
+                                          }
+                                        >
+                                          10
+                                           x 
+                                          1.00
+                                        </p>
+                                        <p
+                                          className="card-link"
+                                          style={
+                                            Object {
+                                              "margin": "0px",
+                                            }
+                                          }
+                                        >
+                                          <b>
+                                            Rs. 
+                                            10.00
+                                          </b>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ListItemInSingleOrder>
+                                <ListItemInSingleOrder
+                                  key="b"
+                                  singleItem={
+                                    Object {
+                                      "_id": "b",
+                                      "description": "B bb",
+                                      "price": 2,
+                                      "productID": "B",
+                                      "productTitle": "BBB",
+                                      "quantity": 20,
+                                    }
+                                  }
+                                >
+                                  <li
+                                    className="list-group-item d-flex justify-content-right"
+                                    style={
+                                      Object {
+                                        "margin": "0px",
+                                        "padding": "0px",
+                                        "width": "100%",
+                                      }
+                                    }
+                                  >
+                                    <div
+                                      className="row"
+                                      style={
+                                        Object {
+                                          "margin": "0px",
+                                          "width": "100%",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="col-10 card"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <div
+                                          className="card-body"
+                                          style={
+                                            Object {
+                                              "padding": "5px 0px",
+                                            }
+                                          }
+                                        >
+                                          <h6
+                                            className="card-title d-flex justify-content-right"
+                                          >
+                                            BBB
+                                          </h6>
+                                          <p
+                                            className="card-subtitle text-muted d-flex justify-content-right"
+                                            style={
+                                              Object {
+                                                "textAlign": "initial",
+                                              }
+                                            }
+                                          >
+                                            B bb
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div
+                                        className="col-2 card text-right"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <p
+                                          className="card-text"
+                                          style={
+                                            Object {
+                                              "margin": "5px 0 0 0",
+                                            }
+                                          }
+                                        >
+                                          20
+                                           x 
+                                          2.00
+                                        </p>
+                                        <p
+                                          className="card-link"
+                                          style={
+                                            Object {
+                                              "margin": "0px",
+                                            }
+                                          }
+                                        >
+                                          <b>
+                                            Rs. 
+                                            40.00
+                                          </b>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ListItemInSingleOrder>
+                                <ListItemInSingleOrder
+                                  key="c"
+                                  singleItem={
+                                    Object {
+                                      "_id": "c",
+                                      "description": "C cc",
+                                      "price": 3,
+                                      "productID": "C",
+                                      "productTitle": "CCC",
+                                      "quantity": 30,
+                                    }
+                                  }
+                                >
+                                  <li
+                                    className="list-group-item d-flex justify-content-right"
+                                    style={
+                                      Object {
+                                        "margin": "0px",
+                                        "padding": "0px",
+                                        "width": "100%",
+                                      }
+                                    }
+                                  >
+                                    <div
+                                      className="row"
+                                      style={
+                                        Object {
+                                          "margin": "0px",
+                                          "width": "100%",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="col-10 card"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <div
+                                          className="card-body"
+                                          style={
+                                            Object {
+                                              "padding": "5px 0px",
+                                            }
+                                          }
+                                        >
+                                          <h6
+                                            className="card-title d-flex justify-content-right"
+                                          >
+                                            CCC
+                                          </h6>
+                                          <p
+                                            className="card-subtitle text-muted d-flex justify-content-right"
+                                            style={
+                                              Object {
+                                                "textAlign": "initial",
+                                              }
+                                            }
+                                          >
+                                            C cc
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div
+                                        className="col-2 card text-right"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <p
+                                          className="card-text"
+                                          style={
+                                            Object {
+                                              "margin": "5px 0 0 0",
+                                            }
+                                          }
+                                        >
+                                          30
+                                           x 
+                                          3.00
+                                        </p>
+                                        <p
+                                          className="card-link"
+                                          style={
+                                            Object {
+                                              "margin": "0px",
+                                            }
+                                          }
+                                        >
+                                          <b>
+                                            Rs. 
+                                            90.00
+                                          </b>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ListItemInSingleOrder>
+                              </ul>
+                              <div
+                                className="card-footer d-flex justify-content-end"
+                              >
+                                <Link
+                                  className="card-link view-order"
+                                  onClick={[Function]}
+                                  replace={false}
+                                  to="#"
+                                >
+                                  <a
+                                    className="card-link view-order"
+                                    href="/"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-list-alt"
+                                    />
+                                     View
+                                  </a>
+                                </Link>
+                                <Link
+                                  className="card-link delete-order"
+                                  onClick={[Function]}
+                                  replace={false}
+                                  to="#"
+                                >
+                                  <a
+                                    className="card-link delete-order"
+                                    href="/"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-trash"
+                                    />
+                                     Delete
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                          </SingleOrder>
+                        </Connect(SingleOrder)>
+                      </Route>
+                    </withRouter(Connect(SingleOrder))>
+                    <withRouter(Connect(SingleOrder))
+                      key="asdadafdasda"
+                      order={
+                        Object {
+                          "_id": "asdadafdasda",
+                          "cartID": "tesdCart",
+                          "items": Array [
+                            Object {
+                              "_id": "a",
+                              "description": "A aa",
+                              "price": 1,
+                              "productID": "A",
+                              "productTitle": "AAA",
+                              "quantity": 10,
+                            },
+                            Object {
+                              "_id": "b",
+                              "description": "B bb",
+                              "price": 2,
+                              "productID": "B",
+                              "productTitle": "BBB",
+                              "quantity": 20,
+                            },
+                            Object {
+                              "_id": "c",
+                              "description": "C cc",
+                              "price": 3,
+                              "productID": "C",
+                              "productTitle": "CCC",
+                              "quantity": 30,
+                            },
+                          ],
+                        }
+                      }
+                    >
+                      <Route>
+                        <Connect(SingleOrder)
+                          history={
+                            Object {
+                              "action": "POP",
+                              "block": [Function],
+                              "createHref": [Function],
+                              "go": [Function],
+                              "goBack": [Function],
+                              "goForward": [Function],
+                              "length": 1,
+                              "listen": [Function],
+                              "location": Object {
+                                "hash": "",
+                                "pathname": "/",
+                                "search": "",
+                                "state": undefined,
+                              },
+                              "push": [Function],
+                              "replace": [Function],
+                            }
+                          }
+                          location={
+                            Object {
+                              "hash": "",
+                              "pathname": "/",
+                              "search": "",
+                              "state": undefined,
+                            }
+                          }
+                          match={
+                            Object {
+                              "isExact": true,
+                              "params": Object {},
+                              "path": "/",
+                              "url": "/",
+                            }
+                          }
+                          order={
+                            Object {
+                              "_id": "asdadafdasda",
+                              "cartID": "tesdCart",
+                              "items": Array [
+                                Object {
+                                  "_id": "a",
+                                  "description": "A aa",
+                                  "price": 1,
+                                  "productID": "A",
+                                  "productTitle": "AAA",
+                                  "quantity": 10,
+                                },
+                                Object {
+                                  "_id": "b",
+                                  "description": "B bb",
+                                  "price": 2,
+                                  "productID": "B",
+                                  "productTitle": "BBB",
+                                  "quantity": 20,
+                                },
+                                Object {
+                                  "_id": "c",
+                                  "description": "C cc",
+                                  "price": 3,
+                                  "productID": "C",
+                                  "productTitle": "CCC",
+                                  "quantity": 30,
+                                },
+                              ],
+                            }
+                          }
+                        >
+                          <SingleOrder
+                            currentOrder={
+                              Object {
+                                "_id": "asdadasdasda",
+                                "cartID": "abc",
+                                "items": Array [
+                                  Object {},
+                                ],
+                              }
+                            }
+                            dispatch_SetThisOrderAsCurrentOrder={[Function]}
+                            history={
+                              Object {
+                                "action": "POP",
+                                "block": [Function],
+                                "createHref": [Function],
+                                "go": [Function],
+                                "goBack": [Function],
+                                "goForward": [Function],
+                                "length": 1,
+                                "listen": [Function],
+                                "location": Object {
+                                  "hash": "",
+                                  "pathname": "/",
+                                  "search": "",
+                                  "state": undefined,
+                                },
+                                "push": [Function],
+                                "replace": [Function],
+                              }
+                            }
+                            location={
+                              Object {
+                                "hash": "",
+                                "pathname": "/",
+                                "search": "",
+                                "state": undefined,
+                              }
+                            }
+                            match={
+                              Object {
+                                "isExact": true,
+                                "params": Object {},
+                                "path": "/",
+                                "url": "/",
+                              }
+                            }
+                            order={
+                              Object {
+                                "_id": "asdadafdasda",
+                                "cartID": "tesdCart",
+                                "items": Array [
+                                  Object {
+                                    "_id": "a",
+                                    "description": "A aa",
+                                    "price": 1,
+                                    "productID": "A",
+                                    "productTitle": "AAA",
+                                    "quantity": 10,
+                                  },
+                                  Object {
+                                    "_id": "b",
+                                    "description": "B bb",
+                                    "price": 2,
+                                    "productID": "B",
+                                    "productTitle": "BBB",
+                                    "quantity": 20,
+                                  },
+                                  Object {
+                                    "_id": "c",
+                                    "description": "C cc",
+                                    "price": 3,
+                                    "productID": "C",
+                                    "productTitle": "CCC",
+                                    "quantity": 30,
+                                  },
+                                ],
+                              }
+                            }
+                            passKey="abcd"
+                          >
+                            <div
+                              className="card border-dark shadow"
+                              style={
+                                Object {
+                                  "margin": "10px 0px",
+                                }
+                              }
+                            >
+                              <div
+                                aria-controls="iasdadafdasda"
+                                aria-expanded="true"
+                                className="card-header text-white bg-dark"
+                                data-target="#iasdadafdasda"
+                                data-toggle="collapse"
+                                style={
+                                  Object {
+                                    "padding": ".75em .1em",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="row"
+                                  style={
+                                    Object {
+                                      "margin": "0px",
+                                      "width": "100%",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    className="col-10 d-flex justify-content-start"
+                                    style={
+                                      Object {
+                                        "textAlign": "initial",
+                                      }
+                                    }
+                                  >
+                                    Order ID: 
+                                    asdadafdasda
+                                  </div>
+                                  <div
+                                    className="col-2 d-flex justify-content-end"
+                                    style={
+                                      Object {
+                                        "textAlign": "initial",
+                                      }
+                                    }
+                                  >
+                                    <b>
+                                      <p
+                                        className="badge badge-secondary"
+                                        style={
+                                          Object {
+                                            "margin": "unset",
+                                            "marginRight": "10px",
+                                            "padding": "5px",
+                                          }
+                                        }
+                                      >
+                                        <i
+                                          className="fab fa-slack-hash"
+                                        />
+                                         
+                                        3
+                                      </p>
+                                       Rs. 
+                                      140.00
+                                    </b>
+                                  </div>
+                                </div>
+                              </div>
+                              <ul
+                                className="list-group list-group-flush panel-collapse collapse in"
+                                id="iasdadafdasda"
+                              >
+                                <ListItemInSingleOrder
+                                  key="a"
+                                  singleItem={
+                                    Object {
+                                      "_id": "a",
+                                      "description": "A aa",
+                                      "price": 1,
+                                      "productID": "A",
+                                      "productTitle": "AAA",
+                                      "quantity": 10,
+                                    }
+                                  }
+                                >
+                                  <li
+                                    className="list-group-item d-flex justify-content-right"
+                                    style={
+                                      Object {
+                                        "margin": "0px",
+                                        "padding": "0px",
+                                        "width": "100%",
+                                      }
+                                    }
+                                  >
+                                    <div
+                                      className="row"
+                                      style={
+                                        Object {
+                                          "margin": "0px",
+                                          "width": "100%",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="col-10 card"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <div
+                                          className="card-body"
+                                          style={
+                                            Object {
+                                              "padding": "5px 0px",
+                                            }
+                                          }
+                                        >
+                                          <h6
+                                            className="card-title d-flex justify-content-right"
+                                          >
+                                            AAA
+                                          </h6>
+                                          <p
+                                            className="card-subtitle text-muted d-flex justify-content-right"
+                                            style={
+                                              Object {
+                                                "textAlign": "initial",
+                                              }
+                                            }
+                                          >
+                                            A aa
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div
+                                        className="col-2 card text-right"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <p
+                                          className="card-text"
+                                          style={
+                                            Object {
+                                              "margin": "5px 0 0 0",
+                                            }
+                                          }
+                                        >
+                                          10
+                                           x 
+                                          1.00
+                                        </p>
+                                        <p
+                                          className="card-link"
+                                          style={
+                                            Object {
+                                              "margin": "0px",
+                                            }
+                                          }
+                                        >
+                                          <b>
+                                            Rs. 
+                                            10.00
+                                          </b>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ListItemInSingleOrder>
+                                <ListItemInSingleOrder
+                                  key="b"
+                                  singleItem={
+                                    Object {
+                                      "_id": "b",
+                                      "description": "B bb",
+                                      "price": 2,
+                                      "productID": "B",
+                                      "productTitle": "BBB",
+                                      "quantity": 20,
+                                    }
+                                  }
+                                >
+                                  <li
+                                    className="list-group-item d-flex justify-content-right"
+                                    style={
+                                      Object {
+                                        "margin": "0px",
+                                        "padding": "0px",
+                                        "width": "100%",
+                                      }
+                                    }
+                                  >
+                                    <div
+                                      className="row"
+                                      style={
+                                        Object {
+                                          "margin": "0px",
+                                          "width": "100%",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="col-10 card"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <div
+                                          className="card-body"
+                                          style={
+                                            Object {
+                                              "padding": "5px 0px",
+                                            }
+                                          }
+                                        >
+                                          <h6
+                                            className="card-title d-flex justify-content-right"
+                                          >
+                                            BBB
+                                          </h6>
+                                          <p
+                                            className="card-subtitle text-muted d-flex justify-content-right"
+                                            style={
+                                              Object {
+                                                "textAlign": "initial",
+                                              }
+                                            }
+                                          >
+                                            B bb
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div
+                                        className="col-2 card text-right"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <p
+                                          className="card-text"
+                                          style={
+                                            Object {
+                                              "margin": "5px 0 0 0",
+                                            }
+                                          }
+                                        >
+                                          20
+                                           x 
+                                          2.00
+                                        </p>
+                                        <p
+                                          className="card-link"
+                                          style={
+                                            Object {
+                                              "margin": "0px",
+                                            }
+                                          }
+                                        >
+                                          <b>
+                                            Rs. 
+                                            40.00
+                                          </b>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ListItemInSingleOrder>
+                                <ListItemInSingleOrder
+                                  key="c"
+                                  singleItem={
+                                    Object {
+                                      "_id": "c",
+                                      "description": "C cc",
+                                      "price": 3,
+                                      "productID": "C",
+                                      "productTitle": "CCC",
+                                      "quantity": 30,
+                                    }
+                                  }
+                                >
+                                  <li
+                                    className="list-group-item d-flex justify-content-right"
+                                    style={
+                                      Object {
+                                        "margin": "0px",
+                                        "padding": "0px",
+                                        "width": "100%",
+                                      }
+                                    }
+                                  >
+                                    <div
+                                      className="row"
+                                      style={
+                                        Object {
+                                          "margin": "0px",
+                                          "width": "100%",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="col-10 card"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <div
+                                          className="card-body"
+                                          style={
+                                            Object {
+                                              "padding": "5px 0px",
+                                            }
+                                          }
+                                        >
+                                          <h6
+                                            className="card-title d-flex justify-content-right"
+                                          >
+                                            CCC
+                                          </h6>
+                                          <p
+                                            className="card-subtitle text-muted d-flex justify-content-right"
+                                            style={
+                                              Object {
+                                                "textAlign": "initial",
+                                              }
+                                            }
+                                          >
+                                            C cc
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div
+                                        className="col-2 card text-right"
+                                        style={
+                                          Object {
+                                            "borderRadius": "0px",
+                                          }
+                                        }
+                                      >
+                                        <p
+                                          className="card-text"
+                                          style={
+                                            Object {
+                                              "margin": "5px 0 0 0",
+                                            }
+                                          }
+                                        >
+                                          30
+                                           x 
+                                          3.00
+                                        </p>
+                                        <p
+                                          className="card-link"
+                                          style={
+                                            Object {
+                                              "margin": "0px",
+                                            }
+                                          }
+                                        >
+                                          <b>
+                                            Rs. 
+                                            90.00
+                                          </b>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ListItemInSingleOrder>
+                              </ul>
+                              <div
+                                className="card-footer d-flex justify-content-end"
+                              >
+                                <Link
+                                  className="card-link view-order"
+                                  onClick={[Function]}
+                                  replace={false}
+                                  to="#"
+                                >
+                                  <a
+                                    className="card-link view-order"
+                                    href="/"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-list-alt"
+                                    />
+                                     View
+                                  </a>
+                                </Link>
+                                <Link
+                                  className="card-link delete-order"
+                                  onClick={[Function]}
+                                  replace={false}
+                                  to="#"
+                                >
+                                  <a
+                                    className="card-link delete-order"
+                                    href="/"
+                                    onClick={[Function]}
+                                  >
+                                    <i
+                                      className="fas fa-trash"
+                                    />
+                                     Delete
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                          </SingleOrder>
+                        </Connect(SingleOrder)>
+                      </Route>
+                    </withRouter(Connect(SingleOrder))>
+                  </div>
+                </div>
+              </OrderList>
+            </Connect(OrderList)>
+          </Route>
+        </withRouter(Connect(OrderList))>
+      </Router>
+    </BrowserRouter>
+  </Provider>
+</CookiesProvider>
+`;
+
+exports[`<OrderList /> component with no orders renders orderlist with orders 1`] = `
+<CookiesProvider>
+  <Provider
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <BrowserRouter>
+      <Router
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+      >
+        <withRouter(Connect(OrderList))>
+          <Route>
+            <Connect(OrderList)
+              history={
+                Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "length": 1,
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                }
+              }
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "/",
+                  "search": "",
+                  "state": undefined,
+                }
+              }
+              match={
+                Object {
+                  "isExact": true,
+                  "params": Object {},
+                  "path": "/",
+                  "url": "/",
+                }
+              }
+            >
+              <OrderList
+                currentOrder={Object {}}
+                dispatch_DeleteThisOrder={[Function]}
+                dispatch_FetchEveryOrderForThisUser={[Function]}
+                dispatch_GetTheCompleteItemsList={[Function]}
+                dispatch_ResetCurrentOrderStates={[Function]}
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+                itemsList={
+                  Array [
+                    Object {},
+                  ]
+                }
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  }
+                }
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/",
+                    "url": "/",
+                  }
+                }
+                orderList={Array []}
+                passKey="abcd"
+                url=""
+              >
+                <div
+                  className="card"
+                  style={
+                    Object {
+                      "margin": "25px",
+                    }
+                  }
+                >
+                  <div
+                    className="card-body"
+                    style={
+                      Object {
+                        "padding": "1.25rem 1.25rem 1rem 1.25rem",
+                      }
+                    }
+                  >
+                    <h5
+                      className="card-title"
+                      style={
+                        Object {
+                          "margin": "0.5em 1em 0 0",
+                        }
+                      }
+                    >
+                      Order List
+                    </h5>
+                    <p
+                      style={
+                        Object {
+                          "marginTop": "10px",
+                        }
+                      }
+                    >
+                      No Orders to display. Do you mind creating a 
+                      <Link
+                        replace={false}
+                        to="/create_order"
+                      >
+                        <a
+                          href="/create_order"
+                          onClick={[Function]}
+                        >
+                          new order
+                        </a>
+                      </Link>
+                      ?
+                    </p>
+                  </div>
+                </div>
+              </OrderList>
+            </Connect(OrderList)>
+          </Route>
+        </withRouter(Connect(OrderList))>
+      </Router>
+    </BrowserRouter>
+  </Provider>
+</CookiesProvider>
+`;

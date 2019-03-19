@@ -1,0 +1,1003 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateOrder /> component renders with an create order layout 1`] = `
+<CookiesProvider>
+  <Provider
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <BrowserRouter>
+      <Router
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+      >
+        <withRouter(Connect(CreateOrder))>
+          <Route>
+            <Connect(CreateOrder)
+              history={
+                Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "length": 1,
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                }
+              }
+              location={
+                Object {
+                  "hash": "",
+                  "pathname": "/",
+                  "search": "",
+                  "state": undefined,
+                }
+              }
+              match={
+                Object {
+                  "isExact": true,
+                  "params": Object {},
+                  "path": "/",
+                  "url": "/",
+                }
+              }
+            >
+              <CreateOrder
+                currentOrderID="abcd1234"
+                dispatch_AddTheseItemsToThisOrder={[Function]}
+                dispatch_CreateNewOrderForThisUser={[Function]}
+                dispatch_DeleteThisOrder={[Function]}
+                dispatch_FetchEveryOrderForThisUser={[Function]}
+                dispatch_GetTheCompleteItemsList={[Function]}
+                dispatch_ResetCurrentOrderStates={[Function]}
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+                isLoggedIn={true}
+                itemQuantity={
+                  Object {
+                    "A": 1,
+                    "B": 2,
+                    "C": 3,
+                  }
+                }
+                itemsList={
+                  Array [
+                    Object {
+                      "_id": "a",
+                      "description": "A aa",
+                      "price": 1,
+                      "productID": "A",
+                      "productTitle": "AAA",
+                      "quantity": 10,
+                    },
+                    Object {
+                      "_id": "b",
+                      "description": "B bb",
+                      "price": 2,
+                      "productID": "B",
+                      "productTitle": "BBB",
+                      "quantity": 20,
+                    },
+                    Object {
+                      "_id": "c",
+                      "description": "C cc",
+                      "price": 3,
+                      "productID": "C",
+                      "productTitle": "CCC",
+                      "quantity": 30,
+                    },
+                  ]
+                }
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  }
+                }
+                match={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/",
+                    "url": "/",
+                  }
+                }
+                passKey="abcd"
+                status={false}
+                total={1100}
+              >
+                <div>
+                  <div
+                    className="card"
+                    style={
+                      Object {
+                        "margin": "25px",
+                        "paddingBottom": "50px",
+                      }
+                    }
+                  >
+                    <div
+                      className="card-body"
+                    >
+                      <div
+                        className="alert alert-dark"
+                        role="alert"
+                      >
+                        <h5
+                          style={
+                            Object {
+                              "margin": "auto",
+                              "textAlign": "initial",
+                            }
+                          }
+                        >
+                          <i
+                            className="fas fa-th-list"
+                          />
+                           Items List
+                        </h5>
+                      </div>
+                      <ListItemInCreateOrder
+                        item={
+                          Object {
+                            "_id": "a",
+                            "description": "A aa",
+                            "price": 1,
+                            "productID": "A",
+                            "productTitle": "AAA",
+                            "quantity": 10,
+                          }
+                        }
+                        key="a"
+                        quantity={1}
+                      >
+                        <li
+                          className="list-group-item d-flex justify-content-right"
+                          style={
+                            Object {
+                              "margin": "0px",
+                              "padding": "0px",
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <div
+                            className="row"
+                            style={
+                              Object {
+                                "margin": "0px",
+                                "width": "100%",
+                              }
+                            }
+                          >
+                            <div
+                              className="col-8 card"
+                            >
+                              <div
+                                className="card-body"
+                                style={
+                                  Object {
+                                    "padding": "5px 0px",
+                                  }
+                                }
+                              >
+                                <h6
+                                  className="card-title d-flex justify-content-right"
+                                >
+                                  AAA
+                                </h6>
+                                <p
+                                  className="card-subtitle text-muted d-flex justify-content-right"
+                                  style={
+                                    Object {
+                                      "textAlign": "initial",
+                                    }
+                                  }
+                                >
+                                  A aa
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              className="col-2 card"
+                            >
+                              <div
+                                className="card-body d-flex align-items-center"
+                                style={
+                                  Object {
+                                    "padding": "5px 0px",
+                                  }
+                                }
+                              >
+                                <Connect(ItemCounterInCreateOrder)
+                                  max={10}
+                                  min={1}
+                                  name="A"
+                                  quantity={1}
+                                >
+                                  <ItemCounterInCreateOrder
+                                    currentOrderID="abcd1234"
+                                    dispatch_AddThisItemToQuantity={[Function]}
+                                    dispatch_DeleteThisItemFromQuantity={[Function]}
+                                    dispatch_IndecrementItemFromQuantity={[Function]}
+                                    isLoggedIn={true}
+                                    itemQuantity={
+                                      Object {
+                                        "A": 1,
+                                        "B": 2,
+                                        "C": 3,
+                                      }
+                                    }
+                                    itemsList={
+                                      Array [
+                                        Object {
+                                          "_id": "a",
+                                          "description": "A aa",
+                                          "price": 1,
+                                          "productID": "A",
+                                          "productTitle": "AAA",
+                                          "quantity": 10,
+                                        },
+                                        Object {
+                                          "_id": "b",
+                                          "description": "B bb",
+                                          "price": 2,
+                                          "productID": "B",
+                                          "productTitle": "BBB",
+                                          "quantity": 20,
+                                        },
+                                        Object {
+                                          "_id": "c",
+                                          "description": "C cc",
+                                          "price": 3,
+                                          "productID": "C",
+                                          "productTitle": "CCC",
+                                          "quantity": 30,
+                                        },
+                                      ]
+                                    }
+                                    max={10}
+                                    min={1}
+                                    name="A"
+                                    passKey="abcd"
+                                    quantity={1}
+                                    total={1100}
+                                  >
+                                    <div
+                                      aria-label="Toolbar with button groups"
+                                      className="btn-toolbar"
+                                      role="toolbar"
+                                    >
+                                      <div
+                                        aria-label="Item-Group"
+                                        className="btn-group"
+                                        role="group"
+                                      >
+                                        <button
+                                          className="btn btn-secondary"
+                                          onClick={[Function]}
+                                          type="button"
+                                        >
+                                          +
+                                        </button>
+                                        <div
+                                          style={
+                                            Object {
+                                              "textAlign": "center",
+                                              "width": "3em",
+                                            }
+                                          }
+                                        >
+                                          <span
+                                            className="input-group-text"
+                                            style={
+                                              Object {
+                                                "borderRadius": "0px",
+                                                "display": "inline-block",
+                                                "height": "100%",
+                                                "width": "100%",
+                                              }
+                                            }
+                                          >
+                                            1
+                                          </span>
+                                        </div>
+                                        <button
+                                          className="btn btn-secondary"
+                                          onClick={[Function]}
+                                          type="button"
+                                        >
+                                          −
+                                        </button>
+                                      </div>
+                                      <RenderDeleteButton
+                                        DELETE_THIS_ITEM={[Function]}
+                                        quantity={1}
+                                      >
+                                        <div
+                                          aria-label="Delete-Group"
+                                          className="btn-group"
+                                          role="group"
+                                          style={
+                                            Object {
+                                              "marginLeft": "10px",
+                                            }
+                                          }
+                                        >
+                                          <button
+                                            className="btn btn-danger"
+                                            onClick={[Function]}
+                                            type="button"
+                                          >
+                                            <i
+                                              className="fas fa-trash"
+                                            />
+                                          </button>
+                                        </div>
+                                      </RenderDeleteButton>
+                                    </div>
+                                  </ItemCounterInCreateOrder>
+                                </Connect(ItemCounterInCreateOrder)>
+                              </div>
+                            </div>
+                            <div
+                              className="col-2 card text-right"
+                            >
+                              <p
+                                className="card-text"
+                                style={
+                                  Object {
+                                    "margin": "5px 0 0 0",
+                                  }
+                                }
+                              >
+                                10
+                                 Nos
+                              </p>
+                              <p
+                                className="card-link"
+                                style={
+                                  Object {
+                                    "margin": "0px",
+                                  }
+                                }
+                              >
+                                @ 
+                                <b>
+                                  Rs. 
+                                  1.00
+                                </b>
+                              </p>
+                            </div>
+                          </div>
+                        </li>
+                      </ListItemInCreateOrder>
+                      <ListItemInCreateOrder
+                        item={
+                          Object {
+                            "_id": "b",
+                            "description": "B bb",
+                            "price": 2,
+                            "productID": "B",
+                            "productTitle": "BBB",
+                            "quantity": 20,
+                          }
+                        }
+                        key="b"
+                        quantity={2}
+                      >
+                        <li
+                          className="list-group-item d-flex justify-content-right"
+                          style={
+                            Object {
+                              "margin": "0px",
+                              "padding": "0px",
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <div
+                            className="row"
+                            style={
+                              Object {
+                                "margin": "0px",
+                                "width": "100%",
+                              }
+                            }
+                          >
+                            <div
+                              className="col-8 card"
+                            >
+                              <div
+                                className="card-body"
+                                style={
+                                  Object {
+                                    "padding": "5px 0px",
+                                  }
+                                }
+                              >
+                                <h6
+                                  className="card-title d-flex justify-content-right"
+                                >
+                                  BBB
+                                </h6>
+                                <p
+                                  className="card-subtitle text-muted d-flex justify-content-right"
+                                  style={
+                                    Object {
+                                      "textAlign": "initial",
+                                    }
+                                  }
+                                >
+                                  B bb
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              className="col-2 card"
+                            >
+                              <div
+                                className="card-body d-flex align-items-center"
+                                style={
+                                  Object {
+                                    "padding": "5px 0px",
+                                  }
+                                }
+                              >
+                                <Connect(ItemCounterInCreateOrder)
+                                  max={20}
+                                  min={1}
+                                  name="B"
+                                  quantity={2}
+                                >
+                                  <ItemCounterInCreateOrder
+                                    currentOrderID="abcd1234"
+                                    dispatch_AddThisItemToQuantity={[Function]}
+                                    dispatch_DeleteThisItemFromQuantity={[Function]}
+                                    dispatch_IndecrementItemFromQuantity={[Function]}
+                                    isLoggedIn={true}
+                                    itemQuantity={
+                                      Object {
+                                        "A": 1,
+                                        "B": 2,
+                                        "C": 3,
+                                      }
+                                    }
+                                    itemsList={
+                                      Array [
+                                        Object {
+                                          "_id": "a",
+                                          "description": "A aa",
+                                          "price": 1,
+                                          "productID": "A",
+                                          "productTitle": "AAA",
+                                          "quantity": 10,
+                                        },
+                                        Object {
+                                          "_id": "b",
+                                          "description": "B bb",
+                                          "price": 2,
+                                          "productID": "B",
+                                          "productTitle": "BBB",
+                                          "quantity": 20,
+                                        },
+                                        Object {
+                                          "_id": "c",
+                                          "description": "C cc",
+                                          "price": 3,
+                                          "productID": "C",
+                                          "productTitle": "CCC",
+                                          "quantity": 30,
+                                        },
+                                      ]
+                                    }
+                                    max={20}
+                                    min={1}
+                                    name="B"
+                                    passKey="abcd"
+                                    quantity={2}
+                                    total={1100}
+                                  >
+                                    <div
+                                      aria-label="Toolbar with button groups"
+                                      className="btn-toolbar"
+                                      role="toolbar"
+                                    >
+                                      <div
+                                        aria-label="Item-Group"
+                                        className="btn-group"
+                                        role="group"
+                                      >
+                                        <button
+                                          className="btn btn-secondary"
+                                          onClick={[Function]}
+                                          type="button"
+                                        >
+                                          +
+                                        </button>
+                                        <div
+                                          style={
+                                            Object {
+                                              "textAlign": "center",
+                                              "width": "3em",
+                                            }
+                                          }
+                                        >
+                                          <span
+                                            className="input-group-text"
+                                            style={
+                                              Object {
+                                                "borderRadius": "0px",
+                                                "display": "inline-block",
+                                                "height": "100%",
+                                                "width": "100%",
+                                              }
+                                            }
+                                          >
+                                            2
+                                          </span>
+                                        </div>
+                                        <button
+                                          className="btn btn-secondary"
+                                          onClick={[Function]}
+                                          type="button"
+                                        >
+                                          −
+                                        </button>
+                                      </div>
+                                      <RenderDeleteButton
+                                        DELETE_THIS_ITEM={[Function]}
+                                        quantity={2}
+                                      >
+                                        <div
+                                          aria-label="Delete-Group"
+                                          className="btn-group"
+                                          role="group"
+                                          style={
+                                            Object {
+                                              "marginLeft": "10px",
+                                            }
+                                          }
+                                        >
+                                          <button
+                                            className="btn btn-danger"
+                                            onClick={[Function]}
+                                            type="button"
+                                          >
+                                            <i
+                                              className="fas fa-trash"
+                                            />
+                                          </button>
+                                        </div>
+                                      </RenderDeleteButton>
+                                    </div>
+                                  </ItemCounterInCreateOrder>
+                                </Connect(ItemCounterInCreateOrder)>
+                              </div>
+                            </div>
+                            <div
+                              className="col-2 card text-right"
+                            >
+                              <p
+                                className="card-text"
+                                style={
+                                  Object {
+                                    "margin": "5px 0 0 0",
+                                  }
+                                }
+                              >
+                                20
+                                 Nos
+                              </p>
+                              <p
+                                className="card-link"
+                                style={
+                                  Object {
+                                    "margin": "0px",
+                                  }
+                                }
+                              >
+                                @ 
+                                <b>
+                                  Rs. 
+                                  2.00
+                                </b>
+                              </p>
+                            </div>
+                          </div>
+                        </li>
+                      </ListItemInCreateOrder>
+                      <ListItemInCreateOrder
+                        item={
+                          Object {
+                            "_id": "c",
+                            "description": "C cc",
+                            "price": 3,
+                            "productID": "C",
+                            "productTitle": "CCC",
+                            "quantity": 30,
+                          }
+                        }
+                        key="c"
+                        quantity={3}
+                      >
+                        <li
+                          className="list-group-item d-flex justify-content-right"
+                          style={
+                            Object {
+                              "margin": "0px",
+                              "padding": "0px",
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <div
+                            className="row"
+                            style={
+                              Object {
+                                "margin": "0px",
+                                "width": "100%",
+                              }
+                            }
+                          >
+                            <div
+                              className="col-8 card"
+                            >
+                              <div
+                                className="card-body"
+                                style={
+                                  Object {
+                                    "padding": "5px 0px",
+                                  }
+                                }
+                              >
+                                <h6
+                                  className="card-title d-flex justify-content-right"
+                                >
+                                  CCC
+                                </h6>
+                                <p
+                                  className="card-subtitle text-muted d-flex justify-content-right"
+                                  style={
+                                    Object {
+                                      "textAlign": "initial",
+                                    }
+                                  }
+                                >
+                                  C cc
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              className="col-2 card"
+                            >
+                              <div
+                                className="card-body d-flex align-items-center"
+                                style={
+                                  Object {
+                                    "padding": "5px 0px",
+                                  }
+                                }
+                              >
+                                <Connect(ItemCounterInCreateOrder)
+                                  max={30}
+                                  min={1}
+                                  name="C"
+                                  quantity={3}
+                                >
+                                  <ItemCounterInCreateOrder
+                                    currentOrderID="abcd1234"
+                                    dispatch_AddThisItemToQuantity={[Function]}
+                                    dispatch_DeleteThisItemFromQuantity={[Function]}
+                                    dispatch_IndecrementItemFromQuantity={[Function]}
+                                    isLoggedIn={true}
+                                    itemQuantity={
+                                      Object {
+                                        "A": 1,
+                                        "B": 2,
+                                        "C": 3,
+                                      }
+                                    }
+                                    itemsList={
+                                      Array [
+                                        Object {
+                                          "_id": "a",
+                                          "description": "A aa",
+                                          "price": 1,
+                                          "productID": "A",
+                                          "productTitle": "AAA",
+                                          "quantity": 10,
+                                        },
+                                        Object {
+                                          "_id": "b",
+                                          "description": "B bb",
+                                          "price": 2,
+                                          "productID": "B",
+                                          "productTitle": "BBB",
+                                          "quantity": 20,
+                                        },
+                                        Object {
+                                          "_id": "c",
+                                          "description": "C cc",
+                                          "price": 3,
+                                          "productID": "C",
+                                          "productTitle": "CCC",
+                                          "quantity": 30,
+                                        },
+                                      ]
+                                    }
+                                    max={30}
+                                    min={1}
+                                    name="C"
+                                    passKey="abcd"
+                                    quantity={3}
+                                    total={1100}
+                                  >
+                                    <div
+                                      aria-label="Toolbar with button groups"
+                                      className="btn-toolbar"
+                                      role="toolbar"
+                                    >
+                                      <div
+                                        aria-label="Item-Group"
+                                        className="btn-group"
+                                        role="group"
+                                      >
+                                        <button
+                                          className="btn btn-secondary"
+                                          onClick={[Function]}
+                                          type="button"
+                                        >
+                                          +
+                                        </button>
+                                        <div
+                                          style={
+                                            Object {
+                                              "textAlign": "center",
+                                              "width": "3em",
+                                            }
+                                          }
+                                        >
+                                          <span
+                                            className="input-group-text"
+                                            style={
+                                              Object {
+                                                "borderRadius": "0px",
+                                                "display": "inline-block",
+                                                "height": "100%",
+                                                "width": "100%",
+                                              }
+                                            }
+                                          >
+                                            3
+                                          </span>
+                                        </div>
+                                        <button
+                                          className="btn btn-secondary"
+                                          onClick={[Function]}
+                                          type="button"
+                                        >
+                                          −
+                                        </button>
+                                      </div>
+                                      <RenderDeleteButton
+                                        DELETE_THIS_ITEM={[Function]}
+                                        quantity={3}
+                                      >
+                                        <div
+                                          aria-label="Delete-Group"
+                                          className="btn-group"
+                                          role="group"
+                                          style={
+                                            Object {
+                                              "marginLeft": "10px",
+                                            }
+                                          }
+                                        >
+                                          <button
+                                            className="btn btn-danger"
+                                            onClick={[Function]}
+                                            type="button"
+                                          >
+                                            <i
+                                              className="fas fa-trash"
+                                            />
+                                          </button>
+                                        </div>
+                                      </RenderDeleteButton>
+                                    </div>
+                                  </ItemCounterInCreateOrder>
+                                </Connect(ItemCounterInCreateOrder)>
+                              </div>
+                            </div>
+                            <div
+                              className="col-2 card text-right"
+                            >
+                              <p
+                                className="card-text"
+                                style={
+                                  Object {
+                                    "margin": "5px 0 0 0",
+                                  }
+                                }
+                              >
+                                30
+                                 Nos
+                              </p>
+                              <p
+                                className="card-link"
+                                style={
+                                  Object {
+                                    "margin": "0px",
+                                  }
+                                }
+                              >
+                                @ 
+                                <b>
+                                  Rs. 
+                                  3.00
+                                </b>
+                              </p>
+                            </div>
+                          </div>
+                        </li>
+                      </ListItemInCreateOrder>
+                    </div>
+                  </div>
+                  <nav
+                    className="navbar navbar-light bg-light"
+                    style={
+                      Object {
+                        "bottom": "0",
+                        "overflow": "hidden",
+                        "paddingRight": "25px",
+                        "position": "fixed",
+                        "width": "100%",
+                        "zIndex": 99,
+                      }
+                    }
+                  >
+                    <div
+                      className="card-body"
+                      style={
+                        Object {
+                          "paddingTop": "0px",
+                        }
+                      }
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="col-4 d-flex justify-content-start d-inline"
+                        >
+                          <div
+                            className="input-group-prepend"
+                            style={
+                              Object {
+                                "marginLeft": "10px",
+                              }
+                            }
+                          >
+                            <span
+                              className="input-group-text"
+                              style={
+                                Object {
+                                  "borderBottomRightRadius": "0px",
+                                  "borderTopRightRadius": "0px",
+                                }
+                              }
+                            >
+                              <strong>
+                                Total
+                              </strong>
+                            </span>
+                            <span
+                              className="input-group-text"
+                              style={
+                                Object {
+                                  "borderBottomLeftRadius": "0px",
+                                  "borderTopLeftRadius": "0px",
+                                }
+                              }
+                            >
+                              Rs. 
+                              1100.00
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          className="col-8 d-flex justify-content-end"
+                        >
+                          <button
+                            className="btn btn-success"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "marginRight": "10px",
+                              }
+                            }
+                          >
+                            <i
+                              className="fas fa-cart-plus"
+                            />
+                             Add to Cart
+                          </button>
+                          <button
+                            className="btn btn-danger"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="fas fa-times-circle"
+                            />
+                             Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
+              </CreateOrder>
+            </Connect(CreateOrder)>
+          </Route>
+        </withRouter(Connect(CreateOrder))>
+      </Router>
+    </BrowserRouter>
+  </Provider>
+</CookiesProvider>
+`;

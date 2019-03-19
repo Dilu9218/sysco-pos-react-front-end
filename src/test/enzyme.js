@@ -5,7 +5,6 @@ import { shape } from 'prop-types';
 
 configure({ adapter: new Adapter() });
 
-// Instantiate router context
 const router = {
   history: new BrowserRouter().history,
   route: {
