@@ -20,6 +20,10 @@ describe('<App /> component', () => {
         uac: {
             isLoggedIn: false
         },
+        ord: {
+            currentOrder: {},
+            orderList: []
+        },
         cookies: instanceOf(Cookies).isRequired,
         RE_LOG_USER_IN: relog_user
     };
@@ -50,6 +54,10 @@ describe('<App /> component with login', () => {
         uac: {
             isLoggedIn: true
         },
+        ord: {
+            currentOrder: {},
+            orderList: []
+        },
         cookies: instanceOf(Cookies).isRequired,
         RE_LOG_USER_IN: relog_user
     };
@@ -68,7 +76,7 @@ describe('<App /> component with login', () => {
                 </Provider>
             </CookiesProvider>
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.contains(<i className="fas fa-sign-out-alt" />)).toBeTruthy();
     });
 });
 
@@ -79,6 +87,10 @@ describe('<App /> with cookies unset', () => {
     const initialState = {
         uac: {
             isLoggedIn: true
+        },
+        ord: {
+            currentOrder: {},
+            orderList: []
         },
         cookies: instanceOf(Cookies).isRequired,
         RE_LOG_USER_IN: relog_user
