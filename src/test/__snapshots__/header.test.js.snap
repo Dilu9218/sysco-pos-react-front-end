@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation header renders login header if user is logged in 1`] = `
+<Header
+  ISLOGGEDIN={true}
+>
+  <header>
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light"
+    >
+      <ConditionalHeader
+        ISLOGGEDIN={true}
+      >
+        <div
+          className="collapse navbar-collapse"
+        >
+          <Link
+            className="navbar-brand"
+            replace={false}
+            style={
+              Object {
+                "paddingTop": "0px",
+              }
+            }
+            to="/home"
+          >
+            <a
+              className="navbar-brand"
+              href="/home"
+              onClick={[Function]}
+              style={
+                Object {
+                  "paddingTop": "0px",
+                }
+              }
+            >
+              Sysco PoS System
+            </a>
+          </Link>
+          <div
+            className="navbar-nav mr-auto mt-2 mt-lg-0"
+          >
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/my_orders"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/my_orders"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-list-ul"
+                />
+                 My Orders
+              </a>
+            </Link>
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/create_order"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/create_order"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-plus"
+                />
+                 Create Order
+              </a>
+            </Link>
+          </div>
+          <div
+            className="navbar-nav my-2 my-lg-0"
+          >
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/logout"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/logout"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-sign-out-alt"
+                />
+                 Logout
+              </a>
+            </Link>
+          </div>
+        </div>
+      </ConditionalHeader>
+    </nav>
+  </header>
+</Header>
+`;
+
+exports[`Navigation header renders login header if user is not logged in 1`] = `
+<Header
+  ISLOGGEDIN={false}
+>
+  <header>
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light"
+    >
+      <ConditionalHeader
+        ISLOGGEDIN={false}
+      >
+        <div
+          className="collapse navbar-collapse"
+        >
+          <Link
+            className="navbar-brand"
+            replace={false}
+            style={
+              Object {
+                "paddingTop": "0px",
+              }
+            }
+            to="/home"
+          >
+            <a
+              className="navbar-brand"
+              href="/home"
+              onClick={[Function]}
+              style={
+                Object {
+                  "paddingTop": "0px",
+                }
+              }
+            >
+              Sysco PoS System
+            </a>
+          </Link>
+          <div
+            className="navbar-nav ml-auto"
+          >
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/login"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/login"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-sign-in-alt"
+                />
+                 Login
+              </a>
+            </Link>
+            <Link
+              className="nav-item nav-link"
+              replace={false}
+              to="/register"
+            >
+              <a
+                className="nav-item nav-link"
+                href="/register"
+                onClick={[Function]}
+              >
+                Register
+              </a>
+            </Link>
+          </div>
+        </div>
+      </ConditionalHeader>
+    </nav>
+  </header>
+</Header>
+`;
+
+exports[`Navigation header renders the header as expected 1`] = `
+<header>
+  <nav
+    className="navbar navbar-expand-lg navbar-light bg-light"
+  >
+    <ConditionalHeader
+      ISLOGGEDIN={true}
+    />
+  </nav>
+</header>
+`;

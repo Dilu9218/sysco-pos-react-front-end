@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item Counter In List Item displays a list of items to edit order 1`] = `
+<ItemCounterInListItem
+  ADD_THIS_ITEM_TO_ITEMQUANTITY={[Function]}
+  COUNT={34}
+  DELETE_THIS_ITEM={[Function]}
+  INDECCREMENT_ITEM_COUNT={[Function]}
+  MAX={34}
+  MIN={0}
+  NAME="Item"
+>
+  <div
+    aria-label="Toolbar with button groups"
+    className="btn-toolbar"
+    role="toolbar"
+  >
+    <div
+      aria-label="Item-Group"
+      className="btn-group"
+      role="group"
+    >
+      <button
+        className="btn btn-secondary"
+        onClick={[Function]}
+        type="button"
+      >
+        +
+      </button>
+      <div
+        style={
+          Object {
+            "textAlign": "center",
+            "width": "3em",
+          }
+        }
+      >
+        <span
+          className="input-group-text"
+          style={
+            Object {
+              "borderRadius": "0px",
+              "display": "inline-block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        >
+          34
+        </span>
+      </div>
+      <button
+        className="btn btn-secondary"
+        onClick={[Function]}
+        type="button"
+      >
+        −
+      </button>
+    </div>
+    <RenderDeleteButton
+      COUNT={34}
+      DELETE_THIS_ITEM={[Function]}
+    >
+      <div
+        aria-label="Delete-Group"
+        className="btn-group"
+        role="group"
+        style={
+          Object {
+            "marginLeft": "10px",
+          }
+        }
+      >
+        <button
+          className="btn btn-danger"
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            className="fas fa-trash"
+          />
+        </button>
+      </div>
+    </RenderDeleteButton>
+  </div>
+</ItemCounterInListItem>
+`;

@@ -1,39 +1,66 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import axios from 'axios';
 
-import { LOG_USER_IN } from '../actions/useraccountcontrolactions';
-import { withCookies } from 'react-cookie';
+import { USER_LOGIN_ENDPOINT } from '../constants';
 
-export class LogIn extends Component {
+class LogIn extends Component {
 
-    // Keep a local state to capture username and password entered by user
+    // Register component will have the following states to help with user registration
     state = {
         username: '',
-        password: ''
+        password: '',
+        alertMessage: '',
+        alertUser: false
     }
 
-    // As the values change in each text box, add them to the current state
+    // As the values are being changed in each text box, add them to the current state
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    // When the submit button is clicked, call an action to dispatch an event
-    // to perform user login actions. If there are any errors, error messages
-    // will be displayed extracted from the state
+    // When the submit button is clicked, validate if the passwords are matching. If not,
+    // prompt user with a warning and do not submit the results up in the ladder. If they
+    // are valid, register user and redirect to login page.
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.LOG_USER_IN(this.state.username, this.state.password);
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.cookies.get('usertoken') !== this.props.passKey) {
-            this.props.cookies.set('usertoken',
-                this.props.passKey, { path: '/' });
-        }
+        this.setState({ alertUser: false });
+        axios.post(USER_LOGIN_ENDPOINT, {
+            username: this.state.username,
+            password: this.state.password
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    this.setState({
+                        alertUser: false,
+                        alertMessage: ''
+                    });
+                    this.props.LOG_USER_IN_AND_OUT(true, res.data.token);
+                    this.props.history.push('/my_orders');
+                }
+            }).catch(err => {
+                if (err.response.status === 401) {
+                    this.setState({
+                        password: '',
+                        alertUser: true,
+                        alertMessage: 'Password is wrong'
+                    });
+                } else if (err.response.status === 404) {
+                    this.setState({
+                        username: '',
+                        password: '',
+                        alertUser: true,
+                        alertMessage: 'User doesn\'t exist'
+                    });
+                } else {
+                    this.setState({
+                        alertUser: true,
+                        alertMessage: 'Error at server'
+                    });
+                }
+            });
     }
 
     render() {
-        if (this.props.isLoggedIn) {
+        if (this.props.ISLOGGEDIN) {
             return (
                 <Redirect to="/my_orders" />
             );
@@ -41,57 +68,29 @@ export class LogIn extends Component {
         return (
             <React.Fragment>
                 <div className="d-flex justify-content-center">
-                    <div className='card'
-                        style={{ marginTop: '9rem', width: '30%' }}>
+                    <div className='card' style={{ marginTop: '9rem', width: '30%' }}>
                         <div className="card-body">
-                            <div className={this.props.alertMessage !== ""
-                                ? "alert alert-warning"
-                                : "alert alert-warning d-none"}>
-                                {this.props.alertMessage}
+                            <div className={this.state.alertUser ? "alert alert-warning" : "alert alert-warning d-none"}>
+                                {this.state.alertMessage}
                             </div>
                             <form className="mx-2" onSubmit={this.onSubmit}>
                                 <div className="input-group my-3">
                                     <div className="input-group-prepend">
-                                        <span
-                                            className="input-group-text"
-                                            id="basic-addon1"
-                                            style={{ width: '125px' }}>
-                                            Username</span>
+                                        <span className="input-group-text" id="basic-addon1" style={{ width: '125px' }}>Username</span>
                                     </div>
-                                    <input
-                                        name="username"
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter your username"
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        required autoFocus autoComplete="true"
-                                        value={this.state.username}
-                                        onChange={this.onChange} />
+                                    <input name="username" type="text" className="form-control" placeholder="Enter your username"
+                                        aria-label="Username" aria-describedby="basic-addon1" required autoFocus autoComplete="true"
+                                        value={this.state.username} onChange={this.onChange} />
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">
-                                        <span
-                                            className="input-group-text"
-                                            id="basic-addon2"
-                                            style={{ width: '125px' }}>
-                                            Password</span>
+                                        <span className="input-group-text" id="basic-addon2" style={{ width: '125px' }}>Password</span>
                                     </div>
-                                    <input
-                                        name="password"
-                                        type="password"
-                                        className="form-control"
-                                        placeholder="Password here"
-                                        aria-label="Password"
-                                        aria-describedby="basic-addon2"
-                                        autoComplete="true" required
-                                        value={this.state.password}
-                                        onChange={this.onChange} />
+                                    <input name="password" type="password" className="form-control" placeholder="Password here"
+                                        aria-label="Password" aria-describedby="basic-addon2" autoComplete="true" required
+                                        value={this.state.password} onChange={this.onChange} />
                                 </div>
-                                <button
-                                    className="btn btn-primary text-uppercase my-3 sign-in-btn"
-                                    style={{ width: '100%' }}
-                                    type="submit">Sign in</button>
+                                <button className="btn btn-primary text-uppercase my-3" style={{ width: '100%' }} type="submit">Sign in</button>
                             </form>
                         </div>
                     </div>
@@ -101,17 +100,4 @@ export class LogIn extends Component {
     }
 }
 
-LogIn.propTypes = {
-    LOG_USER_IN: PropTypes.func.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
-    passKey: PropTypes.string,
-    alertMessage: PropTypes.string.isRequired
-};
-
-const mapStateToProps = (state) => ({
-    isLoggedIn: state.uac.isLoggedIn,
-    passKey: state.uac.passKey,
-    alertMessage: state.uac.alertMessage
-});
-
-export default withCookies(withRouter(connect(mapStateToProps, { LOG_USER_IN })(LogIn)));
+export default withRouter(LogIn);
