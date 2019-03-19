@@ -25,7 +25,12 @@ exports[`Main page renders the main landing page as expected 1`] = `
         }
       }
     >
-      REST API should be designed and specified before development starts. Test coverage should be as close to 100% as possible, and should be developed along with the code (not later). There should be extensive error handling and validations – app should fail gracefully even under the most unexpected circumstances. Code should be clean and self-explanatory for any other developer. Code should be simple and self-explanatory. There should be a demo of work every two days
+      <a
+        href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.0"
+      >
+        REST API
+      </a>
+       should be designed and specified before development starts. Test coverage should be as close to 100% as possible, and should be developed along with the code (not later). There should be extensive error handling and validations – app should fail gracefully even under the most unexpected circumstances. Code should be clean and self-explanatory for any other developer. Code should be simple and self-explanatory. There should be a demo of work every two days
     </p>
   </div>
   <div
