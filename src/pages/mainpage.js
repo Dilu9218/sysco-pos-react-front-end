@@ -31,7 +31,7 @@ class MainPage extends Component {
                     </ul>
                 </div>
                 <footer style={{ marginBottom: '15px' }}>
-                    <a href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.1#/"
+                    <a href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.3#/"
                         target="_blank" rel="noopener noreferrer">
                         <h3><span className="badge badge-secondary" style={{ padding: '10px' }}>
                             <i className="fas fa-book"></i> REST API Documentation</span></h3>

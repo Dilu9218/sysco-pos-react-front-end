@@ -106,7 +106,7 @@ exports[`Main page renders the main landing page as expected 1`] = `
     }
   >
     <a
-      href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.1#/"
+      href="https://app.swaggerhub.com/apis-docs/CloudyPadmal/Sysco-POS/1.0.3#/"
       rel="noopener noreferrer"
       target="_blank"
     >
