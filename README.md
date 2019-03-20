@@ -1,6 +1,6 @@
 ## Sysco Point of Sales System - Pure React
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/047d35f7d499401e89fa8d34c6b84dee)](https://www.codacy.com/app/blog.padmal/sysco-pos-react-front-end?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CloudyPadmal/sysco-pos-react-front-end&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/60a251d380c4409886cae792b72b659e)](https://www.codacy.com/app/blog.padmal/sysco-pos-react-front-end?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CloudyPadmal/sysco-pos-react-front-end&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.com/CloudyPadmal/sysco-pos-react-front-end.svg?branch=development-pure)](https://travis-ci.com/CloudyPadmal/sysco-pos-react-front-end)
 [![codecov](https://codecov.io/gh/CloudyPadmal/sysco-pos-react-front-end/branch/development-pure/graph/badge.svg)](https://codecov.io/gh/CloudyPadmal/sysco-pos-react-front-end)
 ![GitHub stars](https://img.shields.io/github/stars/CloudyPadmal/sysco-pos-react-front-end.svg)
