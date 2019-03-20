@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/CloudyPadmal/sysco-pos-react-front-end/branch/development-pure/graph/badge.svg)](https://codecov.io/gh/CloudyPadmal/sysco-pos-react-front-end)
 ![GitHub stars](https://img.shields.io/github/stars/CloudyPadmal/sysco-pos-react-front-end.svg)
 ![GitHub Release Date](https://img.shields.io/github/release-date/CloudyPadmal/sysco-pos-react-front-end.svg)
-![Website](https://img.shields.io/website/https/http://sysco-pos-system.herokuapp.com/api.svg?down_color=lightgrey&down_message=offline&up_color=green&up_message=online)
+![Website](https://img.shields.io/website/https/sysco-pos-system.herokuapp.com.svg?down_color=lightgrey&down_message=offline&up_color=green&up_message=online)
 ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/CloudyPadmal/sysco-pos-react-front-end.svg)
 ![Repo description](https://img.shields.io/badge/endpoint-frontend-blueviolet.svg)
 
