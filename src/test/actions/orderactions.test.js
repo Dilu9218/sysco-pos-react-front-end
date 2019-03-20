@@ -39,13 +39,24 @@ import {
     dispatch_ResetCurrentOrderStates,
     dispatch_SetThisOrderAsCurrentOrder
 } from '../../actions/ordercontrolactions';
-import { key } from '../key'
+import { USER_LOGIN_ENDPOINT } from '../../constants';
+const axios = require('axios');
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares);
-const accesstoken = key;
+var accesstoken;
 
 let gOrder = undefined;
+
+beforeAll(async (done) => {
+    await axios.post(USER_LOGIN_ENDPOINT, {
+        username: "testUser",
+        password: "abcd"
+    }).then(res => {
+        accesstoken = res.data.token;
+        done();
+    });
+});
 
 describe('Fetch all orders', () => {
 
@@ -184,7 +195,7 @@ describe('Current order modifications', () => {
     });
     it('Adds new items to this order', (done) => {
         store.dispatch(dispatch_AddTheseItemsToThisOrder(
-            lOrder, { 'MU-LTI-PL3': 1, 'MU-LTI-PL2': 1 }, accesstoken)).then(() => {
+            lOrder, { 'IT-EM1-099': 1, 'PO-WER-SUP': 1 }, accesstoken)).then(() => {
                 expect(store.getActions()[0].type).toBe(ADD_THESE_ITEMS_TO_THIS_ORDER);
                 done();
             });
@@ -197,7 +208,7 @@ describe('Current order modifications', () => {
             });
     });
     it('Append new items to this order', (done) => {
-        store.dispatch(dispatch_AppendThisItemToOrder(10, 'MU-LTI-PL3', lOrder, accesstoken)).then(() => {
+        store.dispatch(dispatch_AppendThisItemToOrder(10, 'PO-WER-SUP', lOrder, accesstoken)).then(() => {
             expect(store.getActions()[0].type).toBe(APPEND_THIS_ITEM_TO_ORDER);
             done();
         });
