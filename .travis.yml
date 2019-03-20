@@ -1,0 +1,22 @@
+language: 
+  node_js
+sudo: true
+node_js:
+ - "node"
+cache:
+  directories:
+    - '$HOME/.npm'
+env:
+  global:
+    - CODACY_ACCOUNT_TOKEN=$CODACY_PROJECT_TOKEN
+    - CODECOV_TOKEN=$CODECOV_TOKEN
+before_install:
+  - npm config set loglevel warn
+install: 
+  - npm ci
+  - npm install codecov
+jobs:
+  include:
+    - stage: Unit and Integration tests
+      script:
+        - npm test
