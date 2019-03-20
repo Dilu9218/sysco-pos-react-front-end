@@ -8,7 +8,6 @@ cache:
     - '$HOME/.npm'
 env:
   global:
-    - DATABASE_URL=mongodb://localhost:27017/posdb
     - CODACY_ACCOUNT_TOKEN=$CODACY_PROJECT_TOKEN
     - CODECOV_TOKEN=$CODECOV_TOKEN
 before_install:
