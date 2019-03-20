@@ -33,11 +33,13 @@ class CreateOrder extends Component {
      * and update the state with added data
      **********************************************************************************************/
     addSelectedItemsToThisOrder = () => {
-        this.props.dispatch_AddTheseItemsToThisOrder(
-            this.props.currentOrderID,
-            this.props.itemQuantity,
-            this.props.passKey
-        );
+        if (this.props.itemQuantity.length !== undefined) {
+            this.props.dispatch_AddTheseItemsToThisOrder(
+                this.props.currentOrderID,
+                this.props.itemQuantity,
+                this.props.passKey
+            );
+        }
     }
 
     /**************************************************************************

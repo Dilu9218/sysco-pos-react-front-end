@@ -1363,13 +1363,13 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                              Checkout
                           </button>
                           <button
-                            className="btn btn-danger"
+                            className="btn btn-warning"
                             onClick={[Function]}
                           >
                             <i
-                              className="fas fa-times-circle"
+                              className="fas fa-chevron-left"
                             />
-                             Cancel
+                             Back
                           </button>
                         </div>
                       </div>

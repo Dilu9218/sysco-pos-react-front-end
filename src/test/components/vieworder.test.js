@@ -80,7 +80,7 @@ describe('<ViewOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-danger').at(3).simulate('click');
+        wrapper.find('.btn-warning').simulate('click');
         wrapper.find('.btn-success').simulate('click');
         wrapper.find('.btn-primary').simulate('click');
     });

@@ -140,8 +140,8 @@ class ViewOrder extends Component {
                                     style={{ marginRight: '10px' }}>
                                     <i className="fas fa-shopping-cart"></i> Checkout</button>
                                 <button onClick={this.cancelCheckOut}
-                                    className="btn btn-danger">
-                                    <i className="fas fa-times-circle"></i> Cancel</button>
+                                    className="btn btn-warning">
+                                    <i className="fas fa-chevron-left"></i> Back</button>
                             </div>
                         </div>
                     </div>
