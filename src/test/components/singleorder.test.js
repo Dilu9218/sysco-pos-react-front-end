@@ -44,7 +44,7 @@ describe("<SingleOrder /> component", () => {
                 { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
                 { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
-        }
+        };
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -64,7 +64,7 @@ describe("<SingleOrder /> component", () => {
                 { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
                 { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
-        }
+        };
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -84,7 +84,7 @@ describe("<SingleOrder /> component", () => {
                 { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
                 { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
-        }
+        };
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>

@@ -67,7 +67,7 @@ class ItemCounterInCreateOrder extends Component {
         e.preventDefault();
         if (this.props.quantity > this.props.min) {
             let P = this.props.itemsList.find(
-                I => I.productID === this.props.name).price;
+                (I) => I.productID === this.props.name).price;
             this.props.dispatchIndecrementItemFromQuantity(this.props.name, false, P);
         } else if (this.props.quantity === this.props.min) {
             this.deleteThisItem(e);

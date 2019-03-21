@@ -98,14 +98,14 @@ export const dispatchSetThisOrderAsCurrentOrder = (order, url) => (dispatch) => 
     dispatch({
         type: SET_THIS_ORDER_AS_CURRENT_ORDER,
         currentOrder: order,
-        url: url
+        url
     });
 }
 
 export const dispatchDeleteThisOrder = (id, accesstoken) => (dispatch) => {
     return axios.delete(ORDER_REQUEST_ENDPOINT + `/${id}`,
         { headers: { "x-access-token": accesstoken } })
-        .then(deletedOrder => {
+        .then((deletedOrder) => {
             dispatch({
                 type: DELETE_THIS_ORDER,
                 id
@@ -175,25 +175,26 @@ export const dispatchAppendThisItemToOrder = (price, productID, orderID, accesst
             .catch((err) => {
                 dispatch({
                     type: ERROR_APPEND_THIS_ITEM_TO_ORDER
-                })
+                });
             });
     }
 
-export const dispatchGetTheCompleteItemsList = (accesstoken) => (dispatch) => {
-    return axios.get(ITEMS_LIST_ENDPOINT,
-        { headers: { "x-access-token": accesstoken } })
-        .then((res) => {
-            dispatch({
-                type: FETCH_COMPLETE_ITEMS_LIST,
-                itemsList: res.data
+export const dispatchGetTheCompleteItemsList = (accesstoken) =>
+    (dispatch) => {
+        return axios.get(ITEMS_LIST_ENDPOINT,
+            { headers: { "x-access-token": accesstoken } })
+            .then((res) => {
+                dispatch({
+                    type: FETCH_COMPLETE_ITEMS_LIST,
+                    itemsList: res.data
+                });
+            })
+            .catch((err) => {
+                dispatch({
+                    type: ERROR_FETCHING_ITEMS_LIST
+                });
             });
-        })
-        .catch((err) => {
-            dispatch({
-                type: ERROR_FETCHING_ITEMS_LIST
-            });
-        });
-}
+    };
 
 export const dispatchQuickDeleteThisItemFromQuantity = (id, orderID, count, price, accesstoken) =>
     (dispatch) => {
@@ -217,7 +218,7 @@ export const dispatchQuickIndecrementItemFromQuantity = (
             productID: id,
             difference: 1 * (direction ? 1 : -1),
             quantity: count + (1 * (direction ? 1 : -1))
-        }, { headers: { "x-access-token": accesstoken } }).then(updatedOrder => {
+        }, { headers: { "x-access-token": accesstoken } }).then((updatedOrder) => {
             dispatch({
                 type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
                 direction,
@@ -226,4 +227,4 @@ export const dispatchQuickIndecrementItemFromQuantity = (
                 price
             });
         });
-    } 
+    };

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom"
-import { REGISTER_USER } from "../actions/useraccountcontrolactions";
+import { registerUser } from "../actions/useraccountcontrolactions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -13,7 +13,7 @@ class Register extends Component {
             username: "",
             newpassword: "",
             conpassword: ""
-        }
+        };
     }
 
     componentDidUpdate(prevProps) {
@@ -22,7 +22,7 @@ class Register extends Component {
                 username: "",
                 newpassword: "",
                 conpassword: ""
-            })
+            });
         }
     }
 
@@ -35,7 +35,7 @@ class Register extends Component {
     // show an error message displaying that the user already exists
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.REGISTER_USER(
+        this.props.registerUser(
             this.state.username,
             this.state.newpassword,
             this.state.conpassword
@@ -137,7 +137,7 @@ class Register extends Component {
 
 
 Register.propTypes = {
-    REGISTER_USER: PropTypes.func.isRequired,
+    registerUser: PropTypes.func.isRequired,
     alertMessage: PropTypes.string.isRequired,
     registered: PropTypes.bool.isRequired,
     isLoggedIn: PropTypes.bool.isRequired
@@ -149,4 +149,4 @@ const mapStateToProps = (state) => ({
     registered: state.reg.registered
 });
 
-export default connect(mapStateToProps, { REGISTER_USER })(Register);
+export default connect(mapStateToProps, { registerUser })(Register);

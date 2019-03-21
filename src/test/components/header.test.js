@@ -73,7 +73,7 @@ describe("<Header /> component with logged in", () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-    })
+    });
 
     it("renders with order and logout links", () => {
         const wrapper = mount(

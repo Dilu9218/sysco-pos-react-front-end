@@ -25,7 +25,7 @@ describe("<App /> component", () => {
             orderList: []
         },
         cookies: instanceOf(Cookies).isRequired,
-        RE_LOG_USER_IN: relog_user
+        reLogUserIn: relog_user
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -48,7 +48,7 @@ describe("<App /> component", () => {
 
 describe("<App /> component with login", () => {
 
-    const relog_user = jest.fn();
+    const relogUser = jest.fn();
 
     const initialState = {
         uac: {
@@ -59,7 +59,7 @@ describe("<App /> component with login", () => {
             orderList: []
         },
         cookies: instanceOf(Cookies).isRequired,
-        RE_LOG_USER_IN: relog_user
+        reLogUserIn: relogUser
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -82,7 +82,7 @@ describe("<App /> component with login", () => {
 
 describe("<App /> with cookies unset", () => {
 
-    const relog_user = sinon.spy();
+    const reLogUser = sinon.spy();
 
     const initialState = {
         uac: {
@@ -93,7 +93,7 @@ describe("<App /> with cookies unset", () => {
             orderList: []
         },
         cookies: instanceOf(Cookies).isRequired,
-        RE_LOG_USER_IN: relog_user
+        reLogUserIn: reLogUser
     };
     const mockStore = configureStore(middlewares);
     let store;

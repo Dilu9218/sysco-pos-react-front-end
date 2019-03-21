@@ -20,7 +20,7 @@ class ItemCounterInListItem extends Component {
      **********************************************************************************************/
     deleteThisItem = (e) => {
         e.preventDefault();
-        let P = this.props.itemsList.find(I => I.productID === this.props.name).price;
+        let P = this.props.itemsList.find((I) => I.productID === this.props.name).price;
         this.props.dispatchQuickDeleteThisItemFromQuantity(
             this.props.name, this.props.currentOrderID, this.props.count, P, this.props.passKey);
     }
@@ -31,7 +31,7 @@ class ItemCounterInListItem extends Component {
     incrementItemCount = (e) => {
         e.preventDefault();
         if (this.props.count < this.props.max) {
-            let P = this.props.itemsList.find(I => I.productID === this.props.name).price;
+            let P = this.props.itemsList.find((I) => I.productID === this.props.name).price;
             this.props.dispatchQuickIndecrementItemFromQuantity(
                 this.props.name, true, this.props.count, this.props.currentOrderID,
                 P, this.props.passKey);
@@ -45,7 +45,7 @@ class ItemCounterInListItem extends Component {
         e.preventDefault();
         if (this.props.count > this.props.min) {
             let P = this.props.itemsList.find(
-                I => I.productID === this.props.name).price;
+                (I) => I.productID === this.props.name).price;
             this.props.dispatchQuickIndecrementItemFromQuantity(this.props.name, false,
                 this.props.count, this.props.currentOrderID, P, this.props.passKey);
         }

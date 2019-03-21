@@ -31,7 +31,7 @@ const initialState = {
     url: "",
     viewItemList: [],
     status: false
-}
+};
 
 describe("Initial state", () => {
     it("Initial state as expected", () => {

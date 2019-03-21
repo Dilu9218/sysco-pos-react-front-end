@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom"
+import { withRouter, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { LOG_USER_IN } from "../actions/useraccountcontrolactions";
+import { logUserIn } from "../actions/useraccountcontrolactions";
 import { withCookies } from "react-cookie";
 
 export class LogIn extends Component {
@@ -22,7 +22,7 @@ export class LogIn extends Component {
     // will be displayed extracted from the state
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.LOG_USER_IN(this.state.username, this.state.password);
+        this.props.logUserIn(this.state.username, this.state.password);
     }
 
     componentDidUpdate(prevProps) {
@@ -102,7 +102,7 @@ export class LogIn extends Component {
 }
 
 LogIn.propTypes = {
-    LOG_USER_IN: PropTypes.func.isRequired,
+    logUserIn: PropTypes.func.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
     passKey: PropTypes.string,
     alertMessage: PropTypes.string.isRequired
@@ -114,4 +114,4 @@ const mapStateToProps = (state) => ({
     alertMessage: state.uac.alertMessage
 });
 
-export default withCookies(withRouter(connect(mapStateToProps, { LOG_USER_IN })(LogIn)));
+export default withCookies(withRouter(connect(mapStateToProps, { logUserIn })(LogIn)));

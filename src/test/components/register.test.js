@@ -13,7 +13,7 @@ const middlewares = [thunk];
 
 describe("<Register /> component", () => {
 
-    const REGISTER_USER = sinon.spy();
+    const registerUser = sinon.spy();
 
     const initialState = {
         uac: {
@@ -23,7 +23,7 @@ describe("<Register /> component", () => {
             registered: false,
             alertMessage: ""
         },
-        REGISTER_USER
+        registerUser
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -68,7 +68,7 @@ describe("<Register /> component with logged in", () => {
             registered: false,
             alertMessage: ""
         },
-        REGISTER_USER: jest.fn()
+        registerUser: jest.fn()
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -101,7 +101,7 @@ describe("<Register /> component with registered", () => {
             registered: true,
             alertMessage: ""
         },
-        REGISTER_USER: jest.fn()
+        registerUser: jest.fn()
     };
     const mockStore = configureStore(middlewares);
     let store;

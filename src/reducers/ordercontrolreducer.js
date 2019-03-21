@@ -77,7 +77,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             return {
                 ...state,
                 url: "/my_orders",
-                orderList: state.orderList.filter(order => (order._id !== action.id)),
+                orderList: state.orderList.filter((order) => (order._id !== action.id)),
             }
         case SET_THIS_ORDER_AS_CURRENT_ORDER:
             let tempItemQuantity = {};
@@ -157,12 +157,12 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
             }
         case APPEND_THIS_ITEM_TO_ORDER:
             let newItem = JSON.parse(JSON.stringify(
-                state.itemsList.find(I => (I.productID === action.productID))));
+                state.itemsList.find((I) => (I.productID === action.productID))));
             newItem.quantity--;
             let newItemsList = JSON.parse(JSON.stringify(
-                state.itemsList.filter(I => (I.productID !== action.productID))));
+                state.itemsList.filter((I) => (I.productID !== action.productID))));
             let oldItemsList = JSON.parse(JSON.stringify(state.itemsList));
-            oldItemsList.find(I => (I.productID === action.productID)).quantity--;
+            oldItemsList.find((I) => (I.productID === action.productID)).quantity--;
             return {
                 ...state,
                 viewItemList: newItemsList,
@@ -201,4 +201,4 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};

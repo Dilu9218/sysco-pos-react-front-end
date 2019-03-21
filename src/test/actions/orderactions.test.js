@@ -42,17 +42,17 @@ import {
 import { USER_LOGIN_ENDPOINT } from "../../constants";
 const axios = require("axios");
 
-const middlewares = [thunk]
+const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 var accesstoken;
 
-let gOrder = undefined;
+let gOrder;
 
 beforeAll(async (done) => {
     await axios.post(USER_LOGIN_ENDPOINT, {
         username: "testUser",
         password: "abcd"
-    }).then(res => {
+    }).then((res) => {
         accesstoken = res.data.token;
         done();
     });
@@ -119,7 +119,7 @@ describe("Reset order status", () => {
 
 describe("Checkouts orders", () => {
 
-    let lOrder = undefined;
+    let lOrder;
     beforeAll(async (done) => {
         await store.dispatch(dispatchCreateNewOrderForThisUser(accesstoken)).then(res => {
             lOrder = store.getActions()[0].id;
@@ -160,9 +160,9 @@ describe("Checkouts orders", () => {
 
 describe("Current order modifications", () => {
 
-    let lOrder = undefined;
+    let lOrder;
     beforeAll(async (done) => {
-        await store.dispatch(dispatchCreateNewOrderForThisUser(accesstoken)).then(res => {
+        await store.dispatch(dispatchCreateNewOrderForThisUser(accesstoken)).then((res) => {
             lOrder = store.getActions()[0].id;
             done();
         });
@@ -254,9 +254,9 @@ describe("Current order modifications", () => {
     });
 
     afterAll(async (done) => {
-        await store.dispatch(dispatchDeleteThisOrder(lOrder, accesstoken)).then(res => {
+        await store.dispatch(dispatchDeleteThisOrder(lOrder, accesstoken)).then((res) => {
             done();
-        })
+        });
     });
 
 });

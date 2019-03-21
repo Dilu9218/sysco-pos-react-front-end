@@ -17,7 +17,7 @@ describe("<LogIn /> component with logged out", () => {
             isLoggedIn: false,
             alertMessage: ""
         },
-        LOG_USER_IN: jest.fn()
+        logUserIn: jest.fn();
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -59,7 +59,7 @@ describe("<LogIn /> component with logged in", () => {
             isLoggedIn: true,
             alertMessage: ""
         },
-        LOG_USER_IN: jest.fn()
+        logUserIn: jest.fn()
     };
     const mockStore = configureStore(middlewares);
     let store;

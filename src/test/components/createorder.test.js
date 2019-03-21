@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { mount } from "../enzyme";
 import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
-import sinon from "sinon"
+import sinon from "sinon";
 
 import CreateOrder from "../../components/CreateOrder";
 
@@ -216,6 +216,5 @@ describe("<CreateOrder /> component with logout", () => {
             </CookiesProvider>
         );
         wrapper.unmount();
-        console.log(dispatchDeleteThisOrder.calledOnce);
     });
 });

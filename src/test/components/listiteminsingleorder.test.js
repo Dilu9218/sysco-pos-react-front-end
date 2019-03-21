@@ -17,7 +17,7 @@ describe("<ListItemInSingleOrder /> component renders", () => {
         description: "A aasasas",
         quantity: 100,
         price: 25
-    }
+    };
 
     const initialState = {
         uac: { passKey: "" },
@@ -35,7 +35,7 @@ describe("<ListItemInSingleOrder /> component renders", () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-    })
+    });
 
     it("renders", () => {
         const wrapper = mount(

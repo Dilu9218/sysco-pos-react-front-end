@@ -93,7 +93,7 @@ class CreateOrder extends Component {
                                 style={{ margin: "auto", textAlign: "initial" }}>
                                 <i className="fas fa-th-list"></i> Items List</h5></div>
                             {this.props.itemsList.filter((item) => {
-                                return (item.quantity > 0)
+                                return (item.quantity > 0);
                             }).map((item) => (
                                 <ListItemInCreateOrder
                                     key={item._id}

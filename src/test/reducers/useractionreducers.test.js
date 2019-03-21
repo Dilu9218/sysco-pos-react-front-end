@@ -88,5 +88,5 @@ describe("Initial state of user registration", () => {
             registered: true
         };
         expect(REGISTRATION_REDUCER(undefined, action)).toEqual(expectation);
-    })
+    });
 });

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom"
-import { LOG_USER_OUT } from "../actions/useraccountcontrolactions";
+import { logUserOut } from "../actions/useraccountcontrolactions";
 import { USERTOKEN } from "../constants";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -11,7 +11,7 @@ class LogOut extends Component {
     componentDidMount() {
         if (this.props.cookies.get(USERTOKEN)) {
             this.props.cookies.remove(USERTOKEN);
-            this.props.LOG_USER_OUT();
+            this.props.logUserOut();
         }
     }
 
@@ -23,7 +23,7 @@ class LogOut extends Component {
 }
 
 LogOut.propTypes = {
-    LOG_USER_OUT: PropTypes.func.isRequired
+    logUserOut: PropTypes.func.isRequired
 };
 
-export default withCookies(connect(null, { LOG_USER_OUT })(LogOut));
+export default withCookies(connect(null, { logUserOut })(LogOut));

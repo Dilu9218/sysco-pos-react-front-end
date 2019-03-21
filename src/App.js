@@ -5,7 +5,7 @@ import PropTypes, { instanceOf } from "prop-types";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { RE_LOG_USER_IN } from "./actions/useraccountcontrolactions";
+import { reLogUserIn } from "./actions/useraccountcontrolactions";
 import { USERTOKEN } from "./constants";
 
 import MainPage from "./pages/mainpage";
@@ -30,7 +30,7 @@ class App extends Component {
     // with saved credentials and set logged status as true along with the cookie as PASSKEY
     let savedCookie = props.cookies.get(USERTOKEN);
     if (savedCookie) {
-      props.RE_LOG_USER_IN(savedCookie);
+      props.reLogUserIn(savedCookie);
     }
   }
 
@@ -56,8 +56,8 @@ class App extends Component {
 }
 
 App.propTypes = {
-  RE_LOG_USER_IN: PropTypes.func.isRequired,
+  reLogUserIn: PropTypes.func.isRequired,
   cookies: instanceOf(Cookies).isRequired
 };
 
-export default withCookies(connect(null, { RE_LOG_USER_IN })(App));
+export default withCookies(connect(null, { reLogUserIn })(App));

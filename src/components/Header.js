@@ -68,4 +68,4 @@ const mapStateToProps = state => ({
     isLoggedIn: state.uac.isLoggedIn
 });
 
-export default connect(mapStateToProps, null)(Header)
+export default connect(mapStateToProps, null)(Header);

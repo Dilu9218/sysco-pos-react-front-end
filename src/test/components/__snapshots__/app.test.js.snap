@@ -42,7 +42,6 @@ exports[`<App /> component renders correctly 1`] = `
           }
         >
           <App
-            RE_LOG_USER_IN={[Function]}
             allCookies={Object {}}
             cookies={
               Cookies {
@@ -54,6 +53,7 @@ exports[`<App /> component renders correctly 1`] = `
                 "cookies": Object {},
               }
             }
+            reLogUserIn={[Function]}
           >
             <BrowserRouter>
               <Router
@@ -245,7 +245,6 @@ exports[`<App /> component renders correctly 1`] = `
                               }
                             >
                               <LogIn
-                                LOG_USER_IN={[Function]}
                                 allCookies={Object {}}
                                 cookies={
                                   Cookies {
@@ -286,6 +285,7 @@ exports[`<App /> component renders correctly 1`] = `
                                     "state": undefined,
                                   }
                                 }
+                                logUserIn={[Function]}
                                 match={
                                   Object {
                                     "isExact": true,

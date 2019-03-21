@@ -13,10 +13,10 @@ import {
     CLEAR_PASS_KEY
 } from "./types";
 
-export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) => {
+export const registerUser = (username, newpassword, conpassword) => (dispatch) => {
     if (newpassword === conpassword) {
         return axios.post(USER_REGISTER_ENDPOINT, {
-            username: username,
+            username,
             password: newpassword,
             isAdmin: false
         })
@@ -46,7 +46,7 @@ export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) 
     }
 }
 
-export const LOG_USER_IN = (username, password) => (dispatch) => {
+export const logUserIn = (username, password) => (dispatch) => {
     return axios.post(USER_LOGIN_ENDPOINT, { username, password })
         .then(res => {
             dispatch({
@@ -79,15 +79,15 @@ export const LOG_USER_IN = (username, password) => (dispatch) => {
         });
 };
 
-export const RE_LOG_USER_IN = (cookie) => (dispatch) => {
+export const reLogUserIn = (cookie) => (dispatch) => {
     dispatch({
         type: SAVE_PASS_KEY,
         passKey: cookie
     })
-}
+};
 
-export const LOG_USER_OUT = () => (dispatch) => {
+export const logUserOut = () => (dispatch) => {
     dispatch({
         type: CLEAR_PASS_KEY
-    })
+    });
 };

@@ -13,7 +13,7 @@ const middlewares = [thunk];
 describe("<Logout /> component rendering", () => {
 
     const initialState = {
-        LOG_USER_OUT: jest.fn()
+        logUserOut: jest.fn()
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -39,7 +39,7 @@ describe("<Logout /> component rendering", () => {
 describe("<Logout /> component rendering", () => {
 
     const initialState = {
-        LOG_USER_OUT: jest.fn()
+        logUserOut: jest.fn()
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -55,7 +55,7 @@ describe("<Logout /> component rendering", () => {
                     <Router>
                         <LogOut cookies={{
                             getAll: jest.fn(),
-                            get: () => { return true },
+                            get: () => { return true; },
                             addChangeListener: jest.fn(),
                             remove: jest.fn()
                         }} />

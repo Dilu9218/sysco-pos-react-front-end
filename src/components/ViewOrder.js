@@ -69,9 +69,7 @@ class ViewOrder extends Component {
 
     render() {
         if (!this.props.isLoggedIn) {
-            return (
-                <Redirect to="/login" />
-            )
+            return (<Redirect to="/login" />);
         }
         return (
             <div>
@@ -84,7 +82,7 @@ class ViewOrder extends Component {
                                 <i className="fas fa-th-list"></i> Items List</h5></div>
                             {this.props.viewItemList.filter((item) => {
                                 return ((item.quantity > 0) &&
-                                    this.props.itemQuantity[item.productID] === undefined)
+                                    this.props.itemQuantity[item.productID] === undefined);
                             }).map((item) => (
                                 <ListItemInAddNewItemsToOrder key={item._id} item={item} />
                             ))}

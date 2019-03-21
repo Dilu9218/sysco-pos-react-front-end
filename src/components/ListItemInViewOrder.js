@@ -30,7 +30,7 @@ class ListItemInViewOrder extends Component {
                                     ? 0
                                     : this.props.clonedItemQuantity[productID]
                                     + this.props.itemsList.find(
-                                        I => I.productID === productID).quantity
+                                        (I) => I.productID === productID).quantity
                                 } />
                         </div>
                     </div>
