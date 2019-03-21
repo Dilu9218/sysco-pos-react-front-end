@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-    dispatch_AddThisItemToQuantity,
-    dispatch_DeleteThisItemFromQuantity,
-    dispatch_IndecrementItemFromQuantity
+    dispatchAddThisItemToQuantity,
+    dispatchDeleteThisItemFromQuantity,
+    dispatchIndecrementItemFromQuantity
 } from "../actions/ordercontrolactions";
 
 function RenderDeleteButton(props) {
@@ -40,7 +40,7 @@ class ItemCounterInCreateOrder extends Component {
         e.preventDefault();
         let P = this.props.itemsList.find(
             I => I.productID === this.props.name).price;
-        this.props.dispatch_DeleteThisItemFromQuantity(this.props.name, P);
+        this.props.dispatchDeleteThisItemFromQuantity(this.props.name, P);
     }
 
     /**************************************************************************
@@ -52,11 +52,11 @@ class ItemCounterInCreateOrder extends Component {
         e.preventDefault();
         if (this.props.quantity !== this.props.max) {
             if (this.props.quantity === 0) {
-                this.props.dispatch_AddThisItemToQuantity(this.props.name);
+                this.props.dispatchAddThisItemToQuantity(this.props.name);
             }
             let P = this.props.itemsList.find(
                 I => I.productID === this.props.name).price;
-            this.props.dispatch_IndecrementItemFromQuantity(this.props.name, true, P);
+            this.props.dispatchIndecrementItemFromQuantity(this.props.name, true, P);
         }
     }
 
@@ -68,7 +68,7 @@ class ItemCounterInCreateOrder extends Component {
         if (this.props.quantity > this.props.min) {
             let P = this.props.itemsList.find(
                 I => I.productID === this.props.name).price;
-            this.props.dispatch_IndecrementItemFromQuantity(this.props.name, false, P);
+            this.props.dispatchIndecrementItemFromQuantity(this.props.name, false, P);
         } else if (this.props.quantity === this.props.min) {
             this.deleteThisItem(e);
         }
@@ -98,9 +98,9 @@ class ItemCounterInCreateOrder extends Component {
 }
 
 ItemCounterInCreateOrder.propTypes = {
-    dispatch_AddThisItemToQuantity: PropTypes.func.isRequired,
-    dispatch_IndecrementItemFromQuantity: PropTypes.func.isRequired,
-    dispatch_DeleteThisItemFromQuantity: PropTypes.func.isRequired
+    dispatchAddThisItemToQuantity: PropTypes.func.isRequired,
+    dispatchIndecrementItemFromQuantity: PropTypes.func.isRequired,
+    dispatchDeleteThisItemFromQuantity: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -113,7 +113,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    dispatch_AddThisItemToQuantity,
-    dispatch_IndecrementItemFromQuantity,
-    dispatch_DeleteThisItemFromQuantity
+    dispatchAddThisItemToQuantity,
+    dispatchIndecrementItemFromQuantity,
+    dispatchDeleteThisItemFromQuantity
 })(ItemCounterInCreateOrder);

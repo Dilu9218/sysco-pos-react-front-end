@@ -87,10 +87,10 @@ exports[`<OrderList /> component renders orderlist with orders 1`] = `
                     ],
                   }
                 }
-                dispatch_DeleteThisOrder={[Function]}
-                dispatch_FetchEveryOrderForThisUser={[Function]}
-                dispatch_GetTheCompleteItemsList={[Function]}
-                dispatch_ResetCurrentOrderStates={[Function]}
+                dispatchDeleteThisOrder={[Function]}
+                dispatchFetchEveryOrderForThisUser={[Function]}
+                dispatchGetTheCompleteItemsList={[Function]}
+                dispatchResetCurrentOrderStates={[Function]}
                 history={
                   Object {
                     "action": "POP",
@@ -349,7 +349,7 @@ exports[`<OrderList /> component renders orderlist with orders 1`] = `
                                 ],
                               }
                             }
-                            dispatch_SetThisOrderAsCurrentOrder={[Function]}
+                            dispatchSetThisOrderAsCurrentOrder={[Function]}
                             history={
                               Object {
                                 "action": "POP",
@@ -961,7 +961,7 @@ exports[`<OrderList /> component renders orderlist with orders 1`] = `
                                 ],
                               }
                             }
-                            dispatch_SetThisOrderAsCurrentOrder={[Function]}
+                            dispatchSetThisOrderAsCurrentOrder={[Function]}
                             history={
                               Object {
                                 "action": "POP",
@@ -1548,10 +1548,10 @@ exports[`<OrderList /> component with no orders renders orderlist with orders 1`
             >
               <OrderList
                 currentOrder={Object {}}
-                dispatch_DeleteThisOrder={[Function]}
-                dispatch_FetchEveryOrderForThisUser={[Function]}
-                dispatch_GetTheCompleteItemsList={[Function]}
-                dispatch_ResetCurrentOrderStates={[Function]}
+                dispatchDeleteThisOrder={[Function]}
+                dispatchFetchEveryOrderForThisUser={[Function]}
+                dispatchGetTheCompleteItemsList={[Function]}
+                dispatchResetCurrentOrderStates={[Function]}
                 history={
                   Object {
                     "action": "POP",

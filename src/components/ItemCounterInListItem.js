@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-    dispatch_QuickDeleteThisItemFromQuantity,
-    dispatch_QuickIndecrementItemFromQuantity
+    dispatchQuickDeleteThisItemFromQuantity,
+    dispatchQuickIndecrementItemFromQuantity
 } from "../actions/ordercontrolactions";
 
 /***************************************************************************************************
@@ -21,7 +21,7 @@ class ItemCounterInListItem extends Component {
     deleteThisItem = (e) => {
         e.preventDefault();
         let P = this.props.itemsList.find(I => I.productID === this.props.name).price;
-        this.props.dispatch_QuickDeleteThisItemFromQuantity(
+        this.props.dispatchQuickDeleteThisItemFromQuantity(
             this.props.name, this.props.currentOrderID, this.props.count, P, this.props.passKey);
     }
 
@@ -32,7 +32,7 @@ class ItemCounterInListItem extends Component {
         e.preventDefault();
         if (this.props.count < this.props.max) {
             let P = this.props.itemsList.find(I => I.productID === this.props.name).price;
-            this.props.dispatch_QuickIndecrementItemFromQuantity(
+            this.props.dispatchQuickIndecrementItemFromQuantity(
                 this.props.name, true, this.props.count, this.props.currentOrderID,
                 P, this.props.passKey);
         }
@@ -46,7 +46,7 @@ class ItemCounterInListItem extends Component {
         if (this.props.count > this.props.min) {
             let P = this.props.itemsList.find(
                 I => I.productID === this.props.name).price;
-            this.props.dispatch_QuickIndecrementItemFromQuantity(this.props.name, false,
+            this.props.dispatchQuickIndecrementItemFromQuantity(this.props.name, false,
                 this.props.count, this.props.currentOrderID, P, this.props.passKey);
         }
     }
@@ -79,8 +79,8 @@ class ItemCounterInListItem extends Component {
 }
 
 ItemCounterInListItem.propTypes = {
-    dispatch_QuickIndecrementItemFromQuantity: PropTypes.func.isRequired,
-    dispatch_QuickDeleteThisItemFromQuantity: PropTypes.func.isRequired
+    dispatchQuickIndecrementItemFromQuantity: PropTypes.func.isRequired,
+    dispatchQuickDeleteThisItemFromQuantity: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -90,6 +90,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    dispatch_QuickIndecrementItemFromQuantity,
-    dispatch_QuickDeleteThisItemFromQuantity
+    dispatchQuickIndecrementItemFromQuantity,
+    dispatchQuickDeleteThisItemFromQuantity
 })(ItemCounterInListItem);

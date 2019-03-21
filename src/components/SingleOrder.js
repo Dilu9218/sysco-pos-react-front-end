@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { dispatch_SetThisOrderAsCurrentOrder } from "../actions/ordercontrolactions";
+import { dispatchSetThisOrderAsCurrentOrder } from "../actions/ordercontrolactions";
 import ListItemInSingleOrder from "./ListItemInSingleOrder";
 
 class SingleOrder extends Component {
@@ -13,7 +13,7 @@ class SingleOrder extends Component {
      * the order to user
      *************************************************************************/
     viewThisOrder = () => {
-        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, "/view_order");
+        this.props.dispatchSetThisOrderAsCurrentOrder(this.props.order, "/view_order");
     }
 
     /**************************************************************************
@@ -21,7 +21,7 @@ class SingleOrder extends Component {
      * and collection
      *************************************************************************/
     deleteThisOrder = () => {
-        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, "/delete_order");
+        this.props.dispatchSetThisOrderAsCurrentOrder(this.props.order, "/delete_order");
     }
 
     render() {
@@ -70,7 +70,7 @@ class SingleOrder extends Component {
 }
 
 SingleOrder.propTypes = {
-    dispatch_SetThisOrderAsCurrentOrder: PropTypes.func.isRequired,
+    dispatchSetThisOrderAsCurrentOrder: PropTypes.func.isRequired,
     passKey: PropTypes.string.isRequired
 };
 
@@ -80,5 +80,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(connect(mapStateToProps, {
-    dispatch_SetThisOrderAsCurrentOrder
+    dispatchSetThisOrderAsCurrentOrder
 })(SingleOrder));

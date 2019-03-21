@@ -27,7 +27,7 @@ describe("<SingleOrder /> component", () => {
                 ]
             }
         },
-        dispatch_SetThisOrderAsCurrentOrder: setAsCurrentOrder
+        dispatchSetThisOrderAsCurrentOrder: setAsCurrentOrder
     };
     const mockStore = configureStore(middlewares);
     let store;

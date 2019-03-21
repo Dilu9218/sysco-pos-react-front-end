@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-    dispatch_AppendThisItemToOrder
+    dispatchAppendThisItemToOrder
 } from "../actions/ordercontrolactions";
 
 class ListItemInAddNewItemsToOrder extends Component {
 
     addThisItemToOrder = () => {
-        this.props.dispatch_AppendThisItemToOrder(this.props.item.price,
+        this.props.dispatchAppendThisItemToOrder(this.props.item.price,
             this.props.item.productID, this.props.currentOrderID,
             this.props.passKey, this.props.itemsList);
     }
@@ -47,7 +47,7 @@ class ListItemInAddNewItemsToOrder extends Component {
 ListItemInAddNewItemsToOrder.propTypes = {
     currentOrder: PropTypes.object.isRequired,
     passKey: PropTypes.string.isRequired,
-    dispatch_AppendThisItemToOrder: PropTypes.func.isRequired
+    dispatchAppendThisItemToOrder: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -61,5 +61,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    dispatch_AppendThisItemToOrder
+    dispatchAppendThisItemToOrder
 })(ListItemInAddNewItemsToOrder);

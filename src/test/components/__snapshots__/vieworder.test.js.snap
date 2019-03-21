@@ -110,9 +110,9 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                     ],
                   }
                 }
-                dispatch_CheckOutOrder={[Function]}
-                dispatch_GetTheCompleteItemsList={[Function]}
-                dispatch_ResetCurrentOrderStates={[Function]}
+                dispatchCheckOutOrder={[Function]}
+                dispatchGetTheCompleteItemsList={[Function]}
+                dispatchResetCurrentOrderStates={[Function]}
                 history={
                   Object {
                     "action": "POP",
@@ -488,8 +488,8 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                       >
                                         <ItemCounterInListItem
                                           count={1}
-                                          dispatch_QuickDeleteThisItemFromQuantity={[Function]}
-                                          dispatch_QuickIndecrementItemFromQuantity={[Function]}
+                                          dispatchQuickDeleteThisItemFromQuantity={[Function]}
+                                          dispatchQuickIndecrementItemFromQuantity={[Function]}
                                           itemsList={
                                             Array [
                                               Object {
@@ -824,8 +824,8 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                       >
                                         <ItemCounterInListItem
                                           count={2}
-                                          dispatch_QuickDeleteThisItemFromQuantity={[Function]}
-                                          dispatch_QuickIndecrementItemFromQuantity={[Function]}
+                                          dispatchQuickDeleteThisItemFromQuantity={[Function]}
+                                          dispatchQuickIndecrementItemFromQuantity={[Function]}
                                           itemsList={
                                             Array [
                                               Object {
@@ -1160,8 +1160,8 @@ exports[`<ViewOrder /> component renders with an order 1`] = `
                                       >
                                         <ItemCounterInListItem
                                           count={3}
-                                          dispatch_QuickDeleteThisItemFromQuantity={[Function]}
-                                          dispatch_QuickIndecrementItemFromQuantity={[Function]}
+                                          dispatchQuickDeleteThisItemFromQuantity={[Function]}
+                                          dispatchQuickIndecrementItemFromQuantity={[Function]}
                                           itemsList={
                                             Array [
                                               Object {

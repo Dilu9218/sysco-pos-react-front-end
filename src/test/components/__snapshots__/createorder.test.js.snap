@@ -79,12 +79,12 @@ exports[`<CreateOrder /> component renders with an create order layout 1`] = `
             >
               <CreateOrder
                 currentOrderID="abcd1234"
-                dispatch_AddTheseItemsToThisOrder={[Function]}
-                dispatch_CreateNewOrderForThisUser={[Function]}
-                dispatch_DeleteThisOrder={[Function]}
-                dispatch_FetchEveryOrderForThisUser={[Function]}
-                dispatch_GetTheCompleteItemsList={[Function]}
-                dispatch_ResetCurrentOrderStates={[Function]}
+                dispatchAddTheseItemsToThisOrder={[Function]}
+                dispatchCreateNewOrderForThisUser={[Function]}
+                dispatchDeleteThisOrder={[Function]}
+                dispatchFetchEveryOrderForThisUser={[Function]}
+                dispatchGetTheCompleteItemsList={[Function]}
+                dispatchResetCurrentOrderStates={[Function]}
                 history={
                   Object {
                     "action": "POP",
@@ -272,9 +272,9 @@ exports[`<CreateOrder /> component renders with an create order layout 1`] = `
                                 >
                                   <ItemCounterInCreateOrder
                                     currentOrderID="abcd1234"
-                                    dispatch_AddThisItemToQuantity={[Function]}
-                                    dispatch_DeleteThisItemFromQuantity={[Function]}
-                                    dispatch_IndecrementItemFromQuantity={[Function]}
+                                    dispatchAddThisItemToQuantity={[Function]}
+                                    dispatchDeleteThisItemFromQuantity={[Function]}
+                                    dispatchIndecrementItemFromQuantity={[Function]}
                                     isLoggedIn={true}
                                     itemQuantity={
                                       Object {
@@ -507,9 +507,9 @@ exports[`<CreateOrder /> component renders with an create order layout 1`] = `
                                 >
                                   <ItemCounterInCreateOrder
                                     currentOrderID="abcd1234"
-                                    dispatch_AddThisItemToQuantity={[Function]}
-                                    dispatch_DeleteThisItemFromQuantity={[Function]}
-                                    dispatch_IndecrementItemFromQuantity={[Function]}
+                                    dispatchAddThisItemToQuantity={[Function]}
+                                    dispatchDeleteThisItemFromQuantity={[Function]}
+                                    dispatchIndecrementItemFromQuantity={[Function]}
                                     isLoggedIn={true}
                                     itemQuantity={
                                       Object {
@@ -742,9 +742,9 @@ exports[`<CreateOrder /> component renders with an create order layout 1`] = `
                                 >
                                   <ItemCounterInCreateOrder
                                     currentOrderID="abcd1234"
-                                    dispatch_AddThisItemToQuantity={[Function]}
-                                    dispatch_DeleteThisItemFromQuantity={[Function]}
-                                    dispatch_IndecrementItemFromQuantity={[Function]}
+                                    dispatchAddThisItemToQuantity={[Function]}
+                                    dispatchDeleteThisItemFromQuantity={[Function]}
+                                    dispatchIndecrementItemFromQuantity={[Function]}
                                     isLoggedIn={true}
                                     itemQuantity={
                                       Object {

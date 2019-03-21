@@ -45,9 +45,9 @@ exports[`<ItemCounterInCreateOrder /> component renders with correct value 1`] =
         >
           <ItemCounterInCreateOrder
             currentOrderID="abcdefg111"
-            dispatch_AddThisItemToQuantity={[Function]}
-            dispatch_DeleteThisItemFromQuantity={[Function]}
-            dispatch_IndecrementItemFromQuantity={[Function]}
+            dispatchAddThisItemToQuantity={[Function]}
+            dispatchDeleteThisItemFromQuantity={[Function]}
+            dispatchIndecrementItemFromQuantity={[Function]}
             isLoggedIn={true}
             itemQuantity={
               Object {
@@ -205,9 +205,9 @@ exports[`<ItemCounterInCreateOrder /> component renders with correct value when 
         >
           <ItemCounterInCreateOrder
             currentOrderID="abcdefg111"
-            dispatch_AddThisItemToQuantity={[Function]}
-            dispatch_DeleteThisItemFromQuantity={[Function]}
-            dispatch_IndecrementItemFromQuantity={[Function]}
+            dispatchAddThisItemToQuantity={[Function]}
+            dispatchDeleteThisItemFromQuantity={[Function]}
+            dispatchIndecrementItemFromQuantity={[Function]}
             isLoggedIn={true}
             itemQuantity={
               Object {

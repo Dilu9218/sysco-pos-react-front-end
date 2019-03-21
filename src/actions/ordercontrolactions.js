@@ -41,60 +41,60 @@ import {
  * @param accesstoken authorization token to verify user
  * @emits CREATE_NEW_ORDER_FOR_THIS_USER
  **************************************************************************************************/
-export const dispatch_CreateNewOrderForThisUser = (accesstoken) => (dispatch) => {
+export const dispatchCreateNewOrderForThisUser = (accesstoken) => (dispatch) => {
     return axios.post(NEW_ORDER_ENDPOINT, {},
         { headers: { "x-access-token": accesstoken } })
-        .then(newOrder => {
+        .then((newOrder) => {
             dispatch({
                 type: CREATE_NEW_ORDER_FOR_THIS_USER,
                 id: newOrder.data._id
             });
         })
-        .catch(err => {
+        .catch((err) => {
             dispatch({
                 type: ERROR_CREATE_NEW_ORDER_FOR_THIS_USER
             });
         });
 }
 
-export const dispatch_FetchEveryOrderForThisUser = (accesstoken) => (dispatch) => {
+export const dispatchFetchEveryOrderForThisUser = (accesstoken) => (dispatch) => {
     return axios.get(ORDER_LIST_ENDPOINT,
         { headers: { "x-access-token": accesstoken } })
-        .then(res => {
+        .then((res) => {
             dispatch({
                 type: FETCH_EVERY_ORDER_FOR_THIS_USER,
                 orderList: res.data
             });
         })
-        .catch(err => {
+        .catch((err) => {
             dispatch({
                 type: ERROR_FETCHING_ORDER_LIST_FOR_USER
             });
         });
 }
 
-export const dispatch_ResetCurrentOrderStates = () => (dispatch) => {
+export const dispatchResetCurrentOrderStates = () => (dispatch) => {
     dispatch({
         type: RESET_CURRENT_ORDER_STATES
     });
 }
 
-export const dispatch_CheckOutOrder = (id, accesstoken) => (dispatch) => {
+export const dispatchCheckOutOrder = (id, accesstoken) => (dispatch) => {
     return axios.post(ORDER_CHECKOUT_ENDPOINT + `/${id}`, {},
         { headers: { "x-access-token": accesstoken } })
-        .then(checkedOut => {
+        .then((checkedOut) => {
             dispatch({
                 type: CHECK_OUT_ORDER,
-                id: id
+                id
             });
-        }).catch(err => {
+        }).catch((err) => {
             dispatch({
                 type: ERROR_CHECK_OUT_ORDER
             });
         });
 }
 
-export const dispatch_SetThisOrderAsCurrentOrder = (order, url) => (dispatch) => {
+export const dispatchSetThisOrderAsCurrentOrder = (order, url) => (dispatch) => {
     dispatch({
         type: SET_THIS_ORDER_AS_CURRENT_ORDER,
         currentOrder: order,
@@ -102,7 +102,7 @@ export const dispatch_SetThisOrderAsCurrentOrder = (order, url) => (dispatch) =>
     });
 }
 
-export const dispatch_DeleteThisOrder = (id, accesstoken) => (dispatch) => {
+export const dispatchDeleteThisOrder = (id, accesstoken) => (dispatch) => {
     return axios.delete(ORDER_REQUEST_ENDPOINT + `/${id}`,
         { headers: { "x-access-token": accesstoken } })
         .then(deletedOrder => {
@@ -110,21 +110,21 @@ export const dispatch_DeleteThisOrder = (id, accesstoken) => (dispatch) => {
                 type: DELETE_THIS_ORDER,
                 id
             });
-        }).catch(err => {
+        }).catch((err) => {
             dispatch({
                 type: ERROR_DELETE_THIS_ORDER
             });
         });
 }
 
-export const dispatch_AddThisItemToQuantity = (id) => (dispatch) => {
+export const dispatchAddThisItemToQuantity = (id) => (dispatch) => {
     dispatch({
         type: ADD_THIS_ITEM_TO_QUANTITY,
         id
     });
 }
 
-export const dispatch_DeleteThisItemFromQuantity = (id, price) => (dispatch) => {
+export const dispatchDeleteThisItemFromQuantity = (id, price) => (dispatch) => {
     dispatch({
         type: DELETE_THIS_ITEM_FROM_QUANTITY,
         id,
@@ -132,7 +132,7 @@ export const dispatch_DeleteThisItemFromQuantity = (id, price) => (dispatch) => 
     });
 }
 
-export const dispatch_IndecrementItemFromQuantity = (id, direction, price) => (dispatch) => {
+export const dispatchIndecrementItemFromQuantity = (id, direction, price) => (dispatch) => {
     dispatch({
         type: INDECREMENT_ITEM_FROM_QUANTITY,
         id,
@@ -141,30 +141,30 @@ export const dispatch_IndecrementItemFromQuantity = (id, direction, price) => (d
     });
 }
 
-export const dispatch_AddTheseItemsToThisOrder = (id, items, accesstoken) => (dispatch) => {
+export const dispatchAddTheseItemsToThisOrder = (id, items, accesstoken) => (dispatch) => {
     return axios.put(ADD_TO_ORDER_ENDPOINT + `/${id}`, { items },
         { headers: { "x-access-token": accesstoken } })
-        .then(res => {
+        .then((res) => {
             dispatch({
                 type: ADD_THESE_ITEMS_TO_THIS_ORDER,
                 updatedOrder: res.data
             });
         })
-        .catch(err => {
+        .catch((err) => {
             dispatch({
                 type: ERROR_APPEND_THIS_ITEM_TO_ORDER
             });
         });
 }
 
-export const dispatch_AppendThisItemToOrder = (price, productID, orderID, accesstoken) =>
+export const dispatchAppendThisItemToOrder = (price, productID, orderID, accesstoken) =>
     (dispatch) => {
         return axios.put(APPEND_TO_ORDER_ENDPOINT + `/${orderID}`, {
             productID,
             quantity: 1
         },
             { headers: { "x-access-token": accesstoken } })
-            .then(res => {
+            .then((res) => {
                 dispatch({
                     type: APPEND_THIS_ITEM_TO_ORDER,
                     productID,
@@ -172,30 +172,30 @@ export const dispatch_AppendThisItemToOrder = (price, productID, orderID, access
                     price
                 });
             })
-            .catch(err => {
+            .catch((err) => {
                 dispatch({
                     type: ERROR_APPEND_THIS_ITEM_TO_ORDER
                 })
             });
     }
 
-export const dispatch_GetTheCompleteItemsList = (accesstoken) => (dispatch) => {
+export const dispatchGetTheCompleteItemsList = (accesstoken) => (dispatch) => {
     return axios.get(ITEMS_LIST_ENDPOINT,
         { headers: { "x-access-token": accesstoken } })
-        .then(res => {
+        .then((res) => {
             dispatch({
                 type: FETCH_COMPLETE_ITEMS_LIST,
                 itemsList: res.data
             });
         })
-        .catch(err => {
+        .catch((err) => {
             dispatch({
                 type: ERROR_FETCHING_ITEMS_LIST
             });
         });
 }
 
-export const dispatch_QuickDeleteThisItemFromQuantity = (id, orderID, count, price, accesstoken) =>
+export const dispatchQuickDeleteThisItemFromQuantity = (id, orderID, count, price, accesstoken) =>
     (dispatch) => {
         return axios.patch(DELETE_ORDER_ITEM_ENDPOINT + `/${orderID}`, {
             productID: id,
@@ -210,7 +210,7 @@ export const dispatch_QuickDeleteThisItemFromQuantity = (id, orderID, count, pri
         });
     };
 
-export const dispatch_QuickIndecrementItemFromQuantity = (
+export const dispatchQuickIndecrementItemFromQuantity = (
     id, direction, count, orderID, price, accesstoken) =>
     (dispatch) => {
         return axios.patch(ORDER_REQUEST_ENDPOINT + `/${orderID}`, {

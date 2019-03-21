@@ -38,9 +38,9 @@ describe("<ItemCounterInCreateOrder /> component", () => {
                 ]
             }
         },
-        dispatch_AddThisItemToQuantity: additem,
-        dispatch_IndecrementItemFromQuantity: increment,
-        dispatch_DeleteThisItemFromQuantity: deleteitem
+        dispatchAddThisItemToQuantity: additem,
+        dispatchIndecrementItemFromQuantity: increment,
+        dispatchDeleteThisItemFromQuantity: deleteitem
     };
     const mockStore = configureStore(middlewares);
     let store;

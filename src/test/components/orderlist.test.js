@@ -50,10 +50,10 @@ describe("<OrderList /> component", () => {
             url: "",
             itemsList: [{}]
         },
-        dispatch_GetTheCompleteItemsList: getCompleteItemList,
-        dispatch_FetchEveryOrderForThisUser: fetchEveryOrder,
-        dispatch_ResetCurrentOrderStates: resetCurrentOrder,
-        dispatch_DeleteThisOrder: deleteThisOrder
+        dispatchGetTheCompleteItemsList: getCompleteItemList,
+        dispatchFetchEveryOrderForThisUser: fetchEveryOrder,
+        dispatchResetCurrentOrderStates: resetCurrentOrder,
+        dispatchDeleteThisOrder: deleteThisOrder
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -93,10 +93,10 @@ describe("<OrderList /> component with no orders", () => {
             url: "",
             itemsList: [{}]
         },
-        dispatch_GetTheCompleteItemsList: getCompleteItemList,
-        dispatch_FetchEveryOrderForThisUser: fetchEveryOrder,
-        dispatch_ResetCurrentOrderStates: resetCurrentOrder,
-        dispatch_DeleteThisOrder: deleteThisOrder
+        dispatchGetTheCompleteItemsList: getCompleteItemList,
+        dispatchFetchEveryOrderForThisUser: fetchEveryOrder,
+        dispatchResetCurrentOrderStates: resetCurrentOrder,
+        dispatchDeleteThisOrder: deleteThisOrder
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -136,10 +136,10 @@ describe("<OrderList /> component with no passkey", () => {
             url: "",
             itemsList: [{}]
         },
-        dispatch_GetTheCompleteItemsList: getCompleteItemList,
-        dispatch_FetchEveryOrderForThisUser: fetchEveryOrder,
-        dispatch_ResetCurrentOrderStates: resetCurrentOrder,
-        dispatch_DeleteThisOrder: deleteThisOrder
+        dispatchGetTheCompleteItemsList: getCompleteItemList,
+        dispatchFetchEveryOrderForThisUser: fetchEveryOrder,
+        dispatchResetCurrentOrderStates: resetCurrentOrder,
+        dispatchDeleteThisOrder: deleteThisOrder
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -179,10 +179,10 @@ describe("<OrderList /> component with delete order", () => {
             url: "/delete_order",
             itemsList: [{}]
         },
-        dispatch_GetTheCompleteItemsList: getCompleteItemList,
-        dispatch_FetchEveryOrderForThisUser: fetchEveryOrder,
-        dispatch_ResetCurrentOrderStates: resetCurrentOrder,
-        dispatch_DeleteThisOrder: deleteThisOrder
+        dispatchGetTheCompleteItemsList: getCompleteItemList,
+        dispatchFetchEveryOrderForThisUser: fetchEveryOrder,
+        dispatchResetCurrentOrderStates: resetCurrentOrder,
+        dispatchDeleteThisOrder: deleteThisOrder
     };
     const mockStore = configureStore(middlewares);
     let store;

@@ -135,8 +135,8 @@ exports[`<ListItemInViewOrder /> component renders renders 1`] = `
                     name="A"
                   >
                     <ItemCounterInListItem
-                      dispatch_QuickDeleteThisItemFromQuantity={[Function]}
-                      dispatch_QuickIndecrementItemFromQuantity={[Function]}
+                      dispatchQuickDeleteThisItemFromQuantity={[Function]}
+                      dispatchQuickIndecrementItemFromQuantity={[Function]}
                       itemsList={
                         Array [
                           Object {

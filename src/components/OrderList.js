@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { withRouter, Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
-    dispatch_GetTheCompleteItemsList,
-    dispatch_FetchEveryOrderForThisUser,
-    dispatch_DeleteThisOrder,
-    dispatch_ResetCurrentOrderStates
+    dispatchGetTheCompleteItemsList,
+    dispatchFetchEveryOrderForThisUser,
+    dispatchDeleteThisOrder,
+    dispatchResetCurrentOrderStates
 } from "../actions/ordercontrolactions";
 
 import SingleOrder from "./SingleOrder";
@@ -17,14 +17,14 @@ import SingleOrder from "./SingleOrder";
 class OrderList extends Component {
 
     componentDidMount() {
-        this.props.dispatch_GetTheCompleteItemsList(this.props.passKey);
-        this.props.dispatch_FetchEveryOrderForThisUser(this.props.passKey);
+        this.props.dispatchGetTheCompleteItemsList(this.props.passKey);
+        this.props.dispatchFetchEveryOrderForThisUser(this.props.passKey);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.url === "/delete_order") {
-            this.props.dispatch_DeleteThisOrder(this.props.currentOrder._id, this.props.passKey);
-            this.props.dispatch_ResetCurrentOrderStates();
+            this.props.dispatchDeleteThisOrder(this.props.currentOrder._id, this.props.passKey);
+            this.props.dispatchResetCurrentOrderStates();
         } else if (prevProps.currentOrder._id !== this.props.currentOrder._id) {
             this.props.history.push(this.props.url === "" ? "/my_orders" : this.props.url);
         }
@@ -67,10 +67,10 @@ class OrderList extends Component {
 }
 
 OrderList.propTypes = {
-    dispatch_GetTheCompleteItemsList: PropTypes.func.isRequired,
-    dispatch_FetchEveryOrderForThisUser: PropTypes.func.isRequired,
-    dispatch_ResetCurrentOrderStates: PropTypes.func.isRequired,
-    dispatch_DeleteThisOrder: PropTypes.func.isRequired,
+    dispatchGetTheCompleteItemsList: PropTypes.func.isRequired,
+    dispatchFetchEveryOrderForThisUser: PropTypes.func.isRequired,
+    dispatchResetCurrentOrderStates: PropTypes.func.isRequired,
+    dispatchDeleteThisOrder: PropTypes.func.isRequired,
     passKey: PropTypes.string.isRequired
 };
 
@@ -83,8 +83,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(connect(mapStateToProps, {
-    dispatch_GetTheCompleteItemsList,
-    dispatch_FetchEveryOrderForThisUser,
-    dispatch_ResetCurrentOrderStates,
-    dispatch_DeleteThisOrder
+    dispatchGetTheCompleteItemsList,
+    dispatchFetchEveryOrderForThisUser,
+    dispatchResetCurrentOrderStates,
+    dispatchDeleteThisOrder
 })(OrderList));

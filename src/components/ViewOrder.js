@@ -6,9 +6,9 @@ import { connect } from "react-redux";
 import ListItemInViewOrder from "./ListItemInViewOrder";
 import ListItemInAddNewItemsToOrder from "./ListItemInAddNewItemsToOrder";
 import {
-    dispatch_GetTheCompleteItemsList,
-    dispatch_ResetCurrentOrderStates,
-    dispatch_CheckOutOrder
+    dispatchGetTheCompleteItemsList,
+    dispatchResetCurrentOrderStates,
+    dispatchCheckOutOrder
 } from "../actions/ordercontrolactions";
 
 class ViewOrder extends Component {
@@ -21,7 +21,7 @@ class ViewOrder extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch_GetTheCompleteItemsList(this.props.passKey);
+        this.props.dispatchGetTheCompleteItemsList(this.props.passKey);
     }
 
     displayItemsList = () => {
@@ -45,7 +45,7 @@ class ViewOrder extends Component {
      * the item counts won't get changed
      *************************************************************************/
     checkOutThisOrder = () => {
-        this.props.dispatch_CheckOutOrder(
+        this.props.dispatchCheckOutOrder(
             this.props.currentOrder._id,
             this.props.passKey
         );
@@ -64,7 +64,7 @@ class ViewOrder extends Component {
     // When the view is unmounted, clean up the saved states as we are using
     // the same state variables to populate other views such as edit order
     componentWillUnmount() {
-        this.props.dispatch_ResetCurrentOrderStates();
+        this.props.dispatchResetCurrentOrderStates();
     }
 
     render() {
@@ -155,9 +155,9 @@ ViewOrder.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     currentOrder: PropTypes.object.isRequired,
     passKey: PropTypes.string.isRequired,
-    dispatch_ResetCurrentOrderStates: PropTypes.func.isRequired,
-    dispatch_CheckOutOrder: PropTypes.func.isRequired,
-    dispatch_GetTheCompleteItemsList: PropTypes.func.isRequired
+    dispatchResetCurrentOrderStates: PropTypes.func.isRequired,
+    dispatchCheckOutOrder: PropTypes.func.isRequired,
+    dispatchGetTheCompleteItemsList: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -171,7 +171,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(connect(mapStateToProps, {
-    dispatch_ResetCurrentOrderStates,
-    dispatch_CheckOutOrder,
-    dispatch_GetTheCompleteItemsList
+    dispatchResetCurrentOrderStates,
+    dispatchCheckOutOrder,
+    dispatchGetTheCompleteItemsList
 })(ViewOrder));

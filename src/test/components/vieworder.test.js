@@ -47,9 +47,9 @@ describe("<ViewOrder /> component", () => {
                 { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
-        dispatch_GetTheCompleteItemsList: getCompleteItemList,
-        dispatch_ResetCurrentOrderStates: resetCurrentOrder,
-        dispatch_CheckOutOrder: deleteThisOrder
+        dispatchGetTheCompleteItemsList: getCompleteItemList,
+        dispatchResetCurrentOrderStates: resetCurrentOrder,
+        dispatchCheckOutOrder: deleteThisOrder
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -122,9 +122,9 @@ describe("<ViewOrder /> component with logout", () => {
                 { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
-        dispatch_GetTheCompleteItemsList: getCompleteItemList,
-        dispatch_ResetCurrentOrderStates: resetCurrentOrder,
-        dispatch_CheckOutOrder: deleteThisOrder
+        dispatchGetTheCompleteItemsList: getCompleteItemList,
+        dispatchResetCurrentOrderStates: resetCurrentOrder,
+        dispatchCheckOutOrder: deleteThisOrder
     };
     const mockStore = configureStore(middlewares);
     let store;

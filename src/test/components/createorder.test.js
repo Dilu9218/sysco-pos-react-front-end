@@ -13,11 +13,11 @@ const middlewares = [thunk];
 
 describe("<CreateOrder /> component", () => {
 
-    const dispatch_CreateNewOrderForThisUser = jest.fn();
-    const dispatch_ResetCurrentOrderStates = jest.fn();
-    const dispatch_DeleteThisOrder = jest.fn();
-    const dispatch_AddTheseItemsToThisOrder = jest.fn();
-    const dispatch_GetTheCompleteItemsList = jest.fn();
+    const dispatchCreateNewOrderForThisUser = jest.fn();
+    const dispatchResetCurrentOrderStates = jest.fn();
+    const dispatchDeleteThisOrder = jest.fn();
+    const dispatchAddTheseItemsToThisOrder = jest.fn();
+    const dispatchGetTheCompleteItemsList = jest.fn();
 
     const initialState = {
         uac: {
@@ -45,11 +45,11 @@ describe("<CreateOrder /> component", () => {
                 { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
-        dispatch_CreateNewOrderForThisUser,
-        dispatch_ResetCurrentOrderStates,
-        dispatch_DeleteThisOrder,
-        dispatch_AddTheseItemsToThisOrder,
-        dispatch_GetTheCompleteItemsList
+        dispatchCreateNewOrderForThisUser,
+        dispatchResetCurrentOrderStates,
+        dispatchDeleteThisOrder,
+        dispatchAddTheseItemsToThisOrder,
+        dispatchGetTheCompleteItemsList
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -87,11 +87,11 @@ describe("<CreateOrder /> component", () => {
 
 describe("<CreateOrder /> component with logout", () => {
 
-    const dispatch_CreateNewOrderForThisUser = jest.fn();
-    const dispatch_ResetCurrentOrderStates = jest.fn();
-    const dispatch_DeleteThisOrder = jest.fn();
-    const dispatch_AddTheseItemsToThisOrder = jest.fn();
-    const dispatch_GetTheCompleteItemsList = jest.fn();
+    const dispatchCreateNewOrderForThisUser = jest.fn();
+    const dispatchResetCurrentOrderStates = jest.fn();
+    const dispatchDeleteThisOrder = jest.fn();
+    const dispatchAddTheseItemsToThisOrder = jest.fn();
+    const dispatchGetTheCompleteItemsList = jest.fn();
 
     const initialState = {
         uac: {
@@ -119,11 +119,11 @@ describe("<CreateOrder /> component with logout", () => {
                 { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
-        dispatch_CreateNewOrderForThisUser,
-        dispatch_ResetCurrentOrderStates,
-        dispatch_DeleteThisOrder,
-        dispatch_AddTheseItemsToThisOrder,
-        dispatch_GetTheCompleteItemsList
+        dispatchCreateNewOrderForThisUser,
+        dispatchResetCurrentOrderStates,
+        dispatchDeleteThisOrder,
+        dispatchAddTheseItemsToThisOrder,
+        dispatchGetTheCompleteItemsList
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -148,11 +148,11 @@ describe("<CreateOrder /> component with logout", () => {
 
 describe("<CreateOrder /> component with logout", () => {
 
-    const dispatch_CreateNewOrderForThisUser = jest.fn();
-    const dispatch_ResetCurrentOrderStates = sinon.spy();
-    const dispatch_DeleteThisOrder = sinon.spy();
-    const dispatch_AddTheseItemsToThisOrder = jest.fn();
-    const dispatch_GetTheCompleteItemsList = jest.fn();
+    const dispatchCreateNewOrderForThisUser = jest.fn();
+    const dispatchResetCurrentOrderStates = sinon.spy();
+    const dispatchDeleteThisOrder = sinon.spy();
+    const dispatchAddTheseItemsToThisOrder = jest.fn();
+    const dispatchGetTheCompleteItemsList = jest.fn();
 
     const initialState = {
         uac: {
@@ -180,11 +180,11 @@ describe("<CreateOrder /> component with logout", () => {
                 { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
-        dispatch_CreateNewOrderForThisUser,
-        dispatch_ResetCurrentOrderStates,
-        dispatch_DeleteThisOrder,
-        dispatch_AddTheseItemsToThisOrder,
-        dispatch_GetTheCompleteItemsList
+        dispatchCreateNewOrderForThisUser,
+        dispatchResetCurrentOrderStates,
+        dispatchDeleteThisOrder,
+        dispatchAddTheseItemsToThisOrder,
+        dispatchGetTheCompleteItemsList
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -216,6 +216,6 @@ describe("<CreateOrder /> component with logout", () => {
             </CookiesProvider>
         );
         wrapper.unmount();
-        console.log(dispatch_DeleteThisOrder.calledOnce);
+        console.log(dispatchDeleteThisOrder.calledOnce);
     });
 });

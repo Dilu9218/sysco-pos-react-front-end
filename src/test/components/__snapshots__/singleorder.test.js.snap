@@ -152,7 +152,7 @@ exports[`<SingleOrder /> component renders with login and register links 1`] = `
                     ],
                   }
                 }
-                dispatch_SetThisOrderAsCurrentOrder={[Function]}
+                dispatchSetThisOrderAsCurrentOrder={[Function]}
                 history={
                   Object {
                     "action": "POP",

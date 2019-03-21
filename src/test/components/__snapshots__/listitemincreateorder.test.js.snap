@@ -111,9 +111,9 @@ exports[`<ListItemInCreateOrder /> component renders renders 1`] = `
                   name="A"
                 >
                   <ItemCounterInCreateOrder
-                    dispatch_AddThisItemToQuantity={[Function]}
-                    dispatch_DeleteThisItemFromQuantity={[Function]}
-                    dispatch_IndecrementItemFromQuantity={[Function]}
+                    dispatchAddThisItemToQuantity={[Function]}
+                    dispatchDeleteThisItemFromQuantity={[Function]}
+                    dispatchIndecrementItemFromQuantity={[Function]}
                     itemQuantity={Object {}}
                     itemsList={
                       Array [

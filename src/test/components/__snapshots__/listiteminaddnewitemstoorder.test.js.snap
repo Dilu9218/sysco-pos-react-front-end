@@ -49,7 +49,7 @@ exports[`<ListItemInAddNewItemsToOrder /> component renders renders 1`] = `
       >
         <ListItemInAddNewItemsToOrder
           currentOrder={Object {}}
-          dispatch_AppendThisItemToOrder={[Function]}
+          dispatchAppendThisItemToOrder={[Function]}
           item={
             Object {
               "description": "A aasasas",

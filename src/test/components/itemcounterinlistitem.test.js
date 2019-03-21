@@ -37,8 +37,8 @@ describe("<ItemCounterInListItem /> component", () => {
                 ]
             }
         },
-        dispatch_QuickIndecrementItemFromQuantity: increment,
-        dispatch_QuickDeleteThisItemFromQuantity: deleteitem
+        dispatchQuickIndecrementItemFromQuantity: increment,
+        dispatchQuickDeleteThisItemFromQuantity: deleteitem
     };
     const mockStore = configureStore(middlewares);
     let store;

@@ -45,8 +45,8 @@ exports[`<ItemCounterInListItem /> component renders with correct value 1`] = `
         >
           <ItemCounterInListItem
             currentOrderID="abcdefg111"
-            dispatch_QuickDeleteThisItemFromQuantity={[Function]}
-            dispatch_QuickIndecrementItemFromQuantity={[Function]}
+            dispatchQuickDeleteThisItemFromQuantity={[Function]}
+            dispatchQuickIndecrementItemFromQuantity={[Function]}
             itemsList={
               Array [
                 Object {
