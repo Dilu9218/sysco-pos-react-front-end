@@ -82,11 +82,11 @@ exports[`<ConditionalHeader /> component mounts the component with login true 1`
           "paddingTop": "0px",
         }
       }
-      to="/"
+      to="/home"
     >
       <a
         className="navbar-brand"
-        href="/"
+        href="/home"
         onClick={[Function]}
         style={
           Object {
@@ -169,7 +169,7 @@ exports[`<ConditionalHeader /> component renders the component 1`] = `
         "paddingTop": "0px",
       }
     }
-    to="/"
+    to="/home"
   >
     Sysco PoS System
   </Link>
@@ -313,11 +313,11 @@ exports[`<Header /> component mounts the component with login true 1`] = `
                 "paddingTop": "0px",
               }
             }
-            to="/"
+            to="/home"
           >
             <a
               className="navbar-brand"
-              href="/"
+              href="/home"
               onClick={[Function]}
               style={
                 Object {
@@ -462,11 +462,11 @@ exports[`<Header /> component with logged in renders with order and logout links
                         "paddingTop": "0px",
                       }
                     }
-                    to="/"
+                    to="/home"
                   >
                     <a
                       className="navbar-brand"
-                      href="/"
+                      href="/home"
                       onClick={[Function]}
                       style={
                         Object {

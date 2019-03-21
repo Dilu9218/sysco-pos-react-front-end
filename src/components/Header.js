@@ -9,7 +9,7 @@ export function ConditionalHeader(P) {
             <div className="collapse navbar-collapse">
                 <Link className="navbar-brand"
                     style={{ paddingTop: '0px' }}
-                    to="/">Sysco PoS System</Link>
+                    to="/home">Sysco PoS System</Link>
                 <div className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <Link className="nav-item nav-link"
                         to="/my_orders">
