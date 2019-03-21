@@ -1,11 +1,11 @@
-import React from 'react';
-import { mountWrap } from '../enzyme';
+import React from "react";
+import { mountWrap } from "../enzyme";
 
-import ErrorBoundary from '../../components/ErrorBoundary';
+import ErrorBoundary from "../../components/ErrorBoundary";
 
-describe('<ErrorBoundary /> component', () => {
+describe("<ErrorBoundary /> component", () => {
 
-    it('renders with an error prompt', () => {
+    it("renders with an error prompt", () => {
         const wrapper = mountWrap(
             <ErrorBoundary>
                 <p>Hello</p>
@@ -16,7 +16,7 @@ describe('<ErrorBoundary /> component', () => {
         });
         expect(wrapper).toMatchSnapshot();
     });
-    it('renders children when there is no error', () => {
+    it("renders children when there is no error", () => {
         const wrapper = mountWrap(
             <ErrorBoundary>
                 <p>Hello</p>

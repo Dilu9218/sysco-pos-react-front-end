@@ -1,17 +1,17 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { mount } from '../enzyme';
-import { BrowserRouter as Router, Redirect } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
-import sinon from 'sinon'
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { mount } from "../enzyme";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
+import sinon from "sinon"
 
-import CreateOrder from '../../components/CreateOrder';
+import CreateOrder from "../../components/CreateOrder";
 
 const middlewares = [thunk];
 
-describe('<CreateOrder /> component', () => {
+describe("<CreateOrder /> component", () => {
 
     const dispatch_CreateNewOrderForThisUser = jest.fn();
     const dispatch_ResetCurrentOrderStates = jest.fn();
@@ -21,28 +21,28 @@ describe('<CreateOrder /> component', () => {
 
     const initialState = {
         uac: {
-            passKey: 'abcd',
+            passKey: "abcd",
             isLoggedIn: true
         },
         ord: {
-            currentOrderID: 'abcd1234',
+            currentOrderID: "abcd1234",
             total: 1100,
             status: false,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             currentOrder: {
-                _id: 'asdadasdasda',
-                cartID: 'abc',
+                _id: "asdadasdasda",
+                cartID: "abc",
                 items: [
-                    { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                    { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                    { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                    { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                    { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                    { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
                 ]
             },
-            url: '',
+            url: "",
             itemsList: [
-                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
         dispatch_CreateNewOrderForThisUser,
@@ -58,7 +58,7 @@ describe('<CreateOrder /> component', () => {
         store = mockStore(initialState);
     });
 
-    it('renders with an create order layout', () => {
+    it("renders with an create order layout", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -70,7 +70,7 @@ describe('<CreateOrder /> component', () => {
         );
         expect(wrapper).toMatchSnapshot();
     });
-    it('calls add items to order', () => {
+    it("calls add items to order", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -80,12 +80,12 @@ describe('<CreateOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-success').simulate('click');
-        wrapper.find('.btn-danger').at(3).simulate('click');
+        wrapper.find(".btn-success").simulate("click");
+        wrapper.find(".btn-danger").at(3).simulate("click");
     });
 });
 
-describe('<CreateOrder /> component with logout', () => {
+describe("<CreateOrder /> component with logout", () => {
 
     const dispatch_CreateNewOrderForThisUser = jest.fn();
     const dispatch_ResetCurrentOrderStates = jest.fn();
@@ -95,28 +95,28 @@ describe('<CreateOrder /> component with logout', () => {
 
     const initialState = {
         uac: {
-            passKey: 'abcd',
+            passKey: "abcd",
             isLoggedIn: false
         },
         ord: {
-            currentOrderID: 'abcd1234',
+            currentOrderID: "abcd1234",
             total: 1100,
             status: false,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             currentOrder: {
-                _id: 'asdadasdasda',
-                cartID: 'abc',
+                _id: "asdadasdasda",
+                cartID: "abc",
                 items: [
-                    { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                    { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                    { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                    { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                    { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                    { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
                 ]
             },
-            url: '',
+            url: "",
             itemsList: [
-                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
         dispatch_CreateNewOrderForThisUser,
@@ -132,7 +132,7 @@ describe('<CreateOrder /> component with logout', () => {
         store = mockStore(initialState);
     });
 
-    it('renders with an order', () => {
+    it("renders with an order", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -146,7 +146,7 @@ describe('<CreateOrder /> component with logout', () => {
     });
 });
 
-describe('<CreateOrder /> component with logout', () => {
+describe("<CreateOrder /> component with logout", () => {
 
     const dispatch_CreateNewOrderForThisUser = jest.fn();
     const dispatch_ResetCurrentOrderStates = sinon.spy();
@@ -156,28 +156,28 @@ describe('<CreateOrder /> component with logout', () => {
 
     const initialState = {
         uac: {
-            passKey: 'abcd',
+            passKey: "abcd",
             isLoggedIn: true
         },
         ord: {
-            currentOrderID: 'abcd1234',
+            currentOrderID: "abcd1234",
             total: 1100,
             status: true,
             itemQuantity: {},
             currentOrder: {
-                _id: 'asdadasdasda',
-                cartID: 'abc',
+                _id: "asdadasdasda",
+                cartID: "abc",
                 items: [
-                    { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                    { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                    { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                    { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                    { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                    { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
                 ]
             },
-            url: '',
+            url: "",
             itemsList: [
-                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
         dispatch_CreateNewOrderForThisUser,
@@ -193,7 +193,7 @@ describe('<CreateOrder /> component with logout', () => {
         store = mockStore(initialState);
     });
 
-    it('calls didupdate', () => {
+    it("calls didupdate", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -205,7 +205,7 @@ describe('<CreateOrder /> component with logout', () => {
         );
         wrapper.setState({ ord: { status: false } });
     });
-    it('calls unmount', () => {
+    it("calls unmount", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>

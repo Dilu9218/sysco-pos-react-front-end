@@ -1,16 +1,16 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { mount } from '../enzyme';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { mount } from "../enzyme";
+import { BrowserRouter as Router } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
-import ItemCounterInCreateOrder from '../../components/ItemCounterInCreateOrder';
+import ItemCounterInCreateOrder from "../../components/ItemCounterInCreateOrder";
 
 const middlewares = [thunk];
 
-describe('<ItemCounterInCreateOrder /> component', () => {
+describe("<ItemCounterInCreateOrder /> component", () => {
 
     const additem = jest.fn();
     const increment = jest.fn();
@@ -19,20 +19,20 @@ describe('<ItemCounterInCreateOrder /> component', () => {
     const initialState = {
         uac: {
             isLoggedIn: true,
-            passKey: 'abcd'
+            passKey: "abcd"
         },
         ord: {
-            currentOrderID: 'abcdefg111',
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            currentOrderID: "abcdefg111",
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             itemsList: [
-                { productID: 'A', price: 1 },
-                { productID: 'B', price: 2 },
-                { productID: 'C', price: 3 }
+                { productID: "A", price: 1 },
+                { productID: "B", price: 2 },
+                { productID: "C", price: 3 }
             ],
             total: 100,
             currentOrder: {
-                _id: 'asdadasdasda',
-                cartID: 'abc',
+                _id: "asdadasdasda",
+                cartID: "abc",
                 items: [
                     {}
                 ]
@@ -49,13 +49,13 @@ describe('<ItemCounterInCreateOrder /> component', () => {
         store = mockStore(initialState);
     });
 
-    it('renders with correct value', () => {
+    it("renders with correct value", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={3} />
@@ -65,13 +65,13 @@ describe('<ItemCounterInCreateOrder /> component', () => {
         );
         expect(wrapper).toMatchSnapshot();
     });
-    it('renders with correct value when item count is zero', () => {
+    it("renders with correct value when item count is zero", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={0} />
@@ -81,13 +81,13 @@ describe('<ItemCounterInCreateOrder /> component', () => {
         );
         expect(wrapper).toMatchSnapshot();
     });
-    it('calls delete', () => {
+    it("calls delete", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={3} />
@@ -95,16 +95,16 @@ describe('<ItemCounterInCreateOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-danger').simulate('click');
+        wrapper.find(".btn-danger").simulate("click");
         expect(wrapper.contains(<i className="fas fa-trash" />)).toBeTruthy();
     });
-    it('calls increment', () => {
+    it("calls increment", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={3} />
@@ -112,16 +112,16 @@ describe('<ItemCounterInCreateOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-secondary').at(0).simulate('click');
-        expect(wrapper.contains('+')).toBeTruthy();
+        wrapper.find(".btn-secondary").at(0).simulate("click");
+        expect(wrapper.contains("+")).toBeTruthy();
     });
-    it('calls increment with addition to item quantity', () => {
+    it("calls increment with addition to item quantity", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={0} />
@@ -129,16 +129,16 @@ describe('<ItemCounterInCreateOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-secondary').at(0).simulate('click');
-        expect(wrapper.contains('+')).toBeTruthy();
+        wrapper.find(".btn-secondary").at(0).simulate("click");
+        expect(wrapper.contains("+")).toBeTruthy();
     });
-    it('calls increment blocked', () => {
+    it("calls increment blocked", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={10} />
@@ -146,16 +146,16 @@ describe('<ItemCounterInCreateOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-secondary').at(0).simulate('click');
-        expect(wrapper.contains('+')).toBeTruthy();
+        wrapper.find(".btn-secondary").at(0).simulate("click");
+        expect(wrapper.contains("+")).toBeTruthy();
     });
-    it('calls decrement', () => {
+    it("calls decrement", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={3} />
@@ -163,16 +163,16 @@ describe('<ItemCounterInCreateOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-secondary').at(1).simulate('click');
-        expect(wrapper.contains('−')).toBeTruthy();
+        wrapper.find(".btn-secondary").at(1).simulate("click");
+        expect(wrapper.contains("−")).toBeTruthy();
     });
-    it('calls decrement ignored if it is below minimum', () => {
+    it("calls decrement ignored if it is below minimum", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={0} />
@@ -180,16 +180,16 @@ describe('<ItemCounterInCreateOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-secondary').at(1).simulate('click');
-        expect(wrapper.contains('−')).toBeTruthy();
+        wrapper.find(".btn-secondary").at(1).simulate("click");
+        expect(wrapper.contains("−")).toBeTruthy();
     });
-    it('calls decrement blocked', () => {
+    it("calls decrement blocked", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
                     <Router>
                         <ItemCounterInCreateOrder
-                            name={'A'}
+                            name={"A"}
                             min={1}
                             max={10}
                             quantity={1} />
@@ -197,7 +197,7 @@ describe('<ItemCounterInCreateOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-secondary').at(1).simulate('click');
-        expect(wrapper.contains('−')).toBeTruthy();
+        wrapper.find(".btn-secondary").at(1).simulate("click");
+        expect(wrapper.contains("−")).toBeTruthy();
     });
 });

@@ -1,21 +1,21 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { mount } from '../enzyme';
-import { BrowserRouter as Router, Redirect } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { mount } from "../enzyme";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
-import LogIn from '../../components/LogIn';
+import LogIn from "../../components/LogIn";
 
 const middlewares = [thunk];
 
-describe('<LogIn /> component with logged out', () => {
+describe("<LogIn /> component with logged out", () => {
 
     const initialState = {
         uac: {
             isLoggedIn: false,
-            alertMessage: ''
+            alertMessage: ""
         },
         LOG_USER_IN: jest.fn()
     };
@@ -26,7 +26,7 @@ describe('<LogIn /> component with logged out', () => {
         store = mockStore(initialState);
     });
 
-    it('renders with login and register links', () => {
+    it("renders with login and register links", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -36,9 +36,9 @@ describe('<LogIn /> component with logged out', () => {
                 </Provider>
             </CookiesProvider>
         );
-        expect(wrapper.find('.sign-in-btn').length).toBe(1);
+        expect(wrapper.find(".sign-in-btn").length).toBe(1);
     });
-    it('calls on submit', () => {
+    it("calls on submit", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -48,16 +48,16 @@ describe('<LogIn /> component with logged out', () => {
                 </Provider>
             </CookiesProvider>
         );
-        expect(wrapper.find('.mx-2').simulate('submit'));
+        expect(wrapper.find(".mx-2").simulate("submit"));
     });
 });
 
-describe('<LogIn /> component with logged in', () => {
+describe("<LogIn /> component with logged in", () => {
 
     const initialState = {
         uac: {
             isLoggedIn: true,
-            alertMessage: ''
+            alertMessage: ""
         },
         LOG_USER_IN: jest.fn()
     };
@@ -68,7 +68,7 @@ describe('<LogIn /> component with logged in', () => {
         store = mockStore(initialState);
     })
 
-    it('renders with login and register links', () => {
+    it("renders with login and register links", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>

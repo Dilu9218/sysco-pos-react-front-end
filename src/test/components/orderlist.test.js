@@ -1,16 +1,16 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { mount } from '../enzyme';
-import { BrowserRouter as Router, Redirect } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { mount } from "../enzyme";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
-import OrderList from '../../components/OrderList';
+import OrderList from "../../components/OrderList";
 
 const middlewares = [thunk];
 
-describe('<OrderList /> component', () => {
+describe("<OrderList /> component", () => {
 
     const getCompleteItemList = jest.fn();
     const fetchEveryOrder = jest.fn();
@@ -19,35 +19,35 @@ describe('<OrderList /> component', () => {
 
     const initialState = {
         uac: {
-            passKey: 'abcd'
+            passKey: "abcd"
         },
         ord: {
             currentOrder: {
-                _id: 'asdadasdasda',
-                cartID: 'abc',
+                _id: "asdadasdasda",
+                cartID: "abc",
                 items: [
                     {}
                 ]
             },
             orderList: [
                 {
-                    _id: 'asdadasdasda',
-                    cartID: 'testCart', items: [
-                        { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                        { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                        { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                    _id: "asdadasdasda",
+                    cartID: "testCart", items: [
+                        { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                        { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                        { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
                     ]
                 },
                 {
-                    _id: 'asdadafdasda',
-                    cartID: 'tesdCart', items: [
-                        { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                        { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                        { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                    _id: "asdadafdasda",
+                    cartID: "tesdCart", items: [
+                        { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                        { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                        { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
                     ]
                 }
             ],
-            url: '',
+            url: "",
             itemsList: [{}]
         },
         dispatch_GetTheCompleteItemsList: getCompleteItemList,
@@ -62,7 +62,7 @@ describe('<OrderList /> component', () => {
         store = mockStore(initialState);
     });
 
-    it('renders orderlist with orders', () => {
+    it("renders orderlist with orders", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -76,7 +76,7 @@ describe('<OrderList /> component', () => {
     });
 });
 
-describe('<OrderList /> component with no orders', () => {
+describe("<OrderList /> component with no orders", () => {
 
     const getCompleteItemList = jest.fn();
     const fetchEveryOrder = jest.fn();
@@ -85,12 +85,12 @@ describe('<OrderList /> component with no orders', () => {
 
     const initialState = {
         uac: {
-            passKey: 'abcd'
+            passKey: "abcd"
         },
         ord: {
             currentOrder: {},
             orderList: [],
-            url: '',
+            url: "",
             itemsList: [{}]
         },
         dispatch_GetTheCompleteItemsList: getCompleteItemList,
@@ -105,7 +105,7 @@ describe('<OrderList /> component with no orders', () => {
         store = mockStore(initialState);
     });
 
-    it('renders orderlist with orders', () => {
+    it("renders orderlist with orders", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -119,7 +119,7 @@ describe('<OrderList /> component with no orders', () => {
     });
 });
 
-describe('<OrderList /> component with no passkey', () => {
+describe("<OrderList /> component with no passkey", () => {
 
     const getCompleteItemList = jest.fn();
     const fetchEveryOrder = jest.fn();
@@ -128,12 +128,12 @@ describe('<OrderList /> component with no passkey', () => {
 
     const initialState = {
         uac: {
-            passKey: ''
+            passKey: ""
         },
         ord: {
             currentOrder: {},
             orderList: [],
-            url: '',
+            url: "",
             itemsList: [{}]
         },
         dispatch_GetTheCompleteItemsList: getCompleteItemList,
@@ -148,7 +148,7 @@ describe('<OrderList /> component with no passkey', () => {
         store = mockStore(initialState);
     });
 
-    it('renders orderlist with orders', () => {
+    it("renders orderlist with orders", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -162,7 +162,7 @@ describe('<OrderList /> component with no passkey', () => {
     });
 });
 
-describe('<OrderList /> component with delete order', () => {
+describe("<OrderList /> component with delete order", () => {
 
     const getCompleteItemList = jest.fn();
     const fetchEveryOrder = jest.fn();
@@ -171,12 +171,12 @@ describe('<OrderList /> component with delete order', () => {
 
     const initialState = {
         uac: {
-            passKey: 'asd'
+            passKey: "asd"
         },
         ord: {
             currentOrder: {},
             orderList: [],
-            url: '/delete_order',
+            url: "/delete_order",
             itemsList: [{}]
         },
         dispatch_GetTheCompleteItemsList: getCompleteItemList,
@@ -191,7 +191,7 @@ describe('<OrderList /> component with delete order', () => {
         store = mockStore(initialState);
     });
 
-    it('renders orderlist with orders', () => {
+    it("renders orderlist with orders", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>

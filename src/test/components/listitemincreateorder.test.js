@@ -1,30 +1,30 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { mount } from '../enzyme';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { mount } from "../enzyme";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import ListItemInCreateOrder from '../../components/ListItemInCreateOrder';
+import ListItemInCreateOrder from "../../components/ListItemInCreateOrder";
 
 const middlewares = [thunk];
 
-describe('<ListItemInCreateOrder /> component renders', () => {
+describe("<ListItemInCreateOrder /> component renders", () => {
 
     const singleItem = {
-        productID: 'A',
-        productTitle: 'AAA',
-        description: 'A aasasas',
+        productID: "A",
+        productTitle: "AAA",
+        description: "A aasasas",
         quantity: 100,
         price: 25
     }
 
     const initialState = {
-        uac: { passKey: '' },
+        uac: { passKey: "" },
         ord: {
             itemQuantity: {},
             itemsList: [{
-                productID: 'A',
+                productID: "A",
                 quantity: 1
             }],
             currentOrder: {}
@@ -37,7 +37,7 @@ describe('<ListItemInCreateOrder /> component renders', () => {
         store = mockStore(initialState);
     })
 
-    it('renders', () => {
+    it("renders", () => {
         const wrapper = mount(
             <Provider store={store}>
                 <Router>

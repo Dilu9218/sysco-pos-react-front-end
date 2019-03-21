@@ -1,17 +1,17 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { mount } from '../enzyme';
-import { BrowserRouter as Router, Redirect } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
-import sinon from 'sinon';
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { mount } from "../enzyme";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
+import sinon from "sinon";
 
-import Register from '../../components/Register';
+import Register from "../../components/Register";
 
 const middlewares = [thunk];
 
-describe('<Register /> component', () => {
+describe("<Register /> component", () => {
 
     const REGISTER_USER = sinon.spy();
 
@@ -21,7 +21,7 @@ describe('<Register /> component', () => {
         },
         reg: {
             registered: false,
-            alertMessage: ''
+            alertMessage: ""
         },
         REGISTER_USER
     };
@@ -32,7 +32,7 @@ describe('<Register /> component', () => {
         store = mockStore(initialState);
     });
 
-    it('renders with login and register links', () => {
+    it("renders with login and register links", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -42,9 +42,9 @@ describe('<Register /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        expect(wrapper.find('.btn-register').length).toBe(1);
+        expect(wrapper.find(".btn-register").length).toBe(1);
     });
-    it('calls on submit', () => {
+    it("calls on submit", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -54,11 +54,11 @@ describe('<Register /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        expect(wrapper.find('.mx-2').simulate('submit'));
+        expect(wrapper.find(".mx-2").simulate("submit"));
     });
 });
 
-describe('<Register /> component with logged in', () => {
+describe("<Register /> component with logged in", () => {
 
     const initialState = {
         uac: {
@@ -66,7 +66,7 @@ describe('<Register /> component with logged in', () => {
         },
         reg: {
             registered: false,
-            alertMessage: ''
+            alertMessage: ""
         },
         REGISTER_USER: jest.fn()
     };
@@ -77,7 +77,7 @@ describe('<Register /> component with logged in', () => {
         store = mockStore(initialState);
     });
 
-    it('redirects to order list', () => {
+    it("redirects to order list", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -91,7 +91,7 @@ describe('<Register /> component with logged in', () => {
     });
 });
 
-describe('<Register /> component with registered', () => {
+describe("<Register /> component with registered", () => {
 
     const initialState = {
         uac: {
@@ -99,7 +99,7 @@ describe('<Register /> component with registered', () => {
         },
         reg: {
             registered: true,
-            alertMessage: ''
+            alertMessage: ""
         },
         REGISTER_USER: jest.fn()
     };
@@ -110,7 +110,7 @@ describe('<Register /> component with registered', () => {
         store = mockStore(initialState);
     });
 
-    it('renders with login and register links', () => {
+    it("renders with login and register links", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>

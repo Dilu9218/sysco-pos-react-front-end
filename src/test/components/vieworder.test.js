@@ -1,17 +1,17 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { mount } from '../enzyme';
-import sinon from 'sinon';
-import { BrowserRouter as Router, Redirect } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { mount } from "../enzyme";
+import sinon from "sinon";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
-import ViewOrder from '../../components/ViewOrder';
+import ViewOrder from "../../components/ViewOrder";
 
 const middlewares = [thunk];
 
-describe('<ViewOrder /> component', () => {
+describe("<ViewOrder /> component", () => {
 
     const getCompleteItemList = jest.fn();
     const resetCurrentOrder = jest.fn();
@@ -19,32 +19,32 @@ describe('<ViewOrder /> component', () => {
 
     const initialState = {
         uac: {
-            passKey: 'abcd',
+            passKey: "abcd",
             isLoggedIn: true
         },
         ord: {
             total: 1100,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
-            clonedItemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
+            clonedItemQuantity: { "A": 1, "B": 2, "C": 3 },
             currentOrder: {
-                _id: 'asdadasdasda',
-                cartID: 'abc',
+                _id: "asdadasdasda",
+                cartID: "abc",
                 items: [
-                    { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                    { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                    { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                    { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                    { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                    { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
                 ]
             },
-            url: '',
+            url: "",
             itemsList: [
-                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ],
             viewItemList: [
-                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
         dispatch_GetTheCompleteItemsList: getCompleteItemList,
@@ -58,7 +58,7 @@ describe('<ViewOrder /> component', () => {
         store = mockStore(initialState);
     });
 
-    it('renders with an order', () => {
+    it("renders with an order", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -70,7 +70,7 @@ describe('<ViewOrder /> component', () => {
         );
         expect(wrapper).toMatchSnapshot();
     });
-    it('calls checkout order', () => {
+    it("calls checkout order", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -80,13 +80,13 @@ describe('<ViewOrder /> component', () => {
                 </Provider>
             </CookiesProvider>
         );
-        wrapper.find('.btn-warning').simulate('click');
-        wrapper.find('.btn-success').simulate('click');
-        wrapper.find('.btn-primary').simulate('click');
+        wrapper.find(".btn-warning").simulate("click");
+        wrapper.find(".btn-success").simulate("click");
+        wrapper.find(".btn-primary").simulate("click");
     });
 });
 
-describe('<ViewOrder /> component with logout', () => {
+describe("<ViewOrder /> component with logout", () => {
 
     const getCompleteItemList = sinon.spy();
     const resetCurrentOrder = sinon.spy();
@@ -94,32 +94,32 @@ describe('<ViewOrder /> component with logout', () => {
 
     const initialState = {
         uac: {
-            passKey: 'abcd',
+            passKey: "abcd",
             isLoggedIn: false
         },
         ord: {
             total: 1100,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
-            clonedItemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
+            clonedItemQuantity: { "A": 1, "B": 2, "C": 3 },
             currentOrder: {
-                _id: 'asdadasdasda',
-                cartID: 'abc',
+                _id: "asdadasdasda",
+                cartID: "abc",
                 items: [
-                    { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                    { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                    { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                    { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                    { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                    { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
                 ]
             },
-            url: '',
+            url: "",
             itemsList: [
-                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ],
             viewItemList: [
-                { _id: 'a', productID: 'A', productTitle: 'AAA', quantity: 10, price: 1, description: 'A aa' },
-                { _id: 'b', productID: 'B', productTitle: 'BBB', quantity: 20, price: 2, description: 'B bb' },
-                { _id: 'c', productID: 'C', productTitle: 'CCC', quantity: 30, price: 3, description: 'C cc' }
+                { _id: "a", productID: "A", productTitle: "AAA", quantity: 10, price: 1, description: "A aa" },
+                { _id: "b", productID: "B", productTitle: "BBB", quantity: 20, price: 2, description: "B bb" },
+                { _id: "c", productID: "C", productTitle: "CCC", quantity: 30, price: 3, description: "C cc" }
             ]
         },
         dispatch_GetTheCompleteItemsList: getCompleteItemList,
@@ -133,7 +133,7 @@ describe('<ViewOrder /> component with logout', () => {
         store = mockStore(initialState);
     });
 
-    it('renders with an order', () => {
+    it("renders with an order", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -145,7 +145,7 @@ describe('<ViewOrder /> component with logout', () => {
         );
         expect(wrapper.contains(<Redirect to="/login" push={false} />)).toBeTruthy();
     });
-    it('unmounts', () => {
+    it("unmounts", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>

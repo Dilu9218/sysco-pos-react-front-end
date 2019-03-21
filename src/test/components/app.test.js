@@ -1,18 +1,18 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { mount } from '../enzyme';
-import { CookiesProvider } from 'react-cookie';
-import { Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
-import sinon from 'sinon';
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { mount } from "../enzyme";
+import { CookiesProvider } from "react-cookie";
+import { Cookies } from "react-cookie";
+import { instanceOf } from "prop-types";
+import sinon from "sinon";
 
-import App from '../../App';
+import App from "../../App";
 
 const middlewares = [thunk];
 
-describe('<App /> component', () => {
+describe("<App /> component", () => {
 
     const relog_user = jest.fn();
 
@@ -34,7 +34,7 @@ describe('<App /> component', () => {
         store = mockStore(initialState);
     });
 
-    it('renders correctly', () => {
+    it("renders correctly", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -46,7 +46,7 @@ describe('<App /> component', () => {
     });
 });
 
-describe('<App /> component with login', () => {
+describe("<App /> component with login", () => {
 
     const relog_user = jest.fn();
 
@@ -68,7 +68,7 @@ describe('<App /> component with login', () => {
         store = mockStore(initialState);
     });
 
-    it('renders correctly', () => {
+    it("renders correctly", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -80,7 +80,7 @@ describe('<App /> component with login', () => {
     });
 });
 
-describe('<App /> with cookies unset', () => {
+describe("<App /> with cookies unset", () => {
 
     const relog_user = sinon.spy();
 
@@ -102,7 +102,7 @@ describe('<App /> with cookies unset', () => {
         store = mockStore(initialState);
     });
 
-    it('renders correctly', () => {
+    it("renders correctly", () => {
         const wrapper = mount(
             <CookiesProvider>
                 <Provider store={store}>
@@ -115,6 +115,6 @@ describe('<App /> with cookies unset', () => {
                 </Provider>
             </CookiesProvider>
         );
-        expect(wrapper.find('.App').length).toBe(1);
+        expect(wrapper.find(".App").length).toBe(1);
     });
 });
