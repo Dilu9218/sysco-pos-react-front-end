@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { dispatch_SetThisOrderAsCurrentOrder } from '../actions/ordercontrolactions';
-import ListItemInSingleOrder from './ListItemInSingleOrder';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { dispatch_SetThisOrderAsCurrentOrder } from "../actions/ordercontrolactions";
+import ListItemInSingleOrder from "./ListItemInSingleOrder";
 
 class SingleOrder extends Component {
 
@@ -13,7 +13,7 @@ class SingleOrder extends Component {
      * the order to user
      *************************************************************************/
     viewThisOrder = () => {
-        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, '/view_order');
+        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, "/view_order");
     }
 
     /**************************************************************************
@@ -21,7 +21,7 @@ class SingleOrder extends Component {
      * and collection
      *************************************************************************/
     deleteThisOrder = () => {
-        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, '/delete_order');
+        this.props.dispatch_SetThisOrderAsCurrentOrder(this.props.order, "/delete_order");
     }
 
     render() {
@@ -32,22 +32,22 @@ class SingleOrder extends Component {
             totalCost += (quantity * price);
         }
         return (
-            <div className="card border-dark shadow" style={{ margin: '10px 0px' }}>
-                <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}
-                    data-target={'#i' + _id} data-toggle="collapse" aria-expanded="true"
-                    aria-controls={'i' + _id}>
-                    <div className="row" style={{ width: '100%', margin: '0px' }}>
-                        <div className="col-10 d-flex justify-content-start" style={{ textAlign: 'initial' }}>
+            <div className="card border-dark shadow" style={{ margin: "10px 0px" }}>
+                <div className="card-header text-white bg-dark" style={{ padding: ".75em .1em" }}
+                    data-target={"#i" + _id} data-toggle="collapse" aria-expanded="true"
+                    aria-controls={"i" + _id}>
+                    <div className="row" style={{ width: "100%", margin: "0px" }}>
+                        <div className="col-10 d-flex justify-content-start" style={{ textAlign: "initial" }}>
                             Order ID: {_id}</div>
-                        <div className="col-2 d-flex justify-content-end" style={{ textAlign: 'initial' }}>
+                        <div className="col-2 d-flex justify-content-end" style={{ textAlign: "initial" }}>
                             <b><p className="badge badge-secondary"
                                 style={{
-                                    margin: 'unset', marginRight: '10px', padding: '5px'
+                                    margin: "unset", marginRight: "10px", padding: "5px"
                                 }}><i className="fab fa-slack-hash"></i> {items.length}</p> Rs. {totalCost.toFixed(2)}</b>
                         </div>
                     </div>
                 </div>
-                <ul id={'i' + _id} className="list-group list-group-flush panel-collapse collapse in">
+                <ul id={"i" + _id} className="list-group list-group-flush panel-collapse collapse in">
                     {items.map((item) => (
                         <ListItemInSingleOrder
                             key={item._id}

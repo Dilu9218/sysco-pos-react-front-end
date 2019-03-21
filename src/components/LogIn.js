@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { withRouter, Redirect } from "react-router-dom"
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import { LOG_USER_IN } from '../actions/useraccountcontrolactions';
-import { withCookies } from 'react-cookie';
+import { LOG_USER_IN } from "../actions/useraccountcontrolactions";
+import { withCookies } from "react-cookie";
 
 export class LogIn extends Component {
 
     // Keep a local state to capture username and password entered by user
     state = {
-        username: '',
-        password: ''
+        username: "",
+        password: ""
     }
 
     // As the values change in each text box, add them to the current state
@@ -26,9 +26,9 @@ export class LogIn extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.cookies.get('usertoken') !== this.props.passKey) {
-            this.props.cookies.set('usertoken',
-                this.props.passKey, { path: '/' });
+        if (prevProps.cookies.get("usertoken") !== this.props.passKey) {
+            this.props.cookies.set("usertoken",
+                this.props.passKey, { path: "/" });
         }
     }
 
@@ -41,8 +41,8 @@ export class LogIn extends Component {
         return (
             <React.Fragment>
                 <div className="d-flex justify-content-center">
-                    <div className='card'
-                        style={{ marginTop: '9rem', width: '30%' }}>
+                    <div className="card"
+                        style={{ marginTop: "9rem", width: "30%" }}>
                         <div className="card-body">
                             <div className={this.props.alertMessage !== ""
                                 ? "alert alert-warning"
@@ -55,7 +55,7 @@ export class LogIn extends Component {
                                         <span
                                             className="input-group-text"
                                             id="basic-addon1"
-                                            style={{ width: '125px' }}>
+                                            style={{ width: "125px" }}>
                                             Username</span>
                                     </div>
                                     <input
@@ -74,7 +74,7 @@ export class LogIn extends Component {
                                         <span
                                             className="input-group-text"
                                             id="basic-addon2"
-                                            style={{ width: '125px' }}>
+                                            style={{ width: "125px" }}>
                                             Password</span>
                                     </div>
                                     <input
@@ -90,7 +90,7 @@ export class LogIn extends Component {
                                 </div>
                                 <button
                                     className="btn btn-primary text-uppercase my-3 sign-in-btn"
-                                    style={{ width: '100%' }}
+                                    style={{ width: "100%" }}
                                     type="submit">Sign in</button>
                             </form>
                         </div>

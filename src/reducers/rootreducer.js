@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 import {
     PASS_KEY_REDUCER,
     REGISTRATION_REDUCER
-} from './useraccountcontrolreducer';
+} from "./useraccountcontrolreducer";
 import {
     ORDER_LIST_REDUCER
-} from './ordercontrolreducer'
+} from "./ordercontrolreducer"
 
 export default combineReducers({
     uac: PASS_KEY_REDUCER,

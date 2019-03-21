@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import {
     dispatch_AddThisItemToQuantity,
     dispatch_DeleteThisItemFromQuantity,
     dispatch_IndecrementItemFromQuantity
-} from '../actions/ordercontrolactions';
+} from "../actions/ordercontrolactions";
 
 function RenderDeleteButton(props) {
     if (props.quantity !== 0) {
         return (
             <div className="btn-group"
-                role="group" aria-label="Delete-Group" style={{ marginLeft: '10px' }}>
+                role="group" aria-label="Delete-Group" style={{ marginLeft: "10px" }}>
                 <button type="button"
                     className="btn btn-danger"
                     onClick={props.DELETE_THIS_ITEM}><i className="fas fa-trash"></i></button>
@@ -81,9 +81,9 @@ class ItemCounterInCreateOrder extends Component {
                     <div className="btn-group" role="group" aria-label="Item-Group">
                         <button type="button" className="btn btn-secondary"
                             onClick={this.incrementCount}>&#43;</button>
-                        <div style={{ width: '3em', textAlign: 'center' }}>
+                        <div style={{ width: "3em", textAlign: "center" }}>
                             <span className="input-group-text" style={{
-                                display: 'inline-block', borderRadius: '0px', width: '100%', height: '100%'
+                                display: "inline-block", borderRadius: "0px", width: "100%", height: "100%"
                             }}>{this.props.quantity}</span></div>
                         <button type="button" className="btn btn-secondary"
                             onClick={this.decrementCount}>&#8722;</button>

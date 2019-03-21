@@ -4,11 +4,11 @@ import {
   SHOW_REGISTER_ERROR,
   COMPLETE_REGISTRAION,
   CLEAR_PASS_KEY
-} from '../actions/types';
+} from "../actions/types";
 
 const initialState = {
-  passKey: '',
-  alertMessage: '',
+  passKey: "",
+  alertMessage: "",
   isLoggedIn: false
 };
 
@@ -17,13 +17,13 @@ export const PASS_KEY_REDUCER = (state = initialState, action) => {
     case SAVE_PASS_KEY:
       return {
         passKey: action.passKey,
-        alertMessage: '',
+        alertMessage: "",
         isLoggedIn: true
       }
     case CLEAR_PASS_KEY:
       return {
-        passKey: '',
-        alertMessage: '',
+        passKey: "",
+        alertMessage: "",
         isLoggedIn: false
       }
     case SHOW_LOGIN_ERROR:
@@ -37,7 +37,7 @@ export const PASS_KEY_REDUCER = (state = initialState, action) => {
 }
 
 export const REGISTRATION_REDUCER = (state = {
-  alertMessage: '',
+  alertMessage: "",
   registered: false
 }, action) => {
   switch (action.type) {
@@ -48,7 +48,7 @@ export const REGISTRATION_REDUCER = (state = {
       }
     case COMPLETE_REGISTRAION:
       return {
-        alertMessage: '',
+        alertMessage: "",
         registered: true
       }
     default:

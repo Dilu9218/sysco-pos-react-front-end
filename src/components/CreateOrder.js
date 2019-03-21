@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import ListItemInCreateOrder from './ListItemInCreateOrder';
+import React, { Component } from "react";
+import { withRouter, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import ListItemInCreateOrder from "./ListItemInCreateOrder";
 import {
     dispatch_CreateNewOrderForThisUser,
     dispatch_DeleteThisOrder,
@@ -10,7 +10,7 @@ import {
     dispatch_FetchEveryOrderForThisUser,
     dispatch_ResetCurrentOrderStates,
     dispatch_AddTheseItemsToThisOrder
-} from '../actions/ordercontrolactions';
+} from "../actions/ordercontrolactions";
 
 /***************************************************************************************************
  * Displays a list of all the available items to create a new order
@@ -53,7 +53,7 @@ class CreateOrder extends Component {
             this.props.passKey
         );
         this.props.dispatch_ResetCurrentOrderStates();
-        this.props.history.push('/my_orders');
+        this.props.history.push("/my_orders");
     }
 
     // Once the order is cancelled, props will change as checking in the following if block. If it
@@ -61,7 +61,7 @@ class CreateOrder extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.status) {
             this.props.dispatch_ResetCurrentOrderStates();
-            this.props.history.push('/my_orders');
+            this.props.history.push("/my_orders");
         }
     }
 
@@ -87,10 +87,10 @@ class CreateOrder extends Component {
         } else {
             return (
                 <div>
-                    <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
+                    <div className="card" style={{ margin: "25px", paddingBottom: "50px" }}>
                         <div className="card-body">
                             <div className="alert alert-dark" role="alert"><h5
-                                style={{ margin: 'auto', textAlign: 'initial' }}>
+                                style={{ margin: "auto", textAlign: "initial" }}>
                                 <i className="fas fa-th-list"></i> Items List</h5></div>
                             {this.props.itemsList.filter((item) => {
                                 return (item.quantity > 0)
@@ -105,23 +105,23 @@ class CreateOrder extends Component {
                     </div>
                     <nav className="navbar navbar-light bg-light"
                         style={{
-                            paddingRight: '25px', overflow: 'hidden', position: 'fixed', zIndex: 99,
-                            bottom: '0', width: '100%'
+                            paddingRight: "25px", overflow: "hidden", position: "fixed", zIndex: 99,
+                            bottom: "0", width: "100%"
                         }}>
-                        <div className="card-body" style={{ paddingTop: '0px' }}>
+                        <div className="card-body" style={{ paddingTop: "0px" }}>
                             <div className="row">
                                 <div className="col-4 d-flex justify-content-start d-inline">
                                     <div className="input-group-prepend"
-                                        style={{ marginLeft: '10px' }}>
+                                        style={{ marginLeft: "10px" }}>
                                         <span className="input-group-text"
                                             style={{
-                                                borderTopRightRadius: '0px',
-                                                borderBottomRightRadius: '0px'
+                                                borderTopRightRadius: "0px",
+                                                borderBottomRightRadius: "0px"
                                             }}><strong>Total</strong></span>
                                         <span className="input-group-text"
                                             style={{
-                                                borderTopLeftRadius: '0px',
-                                                borderBottomLeftRadius: '0px'
+                                                borderTopLeftRadius: "0px",
+                                                borderBottomLeftRadius: "0px"
                                             }}>Rs. {Math.abs((this.props.total)).toFixed(2)}
                                         </span>
                                     </div>
@@ -130,7 +130,7 @@ class CreateOrder extends Component {
                                     <button
                                         onClick={this.addSelectedItemsToThisOrder}
                                         className="btn btn-success"
-                                        style={{ marginRight: '10px' }}>
+                                        style={{ marginRight: "10px" }}>
                                         <i className="fas fa-cart-plus"></i> Add to Cart</button>
                                     <button
                                         onClick={this.CANCEL_THE_ORDER}

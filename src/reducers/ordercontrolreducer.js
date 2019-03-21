@@ -15,18 +15,18 @@ import {
     QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
     QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
     CREATE_NEW_ORDER_FOR_THIS_USER
-} from '../actions/types';
+} from "../actions/types";
 
 let initialState = {
     itemsList: [],
     viewItemList: [],
     orderList: [],
     currentOrder: {},
-    currentOrderID: '',
+    currentOrderID: "",
     total: 0,
     itemQuantity: {},
     clonedItemQuantity: {},
-    url: '',
+    url: "",
     status: false
 }
 
@@ -54,11 +54,11 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 ...state,
                 orderList: [],
                 currentOrder: {},
-                currentOrderID: '',
+                currentOrderID: "",
                 total: 0,
                 itemQuantity: {},
                 clonedItemQuantity: {},
-                url: '',
+                url: "",
                 status: false
             }
         case DELETE_THIS_ORDER:
@@ -66,17 +66,17 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 ...state,
                 orderList: state.orderList.filter(order => (order._id !== action.id)),
                 currentOrder: {},
-                currentOrderID: '',
+                currentOrderID: "",
                 total: 0,
                 itemQuantity: {},
                 clonedItemQuantity: {},
-                url: '',
+                url: "",
                 status: false
             }
         case CHECK_OUT_ORDER:
             return {
                 ...state,
-                url: '/my_orders',
+                url: "/my_orders",
                 orderList: state.orderList.filter(order => (order._id !== action.id)),
             }
         case SET_THIS_ORDER_AS_CURRENT_ORDER:
@@ -106,11 +106,11 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 ...state,
                 currentOrder: {},
                 viewItemList: [],
-                currentOrderID: '',
+                currentOrderID: "",
                 total: 0,
                 itemQuantity: {},
                 clonedItemQuantity: {},
-                url: '',
+                url: "",
                 status: false
             }
         case CREATE_NEW_ORDER_FOR_THIS_USER:

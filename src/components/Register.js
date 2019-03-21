@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
-import { REGISTER_USER } from '../actions/useraccountcontrolactions';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom"
+import { REGISTER_USER } from "../actions/useraccountcontrolactions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class Register extends Component {
 
@@ -10,18 +10,18 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            newpassword: '',
-            conpassword: ''
+            username: "",
+            newpassword: "",
+            conpassword: ""
         }
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.alertMessage !== this.props.alertMessage) {
             this.setState({
-                username: '',
-                newpassword: '',
-                conpassword: ''
+                username: "",
+                newpassword: "",
+                conpassword: ""
             })
         }
     }
@@ -55,8 +55,8 @@ class Register extends Component {
         return (
             <React.Fragment>
                 <div className="d-flex justify-content-center">
-                    <div className='card'
-                        style={{ marginTop: '9rem', width: '30%' }}>
+                    <div className="card"
+                        style={{ marginTop: "9rem", width: "30%" }}>
                         <div className="card-body">
                             <div className={this.props.alertMessage !== ""
                                 ? "alert alert-warning"
@@ -69,7 +69,7 @@ class Register extends Component {
                                         <span
                                             className="input-group-text"
                                             id="basic-addon1"
-                                            style={{ width: '125px' }}>
+                                            style={{ width: "125px" }}>
                                             Username</span>
                                     </div>
                                     <input
@@ -88,7 +88,7 @@ class Register extends Component {
                                         <span
                                             className="input-group-text"
                                             id="basic-addon2"
-                                            style={{ width: '125px' }}>
+                                            style={{ width: "125px" }}>
                                             Password</span>
                                     </div>
                                     <input
@@ -108,7 +108,7 @@ class Register extends Component {
                                         <span
                                             className="input-group-text"
                                             id="basic-addon2"
-                                            style={{ width: '125px' }}>
+                                            style={{ width: "125px" }}>
                                             Password</span>
                                     </div>
                                     <input
@@ -124,7 +124,7 @@ class Register extends Component {
                                 </div>
                                 <button
                                     className="btn btn-success text-uppercase btn-register"
-                                    style={{ width: '100%' }}
+                                    style={{ width: "100%" }}
                                     type="submit">Register</button>
                             </form>
                         </div>

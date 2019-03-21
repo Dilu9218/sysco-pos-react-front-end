@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
 import {
     USER_LOGIN_ENDPOINT,
     USER_REGISTER_ENDPOINT
-} from '../constants';
+} from "../constants";
 
 import {
     SAVE_PASS_KEY,
@@ -11,7 +11,7 @@ import {
     SHOW_REGISTER_ERROR,
     COMPLETE_REGISTRAION,
     CLEAR_PASS_KEY
-} from './types';
+} from "./types";
 
 export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) => {
     if (newpassword === conpassword) {
@@ -23,25 +23,25 @@ export const REGISTER_USER = (username, newpassword, conpassword) => (dispatch) 
             .then(res => {
                 dispatch({
                     type: COMPLETE_REGISTRAION,
-                    alertMessage: ''
+                    alertMessage: ""
                 });
             }).catch(err => {
                 if (err.response.status === 409) {
                     dispatch({
                         type: SHOW_REGISTER_ERROR,
-                        alertMessage: 'User already exists'
+                        alertMessage: "User already exists"
                     });
                 } else {
                     dispatch({
                         type: SHOW_REGISTER_ERROR,
-                        alertMessage: 'Server error'
+                        alertMessage: "Server error"
                     });
                 }
             });
     } else {
         dispatch({
             type: SHOW_REGISTER_ERROR,
-            alertMessage: 'Passwords don\'t match'
+            alertMessage: "Passwords don't match"
         });
     }
 }
@@ -59,19 +59,19 @@ export const LOG_USER_IN = (username, password) => (dispatch) => {
                     case 401:
                         dispatch({
                             type: SHOW_LOGIN_ERROR,
-                            alertMessage: 'Password is wrong'
+                            alertMessage: "Password is wrong"
                         });
                         break;
                     case 404:
                         dispatch({
                             type: SHOW_LOGIN_ERROR,
-                            alertMessage: 'User doesn\'t exist'
+                            alertMessage: "User doesn't exist"
                         });
                         break;
                     default:
                         dispatch({
                             type: SHOW_LOGIN_ERROR,
-                            alertMessage: 'Server error'
+                            alertMessage: "Server error"
                         });
                         break;
                 }

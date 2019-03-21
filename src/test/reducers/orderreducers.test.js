@@ -1,6 +1,6 @@
 import {
     ORDER_LIST_REDUCER
-} from '../../reducers/ordercontrolreducer';
+} from "../../reducers/ordercontrolreducer";
 import {
     FETCH_EVERY_ORDER_FOR_THIS_USER,
     ERROR_FETCHING_ORDER_LIST_FOR_USER,
@@ -18,76 +18,76 @@ import {
     QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
     QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
     CREATE_NEW_ORDER_FOR_THIS_USER
-} from '../../actions/types';
+} from "../../actions/types";
 
 const initialState = {
     itemsList: [],
     orderList: [],
     currentOrder: {},
-    currentOrderID: '',
+    currentOrderID: "",
     total: 0,
     itemQuantity: {},
     clonedItemQuantity: {},
-    url: '',
+    url: "",
     viewItemList: [],
     status: false
 }
 
-describe('Initial state', () => {
-    it('Initial state as expected', () => {
+describe("Initial state", () => {
+    it("Initial state as expected", () => {
         const action = {
-            type: 'DEFAULT'
+            type: "DEFAULT"
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(initialState);
     });
 });
 
-describe('Items list', () => {
-    it('Fetches items list', () => {
+describe("Items list", () => {
+    it("Fetches items list", () => {
         const action = {
             type: FETCH_COMPLETE_ITEMS_LIST,
-            itemsList: [{ 'Item1': 12 }, { 'Item2': 20 }]
+            itemsList: [{ "Item1": 12 }, { "Item2": 20 }]
         };
         const expectation = {
-            itemsList: [{ 'Item1': 12 }, { 'Item2': 20 }],
-            viewItemList: [{ 'Item1': 12 }, { 'Item2': 20 }],
+            itemsList: [{ "Item1": 12 }, { "Item2": 20 }],
+            viewItemList: [{ "Item1": 12 }, { "Item2": 20 }],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
     });
-    it('Fetches items list crosses an error', () => {
+    it("Fetches items list crosses an error", () => {
         const action = {
             type: ERROR_FETCHING_ITEMS_LIST
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(initialState);
     });
-    it('Fetches items list', () => {
+    it("Fetches items list", () => {
         const action = {
             type: FETCH_EVERY_ORDER_FOR_THIS_USER,
-            orderList: [{ 'Item1': 12 }, { 'Item2': 20 }]
+            orderList: [{ "Item1": 12 }, { "Item2": 20 }]
         };
         const expectation = {
             itemsList: [],
             viewItemList: [],
-            orderList: [{ 'Item1': 12 }, { 'Item2': 20 }],
+            orderList: [{ "Item1": 12 }, { "Item2": 20 }],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
     });
-    it('Fetches items list crosses an error', () => {
+    it("Fetches items list crosses an error", () => {
         const action = {
             type: ERROR_FETCHING_ORDER_LIST_FOR_USER
         };
@@ -95,69 +95,69 @@ describe('Items list', () => {
     });
 });
 
-describe('Order list', () => {
-    it('Deletes an order', () => {
+describe("Order list", () => {
+    it("Deletes an order", () => {
         const action = {
             type: DELETE_THIS_ORDER,
             id: 12
         };
         const init = {
             itemsList: [],
-            orderList: [{ '_id': 12, 'Item': 'One' }, { '_id': 20, 'Item': 'Two' }],
+            orderList: [{ "_id": 12, "Item": "One" }, { "_id": 20, "Item": "Two" }],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
             itemsList: [],
-            orderList: [{ '_id': 20, 'Item': 'Two' }],
+            orderList: [{ "_id": 20, "Item": "Two" }],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
-    it('Checks out an order', () => {
+    it("Checks out an order", () => {
         const action = {
             type: CHECK_OUT_ORDER,
             id: 12
         };
         const init = {
             itemsList: [],
-            orderList: [{ '_id': 12, 'Item': 'One' }, { '_id': 20, 'Item': 'Two' }],
+            orderList: [{ "_id": 12, "Item": "One" }, { "_id": 20, "Item": "Two" }],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
             itemsList: [],
-            orderList: [{ '_id': 20, 'Item': 'Two' }],
+            orderList: [{ "_id": 20, "Item": "Two" }],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '/my_orders',
+            url: "/my_orders",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
 });
 
-describe('Current orders', () => {
-    it('Sets as current order', () => {
+describe("Current orders", () => {
+    it("Sets as current order", () => {
         const action = {
             type: SET_THIS_ORDER_AS_CURRENT_ORDER,
             currentOrder: {
@@ -165,17 +165,17 @@ describe('Current orders', () => {
                 cartID: 1234567,
                 items: [
                     {
-                        productID: 'A',
+                        productID: "A",
                         quantity: 2,
                         price: 5
                     }, {
-                        productID: 'B',
+                        productID: "B",
                         quantity: 3,
                         price: 5
                     }
                 ]
             },
-            url: '/test_url'
+            url: "/test_url"
         };
         const expectation = {
             itemsList: [],
@@ -185,11 +185,11 @@ describe('Current orders', () => {
                 cartID: 1234567,
                 items: [
                     {
-                        productID: 'A',
+                        productID: "A",
                         quantity: 2,
                         price: 5
                     }, {
-                        productID: 'B',
+                        productID: "B",
                         quantity: 3,
                         price: 5
                     }
@@ -197,21 +197,21 @@ describe('Current orders', () => {
             },
             currentOrderID: 10,
             total: 25,
-            itemQuantity: { 'A': 2, 'B': 3 },
-            clonedItemQuantity: { 'A': 2, 'B': 3 },
-            url: '/test_url',
+            itemQuantity: { "A": 2, "B": 3 },
+            clonedItemQuantity: { "A": 2, "B": 3 },
+            url: "/test_url",
             viewItemList: [],
             status: false
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
     });
-    it('Resets the current order', () => {
+    it("Resets the current order", () => {
         const action = {
             type: RESET_CURRENT_ORDER_STATES
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(initialState);
     });
-    it('Creates a new order for this user', () => {
+    it("Creates a new order for this user", () => {
         const action = {
             type: CREATE_NEW_ORDER_FOR_THIS_USER,
             id: 1234
@@ -224,130 +224,130 @@ describe('Current orders', () => {
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             viewItemList: [],
             status: false
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
     });
-    it('Adds an item to item quantity', () => {
+    it("Adds an item to item quantity", () => {
         const action = {
             type: ADD_THIS_ITEM_TO_QUANTITY,
-            id: 'ITEM'
+            id: "ITEM"
         };
         const expectation = {
             itemsList: [],
             orderList: [],
             viewItemList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
-            itemQuantity: { 'ITEM': 0 },
+            itemQuantity: { "ITEM": 0 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
     });
-    it('Deletes an item from item quantity', () => {
+    it("Deletes an item from item quantity", () => {
         const action = {
             type: DELETE_THIS_ITEM_FROM_QUANTITY,
             price: 10,
-            id: 'A'
+            id: "A"
         };
         const init = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 100,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 90,
-            itemQuantity: { 'B': 2, 'C': 3 },
+            itemQuantity: { "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
-    it('Adds removes items from item quantity', () => {
+    it("Adds removes items from item quantity", () => {
         const action = {
             type: INDECREMENT_ITEM_FROM_QUANTITY,
             direction: true,
             price: 10,
-            id: 'A'
+            id: "A"
         };
         const init = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 100,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 110,
-            itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 2, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
-    it('Adds removes items from item quantity', () => {
+    it("Adds removes items from item quantity", () => {
         const action = {
             type: INDECREMENT_ITEM_FROM_QUANTITY,
             direction: false,
             price: 10,
-            id: 'A'
+            id: "A"
         };
         const init = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 100,
-            itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 2, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 90,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
-    it('Adds updated order to order list', () => {
+    it("Adds updated order to order list", () => {
         const action = {
             type: ADD_THESE_ITEMS_TO_THIS_ORDER,
             updatedOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'A': 1, 'B': 2 }]
+                items: [{ "A": 1, "B": 2 }]
             }
         };
         const expectation = {
@@ -356,78 +356,78 @@ describe('Current orders', () => {
             orderList: [{
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'A': 1, 'B': 2 }]
+                items: [{ "A": 1, "B": 2 }]
             }],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: true
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(expectation);
     });
-    describe('Append item to this order', () => {
+    describe("Append item to this order", () => {
         const action = {
             type: APPEND_THIS_ITEM_TO_ORDER,
-            productID: 'A',
+            productID: "A",
             currentOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'A': 1 }]
+                items: [{ "A": 1 }]
             },
             price: 10
         };
         const init = {
-            itemsList: [{ productID: 'A', quantity: 10 }, { productID: 'B', quantity: 20 }],
+            itemsList: [{ productID: "A", quantity: 10 }, { productID: "B", quantity: 20 }],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 0,
             itemQuantity: {},
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
-            itemsList: [{ productID: 'A', quantity: 9 }, { productID: 'B', quantity: 20 }],
-            viewItemList: [{ productID: 'B', quantity: 20 }],
+            itemsList: [{ productID: "A", quantity: 9 }, { productID: "B", quantity: 20 }],
+            viewItemList: [{ productID: "B", quantity: 20 }],
             orderList: [],
             currentOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'A': 1 }]
+                items: [{ "A": 1 }]
             },
-            currentOrderID: '',
+            currentOrderID: "",
             total: 10,
-            itemQuantity: { 'A': 1 },
-            clonedItemQuantity: { 'A': 1 },
-            url: '',
+            itemQuantity: { "A": 1 },
+            clonedItemQuantity: { "A": 1 },
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
-    it('Quickly removes items from item quantity', () => {
+    it("Quickly removes items from item quantity", () => {
         const action = {
             type: QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
             price: 10,
-            id: 'A',
+            id: "A",
             updatedOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'B': 1 }]
+                items: [{ "B": 1 }]
             }
         };
         const init = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 100,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
@@ -436,38 +436,38 @@ describe('Current orders', () => {
             currentOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'B': 1 }]
+                items: [{ "B": 1 }]
             },
-            currentOrderID: '',
+            currentOrderID: "",
             total: 90,
-            itemQuantity: { 'B': 2, 'C': 3 },
+            itemQuantity: { "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
-    it('Quickly changes items from item quantity', () => {
+    it("Quickly changes items from item quantity", () => {
         const action = {
             type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
             direction: true,
             price: 10,
-            id: 'A',
+            id: "A",
             updatedOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'B': 1 }]
+                items: [{ "B": 1 }]
             }
         };
         const init = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 100,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
@@ -476,38 +476,38 @@ describe('Current orders', () => {
             currentOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'B': 1 }]
+                items: [{ "B": 1 }]
             },
-            currentOrderID: '',
+            currentOrderID: "",
             total: 110,
-            itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 2, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
-    it('Quickly changes items from item quantity', () => {
+    it("Quickly changes items from item quantity", () => {
         const action = {
             type: QUICK_INDECREMENT_ITEM_FROM_QUANTITY,
             direction: false,
             price: 10,
-            id: 'A',
+            id: "A",
             updatedOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'B': 1 }]
+                items: [{ "B": 1 }]
             }
         };
         const init = {
             itemsList: [],
             orderList: [],
             currentOrder: {},
-            currentOrderID: '',
+            currentOrderID: "",
             total: 100,
-            itemQuantity: { 'A': 2, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 2, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         const expectation = {
@@ -516,23 +516,23 @@ describe('Current orders', () => {
             currentOrder: {
                 _id: 123,
                 cartID: 12345,
-                items: [{ 'B': 1 }]
+                items: [{ "B": 1 }]
             },
-            currentOrderID: '',
+            currentOrderID: "",
             total: 90,
-            itemQuantity: { 'A': 1, 'B': 2, 'C': 3 },
+            itemQuantity: { "A": 1, "B": 2, "C": 3 },
             clonedItemQuantity: {},
-            url: '',
+            url: "",
             status: false
         };
         expect(ORDER_LIST_REDUCER(init, action)).toEqual(expectation);
     });
 });
 
-describe('Initial state', () => {
-    it('Initial state as expected', () => {
+describe("Initial state", () => {
+    it("Initial state as expected", () => {
         const action = {
-            type: 'DEFAULT'
+            type: "DEFAULT"
         };
         expect(ORDER_LIST_REDUCER(undefined, action)).toEqual(initialState);
     });

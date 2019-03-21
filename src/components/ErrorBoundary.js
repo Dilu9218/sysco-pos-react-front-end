@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom"
 
 class ErrorBoundary extends React.Component {
 
@@ -16,8 +16,8 @@ class ErrorBoundary extends React.Component {
     render() {
         if (this.state.hasError) {
             return <h1 className="d-flex justify-content-center"
-                style={{ height: '100%', margin: '10% 0 0 0' }}>
-                <span className="badge badge-dark" style={{ padding: '50px' }}>
+                style={{ height: "100%", margin: "10% 0 0 0" }}>
+                <span className="badge badge-dark" style={{ padding: "50px" }}>
                     Cannot load the website ... <br /><br />Want to go back to
                     <br /><br /><Link to="/home">Home Page</Link>?</span>
             </h1>;

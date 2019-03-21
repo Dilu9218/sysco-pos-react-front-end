@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 export function ConditionalHeader(P) {
     if (P.isLoggedIn) {
         return (
             <div className="collapse navbar-collapse">
                 <Link className="navbar-brand"
-                    style={{ paddingTop: '0px' }}
+                    style={{ paddingTop: "0px" }}
                     to="/home">Sysco PoS System</Link>
                 <div className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <Link className="nav-item nav-link"
@@ -29,7 +29,7 @@ export function ConditionalHeader(P) {
         return (
             <div className="collapse navbar-collapse">
                 <Link className="navbar-brand"
-                    style={{ paddingTop: '0px' }}
+                    style={{ paddingTop: "0px" }}
                     to="/">Sysco PoS System</Link>
                 <div className="navbar-nav ml-auto">
                     <Link className="nav-item nav-link"

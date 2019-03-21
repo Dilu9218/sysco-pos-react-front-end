@@ -1,7 +1,7 @@
-import Enzyme, { configure, shallow, mount, render } from 'enzyme';
-import { BrowserRouter } from 'react-router-dom';
-import Adapter from 'enzyme-adapter-react-16';
-import { shape } from 'prop-types';
+import Enzyme, { configure, shallow, mount, render } from "enzyme";
+import { BrowserRouter } from "react-router-dom";
+import Adapter from "enzyme-adapter-react-16";
+import { shape } from "prop-types";
 
 configure({ adapter: new Adapter() });
 

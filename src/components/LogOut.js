@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
-import { LOG_USER_OUT } from '../actions/useraccountcontrolactions';
-import { USERTOKEN } from '../constants';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withCookies } from 'react-cookie';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom"
+import { LOG_USER_OUT } from "../actions/useraccountcontrolactions";
+import { USERTOKEN } from "../constants";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withCookies } from "react-cookie";
 
 class LogOut extends Component {
 

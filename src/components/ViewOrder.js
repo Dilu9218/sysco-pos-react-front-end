@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { withRouter, Redirect } from "react-router-dom";
 import Modal from "react-responsive-modal";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import ListItemInViewOrder from './ListItemInViewOrder';
-import ListItemInAddNewItemsToOrder from './ListItemInAddNewItemsToOrder';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import ListItemInViewOrder from "./ListItemInViewOrder";
+import ListItemInAddNewItemsToOrder from "./ListItemInAddNewItemsToOrder";
 import {
     dispatch_GetTheCompleteItemsList,
     dispatch_ResetCurrentOrderStates,
     dispatch_CheckOutOrder
-} from '../actions/ordercontrolactions';
+} from "../actions/ordercontrolactions";
 
 class ViewOrder extends Component {
 
@@ -37,7 +37,7 @@ class ViewOrder extends Component {
      * change to collections or order states
      *************************************************************************/
     cancelCheckOut = () => {
-        this.props.history.push('/my_orders');
+        this.props.history.push("/my_orders");
     }
 
     /**************************************************************************
@@ -56,7 +56,7 @@ class ViewOrder extends Component {
     // here and redirect user to the order list. Otherwise there can be network
     // delays making the checkout slow but user is already at the orders list.
     componentDidUpdate(prevProps) {
-        if (this.props.url === '/my_orders') {
+        if (this.props.url === "/my_orders") {
             this.props.history.push(this.props.url);
         }
     }
@@ -77,10 +77,10 @@ class ViewOrder extends Component {
             <div>
                 <Modal open={this.state.itemListOpen} onClose={this.itemListClosing} center
                     showCloseIcon={false}>
-                    <div className="card" style={{ margin: '5px' }}>
-                        <div className="card-body" style={{ padding: '0px' }}>
+                    <div className="card" style={{ margin: "5px" }}>
+                        <div className="card-body" style={{ padding: "0px" }}>
                             <div className="alert alert-dark" role="alert"><h5
-                                style={{ margin: 'auto', textAlign: 'initial' }}>
+                                style={{ margin: "auto", textAlign: "initial" }}>
                                 <i className="fas fa-th-list"></i> Items List</h5></div>
                             {this.props.viewItemList.filter((item) => {
                                 return ((item.quantity > 0) &&
@@ -91,13 +91,13 @@ class ViewOrder extends Component {
                         </div>
                     </div>
                 </Modal>
-                <div className="card" style={{ margin: '25px', paddingBottom: '50px' }}>
+                <div className="card" style={{ margin: "25px", paddingBottom: "50px" }}>
                     <div className="card-body">
-                        <div className="card border-dark shadow" style={{ margin: '10px 0px 0px 0px' }}>
-                            <div className="card-header text-white bg-dark" style={{ padding: '.75em .1em' }}>
-                                <div className="row" style={{ width: '100%', margin: '0px' }}>
+                        <div className="card border-dark shadow" style={{ margin: "10px 0px 0px 0px" }}>
+                            <div className="card-header text-white bg-dark" style={{ padding: ".75em .1em" }}>
+                                <div className="row" style={{ width: "100%", margin: "0px" }}>
                                     <div className="col-8 d-flex"
-                                        style={{ textAlign: 'left' }}>
+                                        style={{ textAlign: "left" }}>
                                         Order ID: {this.props.currentOrder._id}</div>
                                     <div className="col-4 d-flex justify-content-end">
                                         <b>Rs. {this.props.total.toFixed(2)}</b>
@@ -119,25 +119,25 @@ class ViewOrder extends Component {
                 </div>
                 <nav className="navbar navbar-light bg-light"
                     style={{
-                        paddingRight: '25px',
-                        overflow: 'hidden',
-                        position: 'fixed',
+                        paddingRight: "25px",
+                        overflow: "hidden",
+                        position: "fixed",
                         zIndex: 99,
-                        bottom: '0',
-                        width: '100%'
+                        bottom: "0",
+                        width: "100%"
                     }}>
-                    <div className="card-body" style={{ paddingTop: '0px' }}>
+                    <div className="card-body" style={{ paddingTop: "0px" }}>
                         <div className="row">
                             <div className="col-4 d-flex justify-content-start d-inline">
                                 <button onClick={this.displayItemsList}
                                     className="btn btn-primary"
-                                    style={{ marginLeft: '10px' }}>
+                                    style={{ marginLeft: "10px" }}>
                                     <i className="fas fa-plus-circle"></i> Add Items</button>
                             </div>
                             <div className="col-8 d-flex justify-content-end">
                                 <button onClick={this.checkOutThisOrder}
                                     className="btn btn-success"
-                                    style={{ marginRight: '10px' }}>
+                                    style={{ marginRight: "10px" }}>
                                     <i className="fas fa-shopping-cart"></i> Checkout</button>
                                 <button onClick={this.cancelCheckOut}
                                     className="btn btn-warning">

@@ -1,23 +1,23 @@
-import './App.css';
-import React, { Component } from 'react';
-import { withCookies, Cookies } from 'react-cookie';
-import PropTypes, { instanceOf } from 'prop-types';
-import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import "./App.css";
+import React, { Component } from "react";
+import { withCookies, Cookies } from "react-cookie";
+import PropTypes, { instanceOf } from "prop-types";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { RE_LOG_USER_IN } from './actions/useraccountcontrolactions';
-import { USERTOKEN } from './constants';
+import { RE_LOG_USER_IN } from "./actions/useraccountcontrolactions";
+import { USERTOKEN } from "./constants";
 
-import MainPage from './pages/mainpage';
-import LogIn from './components/LogIn';
-import Register from './components/Register';
+import MainPage from "./pages/mainpage";
+import LogIn from "./components/LogIn";
+import Register from "./components/Register";
 
-import OrderList from './components/OrderList';
-import ViewOrder from './components/ViewOrder';
-import CreateOrder from './components/CreateOrder';
+import OrderList from "./components/OrderList";
+import ViewOrder from "./components/ViewOrder";
+import CreateOrder from "./components/CreateOrder";
 
-import Header from './components/Header';
-import LogOut from './components/LogOut';
+import Header from "./components/Header";
+import LogOut from "./components/LogOut";
 
 /***************************************************************************************************
  * TOP LEVEL COMPONENT. Houses every sub-component and handles routes.

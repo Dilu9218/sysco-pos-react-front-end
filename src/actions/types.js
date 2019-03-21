@@ -16,64 +16,64 @@
  * Actions related to user account control
  *****************************************************************************/
 export const SAVE_PASS_KEY
-    = 'SAVE_PASS_KEY';
+    = "SAVE_PASS_KEY";
 export const SHOW_LOGIN_ERROR
-    = 'SHOW_LOGIN_ERROR';
+    = "SHOW_LOGIN_ERROR";
 export const SHOW_REGISTER_ERROR
-    = 'SHOW_REGISTER_ERROR';
+    = "SHOW_REGISTER_ERROR";
 export const COMPLETE_REGISTRAION
-    = 'COMPLETE_REGISTRAION';
+    = "COMPLETE_REGISTRAION";
 export const CLEAR_PASS_KEY
-    = 'CLEAR_PASS_KEY';
+    = "CLEAR_PASS_KEY";
 
 /******************************************************************************
 * Actions related to items list
 ******************************************************************************/
 export const FETCH_COMPLETE_ITEMS_LIST
-    = 'FETCH_COMPLETE_ITEMS_LIST';
+    = "FETCH_COMPLETE_ITEMS_LIST";
 export const ERROR_FETCHING_ITEMS_LIST
-    = 'ERROR_FETCHING_ITEMS_LIST';
+    = "ERROR_FETCHING_ITEMS_LIST";
 export const CHANGE_ITEM_QUANTITY_IN_ITEMS_LIST
-    = 'CHANGE_ITEM_QUANTITY_IN_ITEMS_LIST';
+    = "CHANGE_ITEM_QUANTITY_IN_ITEMS_LIST";
 
 /******************************************************************************
 * Actions related to orders
 ******************************************************************************/
 export const SET_THIS_ORDER_AS_CURRENT_ORDER
-    = 'SET_THIS_ORDER_AS_CURRENT_ORDER';
+    = "SET_THIS_ORDER_AS_CURRENT_ORDER";
 export const FETCH_EVERY_ORDER_FOR_THIS_USER
-    = 'FETCH_EVERY_ORDER_FOR_THIS_USER';
+    = "FETCH_EVERY_ORDER_FOR_THIS_USER";
 export const ERROR_FETCHING_ORDER_LIST_FOR_USER
-    = 'ERROR_FETCHING_ORDER_LIST_FOR_USER';
+    = "ERROR_FETCHING_ORDER_LIST_FOR_USER";
 export const RESET_CURRENT_ORDER_STATES
-    = 'RESET_CURRENT_ORDER_STATES';
+    = "RESET_CURRENT_ORDER_STATES";
 export const CHECK_OUT_ORDER
-    = 'CHECK_OUT_ORDER';
+    = "CHECK_OUT_ORDER";
 export const DELETE_THIS_ORDER
-    = 'DELETE_THIS_ORDER';
+    = "DELETE_THIS_ORDER";
 export const ADD_THIS_ITEM_TO_QUANTITY
-    = 'ADD_THIS_ITEM_TO_QUANTITY';
+    = "ADD_THIS_ITEM_TO_QUANTITY";
 export const DELETE_THIS_ITEM_FROM_QUANTITY
-    = 'DELETE_THIS_ITEM_FROM_QUANTITY';
+    = "DELETE_THIS_ITEM_FROM_QUANTITY";
 export const INDECREMENT_ITEM_FROM_QUANTITY
-    = 'INDECREMENT_ITEM_FROM_QUANTITY';
+    = "INDECREMENT_ITEM_FROM_QUANTITY";
 export const QUICK_DELETE_THIS_ITEM_FROM_QUANTITY
-    = 'QUICK_DELETE_THIS_ITEM_FROM_QUANTITY';
+    = "QUICK_DELETE_THIS_ITEM_FROM_QUANTITY";
 export const QUICK_INDECREMENT_ITEM_FROM_QUANTITY
-    = 'QUICK_INDECREMENT_ITEM_FROM_QUANTITY';
+    = "QUICK_INDECREMENT_ITEM_FROM_QUANTITY";
 export const ADD_THESE_ITEMS_TO_THIS_ORDER
-    = 'ADD_THESE_ITEMS_TO_THIS_ORDER';
+    = "ADD_THESE_ITEMS_TO_THIS_ORDER";
 export const APPEND_THIS_ITEM_TO_ORDER
-    = 'APPEND_THIS_ITEM_TO_ORDER';
+    = "APPEND_THIS_ITEM_TO_ORDER";
 export const CREATE_NEW_ORDER_FOR_THIS_USER
-    = 'CREATE_NEW_ORDER_FOR_THIS_USER';
+    = "CREATE_NEW_ORDER_FOR_THIS_USER";
 export const CHECK_THIS_ORDER_OUT
-    = 'CHECK_THIS_ORDER_OUT';
+    = "CHECK_THIS_ORDER_OUT";
 export const ERROR_CREATE_NEW_ORDER_FOR_THIS_USER
-    = 'ERROR_CREATE_NEW_ORDER_FOR_THIS_USER';
+    = "ERROR_CREATE_NEW_ORDER_FOR_THIS_USER";
 export const ERROR_DELETE_THIS_ORDER
-    = 'ERROR_DELETE_THIS_ORDER';
+    = "ERROR_DELETE_THIS_ORDER";
 export const ERROR_APPEND_THIS_ITEM_TO_ORDER
-    = 'ERROR_APPEND_THIS_ITEM_TO_ORDER';
+    = "ERROR_APPEND_THIS_ITEM_TO_ORDER";
 export const ERROR_CHECK_OUT_ORDER
-    = 'ERROR_CHECK_OUT_ORDER';
+    = "ERROR_CHECK_OUT_ORDER";

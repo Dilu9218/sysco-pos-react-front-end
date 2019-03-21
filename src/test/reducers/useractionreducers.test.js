@@ -1,90 +1,90 @@
 import {
     PASS_KEY_REDUCER,
     REGISTRATION_REDUCER
-} from '../../reducers/useraccountcontrolreducer';
+} from "../../reducers/useraccountcontrolreducer";
 import {
     SAVE_PASS_KEY,
     SHOW_LOGIN_ERROR,
     SHOW_REGISTER_ERROR,
     COMPLETE_REGISTRAION,
     CLEAR_PASS_KEY
-} from '../../actions/types';
+} from "../../actions/types";
 
-describe('Initial state of user account control reducer', () => {
+describe("Initial state of user account control reducer", () => {
 
     const initialState = {
-        passKey: '',
-        alertMessage: '',
+        passKey: "",
+        alertMessage: "",
         isLoggedIn: false
     };
 
-    it('Initial state is as expected', () => {
+    it("Initial state is as expected", () => {
         const action = {
-            type: 'DEFAULT'
+            type: "DEFAULT"
         };
         expect(PASS_KEY_REDUCER(undefined, action)).toEqual(initialState);
     });
-    it('State updates with passkey', () => {
+    it("State updates with passkey", () => {
         const action = {
             type: SAVE_PASS_KEY,
-            passKey: 'testkey'
+            passKey: "testkey"
         };
         const expectation = {
-            passKey: 'testkey',
-            alertMessage: '',
+            passKey: "testkey",
+            alertMessage: "",
             isLoggedIn: true
         };
         expect(PASS_KEY_REDUCER(undefined, action)).toEqual(expectation);
     });
-    it('Clears passKey', () => {
+    it("Clears passKey", () => {
         const action = {
             type: CLEAR_PASS_KEY
         };
         expect(PASS_KEY_REDUCER(undefined, action)).toEqual(initialState);
     });
-    it('Shows login errors properly', () => {
+    it("Shows login errors properly", () => {
         const action = {
             type: SHOW_LOGIN_ERROR,
-            alertMessage: 'Error message'
+            alertMessage: "Error message"
         };
         const expectation = {
-            passKey: '',
-            alertMessage: 'Error message',
+            passKey: "",
+            alertMessage: "Error message",
             isLoggedIn: false
         };
         expect(PASS_KEY_REDUCER(undefined, action)).toEqual(expectation);
     });
 });
 
-describe('Initial state of user registration', () => {
+describe("Initial state of user registration", () => {
 
     const initialState = {
-        alertMessage: '',
+        alertMessage: "",
         registered: false
     };
-    it('Initial state is as expected', () => {
+    it("Initial state is as expected", () => {
         const action = {
-            type: 'DEFAULT'
+            type: "DEFAULT"
         };
         expect(REGISTRATION_REDUCER(undefined, action)).toEqual(initialState);
     });
-    it('Shows registration errors properly', () => {
+    it("Shows registration errors properly", () => {
         const action = {
             type: SHOW_REGISTER_ERROR,
-            alertMessage: 'testMessage'
+            alertMessage: "testMessage"
         };
         const expectation = {
-            alertMessage: 'testMessage',
+            alertMessage: "testMessage",
             registered: false
         };
         expect(REGISTRATION_REDUCER(undefined, action)).toEqual(expectation);
     });
-    it('Completes registration', () => {
+    it("Completes registration", () => {
         const action = {
             type: COMPLETE_REGISTRAION
         };
         const expectation = {
-            alertMessage: '',
+            alertMessage: "",
             registered: true
         };
         expect(REGISTRATION_REDUCER(undefined, action)).toEqual(expectation);
