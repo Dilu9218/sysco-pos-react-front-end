@@ -64,7 +64,7 @@ Header.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     isLoggedIn: state.uac.isLoggedIn
 });
 

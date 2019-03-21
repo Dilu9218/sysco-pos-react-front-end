@@ -44,16 +44,16 @@ export const registerUser = (username, newpassword, conpassword) => (dispatch) =
             alertMessage: "Passwords don't match"
         });
     }
-}
+};
 
 export const logUserIn = (username, password) => (dispatch) => {
     return axios.post(USER_LOGIN_ENDPOINT, { username, password })
-        .then(res => {
+        .then((res) => {
             dispatch({
                 type: SAVE_PASS_KEY,
                 passKey: res.data.token
             });
-        }).catch(err => {
+        }).catch((err) => {
             try {
                 switch (err.response.status) {
                     case 401:
@@ -83,7 +83,7 @@ export const reLogUserIn = (cookie) => (dispatch) => {
     dispatch({
         type: SAVE_PASS_KEY,
         passKey: cookie
-    })
+    });
 };
 
 export const logUserOut = () => (dispatch) => {

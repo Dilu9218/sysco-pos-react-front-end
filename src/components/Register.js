@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom"
+import { Redirect } from "react-router-dom";
 import { registerUser } from "../actions/useraccountcontrolactions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

@@ -12,5 +12,5 @@ describe("Redux store", () => {
             </CookiesProvider>
         );
         expect(wrapper).toMatchSnapshot();
-    })
+    });
 });

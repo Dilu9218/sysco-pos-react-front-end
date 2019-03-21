@@ -39,7 +39,7 @@ class ItemCounterInCreateOrder extends Component {
     deleteThisItem = (e) => {
         e.preventDefault();
         let P = this.props.itemsList.find(
-            I => I.productID === this.props.name).price;
+            (I) => I.productID === this.props.name).price;
         this.props.dispatchDeleteThisItemFromQuantity(this.props.name, P);
     }
 
@@ -55,7 +55,7 @@ class ItemCounterInCreateOrder extends Component {
                 this.props.dispatchAddThisItemToQuantity(this.props.name);
             }
             let P = this.props.itemsList.find(
-                I => I.productID === this.props.name).price;
+                (I) => I.productID === this.props.name).price;
             this.props.dispatchIndecrementItemFromQuantity(this.props.name, true, P);
         }
     }

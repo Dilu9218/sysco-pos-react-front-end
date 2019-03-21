@@ -74,13 +74,13 @@ describe("User login actions", () => {
     });
 
     it("Tries to login with invalid credentials", (done) => {
-        store.dispatch(logUserIn("TestUser", "Invalid")).then(res => {
+        store.dispatch(logUserIn("TestUser", "Invalid")).then((res) => {
             expect(store.getActions()[0].type).toBe(SHOW_LOGIN_ERROR);
             done();
         });
     });
     it("Tries to login with valid credentials", (done) => {
-        store.dispatch(logUserIn("Padmal", "a")).then(res => {
+        store.dispatch(logUserIn("Padmal", "a")).then((res) => {
             expect(store.getActions()[0].type).toBe(SAVE_PASS_KEY);
             done();
         });
@@ -92,7 +92,7 @@ describe("User login actions", () => {
         });
     });
     it("Tries to login with no username password", (done) => {
-        store.dispatch(logUserIn()).then(res => {
+        store.dispatch(logUserIn()).then((res) => {
             expect(store.getActions()[0].type).toBe(SHOW_LOGIN_ERROR);
             done();
         });

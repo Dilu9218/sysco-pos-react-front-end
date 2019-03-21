@@ -14,7 +14,7 @@ const middlewares = [thunk];
 
 describe("<App /> component", () => {
 
-    const relog_user = jest.fn();
+    const reLogUser = jest.fn();
 
     const initialState = {
         uac: {
@@ -25,7 +25,7 @@ describe("<App /> component", () => {
             orderList: []
         },
         cookies: instanceOf(Cookies).isRequired,
-        reLogUserIn: relog_user
+        reLogUserIn: reLogUser
     };
     const mockStore = configureStore(middlewares);
     let store;
@@ -108,7 +108,7 @@ describe("<App /> with cookies unset", () => {
                 <Provider store={store}>
                     <App cookies={{
                         getAll: jest.fn(),
-                        get: () => { return true },
+                        get: () => { return true; },
                         addChangeListener: jest.fn(),
                         remove: jest.fn()
                     }} />

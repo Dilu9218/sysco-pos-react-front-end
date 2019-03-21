@@ -54,4 +54,4 @@ export const REGISTRATION_REDUCER = (state = {
     default:
       return state;
   }
-}
+};

@@ -37,18 +37,18 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 ...state,
                 itemsList: action.itemsList,
                 viewItemList: JSON.parse(JSON.stringify(action.itemsList)),
-            }
+            };
         case ERROR_FETCHING_ITEMS_LIST:
             return {
                 ...state,
                 itemsList: [],
                 viewItemList: []
-            }
+            };
         case FETCH_EVERY_ORDER_FOR_THIS_USER:
             return {
                 ...state,
                 orderList: action.orderList
-            }
+            };
         case ERROR_FETCHING_ORDER_LIST_FOR_USER:
             return {
                 ...state,
@@ -60,11 +60,11 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 clonedItemQuantity: {},
                 url: "",
                 status: false
-            }
+            };
         case DELETE_THIS_ORDER:
             return {
                 ...state,
-                orderList: state.orderList.filter(order => (order._id !== action.id)),
+                orderList: state.orderList.filter((order) => (order._id !== action.id)),
                 currentOrder: {},
                 currentOrderID: "",
                 total: 0,
@@ -72,13 +72,13 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 clonedItemQuantity: {},
                 url: "",
                 status: false
-            }
+            };
         case CHECK_OUT_ORDER:
             return {
                 ...state,
                 url: "/my_orders",
                 orderList: state.orderList.filter((order) => (order._id !== action.id)),
-            }
+            };
         case SET_THIS_ORDER_AS_CURRENT_ORDER:
             let tempItemQuantity = {};
             let tempTotal = 0;
@@ -100,7 +100,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 itemQuantity: tempItemQuantity,
                 clonedItemQuantity: JSON.parse(JSON.stringify(tempItemQuantity)),
                 url: action.url
-            }
+            };
         case RESET_CURRENT_ORDER_STATES:
             return {
                 ...state,
@@ -112,12 +112,12 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 clonedItemQuantity: {},
                 url: "",
                 status: false
-            }
+            };
         case CREATE_NEW_ORDER_FOR_THIS_USER:
             return {
                 ...state,
                 currentOrderID: action.id
-            }
+            };
         case ADD_THIS_ITEM_TO_QUANTITY:
             return {
                 ...state,
@@ -125,7 +125,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                     ...state.itemQuantity,
                     [action.id]: 0
                 }
-            }
+            };
         case DELETE_THIS_ITEM_FROM_QUANTITY:
             let newItemQuantity = state.itemQuantity;
             let reserve = (action.price * state.itemQuantity[action.id]);
@@ -134,7 +134,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 ...state,
                 total: state.total - reserve,
                 itemQuantity: newItemQuantity
-            }
+            };
         case INDECREMENT_ITEM_FROM_QUANTITY:
             return {
                 ...state,
@@ -145,7 +145,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                     [action.id]: state.itemQuantity[action.id] + (
                         action.direction ? 1 : -1)
                 }
-            }
+            };
         case ADD_THESE_ITEMS_TO_THIS_ORDER:
             return {
                 ...state,
@@ -154,7 +154,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                     action.updatedOrder
                 ],
                 status: true
-            }
+            };
         case APPEND_THIS_ITEM_TO_ORDER:
             let newItem = JSON.parse(JSON.stringify(
                 state.itemsList.find((I) => (I.productID === action.productID))));
@@ -177,7 +177,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                     [action.productID]: 1
                 },
                 total: state.total + (action.price)
-            }
+            };
         case QUICK_DELETE_THIS_ITEM_FROM_QUANTITY:
             let nItm = state.itemQuantity;
             let r = (action.price * state.itemQuantity[action.id]);
@@ -187,7 +187,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                 currentOrder: action.updatedOrder,
                 total: state.total - r,
                 itemQuantity: nItm
-            }
+            };
         case QUICK_INDECREMENT_ITEM_FROM_QUANTITY:
             return {
                 ...state,
@@ -197,7 +197,7 @@ export const ORDER_LIST_REDUCER = (state = initialState, action) => {
                     ...state.itemQuantity,
                     [action.id]: state.itemQuantity[action.id] + (action.direction ? 1 : -1)
                 }
-            }
+            };
         default:
             return state;
     }

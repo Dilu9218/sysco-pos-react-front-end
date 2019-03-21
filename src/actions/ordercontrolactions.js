@@ -177,7 +177,7 @@ export const dispatchAppendThisItemToOrder = (price, productID, orderID, accesst
                     type: ERROR_APPEND_THIS_ITEM_TO_ORDER
                 });
             });
-    }
+    };
 
 export const dispatchGetTheCompleteItemsList = (accesstoken) =>
     (dispatch) => {
@@ -201,7 +201,7 @@ export const dispatchQuickDeleteThisItemFromQuantity = (id, orderID, count, pric
         return axios.patch(DELETE_ORDER_ITEM_ENDPOINT + `/${orderID}`, {
             productID: id,
             quantity: count
-        }, { headers: { "x-access-token": accesstoken } }).then(updatedOrder => {
+        }, { headers: { "x-access-token": accesstoken } }).then((updatedOrder) => {
             dispatch({
                 type: QUICK_DELETE_THIS_ITEM_FROM_QUANTITY,
                 updatedOrder: updatedOrder.data,

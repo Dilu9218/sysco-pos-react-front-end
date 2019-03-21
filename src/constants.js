@@ -16,7 +16,7 @@ export const ORDER_CHECKOUT_ENDPOINT = BASEURL + ORDER_ENDPOINT + "/checkout";
 export const ORDER_REQUEST_ENDPOINT = BASEURL + ORDER_ENDPOINT + ORDER_ENDPOINT;
 export const DELETE_ORDER_ITEM_ENDPOINT = BASEURL + ORDER_ENDPOINT + ITEMS_ENDPOINT;
 
-export const USERTOKEN = "usertoken"
+export const USERTOKEN = "usertoken";
 
 /***************************************************************************************************
  * BASEURL = "http://localhost:8080/api";

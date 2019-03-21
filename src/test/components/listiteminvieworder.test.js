@@ -17,7 +17,7 @@ describe("<ListItemInViewOrder /> component renders", () => {
         description: "A aasasas",
         quantity: 100,
         price: 25
-    }
+    };
 
     const initialState = {
         uac: { passKey: "" },
@@ -36,7 +36,7 @@ describe("<ListItemInViewOrder /> component renders", () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-    })
+    });
 
     it("renders", () => {
         const wrapper = mount(

@@ -10,9 +10,9 @@
 
 This repository contains front end implementation of PoS system using react native with redux fully integrated for state management. Source code is developed using ReactJS with Redux in VSCode IDE. There are three branches maintained in this project.
 
-- `development-redux` branch containing source code under development using redux
-- `development-pure` branch containing source code under development using react native with manual state control
-- `deployment` hosting branch in Heroku. Pushes to this branch will deploy the content in the hosted website
+  - `development-redux` branch containing source code under development using redux
+  - `development-pure` branch containing source code under development using react native with manual state control
+  - `deployment` hosting branch in Heroku. Pushes to this branch will deploy the content in the hosted website
 
 ## Getting Started
 
@@ -22,9 +22,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-- [VSCode](https://code.visualstudio.com/download)
-- [React](https://facebook.github.io/react-native/docs/getting-started.html)
-- [NodeJS & npm](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04)
+  - [VSCode](https://code.visualstudio.com/download)
+  - [React](https://facebook.github.io/react-native/docs/getting-started.html)
+  - [NodeJS & npm](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04)
 
 ### Installing
 
@@ -44,4 +44,4 @@ This site is already hosted in a free Heroku platform using free dynos. There mi
 
 ## Maintainer
 
-- [Padmal](https://github.com/CloudyPadmal)
+  - [Padmal](https://github.com/CloudyPadmal)

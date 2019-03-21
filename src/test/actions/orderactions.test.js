@@ -121,7 +121,7 @@ describe("Checkouts orders", () => {
 
     let lOrder;
     beforeAll(async (done) => {
-        await store.dispatch(dispatchCreateNewOrderForThisUser(accesstoken)).then(res => {
+        await store.dispatch(dispatchCreateNewOrderForThisUser(accesstoken)).then((res) => {
             lOrder = store.getActions()[0].id;
             done();
         });
@@ -160,6 +160,7 @@ describe("Checkouts orders", () => {
 
 describe("Current order modifications", () => {
 
+    const store = mockStore({});
     let lOrder;
     beforeAll(async (done) => {
         await store.dispatch(dispatchCreateNewOrderForThisUser(accesstoken)).then((res) => {
@@ -168,7 +169,6 @@ describe("Current order modifications", () => {
         });
     });
 
-    const store = mockStore({});
     beforeEach(() => {
         store.clearActions();
     });

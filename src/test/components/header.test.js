@@ -49,7 +49,7 @@ describe("<Header /> component with logged out", () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-    })
+    });
 
     it("renders with login and register links", () => {
         const wrapper = mount(
