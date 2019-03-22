@@ -8,10 +8,10 @@
 ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/CloudyPadmal/sysco-pos-react-front-end.svg)
 ![Repo description](https://img.shields.io/badge/endpoint-frontend-blueviolet.svg)
 
-This repository contains front end implementation of PoS system using react native with redux fully integrated for state management. Source code is developed using ReactJS with Redux in VSCode IDE. There are three branches maintained in this project.
+This repository contains front end implementation of PoS system using ReactJS with redux fully integrated for state management. Source code is developed using ReactJS with Redux in VSCode IDE. There are three branches maintained in this project.
 
   - `development-redux` branch containing source code under development using redux
-  - `development-pure` branch containing source code under development using react native with manual state control
+  - `development-pure` branch containing source code under development using ReactJS with manual state control
   - `deployment` hosting branch in Heroku. Pushes to this branch will deploy the content in the hosted website
 
 ## Getting Started
