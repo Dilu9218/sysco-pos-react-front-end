@@ -42,7 +42,7 @@ class MainPage extends Component {
                             alt="Node JS REST API Test Results and Coverage"
                             style={{ padding: "10px" }} />
                         <div className="card-body">
-                            <h5 className="card-title">NodeJS REST API</h5>
+                            <h5 className="card-title">REST API using NodeJS</h5>
                             <p className="card-text">Test results and the total test coverage for the back end API developed with NodeJS
                             </p>
                         </div>
@@ -52,7 +52,7 @@ class MainPage extends Component {
                             style={{ padding: "10px" }}
                             alt="React JS Front end Test Results and Coverage" />
                         <div className="card-body">
-                            <h5 className="card-title">ReactJS Front End</h5>
+                            <h5 className="card-title">Front End using ReactJS</h5>
                             <p className="card-text">Test results and total test coverage for the front end UI</p>
                         </div>
                     </div>
